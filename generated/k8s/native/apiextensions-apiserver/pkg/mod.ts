@@ -1,2 +1,1 @@
-
-export * as apis from "./apis/mod.ts"
+export * as apis from "./apis/mod.ts";

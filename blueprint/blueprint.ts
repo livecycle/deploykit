@@ -53,10 +53,12 @@ export interface IBluePrint<TContext, T> {
   dump(ctx: TContext): void;
 }
 
-
-class BluePrint<TContext, TResources> implements IBluePrint<TContext, TResources> {
-  constructor(public build: (ctx: TContext) => TResources, 
-  public format = formatYaml) {
+class BluePrint<TContext, TResources>
+  implements IBluePrint<TContext, TResources> {
+  constructor(
+    public build: (ctx: TContext) => TResources,
+    public format = formatYaml,
+  ) {
   }
 
   with(
@@ -64,15 +66,16 @@ class BluePrint<TContext, TResources> implements IBluePrint<TContext, TResources
   ): IBluePrint<TContext, any> {
     return transforms.reduce(
       (acc, next) =>
-        new BluePrint<TContext, any>((ctx) =>
-          next(copy(acc.build(ctx), undefined), ctx)
-        , this.format),
+        new BluePrint<TContext, any>(
+          (ctx) => next(copy(acc.build(ctx), undefined), ctx),
+          this.format,
+        ),
       this as IBluePrint<TContext, any>,
     );
   }
 
   dump(ctx: TContext) {
-    console.log( this.format(this.build(ctx)));
+    console.log(this.format(this.build(ctx)));
   }
 }
 
@@ -102,7 +105,7 @@ export function merge<U, TContext>(
     let result = mergeWithArrayConcat(
       resources,
       newResources,
-    )
+    );
     return result;
   };
 }
@@ -115,7 +118,7 @@ export function mergeSelect<T, K extends keyof T, TContext>(
     let newResources = typeof (factoryOrInstance) === "function"
       ? (factoryOrInstance as (ctx: TContext) => T[K])(ctx)
       : (copy(factoryOrInstance, undefined) as T[K]);
-    resources[selector] =mergeWithArrayConcat(
+    resources[selector] = mergeWithArrayConcat(
       resources[selector],
       newResources,
     ) as T[K];

@@ -1,2 +1,1 @@
-
-export * as apiextensions from "./apiextensions/mod.ts"
+export * as apiextensions from "./apiextensions/mod.ts";

@@ -33,24 +33,23 @@ Deno.test("merge test - override", () => {
 });
 
 Deno.test("merge test - concat arrays", () => {
-    let s = createBluePrint().with(
-      merge({
-        service: {
-          a: 5,
-          roles: ["user"]
-        },
-      }),
-      merge({
-        service: {
-          b: 10,
-          roles: ["admin"]
-        },
-      }),
-    );
- 
-    assertEquals(
-      s.build(undefined).service.roles,
-      ["user","admin"],
-    );
-  });
-  
+  let s = createBluePrint().with(
+    merge({
+      service: {
+        a: 5,
+        roles: ["user"],
+      },
+    }),
+    merge({
+      service: {
+        b: 10,
+        roles: ["admin"],
+      },
+    }),
+  );
+
+  assertEquals(
+    s.build(undefined).service.roles,
+    ["user", "admin"],
+  );
+});

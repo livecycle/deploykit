@@ -1,2 +1,1 @@
-
-export * as keda from "./keda/mod.ts"
+export * as keda from "./keda/mod.ts";

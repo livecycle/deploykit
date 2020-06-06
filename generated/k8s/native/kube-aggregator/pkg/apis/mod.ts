@@ -1,2 +1,1 @@
-
-export * as apiregistration from "./apiregistration/mod.ts"
+export * as apiregistration from "./apiregistration/mod.ts";

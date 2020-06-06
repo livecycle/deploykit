@@ -3,64 +3,64 @@ import * as v1 from "https://deno.land/x/gh:yshayy:deploykit@0.0.1/generated/k8s
 import { formatYaml } from "https://deno.land/x/gh:yshayy:deploykit@0.0.1/utils/format.ts";
 let secret = v1.createSecret({
   metadata: {
-    name: "my-app"
+    name: "my-app",
   },
-  stringData:{
-    "secrets.json": JSON.stringify({some: "secret"})
-  }
-})
+  stringData: {
+    "secrets.json": JSON.stringify({ some: "secret" }),
+  },
+});
 
 let deployment = createDeployment({
   metadata: {
-    name: "my-app"
+    name: "my-app",
   },
   spec: {
-    selector:{
-      matchLabels : {
-        "app": "my-app"
-      }
+    selector: {
+      matchLabels: {
+        "app": "my-app",
+      },
     },
-    template:{
+    template: {
       spec: {
-        volumes:[
+        volumes: [
           {
             name: "secrets",
             secret: {
-              secretName : "my-app"
-            }
-          }
+              secretName: "my-app",
+            },
+          },
         ],
         containers: [
           {
             name: "app",
             image: "some-image",
-            volumeMounts:[
+            volumeMounts: [
               {
                 name: "secrets",
-                mountPath: "/run/secrets"
-              }
-            ]
-          }
-        ]
-      }
-    }
-  }
-})
+                mountPath: "/run/secrets",
+              },
+            ],
+          },
+        ],
+      },
+    },
+  },
+});
 
 let service = v1.createService({
   metadata: {
-    name: "my-app"
+    name: "my-app",
   },
   spec: {
-    selector:{
-      "app": "my-app"
+    selector: {
+      "app": "my-app",
     },
     ports: [
       {
-        port : 80
-      }
-    ]
-}
+        port: 80,
+      },
+    ],
+  },
 });
 
-console.log(formatYaml({service, deployment, secret}))
+console.log(formatYaml({ service, deployment, secret }));

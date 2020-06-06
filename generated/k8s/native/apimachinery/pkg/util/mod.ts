@@ -1,2 +1,1 @@
-
-export * as intstr from "./intstr/mod.ts"
+export * as intstr from "./intstr/mod.ts";

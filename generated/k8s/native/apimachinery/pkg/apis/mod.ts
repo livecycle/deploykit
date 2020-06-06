@@ -1,2 +1,1 @@
-
-export * as meta from "./meta/mod.ts"
+export * as meta from "./meta/mod.ts";

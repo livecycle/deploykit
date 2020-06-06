@@ -1,2 +1,1 @@
-
-export * as coreos from "./coreos/mod.ts"
+export * as coreos from "./coreos/mod.ts";

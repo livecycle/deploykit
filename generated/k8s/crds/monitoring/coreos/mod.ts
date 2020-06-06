@@ -1,2 +1,1 @@
-
-export * as com from "./com/mod.ts"
+export * as com from "./com/mod.ts";
