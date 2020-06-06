@@ -77,33 +77,43 @@ ${additionalProperties && `[key:string]: ${compileType(additionalProperties)}` |
   return "any";
 }
 
-function getImports(def: Definition): {name:string, location:string}[] {
+function getImports(def: Definition, external: {[key:string]: string }): {name:string, location:string}[] {
   if (def.type === "object"){
-     return [...Object.values(def.properties || {}).flatMap(getImports), 
-            ...(def.additionalProperties ? getImports(def.additionalProperties) : [])]
+     return [...Object.values(def.properties || {}).flatMap(x=>getImports(x,external) ), 
+            ...(def.additionalProperties ? getImports(def.additionalProperties, external) : [])]
   } 
   if (def.type === "array"){
-    return def.items ? getImports(def.items) : []
+    return def.items ? getImports(def.items, external) : []
   }
   if (def.$ref){
-     return [getType(def.$ref.substring("#/definitions/".length))]
+    let fullName = def.$ref.substring("#/definitions/".length);
+    let {name, location} = getType(fullName)
+    return [{name: name, location: external[fullName] || location }]
    }
 
    return [];
 }
 
 
+function getImportPath(from: string, to:string){
+  if (to.startsWith("https://") || to.startsWith("http://")){
+    return to
+  }
+  return relative(from, to)
+}
 
-export function generateDefs(openApi: {definitions: {[key:string]: Definition } }){
+export function generateDefs(openApi: {definitions: {[key:string]: Definition } }, options:{
+  externalRefs:{ [key:string]:string }
+} = {externalRefs: {}} ){
   let files = Object.entries(openApi.definitions).map(([key, def])=> ({...getType(key), def}))
                .reduce((acc,next)=>mergeWithArrayConcat(acc, {[next.location]: [{name: next.name, def: next.def }]}), {} as {[key:string]: {name: string, def: Definition}[]});
   return Object.entries(files).map(([location, types])=>{
     let header = `/* Generated for ${location} */`
-    let imports = types.flatMap(x=>getImports(x.def)).reduce((acc,next)=>mergeWithArrayConcat(acc, {[next.location]: [next.name]}), {}) as {[key:string]: string[]}
+    let imports = types.flatMap(x=>getImports(x.def, options.externalRefs) ).reduce((acc,next)=>mergeWithArrayConcat(acc, {[next.location]: [next.name]}), {}) as {[key:string]: string[]}
     
     let importHeader = Object.entries(imports).filter(([importLocation])=> importLocation !== location)
     .map(([importLocation, names]) =>
-`import { ${[...new Set(names)].join(",")}} from "${relative(dirname(location), importLocation)}"`
+`import { ${[...new Set(names)].join(",")}} from "${getImportPath(dirname(location), importLocation)}"`
       ).join("\n");
 
     let typesContent = types.map(({name, def})=> {

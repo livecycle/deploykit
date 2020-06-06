@@ -1,1 +1,1 @@
-deno run --allow-net --allow-write --allow-read ./cmd/generate-k8s.ts --output "./generated/k8s/native"
+deno run --allow-net --allow-write --allow-read "./generate-sources.ts"

@@ -1,0 +1,6 @@
+{
+    "native":"https://raw.githubusercontent.com/kubernetes/kubernetes/v1.18.3/api/openapi-spec/swagger.json",
+    "crds":[
+        "https://raw.githubusercontent.com/kedacore/keda/master/deploy/crds/keda.k8s.io_scaledobjects_crd.yaml"
+    ]
+}
