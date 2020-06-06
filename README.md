@@ -93,8 +93,8 @@ TBD
 
 ## What's Inside
 
-- generated/k8s - TS definitions for all k8s native resourcesn based on k8s OpenAPI defintions.
-- generators/openapi - library for generating TS files from open-api, currently tailored to k8s.
+- generated/k8s - TS definitions for all k8s native resourcesn based on k8s OpenAPI defintions, some CRDs are also imported.
+- generators/openapi - library for generating TS files from open-api and CRD files currently tailored to k8s.
 - blueprint - Library for creating, sharing and reusing high level abstractions of deployments
 - blueprint/k8s - Base blueprint factory and operators for creating and manipulating common k8s resources
 
