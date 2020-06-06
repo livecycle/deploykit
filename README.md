@@ -37,7 +37,7 @@ metadata:
   namespace: my-namespace
   labels:
     app: my-app
------
+---
 apiVersion: v1
 kind: Service
 spec:
@@ -49,7 +49,7 @@ metadata:
   namespace: my-namespace
   labels:
     app: my-app
------
+---
 apiVersion: apps/v1
 kind: Deployment
 spec:
