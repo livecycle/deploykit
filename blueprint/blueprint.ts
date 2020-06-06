@@ -1,7 +1,3 @@
-import {
-  merge as deepMerge,
-  concatArrays,
-} from "https://cdn.pika.dev/merge-anything@^2.4.4";
 import copy from "https://cdn.pika.dev/copy-anything@^1.5.4";
 import { formatYaml } from "../utils/format.ts";
 import { mergeWithArrayConcat } from "../utils/object.ts";
