@@ -78,14 +78,15 @@ Usage with kubectl:
 
 
 ## Why Deno?
-The aim of this project, is to simplify typescript-configuration based deployment. 
-Deno provide some capabilites in the area:
+
+Deno brings back some of the script-y aspects of JS and the web, but with the safety of Typescript.
+It has several advantages such as: 
 
 * No need for typescript toolchain (tsc, prettier, etc...)
 * No need to manage dependencies or package.json or deployment project folder
-* Sandboxed security - scripts can generate configuration files and nothing more
+* Sandboxed security - scripts can output configuration files and nothing more
 
-These capabilies allow us to easily create a single deploy.ts file that is easy to manage, execute or integrated in CI/CD
+These capabilies allow us to easily create a single deploy.ts file that is easy to manage, execute, extend, integrate in CI/CD.
 
 ## Why Typescript
 
