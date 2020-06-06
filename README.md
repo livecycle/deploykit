@@ -1,6 +1,8 @@
 # Deploykit
 A Deno based toolkit for generating deployment configuration files using typescript with focus on k8s resources.  
-Inspired by Pulumi, JKCfg, CDK, Helm and others...
+Inspired by Pulumi, JKCfg, ts-kubernetes-models, CDK, Helm and others...
+
+** This project is in very early and experimental stage
 
 ## Quick example
 
@@ -88,10 +90,14 @@ These capabilies allow us to easily create a single deploy.ts file that is easy 
 ## Why Typescript
 
 
-## Ingredients
+## What's Inside
 
+- generated/k8s - TS definitions for all k8s native resourcesn based on k8s OpenAPI defintions.
+- generators/openapi - library for generating TS files from open-api, currently tailored to k8s.
+- blueprint - Library for creating, sharing and reusing high level abstractions of deployments
+- blueprint/k8s - Base blueprint factory and operators for creating and manipulating common k8s resources
 
-## Compared to other alternatives
+## Compared to other solutions
 
 
 # Roadmap
