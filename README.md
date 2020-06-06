@@ -94,7 +94,7 @@ TBD
 ## What's Inside
 
 - generated/k8s - TS definitions for all k8s native resourcesn based on k8s OpenAPI defintions, some CRDs are also imported.
-  (crds are defined [here](https://github.com/yshayy/deploykit/generated/sources.json))
+  (crds are defined [here](https://github.com/Yshayy/deploykit/blob/master/generated/k8s/sources.json))
 - generators/openapi - library for generating TS files from open-api and CRD files currently tailored to k8s.
 - blueprint - Library for creating, sharing and reusing high level abstractions of deployments
 - blueprint/k8s - Base blueprint factory and operators for creating and manipulating common k8s resources
