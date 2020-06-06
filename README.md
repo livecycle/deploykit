@@ -89,6 +89,7 @@ These capabilies allow us to easily create a single deploy.ts file that is easy 
 
 ## Why Typescript
 
+TBD
 
 ## What's Inside
 
@@ -99,6 +100,8 @@ These capabilies allow us to easily create a single deploy.ts file that is easy 
 
 ## Compared to other solutions
 
+TBD
 
 # Roadmap
 
+TBD
