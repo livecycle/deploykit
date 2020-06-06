@@ -1,15 +1,10 @@
 
-import * as api from "./api/mod.ts"
-export { api }
+export * as api from "./api/mod.ts"
 
-import * as apis from "./apis/mod.ts"
-export { apis }
+export * as apis from "./apis/mod.ts"
 
-import * as runtime from "./runtime/mod.ts"
-export { runtime }
+export * as runtime from "./runtime/mod.ts"
 
-import * as util from "./util/mod.ts"
-export { util }
+export * as util from "./util/mod.ts"
 
-import * as version from "./version/mod.ts"
-export { version }
+export * as version from "./version/mod.ts"

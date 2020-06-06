@@ -1,63 +1,42 @@
 
-import * as admissionregistration from "./admissionregistration/mod.ts"
-export { admissionregistration }
+export * as admissionregistration from "./admissionregistration/mod.ts"
 
-import * as apps from "./apps/mod.ts"
-export { apps }
+export * as apps from "./apps/mod.ts"
 
-import * as auditregistration from "./auditregistration/mod.ts"
-export { auditregistration }
+export * as auditregistration from "./auditregistration/mod.ts"
 
-import * as authentication from "./authentication/mod.ts"
-export { authentication }
+export * as authentication from "./authentication/mod.ts"
 
-import * as authorization from "./authorization/mod.ts"
-export { authorization }
+export * as authorization from "./authorization/mod.ts"
 
-import * as autoscaling from "./autoscaling/mod.ts"
-export { autoscaling }
+export * as autoscaling from "./autoscaling/mod.ts"
 
-import * as batch from "./batch/mod.ts"
-export { batch }
+export * as batch from "./batch/mod.ts"
 
-import * as certificates from "./certificates/mod.ts"
-export { certificates }
+export * as certificates from "./certificates/mod.ts"
 
-import * as coordination from "./coordination/mod.ts"
-export { coordination }
+export * as coordination from "./coordination/mod.ts"
 
-import * as core from "./core/mod.ts"
-export { core }
+export * as core from "./core/mod.ts"
 
-import * as discovery from "./discovery/mod.ts"
-export { discovery }
+export * as discovery from "./discovery/mod.ts"
 
-import * as events from "./events/mod.ts"
-export { events }
+export * as events from "./events/mod.ts"
 
-import * as extensions from "./extensions/mod.ts"
-export { extensions }
+export * as extensions from "./extensions/mod.ts"
 
-import * as flowcontrol from "./flowcontrol/mod.ts"
-export { flowcontrol }
+export * as flowcontrol from "./flowcontrol/mod.ts"
 
-import * as networking from "./networking/mod.ts"
-export { networking }
+export * as networking from "./networking/mod.ts"
 
-import * as node from "./node/mod.ts"
-export { node }
+export * as node from "./node/mod.ts"
 
-import * as policy from "./policy/mod.ts"
-export { policy }
+export * as policy from "./policy/mod.ts"
 
-import * as rbac from "./rbac/mod.ts"
-export { rbac }
+export * as rbac from "./rbac/mod.ts"
 
-import * as scheduling from "./scheduling/mod.ts"
-export { scheduling }
+export * as scheduling from "./scheduling/mod.ts"
 
-import * as settings from "./settings/mod.ts"
-export { settings }
+export * as settings from "./settings/mod.ts"
 
-import * as storage from "./storage/mod.ts"
-export { storage }
+export * as storage from "./storage/mod.ts"

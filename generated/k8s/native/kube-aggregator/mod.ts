@@ -1,3 +1,2 @@
 
-import * as pkg from "./pkg/mod.ts"
-export { pkg }
+export * as pkg from "./pkg/mod.ts"

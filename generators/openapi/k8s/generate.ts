@@ -151,8 +151,7 @@ export function addStubModules(locations: string[]) : {location: string, content
     if (node === true) continue;
     results.push({location: path + "/mod.ts", content: Object.keys(node).map(x=> 
 `
-import * as ${x.replace(/-/g, "_")} from "./${x}/mod.ts"
-export { ${x.replace(/-/g, "_")} }
+export * as ${x.replace(/-/g, "_")} from "./${x}/mod.ts"
 `).join("")})
     nodesToVisit.push(...Object.entries(node).map(([name, node ])=> ({path: [path, name].filter(x=> x!== "").join("/"), node})) )
   }

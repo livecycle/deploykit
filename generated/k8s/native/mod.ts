@@ -1,12 +1,8 @@
 
-import * as api from "./api/mod.ts"
-export { api }
+export * as api from "./api/mod.ts"
 
-import * as apiextensions_apiserver from "./apiextensions-apiserver/mod.ts"
-export { apiextensions_apiserver }
+export * as apiextensions_apiserver from "./apiextensions-apiserver/mod.ts"
 
-import * as apimachinery from "./apimachinery/mod.ts"
-export { apimachinery }
+export * as apimachinery from "./apimachinery/mod.ts"
 
-import * as kube_aggregator from "./kube-aggregator/mod.ts"
-export { kube_aggregator }
+export * as kube_aggregator from "./kube-aggregator/mod.ts"
