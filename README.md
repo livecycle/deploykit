@@ -18,6 +18,7 @@ createMicroservice().with(
   )
 ```
 <details><summary>Output</summary>
+
 ```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -67,6 +68,7 @@ metadata:
   labels:
     app: my-app
 ```
+
 </details>
 
 Usage with kubectl:  
