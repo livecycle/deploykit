@@ -2,14 +2,43 @@ import * as k8s from "../../../generated/k8s/native/api/mod.ts";
 import { KubeMetaContext } from "../types.ts";
 import { modify } from "../../blueprint.ts";
 import { addResources } from "./base.ts";
+import { DeploymentStrategy } from "../../../generated/k8s/native/api/apps/v1/mod.ts";
+import { Container } from "../../../generated/k8s/native/api/core/v1/mod.ts";
 
-export const addDeployment = ({ image }: { image: string }) =>
+export const addSideCar = <
+  T extends { deployment: k8s.apps.v1.Deployment },
+  TContext extends KubeMetaContext,
+>({ name, image, resources = {}, containerProps = {} }: {
+  name: string;
+  image: string;
+  resources: k8s.core.v1.ResourceRequirements;
+  containerProps: Partial<Omit<Container, "image" | "resources">>;
+}) => {
+  return modify<T, TContext>((x) => {
+    x.deployment.spec!.template.spec?.containers.push({
+      name,
+      image,
+      resources,
+      ...containerProps,
+    });
+  });
+};
+
+export const addDeployment = (
+  { image, deploymentStrategy, resources = {}, containerProps = {} }: {
+    image: string;
+    deploymentStrategy?: DeploymentStrategy;
+    resources?: k8s.core.v1.ResourceRequirements;
+    containerProps?: Partial<Omit<Container, "image" | "resources">>;
+  },
+) =>
   addResources((ctx) => ({
     deployment: k8s.apps.v1.createDeployment({
       spec: {
         selector: {
           matchLabels: ctx.labels,
         },
+        strategy: deploymentStrategy,
         template: {
           metadata: {
             labels: ctx.labels,
@@ -19,6 +48,8 @@ export const addDeployment = ({ image }: { image: string }) =>
               {
                 name: "app",
                 image,
+                resources,
+                ...containerProps,
               },
             ],
           },
