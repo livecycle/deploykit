@@ -5,10 +5,8 @@ import {
   expose,
 } from "https://deno.land/x/gh:yshayy:deploykit@0.0.7/blueprint/k8s/operators/all.ts";
 
-createMicroservice().with(
+let app = createMicroservice().with(
   addDeployment({ image: "my-image" }),
   addService({ port: 80 }),
   expose({ domain: "my-app.com" }),
-).dump(
-  { name: "my-app", namespace: "my-namespace", labels: { app: "my-app" } },
-);
+).build({ "name": "app", "namespace": "sss", labels: {} });
