@@ -1,6 +1,6 @@
 import copy from "https://cdn.pika.dev/copy-anything@^1.5.4";
 import { formatYaml } from "../utils/format.ts";
-import { mergeWithArrayConcat } from "../utils/object.ts";
+import { mergeWithArrayConcat, cleanObject } from "../utils/object.ts";
 
 export type BluePrintTransform<TContext, T, U> = (r: T, ctx: TContext) => U;
 
@@ -67,7 +67,7 @@ class BluePrint<TContext, TResources>
     return transforms.reduce(
       (acc, next) =>
         new BluePrint<TContext, any>(
-          (ctx) => next(copy(acc.build(ctx), undefined), ctx),
+          (ctx) => next(cleanObject(copy(acc.build(ctx), undefined)), ctx),
           this.format,
         ),
       this as IBluePrint<TContext, any>,
@@ -118,6 +118,7 @@ export function mergeSelect<T, K extends keyof T, TContext>(
     let newResources = typeof (factoryOrInstance) === "function"
       ? (factoryOrInstance as (ctx: TContext) => T[K])(ctx)
       : (copy(factoryOrInstance, undefined) as T[K]);
+
     resources[selector] = mergeWithArrayConcat(
       resources[selector],
       newResources,

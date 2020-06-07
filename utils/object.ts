@@ -10,3 +10,21 @@ export function mergeWithArrayConcat<T, U>(o1: T, o2: U) {
     o2,
   ) as T & U;
 }
+
+export function cleanObject(x: any) {
+  if (typeof (x) === "object") {
+    if (Array.isArray(x)) {
+      x.forEach(cleanObject);
+    } else {
+      Object.keys(x).forEach((key) => {
+        if (x[key] === undefined) {
+          delete x[key];
+        } else {
+          cleanObject(x[key]);
+        }
+      });
+      x;
+    }
+  }
+  return x;
+}
