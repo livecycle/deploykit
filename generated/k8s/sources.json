@@ -1,6 +1,7 @@
 {
     "native": [
-        "v1.18.3"
+        "v1.18.3",
+        "v1.15.3"
     ],
     "crds": [
         "https://raw.githubusercontent.com/coreos/prometheus-operator/master/example/prometheus-operator-crd/monitoring.coreos.com_alertmanagers.yaml",
