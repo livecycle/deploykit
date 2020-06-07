@@ -12,10 +12,31 @@ export const addSideCar = <
   name: string;
   image: string;
   resources: k8s.core.v1.ResourceRequirements;
-  containerProps: Partial<Omit<Container, "image" | "resources">>;
+  containerProps?: Partial<Omit<Container, "image" | "resources">>;
 }) => {
   return modify<T, TContext>((x) => {
     x.deployment.spec!.template.spec?.containers.push({
+      name,
+      image,
+      resources,
+      ...containerProps,
+    });
+  });
+};
+
+export const addInitContainer = <
+  T extends { deployment: k8s.apps.v1.Deployment },
+  TContext extends KubeMetaContext,
+>({ name, image, resources = {}, containerProps = {} }: {
+  name: string;
+  image: string;
+  resources: k8s.core.v1.ResourceRequirements;
+  containerProps?: Partial<Omit<Container, "image" | "resources">>;
+}) => {
+  return modify<T, TContext>((x) => {
+    x.deployment.spec!.template.spec!.initContainers =
+      x.deployment.spec!.template.spec?.initContainers || [];
+    x.deployment.spec!.template.spec!.initContainers.push({
       name,
       image,
       resources,
