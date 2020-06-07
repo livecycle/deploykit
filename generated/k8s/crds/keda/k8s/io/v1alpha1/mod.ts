@@ -389,7 +389,7 @@ export type ScaledObject = {
                   path?: string;
 
                   /** Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
-                  port: any;
+                  port: number | string;
 
                   /** Scheme to use for connecting to the host. Defaults to HTTP. */
                   scheme?: string;
@@ -401,7 +401,7 @@ export type ScaledObject = {
                   host?: string;
 
                   /** Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
-                  port: any;
+                  port: number | string;
                 };
               };
 
@@ -431,7 +431,7 @@ export type ScaledObject = {
                   path?: string;
 
                   /** Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
-                  port: any;
+                  port: number | string;
 
                   /** Scheme to use for connecting to the host. Defaults to HTTP. */
                   scheme?: string;
@@ -443,7 +443,7 @@ export type ScaledObject = {
                   host?: string;
 
                   /** Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
-                  port: any;
+                  port: number | string;
                 };
               };
             };
@@ -477,7 +477,7 @@ export type ScaledObject = {
                 path?: string;
 
                 /** Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
-                port: any;
+                port: number | string;
 
                 /** Scheme to use for connecting to the host. Defaults to HTTP. */
                 scheme?: string;
@@ -498,7 +498,7 @@ export type ScaledObject = {
                 host?: string;
 
                 /** Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
-                port: any;
+                port: number | string;
               };
 
               /** Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#container-probes */
@@ -555,7 +555,7 @@ export type ScaledObject = {
                 path?: string;
 
                 /** Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
-                port: any;
+                port: number | string;
 
                 /** Scheme to use for connecting to the host. Defaults to HTTP. */
                 scheme?: string;
@@ -576,7 +576,7 @@ export type ScaledObject = {
                 host?: string;
 
                 /** Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
-                port: any;
+                port: number | string;
               };
 
               /** Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#container-probes */
@@ -866,7 +866,7 @@ export type ScaledObject = {
                   path?: string;
 
                   /** Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
-                  port: any;
+                  port: number | string;
 
                   /** Scheme to use for connecting to the host. Defaults to HTTP. */
                   scheme?: string;
@@ -878,7 +878,7 @@ export type ScaledObject = {
                   host?: string;
 
                   /** Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
-                  port: any;
+                  port: number | string;
                 };
               };
 
@@ -908,7 +908,7 @@ export type ScaledObject = {
                   path?: string;
 
                   /** Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
-                  port: any;
+                  port: number | string;
 
                   /** Scheme to use for connecting to the host. Defaults to HTTP. */
                   scheme?: string;
@@ -920,7 +920,7 @@ export type ScaledObject = {
                   host?: string;
 
                   /** Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
-                  port: any;
+                  port: number | string;
                 };
               };
             };
@@ -954,7 +954,7 @@ export type ScaledObject = {
                 path?: string;
 
                 /** Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
-                port: any;
+                port: number | string;
 
                 /** Scheme to use for connecting to the host. Defaults to HTTP. */
                 scheme?: string;
@@ -975,7 +975,7 @@ export type ScaledObject = {
                 host?: string;
 
                 /** Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
-                port: any;
+                port: number | string;
               };
 
               /** Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#container-probes */
@@ -1032,7 +1032,7 @@ export type ScaledObject = {
                 path?: string;
 
                 /** Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
-                port: any;
+                port: number | string;
 
                 /** Scheme to use for connecting to the host. Defaults to HTTP. */
                 scheme?: string;
@@ -1053,7 +1053,7 @@ export type ScaledObject = {
                 host?: string;
 
                 /** Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
-                port: any;
+                port: number | string;
               };
 
               /** Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#container-probes */

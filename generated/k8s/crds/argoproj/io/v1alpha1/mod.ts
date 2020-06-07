@@ -244,7 +244,7 @@ export type AnalysisRun = {
                       resourceFieldRef: {
                         containerName?: string;
 
-                        divisor?: any;
+                        divisor?: number | string;
 
                         resource: string;
                       };
@@ -296,7 +296,7 @@ export type AnalysisRun = {
 
                         path?: string;
 
-                        port: any;
+                        port: number | string;
 
                         scheme?: string;
                       };
@@ -304,7 +304,7 @@ export type AnalysisRun = {
                       tcpSocket: {
                         host?: string;
 
-                        port: any;
+                        port: number | string;
                       };
                     };
 
@@ -324,7 +324,7 @@ export type AnalysisRun = {
 
                         path?: string;
 
-                        port: any;
+                        port: number | string;
 
                         scheme?: string;
                       };
@@ -332,7 +332,7 @@ export type AnalysisRun = {
                       tcpSocket: {
                         host?: string;
 
-                        port: any;
+                        port: number | string;
                       };
                     };
                   };
@@ -355,7 +355,7 @@ export type AnalysisRun = {
 
                       path?: string;
 
-                      port: any;
+                      port: number | string;
 
                       scheme?: string;
                     };
@@ -369,7 +369,7 @@ export type AnalysisRun = {
                     tcpSocket: {
                       host?: string;
 
-                      port: any;
+                      port: number | string;
                     };
 
                     timeoutSeconds?: number;
@@ -407,7 +407,7 @@ export type AnalysisRun = {
 
                       path?: string;
 
-                      port: any;
+                      port: number | string;
 
                       scheme?: string;
                     };
@@ -421,7 +421,7 @@ export type AnalysisRun = {
                     tcpSocket: {
                       host?: string;
 
-                      port: any;
+                      port: number | string;
                     };
 
                     timeoutSeconds?: number;
@@ -487,7 +487,7 @@ export type AnalysisRun = {
 
                       path?: string;
 
-                      port: any;
+                      port: number | string;
 
                       scheme?: string;
                     };
@@ -501,7 +501,7 @@ export type AnalysisRun = {
                     tcpSocket: {
                       host?: string;
 
-                      port: any;
+                      port: number | string;
                     };
 
                     timeoutSeconds?: number;
@@ -584,7 +584,7 @@ export type AnalysisRun = {
                       resourceFieldRef: {
                         containerName?: string;
 
-                        divisor?: any;
+                        divisor?: number | string;
 
                         resource: string;
                       };
@@ -636,7 +636,7 @@ export type AnalysisRun = {
 
                         path?: string;
 
-                        port: any;
+                        port: number | string;
 
                         scheme?: string;
                       };
@@ -644,7 +644,7 @@ export type AnalysisRun = {
                       tcpSocket: {
                         host?: string;
 
-                        port: any;
+                        port: number | string;
                       };
                     };
 
@@ -664,7 +664,7 @@ export type AnalysisRun = {
 
                         path?: string;
 
-                        port: any;
+                        port: number | string;
 
                         scheme?: string;
                       };
@@ -672,7 +672,7 @@ export type AnalysisRun = {
                       tcpSocket: {
                         host?: string;
 
-                        port: any;
+                        port: number | string;
                       };
                     };
                   };
@@ -695,7 +695,7 @@ export type AnalysisRun = {
 
                       path?: string;
 
-                      port: any;
+                      port: number | string;
 
                       scheme?: string;
                     };
@@ -709,7 +709,7 @@ export type AnalysisRun = {
                     tcpSocket: {
                       host?: string;
 
-                      port: any;
+                      port: number | string;
                     };
 
                     timeoutSeconds?: number;
@@ -747,7 +747,7 @@ export type AnalysisRun = {
 
                       path?: string;
 
-                      port: any;
+                      port: number | string;
 
                       scheme?: string;
                     };
@@ -761,7 +761,7 @@ export type AnalysisRun = {
                     tcpSocket: {
                       host?: string;
 
-                      port: any;
+                      port: number | string;
                     };
 
                     timeoutSeconds?: number;
@@ -827,7 +827,7 @@ export type AnalysisRun = {
 
                       path?: string;
 
-                      port: any;
+                      port: number | string;
 
                       scheme?: string;
                     };
@@ -841,7 +841,7 @@ export type AnalysisRun = {
                     tcpSocket: {
                       host?: string;
 
-                      port: any;
+                      port: number | string;
                     };
 
                     timeoutSeconds?: number;
@@ -928,7 +928,7 @@ export type AnalysisRun = {
                       resourceFieldRef: {
                         containerName?: string;
 
-                        divisor?: any;
+                        divisor?: number | string;
 
                         resource: string;
                       };
@@ -980,7 +980,7 @@ export type AnalysisRun = {
 
                         path?: string;
 
-                        port: any;
+                        port: number | string;
 
                         scheme?: string;
                       };
@@ -988,7 +988,7 @@ export type AnalysisRun = {
                       tcpSocket: {
                         host?: string;
 
-                        port: any;
+                        port: number | string;
                       };
                     };
 
@@ -1008,7 +1008,7 @@ export type AnalysisRun = {
 
                         path?: string;
 
-                        port: any;
+                        port: number | string;
 
                         scheme?: string;
                       };
@@ -1016,7 +1016,7 @@ export type AnalysisRun = {
                       tcpSocket: {
                         host?: string;
 
-                        port: any;
+                        port: number | string;
                       };
                     };
                   };
@@ -1039,7 +1039,7 @@ export type AnalysisRun = {
 
                       path?: string;
 
-                      port: any;
+                      port: number | string;
 
                       scheme?: string;
                     };
@@ -1053,7 +1053,7 @@ export type AnalysisRun = {
                     tcpSocket: {
                       host?: string;
 
-                      port: any;
+                      port: number | string;
                     };
 
                     timeoutSeconds?: number;
@@ -1091,7 +1091,7 @@ export type AnalysisRun = {
 
                       path?: string;
 
-                      port: any;
+                      port: number | string;
 
                       scheme?: string;
                     };
@@ -1105,7 +1105,7 @@ export type AnalysisRun = {
                     tcpSocket: {
                       host?: string;
 
-                      port: any;
+                      port: number | string;
                     };
 
                     timeoutSeconds?: number;
@@ -1171,7 +1171,7 @@ export type AnalysisRun = {
 
                       path?: string;
 
-                      port: any;
+                      port: number | string;
 
                       scheme?: string;
                     };
@@ -1185,7 +1185,7 @@ export type AnalysisRun = {
                     tcpSocket: {
                       host?: string;
 
-                      port: any;
+                      port: number | string;
                     };
 
                     timeoutSeconds?: number;
@@ -1231,7 +1231,7 @@ export type AnalysisRun = {
                 };
 
                 overhead?: {
-                  [key: string]: any;
+                  [key: string]: number | string;
                 };
 
                 preemptionPolicy?: string;
@@ -1410,7 +1410,7 @@ export type AnalysisRun = {
                   emptyDir?: {
                     medium?: string;
 
-                    sizeLimit?: any;
+                    sizeLimit?: number | string;
                   };
 
                   fc?: {
@@ -1898,9 +1898,9 @@ export type Rollout = {
 
         canaryService?: string;
 
-        maxSurge?: any;
+        maxSurge?: number | string;
 
-        maxUnavailable?: any;
+        maxUnavailable?: number | string;
 
         stableService?: string;
 
@@ -1976,7 +1976,7 @@ export type Rollout = {
           };
 
           pause?: {
-            duration?: any;
+            duration?: number | string;
           };
 
           setWeight?: number;
@@ -2186,7 +2186,7 @@ export type Rollout = {
               resourceFieldRef: {
                 containerName?: string;
 
-                divisor?: any;
+                divisor?: number | string;
 
                 resource: string;
               };
@@ -2238,7 +2238,7 @@ export type Rollout = {
 
                 path?: string;
 
-                port: any;
+                port: number | string;
 
                 scheme?: string;
               };
@@ -2246,7 +2246,7 @@ export type Rollout = {
               tcpSocket: {
                 host?: string;
 
-                port: any;
+                port: number | string;
               };
             };
 
@@ -2266,7 +2266,7 @@ export type Rollout = {
 
                 path?: string;
 
-                port: any;
+                port: number | string;
 
                 scheme?: string;
               };
@@ -2274,7 +2274,7 @@ export type Rollout = {
               tcpSocket: {
                 host?: string;
 
-                port: any;
+                port: number | string;
               };
             };
           };
@@ -2297,7 +2297,7 @@ export type Rollout = {
 
               path?: string;
 
-              port: any;
+              port: number | string;
 
               scheme?: string;
             };
@@ -2311,7 +2311,7 @@ export type Rollout = {
             tcpSocket: {
               host?: string;
 
-              port: any;
+              port: number | string;
             };
 
             timeoutSeconds?: number;
@@ -2349,7 +2349,7 @@ export type Rollout = {
 
               path?: string;
 
-              port: any;
+              port: number | string;
 
               scheme?: string;
             };
@@ -2363,7 +2363,7 @@ export type Rollout = {
             tcpSocket: {
               host?: string;
 
-              port: any;
+              port: number | string;
             };
 
             timeoutSeconds?: number;
@@ -2429,7 +2429,7 @@ export type Rollout = {
 
               path?: string;
 
-              port: any;
+              port: number | string;
 
               scheme?: string;
             };
@@ -2443,7 +2443,7 @@ export type Rollout = {
             tcpSocket: {
               host?: string;
 
-              port: any;
+              port: number | string;
             };
 
             timeoutSeconds?: number;
@@ -2526,7 +2526,7 @@ export type Rollout = {
               resourceFieldRef: {
                 containerName?: string;
 
-                divisor?: any;
+                divisor?: number | string;
 
                 resource: string;
               };
@@ -2578,7 +2578,7 @@ export type Rollout = {
 
                 path?: string;
 
-                port: any;
+                port: number | string;
 
                 scheme?: string;
               };
@@ -2586,7 +2586,7 @@ export type Rollout = {
               tcpSocket: {
                 host?: string;
 
-                port: any;
+                port: number | string;
               };
             };
 
@@ -2606,7 +2606,7 @@ export type Rollout = {
 
                 path?: string;
 
-                port: any;
+                port: number | string;
 
                 scheme?: string;
               };
@@ -2614,7 +2614,7 @@ export type Rollout = {
               tcpSocket: {
                 host?: string;
 
-                port: any;
+                port: number | string;
               };
             };
           };
@@ -2637,7 +2637,7 @@ export type Rollout = {
 
               path?: string;
 
-              port: any;
+              port: number | string;
 
               scheme?: string;
             };
@@ -2651,7 +2651,7 @@ export type Rollout = {
             tcpSocket: {
               host?: string;
 
-              port: any;
+              port: number | string;
             };
 
             timeoutSeconds?: number;
@@ -2689,7 +2689,7 @@ export type Rollout = {
 
               path?: string;
 
-              port: any;
+              port: number | string;
 
               scheme?: string;
             };
@@ -2703,7 +2703,7 @@ export type Rollout = {
             tcpSocket: {
               host?: string;
 
-              port: any;
+              port: number | string;
             };
 
             timeoutSeconds?: number;
@@ -2769,7 +2769,7 @@ export type Rollout = {
 
               path?: string;
 
-              port: any;
+              port: number | string;
 
               scheme?: string;
             };
@@ -2783,7 +2783,7 @@ export type Rollout = {
             tcpSocket: {
               host?: string;
 
-              port: any;
+              port: number | string;
             };
 
             timeoutSeconds?: number;
@@ -2870,7 +2870,7 @@ export type Rollout = {
               resourceFieldRef: {
                 containerName?: string;
 
-                divisor?: any;
+                divisor?: number | string;
 
                 resource: string;
               };
@@ -2922,7 +2922,7 @@ export type Rollout = {
 
                 path?: string;
 
-                port: any;
+                port: number | string;
 
                 scheme?: string;
               };
@@ -2930,7 +2930,7 @@ export type Rollout = {
               tcpSocket: {
                 host?: string;
 
-                port: any;
+                port: number | string;
               };
             };
 
@@ -2950,7 +2950,7 @@ export type Rollout = {
 
                 path?: string;
 
-                port: any;
+                port: number | string;
 
                 scheme?: string;
               };
@@ -2958,7 +2958,7 @@ export type Rollout = {
               tcpSocket: {
                 host?: string;
 
-                port: any;
+                port: number | string;
               };
             };
           };
@@ -2981,7 +2981,7 @@ export type Rollout = {
 
               path?: string;
 
-              port: any;
+              port: number | string;
 
               scheme?: string;
             };
@@ -2995,7 +2995,7 @@ export type Rollout = {
             tcpSocket: {
               host?: string;
 
-              port: any;
+              port: number | string;
             };
 
             timeoutSeconds?: number;
@@ -3033,7 +3033,7 @@ export type Rollout = {
 
               path?: string;
 
-              port: any;
+              port: number | string;
 
               scheme?: string;
             };
@@ -3047,7 +3047,7 @@ export type Rollout = {
             tcpSocket: {
               host?: string;
 
-              port: any;
+              port: number | string;
             };
 
             timeoutSeconds?: number;
@@ -3113,7 +3113,7 @@ export type Rollout = {
 
               path?: string;
 
-              port: any;
+              port: number | string;
 
               scheme?: string;
             };
@@ -3127,7 +3127,7 @@ export type Rollout = {
             tcpSocket: {
               host?: string;
 
-              port: any;
+              port: number | string;
             };
 
             timeoutSeconds?: number;
@@ -3173,7 +3173,7 @@ export type Rollout = {
         };
 
         overhead?: {
-          [key: string]: any;
+          [key: string]: number | string;
         };
 
         preemptionPolicy?: string;
@@ -3352,7 +3352,7 @@ export type Rollout = {
           emptyDir?: {
             medium?: string;
 
-            sizeLimit?: any;
+            sizeLimit?: number | string;
           };
 
           fc?: {
@@ -3891,7 +3891,7 @@ export type Experiment = {
                 resourceFieldRef: {
                   containerName?: string;
 
-                  divisor?: any;
+                  divisor?: number | string;
 
                   resource: string;
                 };
@@ -3943,7 +3943,7 @@ export type Experiment = {
 
                   path?: string;
 
-                  port: any;
+                  port: number | string;
 
                   scheme?: string;
                 };
@@ -3951,7 +3951,7 @@ export type Experiment = {
                 tcpSocket: {
                   host?: string;
 
-                  port: any;
+                  port: number | string;
                 };
               };
 
@@ -3971,7 +3971,7 @@ export type Experiment = {
 
                   path?: string;
 
-                  port: any;
+                  port: number | string;
 
                   scheme?: string;
                 };
@@ -3979,7 +3979,7 @@ export type Experiment = {
                 tcpSocket: {
                   host?: string;
 
-                  port: any;
+                  port: number | string;
                 };
               };
             };
@@ -4002,7 +4002,7 @@ export type Experiment = {
 
                 path?: string;
 
-                port: any;
+                port: number | string;
 
                 scheme?: string;
               };
@@ -4016,7 +4016,7 @@ export type Experiment = {
               tcpSocket: {
                 host?: string;
 
-                port: any;
+                port: number | string;
               };
 
               timeoutSeconds?: number;
@@ -4054,7 +4054,7 @@ export type Experiment = {
 
                 path?: string;
 
-                port: any;
+                port: number | string;
 
                 scheme?: string;
               };
@@ -4068,7 +4068,7 @@ export type Experiment = {
               tcpSocket: {
                 host?: string;
 
-                port: any;
+                port: number | string;
               };
 
               timeoutSeconds?: number;
@@ -4134,7 +4134,7 @@ export type Experiment = {
 
                 path?: string;
 
-                port: any;
+                port: number | string;
 
                 scheme?: string;
               };
@@ -4148,7 +4148,7 @@ export type Experiment = {
               tcpSocket: {
                 host?: string;
 
-                port: any;
+                port: number | string;
               };
 
               timeoutSeconds?: number;
@@ -4231,7 +4231,7 @@ export type Experiment = {
                 resourceFieldRef: {
                   containerName?: string;
 
-                  divisor?: any;
+                  divisor?: number | string;
 
                   resource: string;
                 };
@@ -4283,7 +4283,7 @@ export type Experiment = {
 
                   path?: string;
 
-                  port: any;
+                  port: number | string;
 
                   scheme?: string;
                 };
@@ -4291,7 +4291,7 @@ export type Experiment = {
                 tcpSocket: {
                   host?: string;
 
-                  port: any;
+                  port: number | string;
                 };
               };
 
@@ -4311,7 +4311,7 @@ export type Experiment = {
 
                   path?: string;
 
-                  port: any;
+                  port: number | string;
 
                   scheme?: string;
                 };
@@ -4319,7 +4319,7 @@ export type Experiment = {
                 tcpSocket: {
                   host?: string;
 
-                  port: any;
+                  port: number | string;
                 };
               };
             };
@@ -4342,7 +4342,7 @@ export type Experiment = {
 
                 path?: string;
 
-                port: any;
+                port: number | string;
 
                 scheme?: string;
               };
@@ -4356,7 +4356,7 @@ export type Experiment = {
               tcpSocket: {
                 host?: string;
 
-                port: any;
+                port: number | string;
               };
 
               timeoutSeconds?: number;
@@ -4394,7 +4394,7 @@ export type Experiment = {
 
                 path?: string;
 
-                port: any;
+                port: number | string;
 
                 scheme?: string;
               };
@@ -4408,7 +4408,7 @@ export type Experiment = {
               tcpSocket: {
                 host?: string;
 
-                port: any;
+                port: number | string;
               };
 
               timeoutSeconds?: number;
@@ -4474,7 +4474,7 @@ export type Experiment = {
 
                 path?: string;
 
-                port: any;
+                port: number | string;
 
                 scheme?: string;
               };
@@ -4488,7 +4488,7 @@ export type Experiment = {
               tcpSocket: {
                 host?: string;
 
-                port: any;
+                port: number | string;
               };
 
               timeoutSeconds?: number;
@@ -4575,7 +4575,7 @@ export type Experiment = {
                 resourceFieldRef: {
                   containerName?: string;
 
-                  divisor?: any;
+                  divisor?: number | string;
 
                   resource: string;
                 };
@@ -4627,7 +4627,7 @@ export type Experiment = {
 
                   path?: string;
 
-                  port: any;
+                  port: number | string;
 
                   scheme?: string;
                 };
@@ -4635,7 +4635,7 @@ export type Experiment = {
                 tcpSocket: {
                   host?: string;
 
-                  port: any;
+                  port: number | string;
                 };
               };
 
@@ -4655,7 +4655,7 @@ export type Experiment = {
 
                   path?: string;
 
-                  port: any;
+                  port: number | string;
 
                   scheme?: string;
                 };
@@ -4663,7 +4663,7 @@ export type Experiment = {
                 tcpSocket: {
                   host?: string;
 
-                  port: any;
+                  port: number | string;
                 };
               };
             };
@@ -4686,7 +4686,7 @@ export type Experiment = {
 
                 path?: string;
 
-                port: any;
+                port: number | string;
 
                 scheme?: string;
               };
@@ -4700,7 +4700,7 @@ export type Experiment = {
               tcpSocket: {
                 host?: string;
 
-                port: any;
+                port: number | string;
               };
 
               timeoutSeconds?: number;
@@ -4738,7 +4738,7 @@ export type Experiment = {
 
                 path?: string;
 
-                port: any;
+                port: number | string;
 
                 scheme?: string;
               };
@@ -4752,7 +4752,7 @@ export type Experiment = {
               tcpSocket: {
                 host?: string;
 
-                port: any;
+                port: number | string;
               };
 
               timeoutSeconds?: number;
@@ -4818,7 +4818,7 @@ export type Experiment = {
 
                 path?: string;
 
-                port: any;
+                port: number | string;
 
                 scheme?: string;
               };
@@ -4832,7 +4832,7 @@ export type Experiment = {
               tcpSocket: {
                 host?: string;
 
-                port: any;
+                port: number | string;
               };
 
               timeoutSeconds?: number;
@@ -4878,7 +4878,7 @@ export type Experiment = {
           };
 
           overhead?: {
-            [key: string]: any;
+            [key: string]: number | string;
           };
 
           preemptionPolicy?: string;
@@ -5057,7 +5057,7 @@ export type Experiment = {
             emptyDir?: {
               medium?: string;
 
-              sizeLimit?: any;
+              sizeLimit?: number | string;
             };
 
             fc?: {
@@ -5586,7 +5586,7 @@ export type AnalysisTemplate = {
                       resourceFieldRef: {
                         containerName?: string;
 
-                        divisor?: any;
+                        divisor?: number | string;
 
                         resource: string;
                       };
@@ -5638,7 +5638,7 @@ export type AnalysisTemplate = {
 
                         path?: string;
 
-                        port: any;
+                        port: number | string;
 
                         scheme?: string;
                       };
@@ -5646,7 +5646,7 @@ export type AnalysisTemplate = {
                       tcpSocket: {
                         host?: string;
 
-                        port: any;
+                        port: number | string;
                       };
                     };
 
@@ -5666,7 +5666,7 @@ export type AnalysisTemplate = {
 
                         path?: string;
 
-                        port: any;
+                        port: number | string;
 
                         scheme?: string;
                       };
@@ -5674,7 +5674,7 @@ export type AnalysisTemplate = {
                       tcpSocket: {
                         host?: string;
 
-                        port: any;
+                        port: number | string;
                       };
                     };
                   };
@@ -5697,7 +5697,7 @@ export type AnalysisTemplate = {
 
                       path?: string;
 
-                      port: any;
+                      port: number | string;
 
                       scheme?: string;
                     };
@@ -5711,7 +5711,7 @@ export type AnalysisTemplate = {
                     tcpSocket: {
                       host?: string;
 
-                      port: any;
+                      port: number | string;
                     };
 
                     timeoutSeconds?: number;
@@ -5749,7 +5749,7 @@ export type AnalysisTemplate = {
 
                       path?: string;
 
-                      port: any;
+                      port: number | string;
 
                       scheme?: string;
                     };
@@ -5763,7 +5763,7 @@ export type AnalysisTemplate = {
                     tcpSocket: {
                       host?: string;
 
-                      port: any;
+                      port: number | string;
                     };
 
                     timeoutSeconds?: number;
@@ -5829,7 +5829,7 @@ export type AnalysisTemplate = {
 
                       path?: string;
 
-                      port: any;
+                      port: number | string;
 
                       scheme?: string;
                     };
@@ -5843,7 +5843,7 @@ export type AnalysisTemplate = {
                     tcpSocket: {
                       host?: string;
 
-                      port: any;
+                      port: number | string;
                     };
 
                     timeoutSeconds?: number;
@@ -5926,7 +5926,7 @@ export type AnalysisTemplate = {
                       resourceFieldRef: {
                         containerName?: string;
 
-                        divisor?: any;
+                        divisor?: number | string;
 
                         resource: string;
                       };
@@ -5978,7 +5978,7 @@ export type AnalysisTemplate = {
 
                         path?: string;
 
-                        port: any;
+                        port: number | string;
 
                         scheme?: string;
                       };
@@ -5986,7 +5986,7 @@ export type AnalysisTemplate = {
                       tcpSocket: {
                         host?: string;
 
-                        port: any;
+                        port: number | string;
                       };
                     };
 
@@ -6006,7 +6006,7 @@ export type AnalysisTemplate = {
 
                         path?: string;
 
-                        port: any;
+                        port: number | string;
 
                         scheme?: string;
                       };
@@ -6014,7 +6014,7 @@ export type AnalysisTemplate = {
                       tcpSocket: {
                         host?: string;
 
-                        port: any;
+                        port: number | string;
                       };
                     };
                   };
@@ -6037,7 +6037,7 @@ export type AnalysisTemplate = {
 
                       path?: string;
 
-                      port: any;
+                      port: number | string;
 
                       scheme?: string;
                     };
@@ -6051,7 +6051,7 @@ export type AnalysisTemplate = {
                     tcpSocket: {
                       host?: string;
 
-                      port: any;
+                      port: number | string;
                     };
 
                     timeoutSeconds?: number;
@@ -6089,7 +6089,7 @@ export type AnalysisTemplate = {
 
                       path?: string;
 
-                      port: any;
+                      port: number | string;
 
                       scheme?: string;
                     };
@@ -6103,7 +6103,7 @@ export type AnalysisTemplate = {
                     tcpSocket: {
                       host?: string;
 
-                      port: any;
+                      port: number | string;
                     };
 
                     timeoutSeconds?: number;
@@ -6169,7 +6169,7 @@ export type AnalysisTemplate = {
 
                       path?: string;
 
-                      port: any;
+                      port: number | string;
 
                       scheme?: string;
                     };
@@ -6183,7 +6183,7 @@ export type AnalysisTemplate = {
                     tcpSocket: {
                       host?: string;
 
-                      port: any;
+                      port: number | string;
                     };
 
                     timeoutSeconds?: number;
@@ -6270,7 +6270,7 @@ export type AnalysisTemplate = {
                       resourceFieldRef: {
                         containerName?: string;
 
-                        divisor?: any;
+                        divisor?: number | string;
 
                         resource: string;
                       };
@@ -6322,7 +6322,7 @@ export type AnalysisTemplate = {
 
                         path?: string;
 
-                        port: any;
+                        port: number | string;
 
                         scheme?: string;
                       };
@@ -6330,7 +6330,7 @@ export type AnalysisTemplate = {
                       tcpSocket: {
                         host?: string;
 
-                        port: any;
+                        port: number | string;
                       };
                     };
 
@@ -6350,7 +6350,7 @@ export type AnalysisTemplate = {
 
                         path?: string;
 
-                        port: any;
+                        port: number | string;
 
                         scheme?: string;
                       };
@@ -6358,7 +6358,7 @@ export type AnalysisTemplate = {
                       tcpSocket: {
                         host?: string;
 
-                        port: any;
+                        port: number | string;
                       };
                     };
                   };
@@ -6381,7 +6381,7 @@ export type AnalysisTemplate = {
 
                       path?: string;
 
-                      port: any;
+                      port: number | string;
 
                       scheme?: string;
                     };
@@ -6395,7 +6395,7 @@ export type AnalysisTemplate = {
                     tcpSocket: {
                       host?: string;
 
-                      port: any;
+                      port: number | string;
                     };
 
                     timeoutSeconds?: number;
@@ -6433,7 +6433,7 @@ export type AnalysisTemplate = {
 
                       path?: string;
 
-                      port: any;
+                      port: number | string;
 
                       scheme?: string;
                     };
@@ -6447,7 +6447,7 @@ export type AnalysisTemplate = {
                     tcpSocket: {
                       host?: string;
 
-                      port: any;
+                      port: number | string;
                     };
 
                     timeoutSeconds?: number;
@@ -6513,7 +6513,7 @@ export type AnalysisTemplate = {
 
                       path?: string;
 
-                      port: any;
+                      port: number | string;
 
                       scheme?: string;
                     };
@@ -6527,7 +6527,7 @@ export type AnalysisTemplate = {
                     tcpSocket: {
                       host?: string;
 
-                      port: any;
+                      port: number | string;
                     };
 
                     timeoutSeconds?: number;
@@ -6573,7 +6573,7 @@ export type AnalysisTemplate = {
                 };
 
                 overhead?: {
-                  [key: string]: any;
+                  [key: string]: number | string;
                 };
 
                 preemptionPolicy?: string;
@@ -6752,7 +6752,7 @@ export type AnalysisTemplate = {
                   emptyDir?: {
                     medium?: string;
 
-                    sizeLimit?: any;
+                    sizeLimit?: number | string;
                   };
 
                   fc?: {

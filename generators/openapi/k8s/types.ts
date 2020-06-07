@@ -8,6 +8,8 @@ export interface Definition {
   required?: string[];
   additionalProperties?: Definition;
   enum?: any[];
+  oneOf?: Definition[];
+  anyOf?: Definition[];
   [key: string]: any;
 }
 

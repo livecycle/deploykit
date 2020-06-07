@@ -5,6 +5,10 @@ export function compileType(def: Definition): string {
   if (typeof def.$ref === "string") {
     return getType(def.$ref.substring("#/definitions/".length)).name;
   }
+  if (def.oneOf || def.anyOf) {
+    return (def.oneOf || def.anyOf!).map(compileType).join("|");
+  }
+
   if (def.type === "object") {
     const { required = [], properties = {}, additionalProperties } = def;
     return (
