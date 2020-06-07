@@ -1,9 +1,9 @@
-import { createMicroservice } from "https://raw.githubusercontent.com/Yshayy/deploykit/master/blueprint/k8s/app.ts";
+import { createMicroservice } from "https://deno.land/x/gh:yshayy:deploykit@0.0.5/blueprint/k8s/app.ts";
 import {
   addDeployment,
   addService,
   expose,
-} from "https://raw.githubusercontent.com/Yshayy/deploykit/master/blueprint/k8s/operators/all.ts";
+} from "https://deno.land/x/gh:yshayy:deploykit@0.0.5/blueprint/k8s/operators/all.ts";
 
 createMicroservice().with(
   addDeployment({ image: "my-image" }),
