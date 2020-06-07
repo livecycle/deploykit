@@ -4,6 +4,8 @@ import {
   ObjectMeta,
   ListMeta,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
+
+/** MutatingWebhook describes an admission webhook and the resources and operations it applies to. */
 export type MutatingWebhook = {
   /** AdmissionReviewVersions is an ordered list of preferred `AdmissionReview` versions the Webhook expects. API server will try to use first version in the list which it supports. If none of the versions specified in this list supported by API server, validation will fail for this object. If a persisted webhook configuration specifies allowed versions and does not include any versions known to the API Server, calls to the webhook will fail and be subject to the failure policy. */
   admissionReviewVersions: string[];
@@ -80,6 +82,8 @@ Defaults to "Never". */
   /** TimeoutSeconds specifies the timeout for this webhook. After the timeout passes, the webhook call will be ignored or the API call will fail based on the failure policy. The timeout value must be between 1 and 30 seconds. Default to 10 seconds. */
   timeoutSeconds?: number;
 };
+
+/** MutatingWebhookConfiguration describes the configuration of and admission webhook that accept or reject and may change the object. */
 export type MutatingWebhookConfiguration = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -103,6 +107,7 @@ export function createMutatingWebhookConfiguration(
   };
 }
 
+/** MutatingWebhookConfigurationList is a list of MutatingWebhookConfiguration. */
 export type MutatingWebhookConfigurationList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -126,6 +131,7 @@ export function createMutatingWebhookConfigurationList(
   };
 }
 
+/** RuleWithOperations is a tuple of Operations and Resources. It is recommended to make sure that all the tuple expansions are valid. */
 export type RuleWithOperations = {
   /** APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. Required. */
   apiGroups?: string[];
@@ -148,6 +154,8 @@ Depending on the enclosing object, subresources might not be allowed. Required. 
   /** scope specifies the scope of this rule. Valid values are "Cluster", "Namespaced", and "*" "Cluster" means that only cluster-scoped resources will match this rule. Namespace API objects are cluster-scoped. "Namespaced" means that only namespaced resources will match this rule. "*" means that there are no scope restrictions. Subresources match the scope of their parent resource. Default is "*". */
   scope?: string;
 };
+
+/** ServiceReference holds a reference to Service.legacy.k8s.io */
 export type ServiceReference = {
   /** `name` is the name of the service. Required */
   name: string;
@@ -161,6 +169,8 @@ export type ServiceReference = {
   /** If specified, the port on the service that hosting webhook. Default to 443 for backward compatibility. `port` should be a valid port number (1-65535, inclusive). */
   port?: number;
 };
+
+/** ValidatingWebhook describes an admission webhook and the resources and operations it applies to. */
 export type ValidatingWebhook = {
   /** AdmissionReviewVersions is an ordered list of preferred `AdmissionReview` versions the Webhook expects. API server will try to use first version in the list which it supports. If none of the versions specified in this list supported by API server, validation will fail for this object. If a persisted webhook configuration specifies allowed versions and does not include any versions known to the API Server, calls to the webhook will fail and be subject to the failure policy. */
   admissionReviewVersions: string[];
@@ -228,6 +238,8 @@ Default to the empty LabelSelector, which matches everything. */
   /** TimeoutSeconds specifies the timeout for this webhook. After the timeout passes, the webhook call will be ignored or the API call will fail based on the failure policy. The timeout value must be between 1 and 30 seconds. Default to 10 seconds. */
   timeoutSeconds?: number;
 };
+
+/** ValidatingWebhookConfiguration describes the configuration of and admission webhook that accept or reject and object without changing it. */
 export type ValidatingWebhookConfiguration = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -251,6 +263,7 @@ export function createValidatingWebhookConfiguration(
   };
 }
 
+/** ValidatingWebhookConfigurationList is a list of ValidatingWebhookConfiguration. */
 export type ValidatingWebhookConfigurationList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -274,6 +287,7 @@ export function createValidatingWebhookConfigurationList(
   };
 }
 
+/** WebhookClientConfig contains the information to make a TLS connection with the webhook */
 export type WebhookClientConfig = {
   /** `caBundle` is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used. */
   caBundle?: string;

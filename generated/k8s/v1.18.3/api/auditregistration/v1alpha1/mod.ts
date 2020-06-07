@@ -3,6 +3,8 @@ import {
   ObjectMeta,
   ListMeta,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
+
+/** AuditSink represents a cluster level audit sink */
 export type AuditSink = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -25,6 +27,7 @@ export function createAuditSink(
   };
 }
 
+/** AuditSinkList is a list of AuditSink items. */
 export type AuditSinkList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -47,6 +50,7 @@ export function createAuditSinkList(
   };
 }
 
+/** AuditSinkSpec holds the spec for the audit sink */
 export type AuditSinkSpec = {
   /** Policy defines the policy for selecting which events should be sent to the webhook required */
   policy: Policy;
@@ -54,6 +58,8 @@ export type AuditSinkSpec = {
   /** Webhook to send events required */
   webhook: Webhook;
 };
+
+/** Policy defines the configuration of how audit events are logged */
 export type Policy = {
   /** The Level that all requests are recorded at. available options: None, Metadata, Request, RequestResponse required */
   level: string;
@@ -61,6 +67,8 @@ export type Policy = {
   /** Stages is a list of stages for which events are created. */
   stages?: string[];
 };
+
+/** ServiceReference holds a reference to Service.legacy.k8s.io */
 export type ServiceReference = {
   /** `name` is the name of the service. Required */
   name: string;
@@ -74,6 +82,8 @@ export type ServiceReference = {
   /** If specified, the port on the service that hosting webhook. Default to 443 for backward compatibility. `port` should be a valid port number (1-65535, inclusive). */
   port?: number;
 };
+
+/** Webhook holds the configuration of the webhook */
 export type Webhook = {
   /** ClientConfig holds the connection parameters for the webhook required */
   clientConfig: WebhookClientConfig;
@@ -81,6 +91,8 @@ export type Webhook = {
   /** Throttle holds the options for throttling the webhook */
   throttle?: WebhookThrottleConfig;
 };
+
+/** WebhookClientConfig contains the information to make a connection with the webhook */
 export type WebhookClientConfig = {
   /** `caBundle` is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used. */
   caBundle?: string;
@@ -103,6 +115,8 @@ A path is optional, and if present may be any string permissible in a URL. You m
 Attempting to use a user or basic auth e.g. "user:password@" is not allowed. Fragments ("#...") and query parameters ("?...") are not allowed, either. */
   url?: string;
 };
+
+/** WebhookThrottleConfig holds the configuration for throttling events */
 export type WebhookThrottleConfig = {
   /** ThrottleBurst is the maximum number of events sent at the same moment default 15 QPS */
   burst?: number;

@@ -1,5 +1,6 @@
 /* Generated for apimachinery/pkg/version/mod.ts */
 
+/** Info contains versioning information. how we'll want to distribute that information. */
 export type Info = {
   buildDate: string;
 

@@ -6,6 +6,8 @@ import {
   ListMeta,
   LabelSelector,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
+
+/** Job represents the configuration of a single job. */
 export type Job = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -26,6 +28,7 @@ export function createJob(data: Omit<Job, "apiVersion" | "kind">): Job {
   return { apiVersion: "batch/v1", kind: "Job", ...data };
 }
 
+/** JobCondition describes current state of a job. */
 export type JobCondition = {
   /** Last time the condition was checked. */
   lastProbeTime?: Time;
@@ -45,6 +48,8 @@ export type JobCondition = {
   /** Type of job condition, Complete or Failed. */
   type: string;
 };
+
+/** JobList is a collection of jobs. */
 export type JobList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -64,6 +69,7 @@ export function createJobList(
   return { apiVersion: "batch/v1", kind: "JobList", ...data };
 }
 
+/** JobSpec describes how the job execution will look like. */
 export type JobSpec = {
   /** Specifies the duration in seconds relative to the startTime that the job may be active before the system tries to terminate it; value must be positive integer */
   activeDeadlineSeconds?: number;
@@ -89,6 +95,8 @@ export type JobSpec = {
   /** ttlSecondsAfterFinished limits the lifetime of a Job that has finished execution (either Complete or Failed). If this field is set, ttlSecondsAfterFinished after the Job finishes, it is eligible to be automatically deleted. When the Job is being deleted, its lifecycle guarantees (e.g. finalizers) will be honored. If this field is unset, the Job won't be automatically deleted. If this field is set to zero, the Job becomes eligible to be deleted immediately after it finishes. This field is alpha-level and is only honored by servers that enable the TTLAfterFinished feature. */
   ttlSecondsAfterFinished?: number;
 };
+
+/** JobStatus represents the current state of a Job. */
 export type JobStatus = {
   /** The number of actively running pods. */
   active?: number;

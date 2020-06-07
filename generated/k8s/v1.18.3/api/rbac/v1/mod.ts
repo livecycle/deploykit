@@ -4,10 +4,14 @@ import {
   ObjectMeta,
   ListMeta,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
+
+/** AggregationRule describes how to locate ClusterRoles to aggregate into the ClusterRole */
 export type AggregationRule = {
   /** ClusterRoleSelectors holds a list of selectors which will be used to find ClusterRoles and create the rules. If any of the selectors match, then the ClusterRole's permissions will be added */
   clusterRoleSelectors?: LabelSelector[];
 };
+
+/** ClusterRole is a cluster level, logical grouping of PolicyRules that can be referenced as a unit by a RoleBinding or ClusterRoleBinding. */
 export type ClusterRole = {
   /** AggregationRule is an optional field that describes how to build the Rules for this ClusterRole. If AggregationRule is set, then the Rules are controller managed and direct changes to Rules will be stomped by the controller. */
   aggregationRule?: AggregationRule;
@@ -34,6 +38,7 @@ export function createClusterRole(
   };
 }
 
+/** ClusterRoleBinding references a ClusterRole, but not contain it.  It can reference a ClusterRole in the global namespace, and adds who information via Subject. */
 export type ClusterRoleBinding = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -60,6 +65,7 @@ export function createClusterRoleBinding(
   };
 }
 
+/** ClusterRoleBindingList is a collection of ClusterRoleBindings */
 export type ClusterRoleBindingList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -83,6 +89,7 @@ export function createClusterRoleBindingList(
   };
 }
 
+/** ClusterRoleList is a collection of ClusterRoles */
 export type ClusterRoleList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -106,6 +113,7 @@ export function createClusterRoleList(
   };
 }
 
+/** PolicyRule holds information that describes a policy rule, but does not contain information about who the rule applies to or which namespace the rule applies to. */
 export type PolicyRule = {
   /** APIGroups is the name of the APIGroup that contains the resources.  If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed. */
   apiGroups?: string[];
@@ -122,6 +130,8 @@ export type PolicyRule = {
   /** Verbs is a list of Verbs that apply to ALL the ResourceKinds and AttributeRestrictions contained in this rule.  VerbAll represents all kinds. */
   verbs: string[];
 };
+
+/** Role is a namespaced, logical grouping of PolicyRules that can be referenced as a unit by a RoleBinding. */
 export type Role = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -139,6 +149,7 @@ export function createRole(data: Omit<Role, "apiVersion" | "kind">): Role {
   return { apiVersion: "rbac.authorization.k8s.io/v1", kind: "Role", ...data };
 }
 
+/** RoleBinding references a role, but does not contain it.  It can reference a Role in the same namespace or a ClusterRole in the global namespace. It adds who information via Subjects and namespace information by which namespace it exists in.  RoleBindings in a given namespace only have effect in that namespace. */
 export type RoleBinding = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -165,6 +176,7 @@ export function createRoleBinding(
   };
 }
 
+/** RoleBindingList is a collection of RoleBindings */
 export type RoleBindingList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -188,6 +200,7 @@ export function createRoleBindingList(
   };
 }
 
+/** RoleList is a collection of Roles */
 export type RoleList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -211,6 +224,7 @@ export function createRoleList(
   };
 }
 
+/** RoleRef contains information that points to the role being used */
 export type RoleRef = {
   /** APIGroup is the group for the resource being referenced */
   apiGroup: string;
@@ -221,6 +235,8 @@ export type RoleRef = {
   /** Name is the name of resource being referenced */
   name: string;
 };
+
+/** Subject contains a reference to the object or user identities a role binding applies to.  This can either hold a direct API object reference, or a value for non-objects such as user and group names. */
 export type Subject = {
   /** APIGroup holds the API group of the referenced subject. Defaults to "" for ServiceAccount subjects. Defaults to "rbac.authorization.k8s.io" for User and Group subjects. */
   apiGroup?: string;

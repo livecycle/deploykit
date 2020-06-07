@@ -8,6 +8,8 @@ import {
   ListMeta,
   Time,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
+
+/** CSIDriver captures information about a Container Storage Interface (CSI) volume driver deployed on the cluster. Kubernetes attach detach controller uses this object to determine whether attach is required. Kubelet uses this object to determine whether pod information needs to be passed on mount. CSIDriver objects are non-namespaced. */
 export type CSIDriver = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -27,6 +29,7 @@ export function createCSIDriver(
   return { apiVersion: "storage.k8s.io/v1", kind: "CSIDriver", ...data };
 }
 
+/** CSIDriverList is a collection of CSIDriver objects. */
 export type CSIDriverList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -46,6 +49,7 @@ export function createCSIDriverList(
   return { apiVersion: "storage.k8s.io/v1", kind: "CSIDriverList", ...data };
 }
 
+/** CSIDriverSpec is the specification of a CSIDriver. */
 export type CSIDriverSpec = {
   /** attachRequired indicates this CSI volume driver requires an attach operation (because it implements the CSI ControllerPublishVolume() method), and that the Kubernetes attach detach controller should call the attach volume interface which checks the volumeattachment status and waits until the volume is attached before proceeding to mounting. The CSI external-attacher coordinates with CSI volume driver and updates the volumeattachment status when the attach operation is complete. If the CSIDriverRegistry feature gate is enabled and the value is specified to false, the attach operation will be skipped. Otherwise the attach operation will be called. */
   attachRequired?: boolean;
@@ -59,6 +63,8 @@ export type CSIDriverSpec = {
   /** volumeLifecycleModes defines what kind of volumes this CSI volume driver supports. The default if the list is empty is "Persistent", which is the usage defined by the CSI specification and implemented in Kubernetes via the usual PVPVC mechanism. The other mode is "Ephemeral". In this mode, volumes are defined inline inside the pod spec with CSIVolumeSource and their lifecycle is tied to the lifecycle of that pod. A driver has to be aware of this because it is only going to get a NodePublishVolume call for such a volume. For more information about implementing this mode, see https:kubernetes-csi.github.iodocsephemeral-local-volumes.html A driver can support one or more of these modes and more modes may be added in the future. This field is beta. */
   volumeLifecycleModes?: string[];
 };
+
+/** CSINode holds information about all CSI drivers installed on a node. CSI drivers do not need to create the CSINode object directly. As long as they use the node-driver-registrar sidecar container, the kubelet will automatically populate the CSINode object for the CSI driver as part of kubelet plugin registration. CSINode has the same name as a node. If the object is missing, it means either there are no CSI Drivers available on the node, or the Kubelet version is low enough that it doesn't create this object. CSINode has an OwnerReference that points to the corresponding node object. */
 export type CSINode = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -78,6 +84,7 @@ export function createCSINode(
   return { apiVersion: "storage.k8s.io/v1", kind: "CSINode", ...data };
 }
 
+/** CSINodeDriver holds information about the specification of one CSI driver installed on a node */
 export type CSINodeDriver = {
   /** allocatable represents the volume resources of a node that are available for scheduling. This field is beta. */
   allocatable?: VolumeNodeResources;
@@ -91,6 +98,8 @@ export type CSINodeDriver = {
   /** topologyKeys is the list of keys supported by the driver. When a driver is initialized on a cluster, it provides a set of topology keys that it understands (e.g. "company.comzone", "company.comregion"). When a driver is initialized on a node, it provides the same topology keys along with values. Kubelet will expose these topology keys as labels on its own node object. When Kubernetes does topology aware provisioning, it can use this list to determine which labels it should retrieve from the node object and pass back to the driver. It is possible for different nodes to use different topology keys. This can be empty if driver does not support topology. */
   topologyKeys?: string[];
 };
+
+/** CSINodeList is a collection of CSINode objects. */
 export type CSINodeList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -110,10 +119,15 @@ export function createCSINodeList(
   return { apiVersion: "storage.k8s.io/v1", kind: "CSINodeList", ...data };
 }
 
+/** CSINodeSpec holds information about the specification of all CSI drivers installed on a node */
 export type CSINodeSpec = {
   /** drivers is a list of information of all CSI Drivers existing on a node. If all drivers in the list are uninstalled, this can become empty. */
   drivers: CSINodeDriver[];
 };
+
+/** StorageClass describes the parameters for a class of storage for which PersistentVolumes can be dynamically provisioned.
+
+StorageClasses are non-namespaced; the name of the storage class according to etcd is in ObjectMeta.Name. */
 export type StorageClass = {
   /** AllowVolumeExpansion shows whether the storage class allow volume expand */
   allowVolumeExpansion?: boolean;
@@ -153,6 +167,7 @@ export function createStorageClass(
   return { apiVersion: "storage.k8s.io/v1", kind: "StorageClass", ...data };
 }
 
+/** StorageClassList is a collection of storage classes. */
 export type StorageClassList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -172,6 +187,9 @@ export function createStorageClassList(
   return { apiVersion: "storage.k8s.io/v1", kind: "StorageClassList", ...data };
 }
 
+/** VolumeAttachment captures the intent to attach or detach the specified volume tofrom the specified node.
+
+VolumeAttachment objects are non-namespaced. */
 export type VolumeAttachment = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -194,6 +212,7 @@ export function createVolumeAttachment(
   return { apiVersion: "storage.k8s.io/v1", kind: "VolumeAttachment", ...data };
 }
 
+/** VolumeAttachmentList is a collection of VolumeAttachment objects. */
 export type VolumeAttachmentList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -217,6 +236,7 @@ export function createVolumeAttachmentList(
   };
 }
 
+/** VolumeAttachmentSource represents a volume that should be attached. Right now only PersistenVolumes can be attached via external attacher, in future we may allow also inline volumes in pods. Exactly one member can be set. */
 export type VolumeAttachmentSource = {
   /** inlineVolumeSpec contains all the information necessary to attach a persistent volume defined by a pod's inline VolumeSource. This field is populated only for the CSIMigration feature. It contains translated fields from a pod's inline VolumeSource to a PersistentVolumeSpec. This field is alpha-level and is only honored by servers that enabled the CSIMigration feature. */
   inlineVolumeSpec?: PersistentVolumeSpec;
@@ -224,6 +244,8 @@ export type VolumeAttachmentSource = {
   /** Name of the persistent volume to attach. */
   persistentVolumeName?: string;
 };
+
+/** VolumeAttachmentSpec is the specification of a VolumeAttachment request. */
 export type VolumeAttachmentSpec = {
   /** Attacher indicates the name of the volume driver that MUST handle this request. This is the name returned by GetPluginName(). */
   attacher: string;
@@ -234,6 +256,8 @@ export type VolumeAttachmentSpec = {
   /** Source represents the volume that should be attached. */
   source: VolumeAttachmentSource;
 };
+
+/** VolumeAttachmentStatus is the status of a VolumeAttachment request. */
 export type VolumeAttachmentStatus = {
   /** The last error encountered during attach operation, if any. This field must only be set by the entity completing the attach operation, i.e. the external-attacher. */
   attachError?: VolumeError;
@@ -249,6 +273,8 @@ export type VolumeAttachmentStatus = {
   /** The last error encountered during detach operation, if any. This field must only be set by the entity completing the detach operation, i.e. the external-attacher. */
   detachError?: VolumeError;
 };
+
+/** VolumeError captures an error encountered during a volume operation. */
 export type VolumeError = {
   /** String detailing the error encountered during Attach or Detach operation. This string may be logged, so it should not contain sensitive information. */
   message?: string;
@@ -256,6 +282,8 @@ export type VolumeError = {
   /** Time the error was encountered. */
   time?: Time;
 };
+
+/** VolumeNodeResources is a set of resource limits for scheduling of volumes. */
 export type VolumeNodeResources = {
   /** Maximum number of unique volumes managed by the CSI driver that can be used on a node. A volume that is both attached and mounted on a node is considered to be used once, not twice. The same rule applies for a unique volume that is shared among multiple pods on the same node. If this field is not specified, then the supported number of volumes on this node is unbounded. */
   count?: number;

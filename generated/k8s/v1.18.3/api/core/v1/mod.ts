@@ -8,6 +8,10 @@ import {
   MicroTime,
   LabelSelector,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
+
+/** Represents a Persistent Disk resource in AWS.
+
+An AWS EBS disk must exist before mounting to a container. The disk must also be in the same AWS zone as the kubelet. An AWS EBS disk can only be mounted as readwrite once. AWS EBS volumes support ownership management and SELinux relabeling. */
 export type AWSElasticBlockStoreVolumeSource = {
   /** Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https:kubernetes.iodocsconceptsstoragevolumes#awselasticblockstore */
   fsType?: string;
@@ -21,6 +25,8 @@ export type AWSElasticBlockStoreVolumeSource = {
   /** Unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https:kubernetes.iodocsconceptsstoragevolumes#awselasticblockstore */
   volumeID: string;
 };
+
+/** Affinity is a group of affinity scheduling rules. */
 export type Affinity = {
   /** Describes node affinity scheduling rules for the pod. */
   nodeAffinity?: NodeAffinity;
@@ -31,6 +37,8 @@ export type Affinity = {
   /** Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). */
   podAntiAffinity?: PodAntiAffinity;
 };
+
+/** AttachedVolume describes a volume attached to a node */
 export type AttachedVolume = {
   /** DevicePath represents the device path where the volume should be available */
   devicePath: string;
@@ -38,6 +46,8 @@ export type AttachedVolume = {
   /** Name of the attached volume */
   name: string;
 };
+
+/** AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. */
 export type AzureDiskVolumeSource = {
   /** Host Caching mode: None, Read Only, Read Write. */
   cachingMode?: string;
@@ -57,6 +67,8 @@ export type AzureDiskVolumeSource = {
   /** Defaults to false (readwrite). ReadOnly here will force the ReadOnly setting in VolumeMounts. */
   readOnly?: boolean;
 };
+
+/** AzureFile represents an Azure File Service mount on the host and bind mount to the pod. */
 export type AzureFilePersistentVolumeSource = {
   /** Defaults to false (readwrite). ReadOnly here will force the ReadOnly setting in VolumeMounts. */
   readOnly?: boolean;
@@ -70,6 +82,8 @@ export type AzureFilePersistentVolumeSource = {
   /** Share Name */
   shareName: string;
 };
+
+/** AzureFile represents an Azure File Service mount on the host and bind mount to the pod. */
 export type AzureFileVolumeSource = {
   /** Defaults to false (readwrite). ReadOnly here will force the ReadOnly setting in VolumeMounts. */
   readOnly?: boolean;
@@ -80,6 +94,8 @@ export type AzureFileVolumeSource = {
   /** Share Name */
   shareName: string;
 };
+
+/** Binding ties one object to another; for example, a pod is bound to a node by a scheduler. Deprecated in 1.7, please use the bindings subresource of pods instead. */
 export type Binding = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -99,6 +115,7 @@ export function createBinding(
   return { apiVersion: "v1", kind: "Binding", ...data };
 }
 
+/** Represents storage that is managed by an external CSI volume driver (Beta feature) */
 export type CSIPersistentVolumeSource = {
   /** ControllerExpandSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI ControllerExpandVolume call. This is an alpha field and requires enabling ExpandCSIVolumes feature gate. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed. */
   controllerExpandSecretRef?: SecretReference;
@@ -129,6 +146,8 @@ export type CSIPersistentVolumeSource = {
   /** VolumeHandle is the unique volume name returned by the CSI volume plugin’s CreateVolume to refer to the volume on all subsequent calls. Required. */
   volumeHandle: string;
 };
+
+/** Represents a source location of a volume to mount, managed by an external CSI driver */
 export type CSIVolumeSource = {
   /** Driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster. */
   driver: string;
@@ -147,6 +166,8 @@ export type CSIVolumeSource = {
     [key: string]: string;
   };
 };
+
+/** Adds and removes POSIX capabilities from running containers. */
 export type Capabilities = {
   /** Added capabilities */
   add?: string[];
@@ -154,6 +175,8 @@ export type Capabilities = {
   /** Removed capabilities */
   drop?: string[];
 };
+
+/** Represents a Ceph Filesystem mount that lasts the lifetime of a pod Cephfs volumes do not support ownership management or SELinux relabeling. */
 export type CephFSPersistentVolumeSource = {
   /** Required: Monitors is a collection of Ceph monitors More info: https:examples.k8s.iovolumescephfsREADME.md#how-to-use-it */
   monitors: string[];
@@ -173,6 +196,8 @@ export type CephFSPersistentVolumeSource = {
   /** Optional: User is the rados user name, default is admin More info: https:examples.k8s.iovolumescephfsREADME.md#how-to-use-it */
   user?: string;
 };
+
+/** Represents a Ceph Filesystem mount that lasts the lifetime of a pod Cephfs volumes do not support ownership management or SELinux relabeling. */
 export type CephFSVolumeSource = {
   /** Required: Monitors is a collection of Ceph monitors More info: https:examples.k8s.iovolumescephfsREADME.md#how-to-use-it */
   monitors: string[];
@@ -192,6 +217,8 @@ export type CephFSVolumeSource = {
   /** Optional: User is the rados user name, default is admin More info: https:examples.k8s.iovolumescephfsREADME.md#how-to-use-it */
   user?: string;
 };
+
+/** Represents a cinder volume resource in Openstack. A Cinder volume must exist before mounting to a container. The volume must also be in the same region as the kubelet. Cinder volumes support ownership management and SELinux relabeling. */
 export type CinderPersistentVolumeSource = {
   /** Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https:examples.k8s.iomysql-cinder-pdREADME.md */
   fsType?: string;
@@ -205,6 +232,8 @@ export type CinderPersistentVolumeSource = {
   /** volume id used to identify the volume in cinder. More info: https:examples.k8s.iomysql-cinder-pdREADME.md */
   volumeID: string;
 };
+
+/** Represents a cinder volume resource in Openstack. A Cinder volume must exist before mounting to a container. The volume must also be in the same region as the kubelet. Cinder volumes support ownership management and SELinux relabeling. */
 export type CinderVolumeSource = {
   /** Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https:examples.k8s.iomysql-cinder-pdREADME.md */
   fsType?: string;
@@ -218,10 +247,14 @@ export type CinderVolumeSource = {
   /** volume id used to identify the volume in cinder. More info: https:examples.k8s.iomysql-cinder-pdREADME.md */
   volumeID: string;
 };
+
+/** ClientIPConfig represents the configurations of Client IP based session affinity. */
 export type ClientIPConfig = {
   /** timeoutSeconds specifies the seconds of ClientIP type session sticky time. The value must be >0 && <=86400(for 1 day) if ServiceAffinity == "ClientIP". Default value is 10800(for 3 hours). */
   timeoutSeconds?: number;
 };
+
+/** Information about the condition of a component. */
 export type ComponentCondition = {
   /** Condition error code for a component. For example, a health check error code. */
   error?: string;
@@ -235,6 +268,8 @@ export type ComponentCondition = {
   /** Type of condition for a component. Valid value: "Healthy" */
   type: string;
 };
+
+/** ComponentStatus (and ComponentStatusList) holds the cluster validation info. */
 export type ComponentStatus = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -254,6 +289,7 @@ export function createComponentStatus(
   return { apiVersion: "v1", kind: "ComponentStatus", ...data };
 }
 
+/** Status of all the conditions for the component as a list of ComponentStatus objects. */
 export type ComponentStatusList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -273,6 +309,7 @@ export function createComponentStatusList(
   return { apiVersion: "v1", kind: "ComponentStatusList", ...data };
 }
 
+/** ConfigMap holds configuration data for pods to consume. */
 export type ConfigMap = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -302,6 +339,9 @@ export function createConfigMap(
   return { apiVersion: "v1", kind: "ConfigMap", ...data };
 }
 
+/** ConfigMapEnvSource selects a ConfigMap to populate the environment variables with.
+
+The contents of the target ConfigMap's Data field will represent the key-value pairs as environment variables. */
 export type ConfigMapEnvSource = {
   /** Name of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#names */
   name?: string;
@@ -309,6 +349,8 @@ export type ConfigMapEnvSource = {
   /** Specify whether the ConfigMap must be defined */
   optional?: boolean;
 };
+
+/** Selects a key from a ConfigMap. */
 export type ConfigMapKeySelector = {
   /** The key to select. */
   key: string;
@@ -319,6 +361,8 @@ export type ConfigMapKeySelector = {
   /** Specify whether the ConfigMap or its key must be defined */
   optional?: boolean;
 };
+
+/** ConfigMapList is a resource containing a list of ConfigMap objects. */
 export type ConfigMapList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -338,6 +382,7 @@ export function createConfigMapList(
   return { apiVersion: "v1", kind: "ConfigMapList", ...data };
 }
 
+/** ConfigMapNodeConfigSource contains the information to reference a ConfigMap as a config source for the Node. */
 export type ConfigMapNodeConfigSource = {
   /** KubeletConfigKey declares which key of the referenced ConfigMap corresponds to the KubeletConfiguration structure This field is required in all cases. */
   kubeletConfigKey: string;
@@ -354,6 +399,10 @@ export type ConfigMapNodeConfigSource = {
   /** UID is the metadata.UID of the referenced ConfigMap. This field is forbidden in Node.Spec, and required in Node.Status. */
   uid?: string;
 };
+
+/** Adapts a ConfigMap into a projected volume.
+
+The contents of the target ConfigMap's Data field will be presented in a projected volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths. Note that this is identical to a configmap volume source without the default mode. */
 export type ConfigMapProjection = {
   /** If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. */
   items?: KeyToPath[];
@@ -364,6 +413,10 @@ export type ConfigMapProjection = {
   /** Specify whether the ConfigMap or its keys must be defined */
   optional?: boolean;
 };
+
+/** Adapts a ConfigMap into a volume.
+
+The contents of the target ConfigMap's Data field will be presented in a volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths. ConfigMap volumes support ownership management and SELinux relabeling. */
 export type ConfigMapVolumeSource = {
   /** Optional: mode bits to use on created files by default. Must be a value between 0 and 0777. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
   defaultMode?: number;
@@ -377,6 +430,8 @@ export type ConfigMapVolumeSource = {
   /** Specify whether the ConfigMap or its keys must be defined */
   optional?: boolean;
 };
+
+/** A single application container that you want to run within a pod. */
 export type Container = {
   /** Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https:kubernetes.iodocstasksinject-data-applicationdefine-command-argument-container#running-a-command-in-a-shell */
   args?: string[];
@@ -444,6 +499,8 @@ export type Container = {
   /** Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated. */
   workingDir?: string;
 };
+
+/** Describe a container image */
 export type ContainerImage = {
   /** Names by which this image is known. e.g. ["k8s.gcr.iohyperkube:v1.0.7", "dockerhub.iogoogle_containershyperkube:v1.0.7"] */
   names: string[];
@@ -451,6 +508,8 @@ export type ContainerImage = {
   /** The size of the image in bytes. */
   sizeBytes?: number;
 };
+
+/** ContainerPort represents a network port in a single container. */
 export type ContainerPort = {
   /** Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536. */
   containerPort: number;
@@ -467,6 +526,8 @@ export type ContainerPort = {
   /** Protocol for port. Must be UDP, TCP, or SCTP. Defaults to "TCP". */
   protocol?: string;
 };
+
+/** ContainerState holds a possible state of container. Only one of its members may be specified. If none of them is specified, the default one is ContainerStateWaiting. */
 export type ContainerState = {
   /** Details about a running container */
   running?: ContainerStateRunning;
@@ -477,10 +538,14 @@ export type ContainerState = {
   /** Details about a waiting container */
   waiting?: ContainerStateWaiting;
 };
+
+/** ContainerStateRunning is a running state of a container. */
 export type ContainerStateRunning = {
   /** Time at which the container was last (re-)started */
   startedAt?: Time;
 };
+
+/** ContainerStateTerminated is a terminated state of a container. */
 export type ContainerStateTerminated = {
   /** Container's ID in the format 'docker:<container_id>' */
   containerID?: string;
@@ -503,6 +568,8 @@ export type ContainerStateTerminated = {
   /** Time at which previous execution of the container started */
   startedAt?: Time;
 };
+
+/** ContainerStateWaiting is a waiting state of a container. */
 export type ContainerStateWaiting = {
   /** Message regarding why the container is not yet running. */
   message?: string;
@@ -510,6 +577,8 @@ export type ContainerStateWaiting = {
   /** (brief) reason the container is not yet running. */
   reason?: string;
 };
+
+/** ContainerStatus contains details for the current status of this container. */
 export type ContainerStatus = {
   /** Container's ID in the format 'docker:<container_id>'. */
   containerID?: string;
@@ -538,14 +607,20 @@ export type ContainerStatus = {
   /** Details about the container's current condition. */
   state?: ContainerState;
 };
+
+/** DaemonEndpoint contains information about a single Daemon endpoint. */
 export type DaemonEndpoint = {
   /** Port number of the given endpoint. */
   Port: number;
 };
+
+/** Represents downward API info for projecting into a projected volume. Note that this is identical to a downwardAPI volume source without the default mode. */
 export type DownwardAPIProjection = {
   /** Items is a list of DownwardAPIVolume file */
   items?: DownwardAPIVolumeFile[];
 };
+
+/** DownwardAPIVolumeFile represents information to create the file containing the pod field */
 export type DownwardAPIVolumeFile = {
   /** Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. */
   fieldRef?: ObjectFieldSelector;
@@ -559,6 +634,8 @@ export type DownwardAPIVolumeFile = {
   /** Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. */
   resourceFieldRef?: ResourceFieldSelector;
 };
+
+/** DownwardAPIVolumeSource represents a volume containing downward API info. Downward API volumes support ownership management and SELinux relabeling. */
 export type DownwardAPIVolumeSource = {
   /** Optional: mode bits to use on created files by default. Must be a value between 0 and 0777. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
   defaultMode?: number;
@@ -566,6 +643,8 @@ export type DownwardAPIVolumeSource = {
   /** Items is a list of downward API volume file */
   items?: DownwardAPIVolumeFile[];
 };
+
+/** Represents an empty directory for a pod. Empty directory volumes support ownership management and SELinux relabeling. */
 export type EmptyDirVolumeSource = {
   /** What type of storage medium should back this directory. The default is "" which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https:kubernetes.iodocsconceptsstoragevolumes#emptydir */
   medium?: string;
@@ -573,6 +652,8 @@ export type EmptyDirVolumeSource = {
   /** Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http:kubernetes.iodocsuser-guidevolumes#emptydir */
   sizeLimit?: Quantity;
 };
+
+/** EndpointAddress is a tuple that describes single IP address. */
 export type EndpointAddress = {
   /** The Hostname of this endpoint */
   hostname?: string;
@@ -586,6 +667,8 @@ export type EndpointAddress = {
   /** Reference to object providing the endpoint. */
   targetRef?: ObjectReference;
 };
+
+/** EndpointPort is a tuple that describes a single port. */
 export type EndpointPort = {
   /** The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and http:www.iana.orgassignmentsservice-names). Non-standard protocols should use prefixed names such as mycompany.commy-custom-protocol. Field can be enabled with ServiceAppProtocol feature gate. */
   appProtocol?: string;
@@ -599,6 +682,15 @@ export type EndpointPort = {
   /** The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP. */
   protocol?: string;
 };
+
+/** EndpointSubset is a group of addresses with a common set of ports. The expanded set of endpoints is the Cartesian product of Addresses x Ports. For example, given:
+  {
+    Addresses: [{"ip": "10.10.1.1"}, {"ip": "10.10.2.2"}],
+    Ports:     [{"name": "a", "port": 8675}, {"name": "b", "port": 309}]
+  }
+The resulting set of endpoints can be viewed as:
+    a: [ 10.10.1.1:8675, 10.10.2.2:8675 ],
+    b: [ 10.10.1.1:309, 10.10.2.2:309 ] */
 export type EndpointSubset = {
   /** IP addresses which offer the related ports that are marked as ready. These endpoints should be considered safe for load balancers and clients to utilize. */
   addresses?: EndpointAddress[];
@@ -609,6 +701,19 @@ export type EndpointSubset = {
   /** Port numbers available on the related IP addresses. */
   ports?: EndpointPort[];
 };
+
+/** Endpoints is a collection of endpoints that implement the actual service. Example:
+  Name: "mysvc",
+  Subsets: [
+    {
+      Addresses: [{"ip": "10.10.1.1"}, {"ip": "10.10.2.2"}],
+      Ports: [{"name": "a", "port": 8675}, {"name": "b", "port": 309}]
+    },
+    {
+      Addresses: [{"ip": "10.10.3.3"}],
+      Ports: [{"name": "a", "port": 93}, {"name": "b", "port": 76}]
+    },
+ ] */
 export type Endpoints = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -628,6 +733,7 @@ export function createEndpoints(
   return { apiVersion: "v1", kind: "Endpoints", ...data };
 }
 
+/** EndpointsList is a list of endpoints. */
 export type EndpointsList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -647,6 +753,7 @@ export function createEndpointsList(
   return { apiVersion: "v1", kind: "EndpointsList", ...data };
 }
 
+/** EnvFromSource represents the source of a set of ConfigMaps */
 export type EnvFromSource = {
   /** The ConfigMap to select from */
   configMapRef?: ConfigMapEnvSource;
@@ -657,6 +764,8 @@ export type EnvFromSource = {
   /** The Secret to select from */
   secretRef?: SecretEnvSource;
 };
+
+/** EnvVar represents an environment variable present in a Container. */
 export type EnvVar = {
   /** Name of the environment variable. Must be a C_IDENTIFIER. */
   name: string;
@@ -667,6 +776,8 @@ export type EnvVar = {
   /** Source for the environment variable's value. Cannot be used if value is not empty. */
   valueFrom?: EnvVarSource;
 };
+
+/** EnvVarSource represents a source for the value of an EnvVar. */
 export type EnvVarSource = {
   /** Selects a key of a ConfigMap. */
   configMapKeyRef?: ConfigMapKeySelector;
@@ -680,6 +791,8 @@ export type EnvVarSource = {
   /** Selects a key of a secret in the pod's namespace */
   secretKeyRef?: SecretKeySelector;
 };
+
+/** An EphemeralContainer is a container that may be added temporarily to an existing pod for user-initiated activities such as debugging. Ephemeral containers have no resource or scheduling guarantees, and they will not be restarted when they exit or when a pod is removed or restarted. If an ephemeral container causes a pod to exceed its resource allocation, the pod may be evicted. Ephemeral containers may not be added by directly updating the pod spec. They must be added via the pod's ephemeralcontainers subresource, and they will appear in the pod spec once added. This is an alpha feature enabled by the EphemeralContainers feature flag. */
 export type EphemeralContainer = {
   /** Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https:kubernetes.iodocstasksinject-data-applicationdefine-command-argument-container#running-a-command-in-a-shell */
   args?: string[];
@@ -750,6 +863,8 @@ export type EphemeralContainer = {
   /** Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated. */
   workingDir?: string;
 };
+
+/** Event is a report of an event somewhere in the cluster. */
 export type Event = {
   /** What action was takenfailed regarding to the Regarding object. */
   action?: string;
@@ -806,6 +921,7 @@ export function createEvent(data: Omit<Event, "apiVersion" | "kind">): Event {
   return { apiVersion: "v1", kind: "Event", ...data };
 }
 
+/** EventList is a list of events. */
 export type EventList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -825,6 +941,7 @@ export function createEventList(
   return { apiVersion: "v1", kind: "EventList", ...data };
 }
 
+/** EventSeries contain information on series of events, i.e. thing that wasis happening continuously for some time. */
 export type EventSeries = {
   /** Number of occurrences in this series up to the last heartbeat time */
   count?: number;
@@ -835,6 +952,8 @@ export type EventSeries = {
   /** State of this Series: Ongoing or Finished Deprecated. Planned removal for 1.18 */
   state?: string;
 };
+
+/** EventSource contains information for an event. */
 export type EventSource = {
   /** Component from which the event is generated. */
   component?: string;
@@ -842,10 +961,14 @@ export type EventSource = {
   /** Node name on which the event is generated. */
   host?: string;
 };
+
+/** ExecAction describes a "run in container" action. */
 export type ExecAction = {
   /** Command is the command line to execute inside the container, the working directory for the command  is root ('') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as livehealthy and non-zero is unhealthy. */
   command?: string[];
 };
+
+/** Represents a Fibre Channel volume. Fibre Channel volumes can only be mounted as readwrite once. Fibre Channel volumes support ownership management and SELinux relabeling. */
 export type FCVolumeSource = {
   /** Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. */
   fsType?: string;
@@ -862,6 +985,8 @@ export type FCVolumeSource = {
   /** Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously. */
   wwids?: string[];
 };
+
+/** FlexPersistentVolumeSource represents a generic persistent volume resource that is provisionedattached using an exec based plugin. */
 export type FlexPersistentVolumeSource = {
   /** Driver is the name of the driver to use for this volume. */
   driver: string;
@@ -880,6 +1005,8 @@ export type FlexPersistentVolumeSource = {
   /** Optional: SecretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts. */
   secretRef?: SecretReference;
 };
+
+/** FlexVolume represents a generic volume resource that is provisionedattached using an exec based plugin. */
 export type FlexVolumeSource = {
   /** Driver is the name of the driver to use for this volume. */
   driver: string;
@@ -898,6 +1025,8 @@ export type FlexVolumeSource = {
   /** Optional: SecretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts. */
   secretRef?: LocalObjectReference;
 };
+
+/** Represents a Flocker volume mounted by the Flocker agent. One and only one of datasetName and datasetUUID should be set. Flocker volumes do not support ownership management or SELinux relabeling. */
 export type FlockerVolumeSource = {
   /** Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated */
   datasetName?: string;
@@ -905,6 +1034,10 @@ export type FlockerVolumeSource = {
   /** UUID of the dataset. This is unique identifier of a Flocker dataset */
   datasetUUID?: string;
 };
+
+/** Represents a Persistent Disk resource in Google Compute Engine.
+
+A GCE PD must exist before mounting to a container. The disk must also be in the same GCE project and zone as the kubelet. A GCE PD can only be mounted as readwrite once or read-only many times. GCE PDs support ownership management and SELinux relabeling. */
 export type GCEPersistentDiskVolumeSource = {
   /** Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https:kubernetes.iodocsconceptsstoragevolumes#gcepersistentdisk */
   fsType?: string;
@@ -918,6 +1051,10 @@ export type GCEPersistentDiskVolumeSource = {
   /** ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https:kubernetes.iodocsconceptsstoragevolumes#gcepersistentdisk */
   readOnly?: boolean;
 };
+
+/** Represents a volume that is populated with the contents of a git repository. Git repo volumes do not support ownership management. Git repo volumes support SELinux relabeling.
+
+DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container. */
 export type GitRepoVolumeSource = {
   /** Target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name. */
   directory?: string;
@@ -928,6 +1065,8 @@ export type GitRepoVolumeSource = {
   /** Commit hash for the specified revision. */
   revision?: string;
 };
+
+/** Represents a Glusterfs mount that lasts the lifetime of a pod. Glusterfs volumes do not support ownership management or SELinux relabeling. */
 export type GlusterfsPersistentVolumeSource = {
   /** EndpointsName is the endpoint name that details Glusterfs topology. More info: https:examples.k8s.iovolumesglusterfsREADME.md#create-a-pod */
   endpoints: string;
@@ -941,6 +1080,8 @@ export type GlusterfsPersistentVolumeSource = {
   /** ReadOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https:examples.k8s.iovolumesglusterfsREADME.md#create-a-pod */
   readOnly?: boolean;
 };
+
+/** Represents a Glusterfs mount that lasts the lifetime of a pod. Glusterfs volumes do not support ownership management or SELinux relabeling. */
 export type GlusterfsVolumeSource = {
   /** EndpointsName is the endpoint name that details Glusterfs topology. More info: https:examples.k8s.iovolumesglusterfsREADME.md#create-a-pod */
   endpoints: string;
@@ -951,6 +1092,8 @@ export type GlusterfsVolumeSource = {
   /** ReadOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https:examples.k8s.iovolumesglusterfsREADME.md#create-a-pod */
   readOnly?: boolean;
 };
+
+/** HTTPGetAction describes an action based on HTTP Get requests. */
 export type HTTPGetAction = {
   /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
   host?: string;
@@ -967,6 +1110,8 @@ export type HTTPGetAction = {
   /** Scheme to use for connecting to the host. Defaults to HTTP. */
   scheme?: string;
 };
+
+/** HTTPHeader describes a custom header to be used in HTTP probes */
 export type HTTPHeader = {
   /** The header field name */
   name: string;
@@ -974,6 +1119,8 @@ export type HTTPHeader = {
   /** The header field value */
   value: string;
 };
+
+/** Handler defines a specific action that should be taken */
 export type Handler = {
   /** One and only one of the following should be specified. Exec specifies the action to take. */
   exec?: ExecAction;
@@ -984,6 +1131,8 @@ export type Handler = {
   /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported */
   tcpSocket?: TCPSocketAction;
 };
+
+/** HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file. */
 export type HostAlias = {
   /** Hostnames for the above IP address. */
   hostnames?: string[];
@@ -991,6 +1140,8 @@ export type HostAlias = {
   /** IP address of the host file entry. */
   ip?: string;
 };
+
+/** Represents a host path mapped into a pod. Host path volumes do not support ownership management or SELinux relabeling. */
 export type HostPathVolumeSource = {
   /** Path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https:kubernetes.iodocsconceptsstoragevolumes#hostpath */
   path: string;
@@ -998,6 +1149,8 @@ export type HostPathVolumeSource = {
   /** Type for HostPath Volume Defaults to "" More info: https:kubernetes.iodocsconceptsstoragevolumes#hostpath */
   type?: string;
 };
+
+/** ISCSIPersistentVolumeSource represents an ISCSI disk. ISCSI volumes can only be mounted as readwrite once. ISCSI volumes support ownership management and SELinux relabeling. */
 export type ISCSIPersistentVolumeSource = {
   /** whether support iSCSI Discovery CHAP authentication */
   chapAuthDiscovery?: boolean;
@@ -1032,6 +1185,8 @@ export type ISCSIPersistentVolumeSource = {
   /** iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260). */
   targetPortal: string;
 };
+
+/** Represents an ISCSI disk. ISCSI volumes can only be mounted as readwrite once. ISCSI volumes support ownership management and SELinux relabeling. */
 export type ISCSIVolumeSource = {
   /** whether support iSCSI Discovery CHAP authentication */
   chapAuthDiscovery?: boolean;
@@ -1066,6 +1221,8 @@ export type ISCSIVolumeSource = {
   /** iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260). */
   targetPortal: string;
 };
+
+/** Maps a string key to a path within a volume. */
 export type KeyToPath = {
   /** The key to project. */
   key: string;
@@ -1076,6 +1233,8 @@ export type KeyToPath = {
   /** The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'. */
   path: string;
 };
+
+/** Lifecycle describes actions that the management system should take in response to container lifecycle events. For the PostStart and PreStop lifecycle handlers, management of the container blocks until the action is complete, unless the container process fails, in which case the handler is aborted. */
 export type Lifecycle = {
   /** PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https:kubernetes.iodocsconceptscontainerscontainer-lifecycle-hooks#container-hooks */
   postStart?: Handler;
@@ -1083,6 +1242,8 @@ export type Lifecycle = {
   /** PreStop is called immediately before a container is terminated due to an API request or management event such as livenessstartup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The reason for termination is passed to the handler. The Pod's termination grace period countdown begins before the PreStop hooked is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period. Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https:kubernetes.iodocsconceptscontainerscontainer-lifecycle-hooks#container-hooks */
   preStop?: Handler;
 };
+
+/** LimitRange sets resource usage limits for each kind of resource in a Namespace. */
 export type LimitRange = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -1102,6 +1263,7 @@ export function createLimitRange(
   return { apiVersion: "v1", kind: "LimitRange", ...data };
 }
 
+/** LimitRangeItem defines a minmax usage limit for any resource that matches on kind. */
 export type LimitRangeItem = {
   /** Default resource requirement limit value by resource name if resource limit is omitted. */
   default?: {
@@ -1131,6 +1293,8 @@ export type LimitRangeItem = {
   /** Type of resource that this limit applies to. */
   type: string;
 };
+
+/** LimitRangeList is a list of LimitRange items. */
 export type LimitRangeList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -1150,10 +1314,13 @@ export function createLimitRangeList(
   return { apiVersion: "v1", kind: "LimitRangeList", ...data };
 }
 
+/** LimitRangeSpec defines a minmax usage limit for resources that match on kind. */
 export type LimitRangeSpec = {
   /** Limits is the list of LimitRangeItem objects that are enforced. */
   limits: LimitRangeItem[];
 };
+
+/** LoadBalancerIngress represents the status of a load-balancer ingress point: traffic intended for the service should be sent to an ingress point. */
 export type LoadBalancerIngress = {
   /** Hostname is set for load-balancer ingress points that are DNS based (typically AWS load-balancers) */
   hostname?: string;
@@ -1161,14 +1328,20 @@ export type LoadBalancerIngress = {
   /** IP is set for load-balancer ingress points that are IP based (typically GCE or OpenStack load-balancers) */
   ip?: string;
 };
+
+/** LoadBalancerStatus represents the status of a load-balancer. */
 export type LoadBalancerStatus = {
   /** Ingress is a list containing ingress points for the load-balancer. Traffic intended for the service should be sent to these ingress points. */
   ingress?: LoadBalancerIngress[];
 };
+
+/** LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace. */
 export type LocalObjectReference = {
   /** Name of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#names */
   name?: string;
 };
+
+/** Local represents directly-attached storage with node affinity (Beta feature) */
 export type LocalVolumeSource = {
   /** Filesystem type to mount. It applies only when the Path is a block device. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". The default value is to auto-select a fileystem if unspecified. */
   fsType?: string;
@@ -1176,6 +1349,8 @@ export type LocalVolumeSource = {
   /** The full path to the volume on the node. It can be either a directory or block device (disk, partition, ...). */
   path: string;
 };
+
+/** Represents an NFS mount that lasts the lifetime of a pod. NFS volumes do not support ownership management or SELinux relabeling. */
 export type NFSVolumeSource = {
   /** Path that is exported by the NFS server. More info: https:kubernetes.iodocsconceptsstoragevolumes#nfs */
   path: string;
@@ -1186,6 +1361,8 @@ export type NFSVolumeSource = {
   /** Server is the hostname or IP address of the NFS server. More info: https:kubernetes.iodocsconceptsstoragevolumes#nfs */
   server: string;
 };
+
+/** Namespace provides a scope for Names. Use of multiple namespaces is optional. */
 export type Namespace = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -1208,6 +1385,7 @@ export function createNamespace(
   return { apiVersion: "v1", kind: "Namespace", ...data };
 }
 
+/** NamespaceCondition contains details about state of namespace. */
 export type NamespaceCondition = {
   lastTransitionTime?: Time;
 
@@ -1221,6 +1399,8 @@ export type NamespaceCondition = {
   /** Type of namespace controller condition. */
   type: string;
 };
+
+/** NamespaceList is a list of Namespaces. */
 export type NamespaceList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -1240,10 +1420,13 @@ export function createNamespaceList(
   return { apiVersion: "v1", kind: "NamespaceList", ...data };
 }
 
+/** NamespaceSpec describes the attributes on a Namespace. */
 export type NamespaceSpec = {
   /** Finalizers is an opaque list of values that must be empty to permanently remove object from storage. More info: https:kubernetes.iodocstasksadminister-clusternamespaces */
   finalizers?: string[];
 };
+
+/** NamespaceStatus is information about the current status of a Namespace. */
 export type NamespaceStatus = {
   /** Represents the latest available observations of a namespace's current state. */
   conditions?: NamespaceCondition[];
@@ -1251,6 +1434,8 @@ export type NamespaceStatus = {
   /** Phase is the current lifecycle phase of the namespace. More info: https:kubernetes.iodocstasksadminister-clusternamespaces */
   phase?: string;
 };
+
+/** Node is a worker node in Kubernetes. Each node will have a unique identifier in the cache (i.e. in etcd). */
 export type Node = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -1271,6 +1456,7 @@ export function createNode(data: Omit<Node, "apiVersion" | "kind">): Node {
   return { apiVersion: "v1", kind: "Node", ...data };
 }
 
+/** NodeAddress contains information for the node's address. */
 export type NodeAddress = {
   /** The node address. */
   address: string;
@@ -1278,6 +1464,8 @@ export type NodeAddress = {
   /** Node address type, one of Hostname, ExternalIP or InternalIP. */
   type: string;
 };
+
+/** Node affinity is a group of node affinity scheduling rules. */
 export type NodeAffinity = {
   /** The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. */
   preferredDuringSchedulingIgnoredDuringExecution?: PreferredSchedulingTerm[];
@@ -1285,6 +1473,8 @@ export type NodeAffinity = {
   /** If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. */
   requiredDuringSchedulingIgnoredDuringExecution?: NodeSelector;
 };
+
+/** NodeCondition contains condition information for a node. */
 export type NodeCondition = {
   /** Last time we got an update on a given condition. */
   lastHeartbeatTime?: Time;
@@ -1304,10 +1494,14 @@ export type NodeCondition = {
   /** Type of node condition. */
   type: string;
 };
+
+/** NodeConfigSource specifies a source of node configuration. Exactly one subfield (excluding metadata) must be non-nil. */
 export type NodeConfigSource = {
   /** ConfigMap is a reference to a Node's ConfigMap */
   configMap?: ConfigMapNodeConfigSource;
 };
+
+/** NodeConfigStatus describes the status of the config assigned by Node.Spec.ConfigSource. */
 export type NodeConfigStatus = {
   /** Active reports the checkpointed config the node is actively using. Active will represent either the current version of the Assigned config, or the current LastKnownGood config, depending on whether attempting to use the Assigned config results in an error. */
   active?: NodeConfigSource;
@@ -1321,10 +1515,14 @@ export type NodeConfigStatus = {
   /** LastKnownGood reports the checkpointed config the node will fall back to when it encounters an error attempting to use the Assigned config. The Assigned config becomes the LastKnownGood config when the node determines that the Assigned config is stable and correct. This is currently implemented as a 10-minute soak period starting when the local record of Assigned config is updated. If the Assigned config is Active at the end of this period, it becomes the LastKnownGood. Note that if Spec.ConfigSource is reset to nil (use local defaults), the LastKnownGood is also immediately reset to nil, because the local default config is always assumed good. You should not make assumptions about the node's method of determining config stability and correctness, as this may change or become configurable in the future. */
   lastKnownGood?: NodeConfigSource;
 };
+
+/** NodeDaemonEndpoints lists ports opened by daemons running on the Node. */
 export type NodeDaemonEndpoints = {
   /** Endpoint on which Kubelet is listening. */
   kubeletEndpoint?: DaemonEndpoint;
 };
+
+/** NodeList is the whole list of all Nodes which have been registered with master. */
 export type NodeList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -1344,10 +1542,13 @@ export function createNodeList(
   return { apiVersion: "v1", kind: "NodeList", ...data };
 }
 
+/** A node selector represents the union of the results of one or more label queries over a set of nodes; that is, it represents the OR of the selectors represented by the node selector terms. */
 export type NodeSelector = {
   /** Required. A list of node selector terms. The terms are ORed. */
   nodeSelectorTerms: NodeSelectorTerm[];
 };
+
+/** A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values. */
 export type NodeSelectorRequirement = {
   /** The label key that the selector applies to. */
   key: string;
@@ -1358,6 +1559,8 @@ export type NodeSelectorRequirement = {
   /** An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. */
   values?: string[];
 };
+
+/** A null or empty node selector term matches no objects. The requirements of them are ANDed. The TopologySelectorTerm type implements a subset of the NodeSelectorTerm. */
 export type NodeSelectorTerm = {
   /** A list of node selector requirements by node's labels. */
   matchExpressions?: NodeSelectorRequirement[];
@@ -1365,6 +1568,8 @@ export type NodeSelectorTerm = {
   /** A list of node selector requirements by node's fields. */
   matchFields?: NodeSelectorRequirement[];
 };
+
+/** NodeSpec describes the attributes that a node is created with. */
 export type NodeSpec = {
   /** If specified, the source to get node configuration from The DynamicKubeletConfig feature gate must be enabled for the Kubelet to use this field */
   configSource?: NodeConfigSource;
@@ -1387,6 +1592,8 @@ export type NodeSpec = {
   /** Unschedulable controls node schedulability of new pods. By default, node is schedulable. More info: https:kubernetes.iodocsconceptsnodesnode#manual-node-administration */
   unschedulable?: boolean;
 };
+
+/** NodeStatus is information about the current status of a node. */
 export type NodeStatus = {
   /** List of addresses reachable to the node. Queried from cloud provider, if available. More info: https:kubernetes.iodocsconceptsnodesnode#addresses Note: This field is declared as mergeable, but the merge key is not sufficiently unique, which can cause data corruption when it is merged. Callers should instead use a full-replacement patch. See http:pr.k8s.io79391 for an example. */
   addresses?: NodeAddress[];
@@ -1425,6 +1632,8 @@ export type NodeStatus = {
   /** List of attachable volumes in use (mounted) by the node. */
   volumesInUse?: string[];
 };
+
+/** NodeSystemInfo is a set of idsuuids to uniquely identify the node. */
 export type NodeSystemInfo = {
   /** The Architecture reported by the node */
   architecture: string;
@@ -1456,6 +1665,8 @@ export type NodeSystemInfo = {
   /** SystemUUID reported by the node. For unique machine identification MachineID is preferred. This field is specific to Red Hat hosts https:access.redhat.comdocumentationen-USRed_Hat_Subscription_Management1htmlRHSMgetting-system-uuid.html */
   systemUUID: string;
 };
+
+/** ObjectFieldSelector selects an APIVersioned field of an object. */
 export type ObjectFieldSelector = {
   /** Version of the schema the FieldPath is written in terms of, defaults to "v1". */
   apiVersion?: string;
@@ -1463,6 +1674,8 @@ export type ObjectFieldSelector = {
   /** Path of the field to select in the specified API version. */
   fieldPath: string;
 };
+
+/** ObjectReference contains enough information to let you inspect or modify the referred object. */
 export type ObjectReference = {
   /** API version of the referent. */
   apiVersion?: string;
@@ -1485,6 +1698,8 @@ export type ObjectReference = {
   /** UID of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#uids */
   uid?: string;
 };
+
+/** PersistentVolume (PV) is a storage resource provisioned by an administrator. It is analogous to a node. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes */
 export type PersistentVolume = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -1507,6 +1722,7 @@ export function createPersistentVolume(
   return { apiVersion: "v1", kind: "PersistentVolume", ...data };
 }
 
+/** PersistentVolumeClaim is a user's request for and claim to a persistent volume */
 export type PersistentVolumeClaim = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -1529,6 +1745,7 @@ export function createPersistentVolumeClaim(
   return { apiVersion: "v1", kind: "PersistentVolumeClaim", ...data };
 }
 
+/** PersistentVolumeClaimCondition contails details about state of pvc */
 export type PersistentVolumeClaimCondition = {
   /** Last time we probed the condition. */
   lastProbeTime?: Time;
@@ -1546,6 +1763,8 @@ export type PersistentVolumeClaimCondition = {
 
   type: string;
 };
+
+/** PersistentVolumeClaimList is a list of PersistentVolumeClaim items. */
 export type PersistentVolumeClaimList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -1565,6 +1784,7 @@ export function createPersistentVolumeClaimList(
   return { apiVersion: "v1", kind: "PersistentVolumeClaimList", ...data };
 }
 
+/** PersistentVolumeClaimSpec describes the common attributes of storage devices and allows a Source for provider-specific attributes */
 export type PersistentVolumeClaimSpec = {
   /** AccessModes contains the desired access modes the volume should have. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#access-modes-1 */
   accessModes?: string[];
@@ -1587,6 +1807,8 @@ export type PersistentVolumeClaimSpec = {
   /** VolumeName is the binding reference to the PersistentVolume backing this claim. */
   volumeName?: string;
 };
+
+/** PersistentVolumeClaimStatus is the current status of a persistent volume claim. */
 export type PersistentVolumeClaimStatus = {
   /** AccessModes contains the actual access modes the volume backing the PVC has. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#access-modes-1 */
   accessModes?: string[];
@@ -1602,6 +1824,8 @@ export type PersistentVolumeClaimStatus = {
   /** Phase represents the current phase of PersistentVolumeClaim. */
   phase?: string;
 };
+
+/** PersistentVolumeClaimVolumeSource references the user's PVC in the same namespace. This volume finds the bound PV and mounts that volume for the pod. A PersistentVolumeClaimVolumeSource is, essentially, a wrapper around another type of volume that is owned by someone else (the system). */
 export type PersistentVolumeClaimVolumeSource = {
   /** ClaimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#persistentvolumeclaims */
   claimName: string;
@@ -1609,6 +1833,8 @@ export type PersistentVolumeClaimVolumeSource = {
   /** Will force the ReadOnly setting in VolumeMounts. Default false. */
   readOnly?: boolean;
 };
+
+/** PersistentVolumeList is a list of PersistentVolume items. */
 export type PersistentVolumeList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -1628,6 +1854,7 @@ export function createPersistentVolumeList(
   return { apiVersion: "v1", kind: "PersistentVolumeList", ...data };
 }
 
+/** PersistentVolumeSpec is the specification of a persistent volume. */
 export type PersistentVolumeSpec = {
   /** AccessModes contains all ways the volume can be mounted. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#access-modes */
   accessModes?: string[];
@@ -1721,6 +1948,8 @@ export type PersistentVolumeSpec = {
   /** VsphereVolume represents a vSphere volume attached and mounted on kubelets host machine */
   vsphereVolume?: VsphereVirtualDiskVolumeSource;
 };
+
+/** PersistentVolumeStatus is the current status of a persistent volume. */
 export type PersistentVolumeStatus = {
   /** A human-readable message indicating details about why the volume is in this state. */
   message?: string;
@@ -1731,6 +1960,8 @@ export type PersistentVolumeStatus = {
   /** Reason is a brief CamelCase string that describes any failure and is meant for machine parsing and tidy display in the CLI. */
   reason?: string;
 };
+
+/** Represents a Photon Controller persistent disk resource. */
 export type PhotonPersistentDiskVolumeSource = {
   /** Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. */
   fsType?: string;
@@ -1738,6 +1969,8 @@ export type PhotonPersistentDiskVolumeSource = {
   /** ID that identifies Photon Controller persistent disk */
   pdID: string;
 };
+
+/** Pod is a collection of containers that can run on a host. This resource is created by clients and scheduled onto hosts. */
 export type Pod = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -1758,6 +1991,7 @@ export function createPod(data: Omit<Pod, "apiVersion" | "kind">): Pod {
   return { apiVersion: "v1", kind: "Pod", ...data };
 }
 
+/** Pod affinity is a group of inter pod affinity scheduling rules. */
 export type PodAffinity = {
   /** The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. */
   preferredDuringSchedulingIgnoredDuringExecution?: WeightedPodAffinityTerm[];
@@ -1765,6 +1999,8 @@ export type PodAffinity = {
   /** If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. */
   requiredDuringSchedulingIgnoredDuringExecution?: PodAffinityTerm[];
 };
+
+/** Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key <topologyKey> matches that of any node on which a pod of the set of pods is running */
 export type PodAffinityTerm = {
   /** A label query over a set of resources, in this case pods. */
   labelSelector?: LabelSelector;
@@ -1775,6 +2011,8 @@ export type PodAffinityTerm = {
   /** This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. */
   topologyKey: string;
 };
+
+/** Pod anti affinity is a group of inter pod anti affinity scheduling rules. */
 export type PodAntiAffinity = {
   /** The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. */
   preferredDuringSchedulingIgnoredDuringExecution?: WeightedPodAffinityTerm[];
@@ -1782,6 +2020,8 @@ export type PodAntiAffinity = {
   /** If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. */
   requiredDuringSchedulingIgnoredDuringExecution?: PodAffinityTerm[];
 };
+
+/** PodCondition contains details for the current condition of this pod. */
 export type PodCondition = {
   /** Last time we probed the condition. */
   lastProbeTime?: Time;
@@ -1801,6 +2041,8 @@ export type PodCondition = {
   /** Type is the type of the condition. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#pod-conditions */
   type: string;
 };
+
+/** PodDNSConfig defines the DNS parameters of a pod in addition to those generated from DNSPolicy. */
 export type PodDNSConfig = {
   /** A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed. */
   nameservers?: string[];
@@ -1811,16 +2053,23 @@ export type PodDNSConfig = {
   /** A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed. */
   searches?: string[];
 };
+
+/** PodDNSConfigOption defines DNS resolver options of a pod. */
 export type PodDNSConfigOption = {
   /** Required. */
   name?: string;
 
   value?: string;
 };
+
+/** IP address information for entries in the (plural) PodIPs field. Each entry includes:
+   IP: An IP address allocated to the pod. Routable at least within the cluster. */
 export type PodIP = {
   /** ip is an IP address (IPv4 or IPv6) assigned to the pod */
   ip?: string;
 };
+
+/** PodList is a list of Pods. */
 export type PodList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -1840,10 +2089,13 @@ export function createPodList(
   return { apiVersion: "v1", kind: "PodList", ...data };
 }
 
+/** PodReadinessGate contains the reference to a pod condition */
 export type PodReadinessGate = {
   /** ConditionType refers to a condition in the pod's condition list with matching type. */
   conditionType: string;
 };
+
+/** PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext.  Field values of container.securityContext take precedence over field values of PodSecurityContext. */
 export type PodSecurityContext = {
   /** A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:
 
@@ -1876,6 +2128,8 @@ If unset, the Kubelet will not modify the ownership and permissions of any volum
   /** The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. */
   windowsOptions?: WindowsSecurityContextOptions;
 };
+
+/** PodSpec is a description of a pod. */
 export type PodSpec = {
   /** Optional duration in seconds the pod may be active on the node relative to StartTime before the system will actively try to mark it failed and kill associated containers. Value must be a positive integer. */
   activeDeadlineSeconds?: number;
@@ -1983,6 +2237,8 @@ export type PodSpec = {
   /** List of volumes that can be mounted by containers belonging to the pod. More info: https:kubernetes.iodocsconceptsstoragevolumes */
   volumes?: Volume[];
 };
+
+/** PodStatus represents information about the status of a pod. Status may trail the actual state of a system, especially if the node that hosts the pod cannot contact the control plane. */
 export type PodStatus = {
   /** Current service state of pod. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#pod-conditions */
   conditions?: PodCondition[];
@@ -2027,6 +2283,8 @@ More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#pod-phase *
   /** RFC 3339 date and time at which the object was acknowledged by the Kubelet. This is before the Kubelet pulled the container image(s) for the pod. */
   startTime?: Time;
 };
+
+/** PodTemplate describes a template for creating copies of a predefined pod. */
 export type PodTemplate = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -2046,6 +2304,7 @@ export function createPodTemplate(
   return { apiVersion: "v1", kind: "PodTemplate", ...data };
 }
 
+/** PodTemplateList is a list of PodTemplates. */
 export type PodTemplateList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -2065,6 +2324,7 @@ export function createPodTemplateList(
   return { apiVersion: "v1", kind: "PodTemplateList", ...data };
 }
 
+/** PodTemplateSpec describes the data a pod should have when created from a template */
 export type PodTemplateSpec = {
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ObjectMeta;
@@ -2072,6 +2332,8 @@ export type PodTemplateSpec = {
   /** Specification of the desired behavior of the pod. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
   spec?: PodSpec;
 };
+
+/** PortworxVolumeSource represents a Portworx volume resource. */
 export type PortworxVolumeSource = {
   /** FSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs". Implicitly inferred to be "ext4" if unspecified. */
   fsType?: string;
@@ -2082,6 +2344,8 @@ export type PortworxVolumeSource = {
   /** VolumeID uniquely identifies a Portworx volume */
   volumeID: string;
 };
+
+/** An empty preferred scheduling term matches all objects with implicit weight 0 (i.e. it's a no-op). A null preferred scheduling term matches no objects (i.e. is also a no-op). */
 export type PreferredSchedulingTerm = {
   /** A node selector term, associated with the corresponding weight. */
   preference: NodeSelectorTerm;
@@ -2089,6 +2353,8 @@ export type PreferredSchedulingTerm = {
   /** Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100. */
   weight: number;
 };
+
+/** Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic. */
 export type Probe = {
   /** One and only one of the following should be specified. Exec specifies the action to take. */
   exec?: ExecAction;
@@ -2114,6 +2380,8 @@ export type Probe = {
   /** Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#container-probes */
   timeoutSeconds?: number;
 };
+
+/** Represents a projected volume source */
 export type ProjectedVolumeSource = {
   /** Mode bits to use on created files by default. Must be a value between 0 and 0777. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
   defaultMode?: number;
@@ -2121,6 +2389,8 @@ export type ProjectedVolumeSource = {
   /** list of volume projections */
   sources: VolumeProjection[];
 };
+
+/** Represents a Quobyte mount that lasts the lifetime of a pod. Quobyte volumes do not support ownership management or SELinux relabeling. */
 export type QuobyteVolumeSource = {
   /** Group to map volume access to Default is no group */
   group?: string;
@@ -2140,6 +2410,8 @@ export type QuobyteVolumeSource = {
   /** Volume is a string that references an already created Quobyte volume by name. */
   volume: string;
 };
+
+/** Represents a Rados Block Device mount that lasts the lifetime of a pod. RBD volumes support ownership management and SELinux relabeling. */
 export type RBDPersistentVolumeSource = {
   /** Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https:kubernetes.iodocsconceptsstoragevolumes#rbd */
   fsType?: string;
@@ -2165,6 +2437,8 @@ export type RBDPersistentVolumeSource = {
   /** The rados user name. Default is admin. More info: https:examples.k8s.iovolumesrbdREADME.md#how-to-use-it */
   user?: string;
 };
+
+/** Represents a Rados Block Device mount that lasts the lifetime of a pod. RBD volumes support ownership management and SELinux relabeling. */
 export type RBDVolumeSource = {
   /** Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https:kubernetes.iodocsconceptsstoragevolumes#rbd */
   fsType?: string;
@@ -2190,6 +2464,8 @@ export type RBDVolumeSource = {
   /** The rados user name. Default is admin. More info: https:examples.k8s.iovolumesrbdREADME.md#how-to-use-it */
   user?: string;
 };
+
+/** ReplicationController represents the configuration of a replication controller. */
 export type ReplicationController = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -2212,6 +2488,7 @@ export function createReplicationController(
   return { apiVersion: "v1", kind: "ReplicationController", ...data };
 }
 
+/** ReplicationControllerCondition describes the state of a replication controller at a certain point. */
 export type ReplicationControllerCondition = {
   /** The last time the condition transitioned from one status to another. */
   lastTransitionTime?: Time;
@@ -2228,6 +2505,8 @@ export type ReplicationControllerCondition = {
   /** Type of replication controller condition. */
   type: string;
 };
+
+/** ReplicationControllerList is a collection of replication controllers. */
 export type ReplicationControllerList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -2247,6 +2526,7 @@ export function createReplicationControllerList(
   return { apiVersion: "v1", kind: "ReplicationControllerList", ...data };
 }
 
+/** ReplicationControllerSpec is the specification of a replication controller. */
 export type ReplicationControllerSpec = {
   /** Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready) */
   minReadySeconds?: number;
@@ -2262,6 +2542,8 @@ export type ReplicationControllerSpec = {
   /** Template is the object that describes the pod that will be created if insufficient replicas are detected. This takes precedence over a TemplateRef. More info: https:kubernetes.iodocsconceptsworkloadscontrollersreplicationcontroller#pod-template */
   template?: PodTemplateSpec;
 };
+
+/** ReplicationControllerStatus represents the current status of a replication controller. */
 export type ReplicationControllerStatus = {
   /** The number of available replicas (ready for at least minReadySeconds) for this replication controller. */
   availableReplicas?: number;
@@ -2281,6 +2563,8 @@ export type ReplicationControllerStatus = {
   /** Replicas is the most recently oberved number of replicas. More info: https:kubernetes.iodocsconceptsworkloadscontrollersreplicationcontroller#what-is-a-replicationcontroller */
   replicas: number;
 };
+
+/** ResourceFieldSelector represents container resources (cpu, memory) and their output format */
 export type ResourceFieldSelector = {
   /** Container name: required for volumes, optional for env vars */
   containerName?: string;
@@ -2291,6 +2575,8 @@ export type ResourceFieldSelector = {
   /** Required: resource to select */
   resource: string;
 };
+
+/** ResourceQuota sets aggregate quota restrictions enforced per namespace */
 export type ResourceQuota = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -2313,6 +2599,7 @@ export function createResourceQuota(
   return { apiVersion: "v1", kind: "ResourceQuota", ...data };
 }
 
+/** ResourceQuotaList is a list of ResourceQuota items. */
 export type ResourceQuotaList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -2332,6 +2619,7 @@ export function createResourceQuotaList(
   return { apiVersion: "v1", kind: "ResourceQuotaList", ...data };
 }
 
+/** ResourceQuotaSpec defines the desired hard limits to enforce for Quota. */
 export type ResourceQuotaSpec = {
   /** hard is the set of desired hard limits for each named resource. More info: https:kubernetes.iodocsconceptspolicyresource-quotas */
   hard?: {
@@ -2344,6 +2632,8 @@ export type ResourceQuotaSpec = {
   /** A collection of filters that must match each object tracked by a quota. If not specified, the quota matches all objects. */
   scopes?: string[];
 };
+
+/** ResourceQuotaStatus defines the enforced hard limits and observed use. */
 export type ResourceQuotaStatus = {
   /** Hard is the set of enforced hard limits for each named resource. More info: https:kubernetes.iodocsconceptspolicyresource-quotas */
   hard?: {
@@ -2355,6 +2645,8 @@ export type ResourceQuotaStatus = {
     [key: string]: Quantity;
   };
 };
+
+/** ResourceRequirements describes the compute resource requirements. */
 export type ResourceRequirements = {
   /** Limits describes the maximum amount of compute resources allowed. More info: https:kubernetes.iodocsconceptsconfigurationmanage-compute-resources-container */
   limits?: {
@@ -2366,6 +2658,8 @@ export type ResourceRequirements = {
     [key: string]: Quantity;
   };
 };
+
+/** SELinuxOptions are the labels to be applied to the container */
 export type SELinuxOptions = {
   /** Level is SELinux level label that applies to the container. */
   level?: string;
@@ -2379,6 +2673,8 @@ export type SELinuxOptions = {
   /** User is a SELinux user label that applies to the container. */
   user?: string;
 };
+
+/** ScaleIOPersistentVolumeSource represents a persistent ScaleIO volume */
 export type ScaleIOPersistentVolumeSource = {
   /** Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Default is "xfs" */
   fsType?: string;
@@ -2410,6 +2706,8 @@ export type ScaleIOPersistentVolumeSource = {
   /** The name of a volume already created in the ScaleIO system that is associated with this volume source. */
   volumeName?: string;
 };
+
+/** ScaleIOVolumeSource represents a persistent ScaleIO volume */
 export type ScaleIOVolumeSource = {
   /** Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Default is "xfs". */
   fsType?: string;
@@ -2441,10 +2739,14 @@ export type ScaleIOVolumeSource = {
   /** The name of a volume already created in the ScaleIO system that is associated with this volume source. */
   volumeName?: string;
 };
+
+/** A scope selector represents the AND of the selectors represented by the scoped-resource selector requirements. */
 export type ScopeSelector = {
   /** A list of scope selector requirements by scope of the resources. */
   matchExpressions?: ScopedResourceSelectorRequirement[];
 };
+
+/** A scoped-resource selector requirement is a selector that contains values, a scope name, and an operator that relates the scope name and values. */
 export type ScopedResourceSelectorRequirement = {
   /** Represents a scope's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. */
   operator: string;
@@ -2455,6 +2757,8 @@ export type ScopedResourceSelectorRequirement = {
   /** An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
   values?: string[];
 };
+
+/** Secret holds secret data of a certain type. The total bytes of the values in the Data field must be less than MaxSecretSize bytes. */
 export type Secret = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -2487,6 +2791,9 @@ export function createSecret(
   return { apiVersion: "v1", kind: "Secret", ...data };
 }
 
+/** SecretEnvSource selects a Secret to populate the environment variables with.
+
+The contents of the target Secret's Data field will represent the key-value pairs as environment variables. */
 export type SecretEnvSource = {
   /** Name of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#names */
   name?: string;
@@ -2494,6 +2801,8 @@ export type SecretEnvSource = {
   /** Specify whether the Secret must be defined */
   optional?: boolean;
 };
+
+/** SecretKeySelector selects a key of a Secret. */
 export type SecretKeySelector = {
   /** The key of the secret to select from.  Must be a valid secret key. */
   key: string;
@@ -2504,6 +2813,8 @@ export type SecretKeySelector = {
   /** Specify whether the Secret or its key must be defined */
   optional?: boolean;
 };
+
+/** SecretList is a list of Secret. */
 export type SecretList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -2523,6 +2834,9 @@ export function createSecretList(
   return { apiVersion: "v1", kind: "SecretList", ...data };
 }
 
+/** Adapts a secret into a projected volume.
+
+The contents of the target Secret's Data field will be presented in a projected volume as files using the keys in the Data field as the file names. Note that this is identical to a secret volume source without the default mode. */
 export type SecretProjection = {
   /** If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. */
   items?: KeyToPath[];
@@ -2533,6 +2847,8 @@ export type SecretProjection = {
   /** Specify whether the Secret or its key must be defined */
   optional?: boolean;
 };
+
+/** SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace */
 export type SecretReference = {
   /** Name is unique within a namespace to reference a secret resource. */
   name?: string;
@@ -2540,6 +2856,10 @@ export type SecretReference = {
   /** Namespace defines the space within which the secret name must be unique. */
   namespace?: string;
 };
+
+/** Adapts a Secret into a volume.
+
+The contents of the target Secret's Data field will be presented in a volume as files using the keys in the Data field as the file names. Secret volumes support ownership management and SELinux relabeling. */
 export type SecretVolumeSource = {
   /** Optional: mode bits to use on created files by default. Must be a value between 0 and 0777. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
   defaultMode?: number;
@@ -2553,6 +2873,8 @@ export type SecretVolumeSource = {
   /** Name of the secret in the pod's namespace to use. More info: https:kubernetes.iodocsconceptsstoragevolumes#secret */
   secretName?: string;
 };
+
+/** SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext.  When both are set, the values in SecurityContext take precedence. */
 export type SecurityContext = {
   /** AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN */
   allowPrivilegeEscalation?: boolean;
@@ -2584,6 +2906,8 @@ export type SecurityContext = {
   /** The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. */
   windowsOptions?: WindowsSecurityContextOptions;
 };
+
+/** Service is a named abstraction of software service (for example, mysql) consisting of local port (for example 3306) that the proxy listens on, and the selector that determines which pods will answer requests sent through the proxy. */
 export type Service = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -2606,6 +2930,7 @@ export function createService(
   return { apiVersion: "v1", kind: "Service", ...data };
 }
 
+/** ServiceAccount binds together: * a name, understood by users, and perhaps by peripheral systems, for an identity * a principal that can be authenticated and authorized * a set of secrets */
 export type ServiceAccount = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -2631,6 +2956,7 @@ export function createServiceAccount(
   return { apiVersion: "v1", kind: "ServiceAccount", ...data };
 }
 
+/** ServiceAccountList is a list of ServiceAccount objects */
 export type ServiceAccountList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -2650,6 +2976,7 @@ export function createServiceAccountList(
   return { apiVersion: "v1", kind: "ServiceAccountList", ...data };
 }
 
+/** ServiceAccountTokenProjection represents a projected service account token volume. This projection can be used to insert a service account token into the pods runtime filesystem for use against APIs (Kubernetes API Server or otherwise). */
 export type ServiceAccountTokenProjection = {
   /** Audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver. */
   audience?: string;
@@ -2660,6 +2987,8 @@ export type ServiceAccountTokenProjection = {
   /** Path is the path relative to the mount point of the file to project the token into. */
   path: string;
 };
+
+/** ServiceList holds a list of services. */
 export type ServiceList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -2679,6 +3008,7 @@ export function createServiceList(
   return { apiVersion: "v1", kind: "ServiceList", ...data };
 }
 
+/** ServicePort contains information on service's port. */
 export type ServicePort = {
   /** The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and http:www.iana.orgassignmentsservice-names). Non-standard protocols should use prefixed names such as mycompany.commy-custom-protocol. Field can be enabled with ServiceAppProtocol feature gate. */
   appProtocol?: string;
@@ -2698,6 +3028,8 @@ export type ServicePort = {
   /** Number or name of the port to access on the pods targeted by the service. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. If this is a string, it will be looked up as a named port in the target Pod's container ports. If this is not specified, the value of the 'port' field is used (an identity map). This field is ignored for services with clusterIP=None, and should be omitted or set equal to the 'port' field. More info: https:kubernetes.iodocsconceptsservices-networkingservice#defining-a-service */
   targetPort?: IntOrString;
 };
+
+/** ServiceSpec describes the attributes that a user creates on a service. */
 export type ServiceSpec = {
   /** clusterIP is the IP address of the service and is usually assigned randomly by the master. If an address is specified manually and is not in use by others, it will be allocated to the service; otherwise, creation of the service will fail. This field can not be changed through updates. Valid values are "None", empty string (""), or a valid IP address. "None" can be specified for headless services when proxying is not required. Only applies to types ClusterIP, NodePort, and LoadBalancer. Ignored if type is ExternalName. More info: https:kubernetes.iodocsconceptsservices-networkingservice#virtual-ips-and-service-proxies */
   clusterIP?: string;
@@ -2746,14 +3078,20 @@ export type ServiceSpec = {
   /** type determines how the Service is exposed. Defaults to ClusterIP. Valid options are ExternalName, ClusterIP, NodePort, and LoadBalancer. "ExternalName" maps to the specified externalName. "ClusterIP" allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, by manual construction of an Endpoints object. If clusterIP is "None", no virtual IP is allocated and the endpoints are published as a set of endpoints rather than a stable IP. "NodePort" builds on ClusterIP and allocates a port on every node which routes to the clusterIP. "LoadBalancer" builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the clusterIP. More info: https:kubernetes.iodocsconceptsservices-networkingservice#publishing-services-service-types */
   type?: string;
 };
+
+/** ServiceStatus represents the current status of a service. */
 export type ServiceStatus = {
   /** LoadBalancer contains the current status of the load-balancer, if one is present. */
   loadBalancer?: LoadBalancerStatus;
 };
+
+/** SessionAffinityConfig represents the configurations of session affinity. */
 export type SessionAffinityConfig = {
   /** clientIP contains the configurations of Client IP based session affinity. */
   clientIP?: ClientIPConfig;
 };
+
+/** Represents a StorageOS persistent volume resource. */
 export type StorageOSPersistentVolumeSource = {
   /** Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. */
   fsType?: string;
@@ -2770,6 +3108,8 @@ export type StorageOSPersistentVolumeSource = {
   /** VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to "default" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created. */
   volumeNamespace?: string;
 };
+
+/** Represents a StorageOS persistent volume resource. */
 export type StorageOSVolumeSource = {
   /** Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. */
   fsType?: string;
@@ -2786,6 +3126,8 @@ export type StorageOSVolumeSource = {
   /** VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to "default" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created. */
   volumeNamespace?: string;
 };
+
+/** Sysctl defines a kernel parameter to be set */
 export type Sysctl = {
   /** Name of a property to set */
   name: string;
@@ -2793,6 +3135,8 @@ export type Sysctl = {
   /** Value of a property to set */
   value: string;
 };
+
+/** TCPSocketAction describes an action based on opening a socket */
 export type TCPSocketAction = {
   /** Optional: Host name to connect to, defaults to the pod IP. */
   host?: string;
@@ -2800,6 +3144,8 @@ export type TCPSocketAction = {
   /** Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
   port: IntOrString;
 };
+
+/** The node this Taint is attached to has the "effect" on any pod that does not tolerate the Taint. */
 export type Taint = {
   /** Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute. */
   effect: string;
@@ -2813,6 +3159,8 @@ export type Taint = {
   /** The taint value corresponding to the taint key. */
   value?: string;
 };
+
+/** The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>. */
 export type Toleration = {
   /** Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute. */
   effect?: string;
@@ -2829,6 +3177,8 @@ export type Toleration = {
   /** Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string. */
   value?: string;
 };
+
+/** A topology selector requirement is a selector that matches given label. This is an alpha feature and may change in the future. */
 export type TopologySelectorLabelRequirement = {
   /** The label key that the selector applies to. */
   key: string;
@@ -2836,10 +3186,14 @@ export type TopologySelectorLabelRequirement = {
   /** An array of string values. One value must match the label to be selected. Each entry in Values is ORed. */
   values: string[];
 };
+
+/** A topology selector term represents the result of label queries. A null or empty topology selector term matches no objects. The requirements of them are ANDed. It provides a subset of functionality as NodeSelectorTerm. This is an alpha feature and may change in the future. */
 export type TopologySelectorTerm = {
   /** A list of topology selector requirements by labels. */
   matchLabelExpressions?: TopologySelectorLabelRequirement[];
 };
+
+/** TopologySpreadConstraint specifies how to spread matching pods among the given topology. */
 export type TopologySpreadConstraint = {
   /** LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. */
   labelSelector?: LabelSelector;
@@ -2853,6 +3207,8 @@ export type TopologySpreadConstraint = {
   /** WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it - ScheduleAnyway tells the scheduler to still schedule it It's considered as "Unsatisfiable" if and only if placing incoming pod on any topology violates "MaxSkew". For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 311: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 321(312) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field. */
   whenUnsatisfiable: string;
 };
+
+/** TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace. */
 export type TypedLocalObjectReference = {
   /** APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required. */
   apiGroup?: string;
@@ -2863,6 +3219,8 @@ export type TypedLocalObjectReference = {
   /** Name is the name of resource being referenced */
   name: string;
 };
+
+/** Volume represents a named volume in a pod that may be accessed by any container in the pod. */
 export type Volume = {
   /** AWSElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https:kubernetes.iodocsconceptsstoragevolumes#awselasticblockstore */
   awsElasticBlockStore?: AWSElasticBlockStoreVolumeSource;
@@ -2951,6 +3309,8 @@ export type Volume = {
   /** VsphereVolume represents a vSphere volume attached and mounted on kubelets host machine */
   vsphereVolume?: VsphereVirtualDiskVolumeSource;
 };
+
+/** volumeDevice describes a mapping of a raw block device within a container. */
 export type VolumeDevice = {
   /** devicePath is the path inside of the container that the device will be mapped to. */
   devicePath: string;
@@ -2958,6 +3318,8 @@ export type VolumeDevice = {
   /** name must match the name of a persistentVolumeClaim in the pod */
   name: string;
 };
+
+/** VolumeMount describes a mounting of a Volume within a container. */
 export type VolumeMount = {
   /** Path within the container at which the volume should be mounted.  Must not contain ':'. */
   mountPath: string;
@@ -2977,10 +3339,14 @@ export type VolumeMount = {
   /** Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to "" (volume's root). SubPathExpr and SubPath are mutually exclusive. */
   subPathExpr?: string;
 };
+
+/** VolumeNodeAffinity defines constraints that limit what nodes this volume can be accessed from. */
 export type VolumeNodeAffinity = {
   /** Required specifies hard node constraints that must be met. */
   required?: NodeSelector;
 };
+
+/** Projection that may be projected along with other supported volume types */
 export type VolumeProjection = {
   /** information about the configMap data to project */
   configMap?: ConfigMapProjection;
@@ -2994,6 +3360,8 @@ export type VolumeProjection = {
   /** information about the serviceAccountToken data to project */
   serviceAccountToken?: ServiceAccountTokenProjection;
 };
+
+/** Represents a vSphere volume resource. */
 export type VsphereVirtualDiskVolumeSource = {
   /** Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. */
   fsType?: string;
@@ -3007,6 +3375,8 @@ export type VsphereVirtualDiskVolumeSource = {
   /** Path that identifies vSphere volume vmdk */
   volumePath: string;
 };
+
+/** The weights of all of the matched WeightedPodAffinityTerm fields are added per-node to find the most preferred node(s) */
 export type WeightedPodAffinityTerm = {
   /** Required. A pod affinity term, associated with the corresponding weight. */
   podAffinityTerm: PodAffinityTerm;
@@ -3014,6 +3384,8 @@ export type WeightedPodAffinityTerm = {
   /** weight associated with matching the corresponding podAffinityTerm, in the range 1-100. */
   weight: number;
 };
+
+/** WindowsSecurityContextOptions contain Windows-specific options and credentials. */
 export type WindowsSecurityContextOptions = {
   /** GMSACredentialSpec is where the GMSA admission webhook (https:github.comkubernetes-sigswindows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field. */
   gmsaCredentialSpec?: string;

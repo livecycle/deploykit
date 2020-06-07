@@ -4,6 +4,8 @@ import {
   ListMeta,
   MicroTime,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
+
+/** Lease defines a lease concept. */
 export type Lease = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -21,6 +23,7 @@ export function createLease(data: Omit<Lease, "apiVersion" | "kind">): Lease {
   return { apiVersion: "coordination.k8s.io/v1beta1", kind: "Lease", ...data };
 }
 
+/** LeaseList is a list of Lease objects. */
 export type LeaseList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -44,6 +47,7 @@ export function createLeaseList(
   };
 }
 
+/** LeaseSpec is a specification of a Lease. */
 export type LeaseSpec = {
   /** acquireTime is a time when the current lease was acquired. */
   acquireTime?: MicroTime;

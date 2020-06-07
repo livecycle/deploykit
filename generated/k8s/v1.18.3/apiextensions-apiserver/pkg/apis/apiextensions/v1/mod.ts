@@ -4,6 +4,8 @@ import {
   Time,
   ListMeta,
 } from "../../../../../apimachinery/pkg/apis/meta/v1/mod.ts";
+
+/** CustomResourceColumnDefinition specifies a column for server side printing. */
 export type CustomResourceColumnDefinition = {
   /** description is a human readable description of this column. */
   description?: string;
@@ -23,6 +25,8 @@ export type CustomResourceColumnDefinition = {
   /** type is an OpenAPI type definition for this column. See https:github.comOAIOpenAPI-Specificationblobmasterversions2.0.md#data-types for details. */
   type: string;
 };
+
+/** CustomResourceConversion describes how to convert different versions of a CR. */
 export type CustomResourceConversion = {
   /** strategy specifies how custom resources are converted between versions. Allowed values are: - `None`: The converter only change the apiVersion and would not touch any other field in the custom resource. - `Webhook`: API Server will call to an external webhook to do the conversion. Additional information
   is needed for this option. This requires spec.preserveUnknownFields to be false, and spec.conversion.webhook to be set. */
@@ -31,6 +35,8 @@ export type CustomResourceConversion = {
   /** webhook describes how to call the conversion webhook. Required when `strategy` is set to `Webhook`. */
   webhook?: WebhookConversion;
 };
+
+/** CustomResourceDefinition represents a resource that should be exposed on the API server.  Its name MUST be in the format <.spec.name>.<.spec.group>. */
 export type CustomResourceDefinition = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -56,6 +62,7 @@ export function createCustomResourceDefinition(
   };
 }
 
+/** CustomResourceDefinitionCondition contains details for the current condition of this pod. */
 export type CustomResourceDefinitionCondition = {
   /** lastTransitionTime last time the condition transitioned from one status to another. */
   lastTransitionTime?: Time;
@@ -72,6 +79,8 @@ export type CustomResourceDefinitionCondition = {
   /** type is the type of the condition. Types include Established, NamesAccepted and Terminating. */
   type: string;
 };
+
+/** CustomResourceDefinitionList is a list of CustomResourceDefinition objects. */
 export type CustomResourceDefinitionList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -94,6 +103,7 @@ export function createCustomResourceDefinitionList(
   };
 }
 
+/** CustomResourceDefinitionNames indicates the names to serve this CustomResourceDefinition */
 export type CustomResourceDefinitionNames = {
   /** categories is a list of grouped resources this custom resource belongs to (e.g. 'all'). This is published in API discovery documents, and used by clients to support invocations like `kubectl get all`. */
   categories?: string[];
@@ -113,6 +123,8 @@ export type CustomResourceDefinitionNames = {
   /** singular is the singular name of the resource. It must be all lowercase. Defaults to lowercased `kind`. */
   singular?: string;
 };
+
+/** CustomResourceDefinitionSpec describes how a user wants their resource to appear */
 export type CustomResourceDefinitionSpec = {
   /** conversion defines conversion settings for the CRD. */
   conversion?: CustomResourceConversion;
@@ -132,6 +144,8 @@ export type CustomResourceDefinitionSpec = {
   /** versions is the list of all API versions of the defined custom resource. Version names are used to compute the order in which served versions are listed in API discovery. If the version string is "kube-like", it will sort above non "kube-like" version strings, which are ordered lexicographically. "Kube-like" versions start with a "v", then are followed by a number (the major version), then optionally the string "alpha" or "beta" and another number (the minor version). These are sorted first by GA > beta > alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10. */
   versions: CustomResourceDefinitionVersion[];
 };
+
+/** CustomResourceDefinitionStatus indicates the state of the CustomResourceDefinition */
 export type CustomResourceDefinitionStatus = {
   /** acceptedNames are the names that are actually being used to serve discovery. They may be different than the names in spec. */
   acceptedNames?: CustomResourceDefinitionNames;
@@ -142,6 +156,8 @@ export type CustomResourceDefinitionStatus = {
   /** storedVersions lists all versions of CustomResources that were ever persisted. Tracking these versions allows a migration path for stored versions in etcd. The field is mutable so a migration controller can finish a migration to another version (ensuring no old objects are left in storage), and then remove the rest of the versions from this list. Versions may not be removed from `spec.versions` while they exist in this list. */
   storedVersions?: string[];
 };
+
+/** CustomResourceDefinitionVersion describes a version for CRD. */
 export type CustomResourceDefinitionVersion = {
   /** additionalPrinterColumns specifies additional columns returned in Table output. See https:kubernetes.iodocsreferenceusing-apiapi-concepts#receiving-resources-as-tables for details. If no columns are specified, a single column displaying the age of the custom resource is used. */
   additionalPrinterColumns?: CustomResourceColumnDefinition[];
@@ -161,6 +177,8 @@ export type CustomResourceDefinitionVersion = {
   /** subresources specify what subresources this version of the defined custom resource have. */
   subresources?: CustomResourceSubresources;
 };
+
+/** CustomResourceSubresourceScale defines how to serve the scale subresource for CustomResources. */
 export type CustomResourceSubresourceScale = {
   /** labelSelectorPath defines the JSON path inside of a custom resource that corresponds to Scale `status.selector`. Only JSON paths without the array notation are allowed. Must be a JSON Path under `.status` or `.spec`. Must be set to work with HorizontalPodAutoscaler. The field pointed by this JSON path must be a string field (not a complex selector struct) which contains a serialized label selector in string form. More info: https:kubernetes.iodocstasksaccess-kubernetes-apicustom-resourcescustom-resource-definitions#scale-subresource If there is no value under the given path in the custom resource, the `status.selector` value in the `scale` subresource will default to the empty string. */
   labelSelectorPath?: string;
@@ -171,7 +189,11 @@ export type CustomResourceSubresourceScale = {
   /** statusReplicasPath defines the JSON path inside of a custom resource that corresponds to Scale `status.replicas`. Only JSON paths without the array notation are allowed. Must be a JSON Path under `.status`. If there is no value under the given path in the custom resource, the `status.replicas` value in the `scale` subresource will default to 0. */
   statusReplicasPath: string;
 };
+
+/** CustomResourceSubresourceStatus defines how to serve the status subresource for CustomResources. Status is represented by the `.status` JSON path inside of a CustomResource. When set, * exposes a status subresource for the custom resource * PUT requests to the status subresource take a custom resource object, and ignore changes to anything except the status stanza * PUTPOSTPATCH requests to the custom resource ignore changes to the status stanza */
 export type CustomResourceSubresourceStatus = {};
+
+/** CustomResourceSubresources defines the status and scale subresources for CustomResources. */
 export type CustomResourceSubresources = {
   /** scale indicates the custom resource should serve a `scale` subresource that returns an `autoscalingv1` Scale object. */
   scale?: CustomResourceSubresourceScale;
@@ -179,16 +201,24 @@ export type CustomResourceSubresources = {
   /** status indicates the custom resource should serve a `status` subresource. When enabled: 1. requests to the custom resource primary endpoint ignore changes to the `status` stanza of the object. 2. requests to the custom resource `status` subresource ignore changes to anything other than the `status` stanza of the object. */
   status?: CustomResourceSubresourceStatus;
 };
+
+/** CustomResourceValidation is a list of validation methods for CustomResources. */
 export type CustomResourceValidation = {
   /** openAPIV3Schema is the OpenAPI v3 schema to use for validation and pruning. */
   openAPIV3Schema?: JSONSchemaProps;
 };
+
+/** ExternalDocumentation allows referencing an external resource for extended documentation. */
 export type ExternalDocumentation = {
   description?: string;
 
   url?: string;
 };
+
+/** JSON represents any valid JSON value. These types are supported: bool, int64, float64, string, []interface{}, map[string]interface{} and nil. */
 export type JSON = any;
+
+/** JSONSchemaProps is a JSON-Schema following Specification Draft 4 (http:json-schema.org). */
 export type JSONSchemaProps = {
   $ref?: string;
 
@@ -327,9 +357,17 @@ Defaults to atomic for arrays. */
   /** x-kubernetes-preserve-unknown-fields stops the API server decoding step from pruning fields which are not specified in the validation schema. This affects fields recursively, but switches back to normal pruning behaviour if nested properties or additionalProperties are specified in the schema. This can either be true or undefined. False is forbidden. */
   ["x-kubernetes-preserve-unknown-fields"]?: boolean;
 };
+
+/** JSONSchemaPropsOrArray represents a value that can either be a JSONSchemaProps or an array of JSONSchemaProps. Mainly here for serialization purposes. */
 export type JSONSchemaPropsOrArray = any;
+
+/** JSONSchemaPropsOrBool represents JSONSchemaProps or a boolean value. Defaults to true for the boolean property. */
 export type JSONSchemaPropsOrBool = any;
+
+/** JSONSchemaPropsOrStringArray represents a JSONSchemaProps or a string array. */
 export type JSONSchemaPropsOrStringArray = any;
+
+/** ServiceReference holds a reference to Service.legacy.k8s.io */
 export type ServiceReference = {
   /** name is the name of the service. Required */
   name: string;
@@ -343,6 +381,8 @@ export type ServiceReference = {
   /** port is an optional service port at which the webhook will be contacted. `port` should be a valid port number (1-65535, inclusive). Defaults to 443 for backward compatibility. */
   port?: number;
 };
+
+/** WebhookClientConfig contains the information to make a TLS connection with the webhook. */
 export type WebhookClientConfig = {
   /** caBundle is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used. */
   caBundle?: string;
@@ -365,6 +405,8 @@ A path is optional, and if present may be any string permissible in a URL. You m
 Attempting to use a user or basic auth e.g. "user:password@" is not allowed. Fragments ("#...") and query parameters ("?...") are not allowed, either. */
   url?: string;
 };
+
+/** WebhookConversion describes how to call a conversion webhook */
 export type WebhookConversion = {
   /** clientConfig is the instructions for how to call the webhook if strategy is `Webhook`. */
   clientConfig?: WebhookClientConfig;

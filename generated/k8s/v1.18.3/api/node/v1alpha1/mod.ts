@@ -5,12 +5,16 @@ import {
   ListMeta,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 import { Toleration } from "../../core/v1/mod.ts";
+
+/** Overhead structure represents the resource overhead associated with running a pod. */
 export type Overhead = {
   /** PodFixed represents the fixed resource overhead associated with running a pod. */
   podFixed?: {
     [key: string]: Quantity;
   };
 };
+
+/** RuntimeClass defines a class of container runtime supported in the cluster. The RuntimeClass is used to determine which container runtime is used to run all containers in a pod. RuntimeClasses are (currently) manually defined by a user or cluster provisioner, and referenced in the PodSpec. The Kubelet is responsible for resolving the RuntimeClassName reference before running the pod.  For more details, see https:git.k8s.ioenhancementskepssig-noderuntime-class.md */
 export type RuntimeClass = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -30,6 +34,7 @@ export function createRuntimeClass(
   return { apiVersion: "node.k8s.io/v1alpha1", kind: "RuntimeClass", ...data };
 }
 
+/** RuntimeClassList is a list of RuntimeClass objects. */
 export type RuntimeClassList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -53,6 +58,7 @@ export function createRuntimeClassList(
   };
 }
 
+/** RuntimeClassSpec is a specification of a RuntimeClass. It contains parameters that are required to describe the RuntimeClass to the Container Runtime Interface (CRI) implementation, as well as any other components that need to understand how the pod will be run. The RuntimeClassSpec is immutable. */
 export type RuntimeClassSpec = {
   /** Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. For more details, see https:git.k8s.ioenhancementskepssig-node20190226-pod-overhead.md This field is alpha-level as of Kubernetes v1.15, and is only honored by servers that enable the PodOverhead feature. */
   overhead?: Overhead;
@@ -63,6 +69,8 @@ export type RuntimeClassSpec = {
   /** Scheduling holds the scheduling constraints to ensure that pods running with this RuntimeClass are scheduled to nodes that support it. If scheduling is nil, this RuntimeClass is assumed to be supported by all nodes. */
   scheduling?: Scheduling;
 };
+
+/** Scheduling specifies the scheduling constraints for nodes supporting a RuntimeClass. */
 export type Scheduling = {
   /** nodeSelector lists labels that must be present on nodes that support this RuntimeClass. Pods using this RuntimeClass can only be scheduled to a node matched by this selector. The RuntimeClass nodeSelector is merged with a pod's existing nodeSelector. Any conflicts will cause the pod to be rejected in admission. */
   nodeSelector?: {

@@ -1,5 +1,7 @@
 /* Generated for apimachinery/pkg/apis/meta/v1/mod.ts */
 import { RawExtension } from "../../../runtime/mod.ts";
+
+/** APIGroup contains the name, the supported versions, and the preferred version of a group. */
 export type APIGroup = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -25,6 +27,7 @@ export function createAPIGroup(
   return { apiVersion: "v1", kind: "APIGroup", ...data };
 }
 
+/** APIGroupList is a list of APIGroup, to allow clients to discover the API at apis. */
 export type APIGroupList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -41,6 +44,7 @@ export function createAPIGroupList(
   return { apiVersion: "v1", kind: "APIGroupList", ...data };
 }
 
+/** APIResource specifies the name of a resource and whether it is namespaced. */
 export type APIResource = {
   /** categories is a list of the grouped resources this resource belongs to (e.g. 'all') */
   categories?: string[];
@@ -72,6 +76,8 @@ export type APIResource = {
   /** version is the preferred version of the resource.  Empty implies the version of the containing resource list For subresources, this may have a different value, for example: v1 (while inside a v1beta1 version of the core resource's group)". */
   version?: string;
 };
+
+/** APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced. */
 export type APIResourceList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -91,6 +97,7 @@ export function createAPIResourceList(
   return { apiVersion: "v1", kind: "APIResourceList", ...data };
 }
 
+/** APIVersions lists the versions that are available, to allow clients to discover the API at api, which is the root path of the legacy v1 API. */
 export type APIVersions = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -110,6 +117,7 @@ export function createAPIVersions(
   return { apiVersion: "v1", kind: "APIVersions", ...data };
 }
 
+/** DeleteOptions may be provided when deleting an API object. */
 export type DeleteOptions = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -138,7 +146,14 @@ export function createDeleteOptions(
   return { apiVersion: "v1", kind: "DeleteOptions", ...data };
 }
 
+/** FieldsV1 stores a set of fields in a data structure like a Trie, in JSON format.
+
+Each key is either a '.' representing the field itself, and will always map to an empty set, or a string representing a sub-field or item. The string will follow one of these four formats: 'f:<name>', where <name> is the name of a field in a struct, or key in a map 'v:<value>', where <value> is the exact json formatted value of a list item 'i:<index>', where <index> is position of a item in a list 'k:<keys>', where <keys> is a map of  a list item's key fields to their unique values If a key maps to an empty Fields value, the field that key represents is part of the set.
+
+The exact format is defined in sigs.k8s.iostructured-merge-diff */
 export type FieldsV1 = {};
+
+/** GroupVersion contains the "groupversion" and "version" string of a version. It is made a struct to keep extensibility. */
 export type GroupVersionForDiscovery = {
   /** groupVersion specifies the API group and version in the form "groupversion" */
   groupVersion: string;
@@ -146,6 +161,8 @@ export type GroupVersionForDiscovery = {
   /** version specifies the version in the form of "version". This is to save the clients the trouble of splitting the GroupVersion. */
   version: string;
 };
+
+/** A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects. */
 export type LabelSelector = {
   /** matchExpressions is a list of label selector requirements. The requirements are ANDed. */
   matchExpressions?: LabelSelectorRequirement[];
@@ -155,6 +172,8 @@ export type LabelSelector = {
     [key: string]: string;
   };
 };
+
+/** A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. */
 export type LabelSelectorRequirement = {
   /** key is the label key that the selector applies to. */
   key: string;
@@ -165,6 +184,8 @@ export type LabelSelectorRequirement = {
   /** values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
   values?: string[];
 };
+
+/** ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}. */
 export type ListMeta = {
   /** continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a consistent list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response, unless you have received this token from an error message. */
   continue?: string;
@@ -180,6 +201,8 @@ export type ListMeta = {
 DEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release. */
   selfLink?: string;
 };
+
+/** ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to. */
 export type ManagedFieldsEntry = {
   /** APIVersion defines the version of this resource that this field set applies to. The format is "groupversion" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted. */
   apiVersion?: string;
@@ -199,7 +222,11 @@ export type ManagedFieldsEntry = {
   /** Time is timestamp of when these fields were set. It should always be empty if Operation is 'Apply' */
   time?: Time;
 };
+
+/** MicroTime is version of Time with microsecond level precision. */
 export type MicroTime = string;
+
+/** ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create. */
 export type ObjectMeta = {
   /** Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http:kubernetes.iodocsuser-guideannotations */
   annotations?: {
@@ -269,6 +296,8 @@ DEPRECATED Kubernetes will stop propagating this field in 1.20 release and the f
 Populated by the system. Read-only. More info: http:kubernetes.iodocsuser-guideidentifiers#uids */
   uid?: string;
 };
+
+/** OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field. */
 export type OwnerReference = {
   /** API version of the referent. */
   apiVersion: string;
@@ -288,7 +317,11 @@ export type OwnerReference = {
   /** UID of the referent. More info: http:kubernetes.iodocsuser-guideidentifiers#uids */
   uid: string;
 };
+
+/** Patch is provided to give a concrete name and type to the Kubernetes PATCH request body. */
 export type Patch = {};
+
+/** Preconditions must be fulfilled before an operation (update, delete, etc.) is carried out. */
 export type Preconditions = {
   /** Specifies the target ResourceVersion */
   resourceVersion?: string;
@@ -296,6 +329,8 @@ export type Preconditions = {
   /** Specifies the target UID. */
   uid?: string;
 };
+
+/** ServerAddressByClientCIDR helps the client to determine the server address that they should use, depending on the clientCIDR that they match. */
 export type ServerAddressByClientCIDR = {
   /** The CIDR with which clients can match their IP to figure out the server address that they should use. */
   clientCIDR: string;
@@ -303,6 +338,8 @@ export type ServerAddressByClientCIDR = {
   /** Address of this server, suitable for a client that matches the above CIDR. This can be a hostname, hostname:port, IP or IP:port. */
   serverAddress: string;
 };
+
+/** Status is a return value for calls that don't return other objects. */
 export type Status = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -334,6 +371,7 @@ export function createStatus(
   return { apiVersion: "v1", kind: "Status", ...data };
 }
 
+/** StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered. */
 export type StatusCause = {
   /** The field of the resource that has caused this error, as named by its JSON serialization. May include dot and postfix notation for nested attributes. Arrays are zero-indexed.  Fields may appear more than once in an array of causes due to fields having multiple errors. Optional.
 
@@ -348,6 +386,8 @@ Examples:
   /** A machine-readable description of the cause of the error. If this value is empty there is no information available. */
   reason?: string;
 };
+
+/** StatusDetails is a set of additional properties that MAY be set by the server to provide additional information about a response. The Reason field of a Status object defines what attributes will be set. Clients must ignore fields that do not match the defined type of each attribute, and should assume that any attribute may be empty, invalid, or under defined. */
 export type StatusDetails = {
   /** The Causes array includes more details associated with the StatusReason failure. Not all StatusReasons may provide detailed causes. */
   causes?: StatusCause[];
@@ -367,7 +407,11 @@ export type StatusDetails = {
   /** UID of the resource. (when there is a single resource which can be described). More info: http:kubernetes.iodocsuser-guideidentifiers#uids */
   uid?: string;
 };
+
+/** Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers. */
 export type Time = string;
+
+/** Event represents a single event to a watched resource. */
 export type WatchEvent = {
   /** Object is:
  * If Type is Added or Modified: the new state of the object.

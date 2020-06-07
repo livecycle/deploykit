@@ -4,6 +4,8 @@ import {
   Time,
   ListMeta,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
+
+/** Describes a certificate signing request */
 export type CertificateSigningRequest = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -29,6 +31,7 @@ export function createCertificateSigningRequest(
   };
 }
 
+undefined;
 export type CertificateSigningRequestCondition = {
   /** timestamp for the last update to this condition */
   lastUpdateTime?: Time;
@@ -42,6 +45,8 @@ export type CertificateSigningRequestCondition = {
   /** request approval state, currently Approved or Denied. */
   type: string;
 };
+
+undefined;
 export type CertificateSigningRequestList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -63,6 +68,7 @@ export function createCertificateSigningRequestList(
   };
 }
 
+/** This information is immutable after the request is created. Only the Request and Usages fields can be set on creation, other fields are derived by Kubernetes and cannot be modified by users. */
 export type CertificateSigningRequestSpec = {
   /** Extra information about the requesting user. See user.Info interface for details. */
   extra?: {
@@ -94,6 +100,8 @@ Distribution of trust for signers happens out of band. You can select on this fi
   /** Information about the requesting user. See user.Info interface for details. */
   username?: string;
 };
+
+undefined;
 export type CertificateSigningRequestStatus = {
   /** If request was approved, the controller will place the issued certificate here. */
   certificate?: string;

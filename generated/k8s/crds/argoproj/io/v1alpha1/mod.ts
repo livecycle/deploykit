@@ -1,5 +1,7 @@
 /* Generated for argoproj/io/v1alpha1/mod.ts */
 import { ObjectMeta } from "https://deno.land/x/gh:yshayy:deploykit@0.0.10/generated/k8s/v1.18.3/apimachinery/pkg/apis/meta/v1/mod.ts";
+
+undefined;
 export type AnalysisRun = {
   apiVersion?: string;
 
@@ -1769,6 +1771,7 @@ export function createAnalysisRun(
   return { apiVersion: "argoproj.io/v1alpha1", kind: "AnalysisRun", ...data };
 }
 
+undefined;
 export type Rollout = {
   apiVersion?: string;
 
@@ -3658,6 +3661,7 @@ export function createRollout(
   return { apiVersion: "argoproj.io/v1alpha1", kind: "Rollout", ...data };
 }
 
+undefined;
 export type Experiment = {
   apiVersion?: string;
 
@@ -5339,6 +5343,7 @@ export function createExperiment(
   return { apiVersion: "argoproj.io/v1alpha1", kind: "Experiment", ...data };
 }
 
+undefined;
 export type AnalysisTemplate = {
   apiVersion?: string;
 
@@ -7064,6 +7069,7 @@ export function createAnalysisTemplate(
   };
 }
 
+/** Application is a definition of Application resource. */
 export type Application = {
   apiVersion?: string;
 
@@ -8111,6 +8117,7 @@ export function createApplication(
   return { apiVersion: "argoproj.io/v1alpha1", kind: "Application", ...data };
 }
 
+/** AppProject provides a logical grouping of applications, providing controls for: * where the apps may deploy to (cluster whitelist) * what may be deployed (repository whitelist, resource whitelistblacklist) * who can access these applications (roles, OIDC group claims bindings) * and what they can do (RBAC policies) * automation access to these roles (JWT tokens) */
 export type AppProject = {
   apiVersion?: string;
 

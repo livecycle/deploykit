@@ -4,6 +4,8 @@ import {
   ListMeta,
   Time,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
+
+/** CrossVersionObjectReference contains enough information to let you identify the referred resource. */
 export type CrossVersionObjectReference = {
   /** API version of the referent */
   apiVersion?: string;
@@ -14,6 +16,8 @@ export type CrossVersionObjectReference = {
   /** Name of the referent; More info: http:kubernetes.iodocsuser-guideidentifiers#names */
   name: string;
 };
+
+/** configuration of a horizontal pod autoscaler. */
 export type HorizontalPodAutoscaler = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -40,6 +44,7 @@ export function createHorizontalPodAutoscaler(
   };
 }
 
+/** list of horizontal pod autoscaler objects. */
 export type HorizontalPodAutoscalerList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -63,6 +68,7 @@ export function createHorizontalPodAutoscalerList(
   };
 }
 
+/** specification of a horizontal pod autoscaler. */
 export type HorizontalPodAutoscalerSpec = {
   /** upper limit for the number of pods that can be set by the autoscaler; cannot be smaller than MinReplicas. */
   maxReplicas: number;
@@ -76,6 +82,8 @@ export type HorizontalPodAutoscalerSpec = {
   /** target average CPU utilization (represented as a percentage of requested CPU) over all the pods; if not specified the default autoscaling policy will be used. */
   targetCPUUtilizationPercentage?: number;
 };
+
+/** current status of a horizontal pod autoscaler */
 export type HorizontalPodAutoscalerStatus = {
   /** current average CPU utilization over all pods, represented as a percentage of requested CPU, e.g. 70 means that an average pod is using now 70% of its requested CPU. */
   currentCPUUtilizationPercentage?: number;
@@ -92,6 +100,8 @@ export type HorizontalPodAutoscalerStatus = {
   /** most recent generation observed by this autoscaler. */
   observedGeneration?: number;
 };
+
+/** Scale represents a scaling request for a resource. */
 export type Scale = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -112,10 +122,13 @@ export function createScale(data: Omit<Scale, "apiVersion" | "kind">): Scale {
   return { apiVersion: "autoscaling/v1", kind: "Scale", ...data };
 }
 
+/** ScaleSpec describes the attributes of a scale subresource. */
 export type ScaleSpec = {
   /** desired number of instances for the scaled object. */
   replicas?: number;
 };
+
+/** ScaleStatus represents the current status of a scale subresource. */
 export type ScaleStatus = {
   /** actual number of observed instances of the scaled object. */
   replicas: number;

@@ -6,6 +6,8 @@ import {
   Time,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 import { JobSpec } from "../v1/mod.ts";
+
+/** CronJob represents the configuration of a single cron job. */
 export type CronJob = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -28,6 +30,7 @@ export function createCronJob(
   return { apiVersion: "batch/v2alpha1", kind: "CronJob", ...data };
 }
 
+/** CronJobList is a collection of cron jobs. */
 export type CronJobList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -47,6 +50,7 @@ export function createCronJobList(
   return { apiVersion: "batch/v2alpha1", kind: "CronJobList", ...data };
 }
 
+/** CronJobSpec describes how the job execution will look like and when it will actually run. */
 export type CronJobSpec = {
   /** Specifies how to treat concurrent executions of a Job. Valid values are: - "Allow" (default): allows CronJobs to run concurrently; - "Forbid": forbids concurrent runs, skipping next run if previous run hasn't finished yet; - "Replace": cancels currently running job and replaces it with a new one */
   concurrencyPolicy?: string;
@@ -69,6 +73,8 @@ export type CronJobSpec = {
   /** This flag tells the controller to suspend subsequent executions, it does not apply to already started executions.  Defaults to false. */
   suspend?: boolean;
 };
+
+/** CronJobStatus represents the current state of a cron job. */
 export type CronJobStatus = {
   /** A list of pointers to currently running jobs. */
   active?: ObjectReference[];
@@ -76,6 +82,8 @@ export type CronJobStatus = {
   /** Information when was the last time the job was successfully scheduled. */
   lastScheduleTime?: Time;
 };
+
+/** JobTemplateSpec describes the data a Job should have when created from a template */
 export type JobTemplateSpec = {
   /** Standard object's metadata of the jobs created from this template. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ObjectMeta;

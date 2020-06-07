@@ -5,6 +5,10 @@ import {
   ListMeta,
   Time,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
+
+/** VolumeAttachment captures the intent to attach or detach the specified volume tofrom the specified node.
+
+VolumeAttachment objects are non-namespaced. */
 export type VolumeAttachment = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -31,6 +35,7 @@ export function createVolumeAttachment(
   };
 }
 
+/** VolumeAttachmentList is a collection of VolumeAttachment objects. */
 export type VolumeAttachmentList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -54,6 +59,7 @@ export function createVolumeAttachmentList(
   };
 }
 
+/** VolumeAttachmentSource represents a volume that should be attached. Right now only PersistenVolumes can be attached via external attacher, in future we may allow also inline volumes in pods. Exactly one member can be set. */
 export type VolumeAttachmentSource = {
   /** inlineVolumeSpec contains all the information necessary to attach a persistent volume defined by a pod's inline VolumeSource. This field is populated only for the CSIMigration feature. It contains translated fields from a pod's inline VolumeSource to a PersistentVolumeSpec. This field is alpha-level and is only honored by servers that enabled the CSIMigration feature. */
   inlineVolumeSpec?: PersistentVolumeSpec;
@@ -61,6 +67,8 @@ export type VolumeAttachmentSource = {
   /** Name of the persistent volume to attach. */
   persistentVolumeName?: string;
 };
+
+/** VolumeAttachmentSpec is the specification of a VolumeAttachment request. */
 export type VolumeAttachmentSpec = {
   /** Attacher indicates the name of the volume driver that MUST handle this request. This is the name returned by GetPluginName(). */
   attacher: string;
@@ -71,6 +79,8 @@ export type VolumeAttachmentSpec = {
   /** Source represents the volume that should be attached. */
   source: VolumeAttachmentSource;
 };
+
+/** VolumeAttachmentStatus is the status of a VolumeAttachment request. */
 export type VolumeAttachmentStatus = {
   /** The last error encountered during attach operation, if any. This field must only be set by the entity completing the attach operation, i.e. the external-attacher. */
   attachError?: VolumeError;
@@ -86,6 +96,8 @@ export type VolumeAttachmentStatus = {
   /** The last error encountered during detach operation, if any. This field must only be set by the entity completing the detach operation, i.e. the external-attacher. */
   detachError?: VolumeError;
 };
+
+/** VolumeError captures an error encountered during a volume operation. */
 export type VolumeError = {
   /** String detailing the error encountered during Attach or Detach operation. This string maybe logged, so it should not contain sensitive information. */
   message?: string;

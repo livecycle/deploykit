@@ -8,6 +8,8 @@ import {
   TypedLocalObjectReference,
   LoadBalancerStatus,
 } from "../../core/v1/mod.ts";
+
+/** HTTPIngressPath associates a path with a backend. Incoming urls matching the path are forwarded to the backend. */
 export type HTTPIngressPath = {
   /** Backend defines the referenced service endpoint to which the traffic will be forwarded to. */
   backend: IngressBackend;
@@ -28,10 +30,14 @@ export type HTTPIngressPath = {
 Implementations are required to support all path types. Defaults to ImplementationSpecific. */
   pathType?: string;
 };
+
+/** HTTPIngressRuleValue is a list of http selectors pointing to backends. In the example: http:<host><path>?<searchpart> -> backend where where parts of the url correspond to RFC 3986, this resource will be used to match against everything after the last '' and before the first '?' or '#'. */
 export type HTTPIngressRuleValue = {
   /** A collection of paths that map requests to backends. */
   paths: HTTPIngressPath[];
 };
+
+/** Ingress is a collection of rules that allow inbound connections to reach the endpoints defined by a backend. An Ingress can be configured to give services externally-reachable urls, load balance traffic, terminate SSL, offer name based virtual hosting etc. DEPRECATED - This group version of Ingress is deprecated by networking.k8s.iov1beta1 Ingress. See the release notes for more information. */
 export type Ingress = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -54,6 +60,7 @@ export function createIngress(
   return { apiVersion: "extensions/v1beta1", kind: "Ingress", ...data };
 }
 
+/** IngressBackend describes all endpoints for a given service and port. */
 export type IngressBackend = {
   /** Resource is an ObjectRef to another Kubernetes resource in the namespace of the Ingress object. If resource is specified, serviceName and servicePort must not be specified. */
   resource?: TypedLocalObjectReference;
@@ -64,6 +71,8 @@ export type IngressBackend = {
   /** Specifies the port of the referenced service. */
   servicePort?: IntOrString;
 };
+
+/** IngressList is a collection of Ingress. */
 export type IngressList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -83,6 +92,7 @@ export function createIngressList(
   return { apiVersion: "extensions/v1beta1", kind: "IngressList", ...data };
 }
 
+/** IngressRule represents the rules mapping the paths under a specified host to the related backend services. Incoming requests are first evaluated for a host match, then routed to the backend associated with the matching IngressRuleValue. */
 export type IngressRule = {
   /** Host is the fully qualified domain name of a network host, as defined by RFC 3986. Note the following deviations from the "host" part of the URI as defined in RFC 3986: 1. IPs are not allowed. Currently an IngressRuleValue can only apply to
    the IP in the Spec of the parent Ingress.
@@ -96,6 +106,8 @@ Host can be "precise" which is a domain name without the terminating dot of a ne
 
   http?: HTTPIngressRuleValue;
 };
+
+/** IngressSpec describes the Ingress the user wishes to exist. */
 export type IngressSpec = {
   /** A default backend capable of servicing requests that don't match any rule. At least one of 'backend' or 'rules' must be specified. This field is optional to allow the loadbalancer controller or defaulting logic to specify a global default. */
   backend?: IngressBackend;
@@ -109,10 +121,14 @@ export type IngressSpec = {
   /** TLS configuration. Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI. */
   tls?: IngressTLS[];
 };
+
+/** IngressStatus describe the current state of the Ingress. */
 export type IngressStatus = {
   /** LoadBalancer contains the current status of the load-balancer. */
   loadBalancer?: LoadBalancerStatus;
 };
+
+/** IngressTLS describes the transport layer security associated with an Ingress. */
 export type IngressTLS = {
   /** Hosts are a list of hosts included in the TLS certificate. The values in this list must match the names used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified. */
   hosts?: string[];

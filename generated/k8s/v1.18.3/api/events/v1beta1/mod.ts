@@ -6,6 +6,8 @@ import {
   ObjectMeta,
   ListMeta,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
+
+/** Event is a report of an event somewhere in the cluster. It generally denotes some state change in the system. */
 export type Event = {
   /** What action was takenfailed regarding to the regarding object. */
   action?: string;
@@ -61,6 +63,7 @@ export function createEvent(data: Omit<Event, "apiVersion" | "kind">): Event {
   return { apiVersion: "events.k8s.io/v1beta1", kind: "Event", ...data };
 }
 
+/** EventList is a list of Event objects. */
 export type EventList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -80,6 +83,7 @@ export function createEventList(
   return { apiVersion: "events.k8s.io/v1beta1", kind: "EventList", ...data };
 }
 
+/** EventSeries contain information on series of events, i.e. thing that wasis happening continuously for some time. */
 export type EventSeries = {
   /** Number of occurrences in this series up to the last heartbeat time */
   count: number;

@@ -3,6 +3,8 @@ import {
   ObjectMeta,
   ListMeta,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
+
+/** PriorityClass defines mapping from a priority class name to the priority integer value. The value can be any valid integer. */
 export type PriorityClass = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -31,6 +33,7 @@ export function createPriorityClass(
   return { apiVersion: "scheduling.k8s.io/v1", kind: "PriorityClass", ...data };
 }
 
+/** PriorityClassList is a collection of priority classes. */
 export type PriorityClassList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;

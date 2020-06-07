@@ -5,6 +5,8 @@ import {
   ListMeta,
   LabelSelector,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
+
+/** IPBlock describes a particular CIDR (Ex. "192.168.1.124","2001:db9::64") that is allowed to the pods matched by a NetworkPolicySpec's podSelector. The except entry describes CIDRs that should not be included within this rule. */
 export type IPBlock = {
   /** CIDR is a string representing the IP Block Valid examples are "192.168.1.124" or "2001:db9::64" */
   cidr: string;
@@ -12,6 +14,8 @@ export type IPBlock = {
   /** Except is a slice of CIDRs that should not be included within an IP Block Valid examples are "192.168.1.124" or "2001:db9::64" Except values will be rejected if they are outside the CIDR range */
   except?: string[];
 };
+
+/** NetworkPolicy describes what network traffic is allowed for a set of Pods */
 export type NetworkPolicy = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -31,6 +35,7 @@ export function createNetworkPolicy(
   return { apiVersion: "networking.k8s.io/v1", kind: "NetworkPolicy", ...data };
 }
 
+/** NetworkPolicyEgressRule describes a particular set of traffic that is allowed out of pods matched by a NetworkPolicySpec's podSelector. The traffic must match both ports and to. This type is beta-level in 1.8 */
 export type NetworkPolicyEgressRule = {
   /** List of destination ports for outgoing traffic. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list. */
   ports?: NetworkPolicyPort[];
@@ -38,6 +43,8 @@ export type NetworkPolicyEgressRule = {
   /** List of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list. */
   to?: NetworkPolicyPeer[];
 };
+
+/** NetworkPolicyIngressRule describes a particular set of traffic that is allowed to the pods matched by a NetworkPolicySpec's podSelector. The traffic must match both ports and from. */
 export type NetworkPolicyIngressRule = {
   /** List of sources which should be able to access the pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all sources (traffic not restricted by source). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the from list. */
   from?: NetworkPolicyPeer[];
@@ -45,6 +52,8 @@ export type NetworkPolicyIngressRule = {
   /** List of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list. */
   ports?: NetworkPolicyPort[];
 };
+
+/** NetworkPolicyList is a list of NetworkPolicy objects. */
 export type NetworkPolicyList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -68,6 +77,7 @@ export function createNetworkPolicyList(
   };
 }
 
+/** NetworkPolicyPeer describes a peer to allow traffic from. Only certain combinations of fields are allowed */
 export type NetworkPolicyPeer = {
   /** IPBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be. */
   ipBlock?: IPBlock;
@@ -82,6 +92,8 @@ If PodSelector is also set, then the NetworkPolicyPeer as a whole selects the Po
 If NamespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the Pods matching PodSelector in the policy's own Namespace. */
   podSelector?: LabelSelector;
 };
+
+/** NetworkPolicyPort describes a port to allow traffic on */
 export type NetworkPolicyPort = {
   /** The port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. */
   port?: IntOrString;
@@ -89,6 +101,8 @@ export type NetworkPolicyPort = {
   /** The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP. */
   protocol?: string;
 };
+
+/** NetworkPolicySpec provides the specification of a NetworkPolicy */
 export type NetworkPolicySpec = {
   /** List of egress rules to be applied to the selected pods. Outgoing traffic is allowed if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic matches at least one egress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy limits all outgoing traffic (and serves solely to ensure that the pods it selects are isolated by default). This field is beta-level in 1.8 */
   egress?: NetworkPolicyEgressRule[];

@@ -4,6 +4,8 @@ import {
   Time,
   ListMeta,
 } from "../../../../../apimachinery/pkg/apis/meta/v1/mod.ts";
+
+/** APIService represents a server for a particular GroupVersion. Name must be "version.group". */
 export type APIService = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -29,6 +31,7 @@ export function createAPIService(
   };
 }
 
+/** APIServiceCondition describes the state of an APIService at a particular point */
 export type APIServiceCondition = {
   /** Last time the condition transitioned from one status to another. */
   lastTransitionTime?: Time;
@@ -45,6 +48,8 @@ export type APIServiceCondition = {
   /** Type is the type of the condition. */
   type: string;
 };
+
+/** APIServiceList is a list of APIService objects. */
 export type APIServiceList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -66,6 +71,7 @@ export function createAPIServiceList(
   };
 }
 
+/** APIServiceSpec contains information for locating and communicating with a server. Only https is supported, though you are able to disable certificate verification. */
 export type APIServiceSpec = {
   /** CABundle is a PEM encoded CA bundle which will be used to validate an API server's serving certificate. If unspecified, system trust roots on the apiserver are used. */
   caBundle?: string;
@@ -88,10 +94,14 @@ export type APIServiceSpec = {
   /** VersionPriority controls the ordering of this API version inside of its group.  Must be greater than zero. The primary sort is based on VersionPriority, ordered highest to lowest (20 before 10). Since it's inside of a group, the number can be small, probably in the 10s. In case of equal version priorities, the version string will be used to compute the order inside a group. If the version string is "kube-like", it will sort above non "kube-like" version strings, which are ordered lexicographically. "Kube-like" versions start with a "v", then are followed by a number (the major version), then optionally the string "alpha" or "beta" and another number (the minor version). These are sorted first by GA > beta > alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10. */
   versionPriority: number;
 };
+
+/** APIServiceStatus contains derived information about an API server */
 export type APIServiceStatus = {
   /** Current service state of apiService. */
   conditions?: APIServiceCondition[];
 };
+
+/** ServiceReference holds a reference to Service.legacy.k8s.io */
 export type ServiceReference = {
   /** Name is the name of the service */
   name?: string;

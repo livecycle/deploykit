@@ -8,14 +8,20 @@ import {
   Time,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 import { SELinuxOptions } from "../../core/v1/mod.ts";
+
+/** AllowedCSIDriver represents a single inline CSI Driver that is allowed to be used. */
 export type AllowedCSIDriver = {
   /** Name is the registered name of the CSI driver */
   name: string;
 };
+
+/** AllowedFlexVolume represents a single Flexvolume that is allowed to be used. */
 export type AllowedFlexVolume = {
   /** driver is the name of the Flexvolume driver. */
   driver: string;
 };
+
+/** AllowedHostPath defines the host volume conditions that will be enabled by a policy for pods to use. It requires the path prefix to be defined. */
 export type AllowedHostPath = {
   /** pathPrefix is the path prefix that the host volume must match. It does not support `*`. Trailing slashes are trimmed when validating the path prefix with a host path.
 
@@ -25,6 +31,8 @@ Examples: `foo` would allow `foo`, `foo` and `foobar` `foo` would not allow `foo
   /** when set to true, will allow host volumes matching the pathPrefix only if all volume mounts are readOnly. */
   readOnly?: boolean;
 };
+
+/** Eviction evicts a pod from its node subject to certain policies and safety constraints. This is a subresource of Pod.  A request to cause such an eviction is created by POSTing to ...pods<pod name>evictions. */
 export type Eviction = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -44,6 +52,7 @@ export function createEviction(
   return { apiVersion: "policy/v1beta1", kind: "Eviction", ...data };
 }
 
+/** FSGroupStrategyOptions defines the strategy type and options used to create the strategy. */
 export type FSGroupStrategyOptions = {
   /** ranges are the allowed ranges of fs groups.  If you would like to force a single fs group then supply a single range with the same start and end. Required for MustRunAs. */
   ranges?: IDRange[];
@@ -51,6 +60,8 @@ export type FSGroupStrategyOptions = {
   /** rule is the strategy that will dictate what FSGroup is used in the SecurityContext. */
   rule?: string;
 };
+
+/** HostPortRange defines a range of host ports that will be enabled by a policy for pods to use.  It requires both the start and end to be defined. */
 export type HostPortRange = {
   /** max is the end of the range, inclusive. */
   max: number;
@@ -58,6 +69,8 @@ export type HostPortRange = {
   /** min is the start of the range, inclusive. */
   min: number;
 };
+
+/** IDRange provides a minmax of an allowed range of IDs. */
 export type IDRange = {
   /** max is the end of the range, inclusive. */
   max: number;
@@ -65,6 +78,8 @@ export type IDRange = {
   /** min is the start of the range, inclusive. */
   min: number;
 };
+
+/** PodDisruptionBudget is an object to define the max disruption that can be caused to a collection of pods */
 export type PodDisruptionBudget = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -86,6 +101,7 @@ export function createPodDisruptionBudget(
   return { apiVersion: "policy/v1beta1", kind: "PodDisruptionBudget", ...data };
 }
 
+/** PodDisruptionBudgetList is a collection of PodDisruptionBudgets. */
 export type PodDisruptionBudgetList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -107,6 +123,7 @@ export function createPodDisruptionBudgetList(
   };
 }
 
+/** PodDisruptionBudgetSpec is a description of a PodDisruptionBudget. */
 export type PodDisruptionBudgetSpec = {
   /** An eviction is allowed if at most "maxUnavailable" pods selected by "selector" are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with "minAvailable". */
   maxUnavailable?: IntOrString;
@@ -117,6 +134,8 @@ export type PodDisruptionBudgetSpec = {
   /** Label query over pods whose evictions are managed by the disruption budget. */
   selector?: LabelSelector;
 };
+
+/** PodDisruptionBudgetStatus represents information about the status of a PodDisruptionBudget. Status may trail the actual state of a system. */
 export type PodDisruptionBudgetStatus = {
   /** current number of healthy pods */
   currentHealthy: number;
@@ -138,6 +157,8 @@ export type PodDisruptionBudgetStatus = {
   /** Most recent generation observed when updating this PDB status. DisruptionsAllowed and other status information is valid only if observedGeneration equals to PDB's object generation. */
   observedGeneration?: number;
 };
+
+/** PodSecurityPolicy governs the ability to make requests that affect the Security Context that will be applied to a pod and container. */
 export type PodSecurityPolicy = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -157,6 +178,7 @@ export function createPodSecurityPolicy(
   return { apiVersion: "policy/v1beta1", kind: "PodSecurityPolicy", ...data };
 }
 
+/** PodSecurityPolicyList is a list of PodSecurityPolicy objects. */
 export type PodSecurityPolicyList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -180,6 +202,7 @@ export function createPodSecurityPolicyList(
   };
 }
 
+/** PodSecurityPolicySpec defines the policy enforced. */
 export type PodSecurityPolicySpec = {
   /** allowPrivilegeEscalation determines if a pod can request to allow privilege escalation. If unspecified, defaults to true. */
   allowPrivilegeEscalation?: boolean;
@@ -257,6 +280,8 @@ Examples: e.g. "foo*" forbids "foobar", "foobaz", etc. e.g. "foo.*" forbids "foo
   /** volumes is a white list of allowed volume plugins. Empty indicates that no volumes may be used. To allow all volumes you may use '*'. */
   volumes?: string[];
 };
+
+/** RunAsGroupStrategyOptions defines the strategy type and any options used to create the strategy. */
 export type RunAsGroupStrategyOptions = {
   /** ranges are the allowed ranges of gids that may be used. If you would like to force a single gid then supply a single range with the same start and end. Required for MustRunAs. */
   ranges?: IDRange[];
@@ -264,6 +289,8 @@ export type RunAsGroupStrategyOptions = {
   /** rule is the strategy that will dictate the allowable RunAsGroup values that may be set. */
   rule: string;
 };
+
+/** RunAsUserStrategyOptions defines the strategy type and any options used to create the strategy. */
 export type RunAsUserStrategyOptions = {
   /** ranges are the allowed ranges of uids that may be used. If you would like to force a single uid then supply a single range with the same start and end. Required for MustRunAs. */
   ranges?: IDRange[];
@@ -271,6 +298,8 @@ export type RunAsUserStrategyOptions = {
   /** rule is the strategy that will dictate the allowable RunAsUser values that may be set. */
   rule: string;
 };
+
+/** RuntimeClassStrategyOptions define the strategy that will dictate the allowable RuntimeClasses for a pod. */
 export type RuntimeClassStrategyOptions = {
   /** allowedRuntimeClassNames is a whitelist of RuntimeClass names that may be specified on a pod. A value of "*" means that any RuntimeClass name is allowed, and must be the only item in the list. An empty list requires the RuntimeClassName field to be unset. */
   allowedRuntimeClassNames: string[];
@@ -278,6 +307,8 @@ export type RuntimeClassStrategyOptions = {
   /** defaultRuntimeClassName is the default RuntimeClassName to set on the pod. The default MUST be allowed by the allowedRuntimeClassNames list. A value of nil does not mutate the Pod. */
   defaultRuntimeClassName?: string;
 };
+
+/** SELinuxStrategyOptions defines the strategy type and any options used to create the strategy. */
 export type SELinuxStrategyOptions = {
   /** rule is the strategy that will dictate the allowable labels that may be set. */
   rule: string;
@@ -285,6 +316,8 @@ export type SELinuxStrategyOptions = {
   /** seLinuxOptions required to run as; required for MustRunAs More info: https:kubernetes.iodocstasksconfigure-pod-containersecurity-context */
   seLinuxOptions?: SELinuxOptions;
 };
+
+/** SupplementalGroupsStrategyOptions defines the strategy type and options used to create the strategy. */
 export type SupplementalGroupsStrategyOptions = {
   /** ranges are the allowed ranges of supplemental groups.  If you would like to force a single supplemental group then supply a single range with the same start and end. Required for MustRunAs. */
   ranges?: IDRange[];

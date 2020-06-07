@@ -10,6 +10,8 @@ import {
   VolumeMount,
   Volume,
 } from "../../core/v1/mod.ts";
+
+/** PodPreset is a policy resource that defines additional runtime requirements for a Pod. */
 export type PodPreset = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -27,6 +29,7 @@ export function createPodPreset(
   return { apiVersion: "settings.k8s.io/v1alpha1", kind: "PodPreset", ...data };
 }
 
+/** PodPresetList is a list of PodPreset objects. */
 export type PodPresetList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -50,6 +53,7 @@ export function createPodPresetList(
   };
 }
 
+/** PodPresetSpec is a description of a pod preset. */
 export type PodPresetSpec = {
   /** Env defines the collection of EnvVar to inject into containers. */
   env?: EnvVar[];

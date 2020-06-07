@@ -4,6 +4,8 @@ import {
   ObjectMeta,
   ListMeta,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
+
+/** Endpoint represents a single logical "backend" implementing a service. */
 export type Endpoint = {
   /** addresses of this endpoint. The contents of this field are interpreted according to the corresponding EndpointSlice addressType field. Consumers must handle different types of addresses in the context of their own capabilities. This must contain at least one address but no more than 100. */
   addresses: string[];
@@ -28,10 +30,14 @@ export type Endpoint = {
     [key: string]: string;
   };
 };
+
+/** EndpointConditions represents the current condition of an endpoint. */
 export type EndpointConditions = {
   /** ready indicates that this endpoint is prepared to receive traffic, according to whatever system is managing the endpoint. A nil value indicates an unknown state. In most cases consumers should interpret this unknown state as ready. */
   ready?: boolean;
 };
+
+/** EndpointPort represents a Port used by an EndpointSlice */
 export type EndpointPort = {
   /** The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and http:www.iana.orgassignmentsservice-names). Non-standard protocols should use prefixed names such as mycompany.commy-custom-protocol. */
   appProtocol?: string;
@@ -45,6 +51,8 @@ export type EndpointPort = {
   /** The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP. */
   protocol?: string;
 };
+
+/** EndpointSlice represents a subset of the endpoints that implement a service. For a given service there may be multiple EndpointSlice objects, selected by labels, which must be joined to produce the full set of endpoints. */
 export type EndpointSlice = {
   /** addressType specifies the type of address carried by this EndpointSlice. All addresses in this slice must be the same type. This field is immutable after creation. The following address types are currently supported: * IPv4: Represents an IPv4 Address. * IPv6: Represents an IPv6 Address. * FQDN: Represents a Fully Qualified Domain Name. */
   addressType: string;
@@ -74,6 +82,7 @@ export function createEndpointSlice(
   };
 }
 
+/** EndpointSliceList represents a list of endpoint slices */
 export type EndpointSliceList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;

@@ -8,6 +8,8 @@ import {
   LabelSelector,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 import { PodTemplateSpec, PersistentVolumeClaim } from "../../core/v1/mod.ts";
+
+/** ControllerRevision implements an immutable snapshot of state data. Clients are responsible for serializing and deserializing the objects that contain their internal state. Once a ControllerRevision has been successfully created, it can not be updated. The API Server will fail validation of all requests that attempt to mutate the Data field. ControllerRevisions may, however, be deleted. Note that, due to its use by both the DaemonSet and StatefulSet controllers for update and rollback, this object is beta. However, it may be subject to name and representation changes in future releases, and clients should not depend on its stability. It is primarily for internal use by controllers. */
 export type ControllerRevision = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -30,6 +32,7 @@ export function createControllerRevision(
   return { apiVersion: "apps/v1", kind: "ControllerRevision", ...data };
 }
 
+/** ControllerRevisionList is a resource containing a list of ControllerRevision objects. */
 export type ControllerRevisionList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -49,6 +52,7 @@ export function createControllerRevisionList(
   return { apiVersion: "apps/v1", kind: "ControllerRevisionList", ...data };
 }
 
+/** DaemonSet represents the configuration of a daemon set. */
 export type DaemonSet = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -71,6 +75,7 @@ export function createDaemonSet(
   return { apiVersion: "apps/v1", kind: "DaemonSet", ...data };
 }
 
+/** DaemonSetCondition describes the state of a DaemonSet at a certain point. */
 export type DaemonSetCondition = {
   /** Last time the condition transitioned from one status to another. */
   lastTransitionTime?: Time;
@@ -87,6 +92,8 @@ export type DaemonSetCondition = {
   /** Type of DaemonSet condition. */
   type: string;
 };
+
+/** DaemonSetList is a collection of daemon sets. */
 export type DaemonSetList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -106,6 +113,7 @@ export function createDaemonSetList(
   return { apiVersion: "apps/v1", kind: "DaemonSetList", ...data };
 }
 
+/** DaemonSetSpec is the specification of a daemon set. */
 export type DaemonSetSpec = {
   /** The minimum number of seconds for which a newly created DaemonSet pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready). */
   minReadySeconds?: number;
@@ -122,6 +130,8 @@ export type DaemonSetSpec = {
   /** An update strategy to replace existing DaemonSet pods with new pods. */
   updateStrategy?: DaemonSetUpdateStrategy;
 };
+
+/** DaemonSetStatus represents the current status of a daemon set. */
 export type DaemonSetStatus = {
   /** Count of hash collisions for the DaemonSet. The DaemonSet controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ControllerRevision. */
   collisionCount?: number;
@@ -153,6 +163,8 @@ export type DaemonSetStatus = {
   /** The total number of nodes that are running updated daemon pod */
   updatedNumberScheduled?: number;
 };
+
+/** DaemonSetUpdateStrategy is a struct used to control the update strategy for a DaemonSet. */
 export type DaemonSetUpdateStrategy = {
   /** Rolling update config params. Present only if type = "RollingUpdate". */
   rollingUpdate?: RollingUpdateDaemonSet;
@@ -160,6 +172,8 @@ export type DaemonSetUpdateStrategy = {
   /** Type of daemon set update. Can be "RollingUpdate" or "OnDelete". Default is RollingUpdate. */
   type?: string;
 };
+
+/** Deployment enables declarative updates for Pods and ReplicaSets. */
 export type Deployment = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -182,6 +196,7 @@ export function createDeployment(
   return { apiVersion: "apps/v1", kind: "Deployment", ...data };
 }
 
+/** DeploymentCondition describes the state of a deployment at a certain point. */
 export type DeploymentCondition = {
   /** Last time the condition transitioned from one status to another. */
   lastTransitionTime?: Time;
@@ -201,6 +216,8 @@ export type DeploymentCondition = {
   /** Type of deployment condition. */
   type: string;
 };
+
+/** DeploymentList is a list of Deployments. */
 export type DeploymentList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -220,6 +237,7 @@ export function createDeploymentList(
   return { apiVersion: "apps/v1", kind: "DeploymentList", ...data };
 }
 
+/** DeploymentSpec is the specification of the desired behavior of the Deployment. */
 export type DeploymentSpec = {
   /** Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready) */
   minReadySeconds?: number;
@@ -245,6 +263,8 @@ export type DeploymentSpec = {
   /** Template describes the pods that will be created. */
   template: PodTemplateSpec;
 };
+
+/** DeploymentStatus is the most recently observed status of the Deployment. */
 export type DeploymentStatus = {
   /** Total number of available pods (ready for at least minReadySeconds) targeted by this deployment. */
   availableReplicas?: number;
@@ -270,6 +290,8 @@ export type DeploymentStatus = {
   /** Total number of non-terminated pods targeted by this deployment that have the desired template spec. */
   updatedReplicas?: number;
 };
+
+/** DeploymentStrategy describes how to replace existing pods with new ones. */
 export type DeploymentStrategy = {
   /** Rolling update config params. Present only if DeploymentStrategyType = RollingUpdate. */
   rollingUpdate?: RollingUpdateDeployment;
@@ -277,6 +299,8 @@ export type DeploymentStrategy = {
   /** Type of deployment. Can be "Recreate" or "RollingUpdate". Default is RollingUpdate. */
   type?: string;
 };
+
+/** ReplicaSet ensures that a specified number of pod replicas are running at any given time. */
 export type ReplicaSet = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -299,6 +323,7 @@ export function createReplicaSet(
   return { apiVersion: "apps/v1", kind: "ReplicaSet", ...data };
 }
 
+/** ReplicaSetCondition describes the state of a replica set at a certain point. */
 export type ReplicaSetCondition = {
   /** The last time the condition transitioned from one status to another. */
   lastTransitionTime?: Time;
@@ -315,6 +340,8 @@ export type ReplicaSetCondition = {
   /** Type of replica set condition. */
   type: string;
 };
+
+/** ReplicaSetList is a collection of ReplicaSets. */
 export type ReplicaSetList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -334,6 +361,7 @@ export function createReplicaSetList(
   return { apiVersion: "apps/v1", kind: "ReplicaSetList", ...data };
 }
 
+/** ReplicaSetSpec is the specification of a ReplicaSet. */
 export type ReplicaSetSpec = {
   /** Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready) */
   minReadySeconds?: number;
@@ -347,6 +375,8 @@ export type ReplicaSetSpec = {
   /** Template is the object that describes the pod that will be created if insufficient replicas are detected. More info: https:kubernetes.iodocsconceptsworkloadscontrollersreplicationcontroller#pod-template */
   template?: PodTemplateSpec;
 };
+
+/** ReplicaSetStatus represents the current status of a ReplicaSet. */
 export type ReplicaSetStatus = {
   /** The number of available replicas (ready for at least minReadySeconds) for this replica set. */
   availableReplicas?: number;
@@ -366,10 +396,14 @@ export type ReplicaSetStatus = {
   /** Replicas is the most recently oberved number of replicas. More info: https:kubernetes.iodocsconceptsworkloadscontrollersreplicationcontroller#what-is-a-replicationcontroller */
   replicas: number;
 };
+
+/** Spec to control the desired behavior of daemon set rolling update. */
 export type RollingUpdateDaemonSet = {
   /** The maximum number of DaemonSet pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total number of DaemonSet pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0. Default value is 1. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their pods stopped for an update at any given time. The update starts by stopping at most 30% of those DaemonSet pods and then brings up new DaemonSet pods in their place. Once the new pods are available, it then proceeds onto other DaemonSet pods, thus ensuring that at least 70% of original number of DaemonSet pods are available at all times during the update. */
   maxUnavailable?: IntOrString;
 };
+
+/** Spec to control the desired behavior of rolling update. */
 export type RollingUpdateDeployment = {
   /** The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 25%. Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately when the rolling update starts, such that the total number of old and new pods do not exceed 130% of desired pods. Once old pods have been killed, new ReplicaSet can be scaled up further, ensuring that total number of pods running at any time during the update is at most 130% of desired pods. */
   maxSurge?: IntOrString;
@@ -377,10 +411,17 @@ export type RollingUpdateDeployment = {
   /** The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. Defaults to 25%. Example: when this is set to 30%, the old ReplicaSet can be scaled down to 70% of desired pods immediately when the rolling update starts. Once new pods are ready, old ReplicaSet can be scaled down further, followed by scaling up the new ReplicaSet, ensuring that the total number of pods available at all times during the update is at least 70% of desired pods. */
   maxUnavailable?: IntOrString;
 };
+
+/** RollingUpdateStatefulSetStrategy is used to communicate parameter for RollingUpdateStatefulSetStrategyType. */
 export type RollingUpdateStatefulSetStrategy = {
   /** Partition indicates the ordinal at which the StatefulSet should be partitioned. Default value is 0. */
   partition?: number;
 };
+
+/** StatefulSet represents a set of pods with consistent identities. Identities are defined as:
+ - Network: A single stable DNS and hostname.
+ - Storage: As many VolumeClaims as requested.
+The StatefulSet guarantees that a given network identity will always map to the same storage identity. */
 export type StatefulSet = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -402,6 +443,7 @@ export function createStatefulSet(
   return { apiVersion: "apps/v1", kind: "StatefulSet", ...data };
 }
 
+/** StatefulSetCondition describes the state of a statefulset at a certain point. */
 export type StatefulSetCondition = {
   /** Last time the condition transitioned from one status to another. */
   lastTransitionTime?: Time;
@@ -418,6 +460,8 @@ export type StatefulSetCondition = {
   /** Type of statefulset condition. */
   type: string;
 };
+
+/** StatefulSetList is a collection of StatefulSets. */
 export type StatefulSetList = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -435,6 +479,7 @@ export function createStatefulSetList(
   return { apiVersion: "apps/v1", kind: "StatefulSetList", ...data };
 }
 
+/** A StatefulSetSpec is the specification of a StatefulSet. */
 export type StatefulSetSpec = {
   /** podManagementPolicy controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down. The default policy is `OrderedReady`, where pods are created in increasing order (pod-0, then pod-1, etc) and the controller will wait until each pod is ready before continuing. When scaling down, the pods are removed in the opposite order. The alternative policy is `Parallel` which will create pods in parallel to match the desired scale without waiting, and on scale down will delete all pods at once. */
   podManagementPolicy?: string;
@@ -460,6 +505,8 @@ export type StatefulSetSpec = {
   /** volumeClaimTemplates is a list of claims that pods are allowed to reference. The StatefulSet controller is responsible for mapping network identities to claims in a way that maintains the identity of a pod. Every claim in this list must have at least one matching (by name) volumeMount in one container in the template. A claim in this list takes precedence over any volumes in the template, with the same name. */
   volumeClaimTemplates?: PersistentVolumeClaim[];
 };
+
+/** StatefulSetStatus represents the current state of a StatefulSet. */
 export type StatefulSetStatus = {
   /** collisionCount is the count of hash collisions for the StatefulSet. The StatefulSet controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ControllerRevision. */
   collisionCount?: number;
@@ -488,6 +535,8 @@ export type StatefulSetStatus = {
   /** updatedReplicas is the number of Pods created by the StatefulSet controller from the StatefulSet version indicated by updateRevision. */
   updatedReplicas?: number;
 };
+
+/** StatefulSetUpdateStrategy indicates the strategy that the StatefulSet controller will use to perform updates. It includes any additional parameters necessary to perform the update for the indicated strategy. */
 export type StatefulSetUpdateStrategy = {
   /** RollingUpdate is used to communicate parameters when Type is RollingUpdateStatefulSetStrategyType. */
   rollingUpdate?: RollingUpdateStatefulSetStrategy;

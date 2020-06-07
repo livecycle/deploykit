@@ -1,11 +1,19 @@
 import type { Definition, GroupVersionKind } from "./types.ts";
 import { mergeWithArrayConcat } from "../../../utils/object.ts";
 import { dirname } from "https://deno.land/std/path/mod.ts";
-import { appendToObject, getType, getImports, getImportPath } from "./utils.ts";
+import {
+  appendToObject,
+  getType,
+  getImports,
+  getImportPath,
+  formatComment,
+} from "./utils.ts";
 import { compileType } from "./compile_type.ts";
 
 function writeType(name: string, def: Definition): string {
-  let interfaceDef = `export type ${name} = ${compileType(def)}`;
+  let interfaceDef = `
+  ${def.description && formatComment(def.description)}
+  export type ${name} = ${compileType(def)}`;
   let gvk = def["x-kubernetes-group-version-kind"] as
     | GroupVersionKind[]
     | null;

@@ -1,5 +1,7 @@
 /* Generated for api/authorization/v1/mod.ts */
 import { ObjectMeta } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
+
+/** LocalSubjectAccessReview checks whether or not a user or group can perform an action in a given namespace. Having a namespace scoped resource makes it much easier to grant namespace scoped policy that includes permissions checking. */
 export type LocalSubjectAccessReview = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -25,6 +27,7 @@ export function createLocalSubjectAccessReview(
   };
 }
 
+/** NonResourceAttributes includes the authorization attributes available for non-resource requests to the Authorizer interface */
 export type NonResourceAttributes = {
   /** Path is the URL path of the request */
   path?: string;
@@ -32,6 +35,8 @@ export type NonResourceAttributes = {
   /** Verb is the standard HTTP verb */
   verb?: string;
 };
+
+/** NonResourceRule holds information that describes a rule for the non-resource */
 export type NonResourceRule = {
   /** NonResourceURLs is a set of partial urls that a user should have access to.  *s are allowed, but only as the full, final step in the path.  "*" means all. */
   nonResourceURLs?: string[];
@@ -39,6 +44,8 @@ export type NonResourceRule = {
   /** Verb is a list of kubernetes non-resource API verbs, like: get, post, put, delete, patch, head, options.  "*" means all. */
   verbs: string[];
 };
+
+/** ResourceAttributes includes the authorization attributes available for resource requests to the Authorizer interface */
 export type ResourceAttributes = {
   /** Group is the API Group of the Resource.  "*" means all. */
   group?: string;
@@ -61,6 +68,8 @@ export type ResourceAttributes = {
   /** Version is the API Version of the Resource.  "*" means all. */
   version?: string;
 };
+
+/** ResourceRule is the list of actions the subject is allowed to perform on resources. The list ordering isn't significant, may contain duplicates, and possibly be incomplete. */
 export type ResourceRule = {
   /** APIGroups is the name of the APIGroup that contains the resources.  If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed.  "*" means all. */
   apiGroups?: string[];
@@ -75,6 +84,8 @@ export type ResourceRule = {
   /** Verb is a list of kubernetes resource API verbs, like: get, list, watch, create, update, delete, proxy.  "*" means all. */
   verbs: string[];
 };
+
+/** SelfSubjectAccessReview checks whether or the current user can perform an action.  Not filling in a spec.namespace means "in all namespaces".  Self is a special case, because users should always be able to check whether they can perform an action */
 export type SelfSubjectAccessReview = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -100,6 +111,7 @@ export function createSelfSubjectAccessReview(
   };
 }
 
+/** SelfSubjectAccessReviewSpec is a description of the access request.  Exactly one of ResourceAuthorizationAttributes and NonResourceAuthorizationAttributes must be set */
 export type SelfSubjectAccessReviewSpec = {
   /** NonResourceAttributes describes information for a non-resource access request */
   nonResourceAttributes?: NonResourceAttributes;
@@ -107,6 +119,8 @@ export type SelfSubjectAccessReviewSpec = {
   /** ResourceAuthorizationAttributes describes information for a resource access request */
   resourceAttributes?: ResourceAttributes;
 };
+
+/** SelfSubjectRulesReview enumerates the set of actions the current user can perform within a namespace. The returned list of actions may be incomplete depending on the server's authorization mode, and any errors experienced during the evaluation. SelfSubjectRulesReview should be used by UIs to showhide actions, or to quickly let an end user reason about their permissions. It should NOT Be used by external systems to drive authorization decisions as this raises confused deputy, cache lifetimerevocation, and correctness concerns. SubjectAccessReview, and LocalAccessReview are the correct way to defer authorization decisions to the API server. */
 export type SelfSubjectRulesReview = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -132,10 +146,13 @@ export function createSelfSubjectRulesReview(
   };
 }
 
+undefined;
 export type SelfSubjectRulesReviewSpec = {
   /** Namespace to evaluate rules for. Required. */
   namespace?: string;
 };
+
+/** SubjectAccessReview checks whether or not a user or group can perform an action. */
 export type SubjectAccessReview = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
@@ -161,6 +178,7 @@ export function createSubjectAccessReview(
   };
 }
 
+/** SubjectAccessReviewSpec is a description of the access request.  Exactly one of ResourceAuthorizationAttributes and NonResourceAuthorizationAttributes must be set */
 export type SubjectAccessReviewSpec = {
   /** Extra corresponds to the user.Info.GetExtra() method from the authenticator.  Since that is input to the authorizer it needs a reflection here. */
   extra?: {
@@ -182,6 +200,8 @@ export type SubjectAccessReviewSpec = {
   /** User is the user you're testing for. If you specify "User" but not "Groups", then is it interpreted as "What if User were not a member of any groups */
   user?: string;
 };
+
+/** SubjectAccessReviewStatus */
 export type SubjectAccessReviewStatus = {
   /** Allowed is required. True if the action would be allowed, false otherwise. */
   allowed: boolean;
@@ -195,6 +215,8 @@ export type SubjectAccessReviewStatus = {
   /** Reason is optional.  It indicates why a request was allowed or denied. */
   reason?: string;
 };
+
+/** SubjectRulesReviewStatus contains the result of a rules check. This check can be incomplete depending on the set of authorizers the server is configured with and any errors experienced during evaluation. Because authorization rules are additive, if a rule appears in a list it's safe to assume the subject has that permission, even if that list is incomplete. */
 export type SubjectRulesReviewStatus = {
   /** EvaluationError can appear in combination with Rules. It indicates an error occurred during rule evaluation, such as an authorizer that doesn't support rule evaluation, and that ResourceRules andor NonResourceRules may be incomplete. */
   evaluationError?: string;
