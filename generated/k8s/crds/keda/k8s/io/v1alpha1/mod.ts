@@ -1,5 +1,5 @@
 /* Generated for keda/k8s/io/v1alpha1/mod.ts */
-import { ObjectMeta } from "https://deno.land/x/gh:yshayy:deploykit@0.0.1/generated/k8s/native/apimachinery/pkg/apis/meta/v1/mod.ts";
+import { ObjectMeta } from "https://deno.land/x/gh:yshayy:deploykit@0.0.10/generated/k8s/v1.18.3/apimachinery/pkg/apis/meta/v1/mod.ts";
 export type ScaledObject = {
   apiVersion?: string;
 

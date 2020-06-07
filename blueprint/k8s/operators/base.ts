@@ -1,4 +1,4 @@
-import * as k8s from "../../../generated/k8s/native/mod.ts";
+import * as k8s from "../../../generated/k8s/v1.18.3/mod.ts";
 import { KubeMetaContext } from "../types.ts";
 import copy from "https://cdn.pika.dev/fast-copy@^2.0.4";
 

@@ -35,7 +35,7 @@ let minSchema = {
 export function generateFromCRDs(
   crds: CRD[],
   baseK8SResourceUrl =
-    "https://deno.land/x/gh:yshayy:deploykit@0.0.1/generated/k8s/native",
+    "https://deno.land/x/gh:yshayy:deploykit@0.0.10/generated/k8s/v1.18.3",
 ): { location: string; content: string }[] {
   let all = crds.map(crdToDefs).reduce((acc, next) => ({ ...acc, ...next }));
   return generateDefs({ definitions: all }, {
