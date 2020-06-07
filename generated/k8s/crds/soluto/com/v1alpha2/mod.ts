@@ -15,7 +15,12 @@ export type KamusSecret = {
 
   metadata?: ObjectMeta;
 
-  apiversion?: string;
+  apiVersion?: string;
 
   kind?: string;
 };
+export function createKamusSecret(
+  data: Omit<KamusSecret, "apiVersion" | "kind">,
+): KamusSecret {
+  return { apiVersion: "soluto.com/v1alpha2", kind: "KamusSecret", ...data };
+}

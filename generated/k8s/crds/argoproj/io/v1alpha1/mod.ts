@@ -1762,8 +1762,6 @@ export type AnalysisRun = {
 
     startedAt?: string;
   };
-
-  apiversion?: string;
 };
 export function createAnalysisRun(
   data: Omit<AnalysisRun, "apiVersion" | "kind">,
@@ -3653,8 +3651,6 @@ export type Rollout = {
 
     updatedReplicas?: number;
   };
-
-  apiversion?: string;
 };
 export function createRollout(
   data: Omit<Rollout, "apiVersion" | "kind">,
@@ -5336,8 +5332,6 @@ export type Experiment = {
       updatedReplicas: number;
     }[];
   };
-
-  apiversion?: string;
 };
 export function createExperiment(
   data: Omit<Experiment, "apiVersion" | "kind">,
@@ -7059,8 +7053,6 @@ export type AnalysisTemplate = {
       successCondition?: string;
     }[];
   };
-
-  apiversion?: string;
 };
 export function createAnalysisTemplate(
   data: Omit<AnalysisTemplate, "apiVersion" | "kind">,
@@ -7073,7 +7065,6 @@ export function createAnalysisTemplate(
 }
 
 export type Application = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
 
   kind?: string;
@@ -8113,8 +8104,6 @@ export type Application = {
       status: string;
     };
   };
-
-  apiversion?: string;
 };
 export function createApplication(
   data: Omit<Application, "apiVersion" | "kind">,
@@ -8123,7 +8112,6 @@ export function createApplication(
 }
 
 export type AppProject = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
 
   kind?: string;
@@ -8222,8 +8210,6 @@ export type AppProject = {
       schedule?: string;
     }[];
   };
-
-  apiversion?: string;
 };
 export function createAppProject(
   data: Omit<AppProject, "apiVersion" | "kind">,

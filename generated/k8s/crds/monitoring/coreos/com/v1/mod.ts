@@ -1,7 +1,6 @@
 /* Generated for monitoring/coreos/com/v1/mod.ts */
 import { ObjectMeta } from "https://deno.land/x/gh:yshayy:deploykit@0.0.1/generated/k8s/native/apimachinery/pkg/apis/meta/v1/mod.ts";
 export type Alertmanager = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
 
   kind?: string;
@@ -2168,8 +2167,6 @@ export type Alertmanager = {
     /** Total number of non-terminated pods targeted by this Alertmanager cluster that have the desired version spec. */
     updatedReplicas: number;
   };
-
-  apiversion?: string;
 };
 export function createAlertmanager(
   data: Omit<Alertmanager, "apiVersion" | "kind">,
@@ -2182,7 +2179,6 @@ export function createAlertmanager(
 }
 
 export type ServiceMonitor = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
 
   kind?: string;
@@ -2441,8 +2437,6 @@ export type ServiceMonitor = {
     /** TargetLabels transfers labels on the Kubernetes Service onto the target. */
     targetLabels?: string[];
   };
-
-  apiversion?: string;
 };
 export function createServiceMonitor(
   data: Omit<ServiceMonitor, "apiVersion" | "kind">,
@@ -2455,7 +2449,6 @@ export function createServiceMonitor(
 }
 
 export type PodMonitor = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
 
   kind?: string;
@@ -2585,8 +2578,6 @@ export type PodMonitor = {
       };
     };
   };
-
-  apiversion?: string;
 };
 export function createPodMonitor(
   data: Omit<PodMonitor, "apiVersion" | "kind">,

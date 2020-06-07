@@ -1,7 +1,6 @@
 /* Generated for keda/k8s/io/v1alpha1/mod.ts */
 import { ObjectMeta } from "https://deno.land/x/gh:yshayy:deploykit@0.0.1/generated/k8s/native/apimachinery/pkg/apis/meta/v1/mod.ts";
 export type ScaledObject = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
   apiVersion?: string;
 
   kind?: string;
@@ -1929,8 +1928,6 @@ export type ScaledObject = {
 
     lastActiveTime?: string;
   };
-
-  apiversion?: string;
 };
 export function createScaledObject(
   data: Omit<ScaledObject, "apiVersion" | "kind">,
