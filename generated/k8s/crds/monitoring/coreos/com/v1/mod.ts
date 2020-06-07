@@ -4,7 +4,6 @@ export type Alertmanager = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
 
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   kind?: string;
 
   metadata?: ObjectMeta;
@@ -2169,6 +2168,8 @@ export type Alertmanager = {
     /** Total number of non-terminated pods targeted by this Alertmanager cluster that have the desired version spec. */
     updatedReplicas: number;
   };
+
+  apiversion?: string;
 };
 export function createAlertmanager(
   data: Omit<Alertmanager, "apiVersion" | "kind">,
@@ -2184,7 +2185,6 @@ export type ServiceMonitor = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
 
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   kind?: string;
 
   metadata?: ObjectMeta;
@@ -2441,6 +2441,8 @@ export type ServiceMonitor = {
     /** TargetLabels transfers labels on the Kubernetes Service onto the target. */
     targetLabels?: string[];
   };
+
+  apiversion?: string;
 };
 export function createServiceMonitor(
   data: Omit<ServiceMonitor, "apiVersion" | "kind">,
@@ -2456,7 +2458,6 @@ export type PodMonitor = {
   /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
   apiVersion?: string;
 
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   kind?: string;
 
   metadata?: ObjectMeta;
@@ -2584,6 +2585,8 @@ export type PodMonitor = {
       };
     };
   };
+
+  apiversion?: string;
 };
 export function createPodMonitor(
   data: Omit<PodMonitor, "apiVersion" | "kind">,

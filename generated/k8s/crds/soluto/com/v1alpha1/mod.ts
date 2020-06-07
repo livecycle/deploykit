@@ -10,4 +10,8 @@ export type KamusSecret = {
   type?: string;
 
   metadata?: ObjectMeta;
+
+  apiversion?: string;
+
+  kind?: string;
 };

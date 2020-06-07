@@ -63,6 +63,12 @@ export function crdToDefs(crd: CRD): { [key: string]: Definition } {
         "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta",
       };
       schema["x-kubernetes-group-version-kind"] = [gvkProperties];
+      schema.properties["apiversion"] = {
+        type: "string",
+      };
+      schema.properties["kind"] = {
+        type: "string",
+      };
     }
     return [
       [gvkProperties.group, gvkProperties.version, gvkProperties.kind].join(
