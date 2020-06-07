@@ -7,10 +7,11 @@ import {
   addStubModules,
   generateDefs,
 } from "./generators/openapi/k8s/generate.ts";
+import { parse } from "https://deno.land/std/flags/mod.ts";
 import { dirname, normalize } from "https://deno.land/std/path/mod.ts";
-
+let args = parse(Deno.args);
 let sources = JSON.parse(
-  Deno.readTextFileSync("./generated/k8s/sources.json"),
+  Deno.readTextFileSync(args.input || "./generated/k8s/sources.json"),
 ) as { native: string; crds: string[] };
 
 let crds = (await Promise.all(sources.crds.map(async (s) => {
