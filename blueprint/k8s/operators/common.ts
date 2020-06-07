@@ -24,6 +24,25 @@ export const addSideCar = <
   });
 };
 
+export const addConfigMap = ({ data }: { data: { [key: string]: string } }) =>
+  addResources({
+    config: k8s.core.v1.createConfigMap({
+      data,
+    }),
+  });
+
+export const addSecret = (
+  { data, isBase64 = false }: {
+    data: { [key: string]: string };
+    isBase64: boolean;
+  },
+) =>
+  addResources({
+    secret: k8s.core.v1.createSecret({
+      [isBase64 ? "data" : "stringData"]: data,
+    }),
+  });
+
 export const addDeployment = (
   { image, deploymentStrategy, resources = {}, containerProps = {} }: {
     image: string;

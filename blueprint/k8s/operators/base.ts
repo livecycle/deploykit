@@ -11,10 +11,14 @@ export function addResources<
         | undefined;
     };
   },
->(factoryOrInstance: U | ((ctx: TContext) => U)) {
+>(
+  factoryOrInstance:
+    | U
+    | (<TResources>(ctx: TContext, resources: TResources) => U),
+) {
   return function <T>(resources: T, ctx: TContext) {
     let newResources = typeof (factoryOrInstance) === "function"
-      ? factoryOrInstance(ctx)
+      ? factoryOrInstance(ctx, resources)
       : (copy(factoryOrInstance, undefined) as U);
     for (let r of Object.values(newResources)) {
       if (!r.metadata) {
