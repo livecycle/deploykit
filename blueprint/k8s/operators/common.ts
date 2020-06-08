@@ -149,13 +149,14 @@ export const addTls = <
 
 /** Adds an Ingress resource for routing external traffic to the service.
 */
-export const expose = (
-  { domain }: {
+export const expose = <TServiceKey extends string = "service">(
+  { serviceResourceKey = "service" as TServiceKey, domain }: {
     domain: string;
+    serviceResourceKey?: TServiceKey;
   },
 ) => {
   return function <
-    T extends { "service": k8s.core.v1.Service },
+    T extends Record<TServiceKey, k8s.core.v1.Service>,
     TContext extends KubeMetaContext
   >(resources: T, ctx: TContext) {
     let r = addResources({
@@ -174,8 +175,9 @@ export const expose = (
             paths: [
               {
                 backend: {
-                  serviceName: resources.service.metadata!.name,
-                  servicePort: resources.service.spec!.ports![0].port,
+                  serviceName: resources[serviceResourceKey].metadata!.name,
+                  servicePort:
+                    resources[serviceResourceKey].spec!.ports![0].port,
                 },
               },
             ],
