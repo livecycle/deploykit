@@ -36,3 +36,37 @@ export function addResources<
     };
   };
 }
+
+export function addResource<
+  TKey extends string,
+  TContext extends KubeMetaContext,
+  U extends {
+    ["metadata"]?:
+      | k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta
+      | undefined;
+  },
+>(
+  name: TKey,
+  factoryOrInstance:
+    | U
+    | (<TResources>(ctx: TContext, resources: TResources) => U),
+) {
+  return function <T>(resources: T, ctx: TContext) {
+    let newResource = typeof (factoryOrInstance) === "function"
+      ? factoryOrInstance(ctx, resources)
+      : (copy(factoryOrInstance, undefined) as U);
+
+    if (!newResource.metadata) {
+      newResource.metadata = {
+        name: ctx.name,
+        namespace: ctx.namespace,
+        labels: ctx.labels,
+      };
+    }
+
+    return {
+      [name]: newResource,
+      ...resources,
+    } as T & { [_ in TKey]: U };
+  };
+}

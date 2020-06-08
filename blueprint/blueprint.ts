@@ -2,7 +2,9 @@ import copy from "https://cdn.pika.dev/copy-anything@^1.5.4";
 import { formatYaml } from "../utils/format.ts";
 import { mergeWithArrayConcat, cleanObject } from "../utils/object.ts";
 
-export type BluePrintTransform<TContext, T, U> = (r: T, ctx: TContext) => U;
+export interface BluePrintTransform<TContext, T, U> {
+  (this: IBluePrint<TContext, T>, resources: T, ctx: TContext): U;
+}
 
 export interface IBluePrint<TContext, T> {
   with(): IBluePrint<TContext, T>;
@@ -67,7 +69,8 @@ class BluePrint<TContext, TResources>
     return transforms.reduce(
       (acc, next) =>
         new BluePrint<TContext, any>(
-          (ctx) => next(cleanObject(copy(acc.build(ctx), undefined)), ctx),
+          (ctx) =>
+            next.call(this, cleanObject(copy(acc.build(ctx), undefined)), ctx),
           this.format,
         ),
       this as IBluePrint<TContext, any>,
@@ -88,14 +91,14 @@ export function createBluePrint<TContext = undefined>(): IBluePrint<
   });
 }
 
-export const modify = <T, TContext>(fn: (t: T, ctx: TContext) => void) => {
+export const modify = <TContext, T>(fn: (t: T, ctx: TContext) => void) => {
   return function (resources: T, ctx: TContext) {
     fn(resources, ctx);
     return resources;
   };
 };
 
-export function merge<U, TContext>(
+export function merge<TContext, U>(
   factoryOrInstance: ((ctx: TContext) => U) | U,
 ) {
   return function <T>(resources: T, ctx: TContext) {
@@ -110,7 +113,7 @@ export function merge<U, TContext>(
   };
 }
 
-export function mergeSelect<T, K extends keyof T, TContext>(
+export function mergeSelect<TContext, T, K extends keyof T>(
   factoryOrInstance: ((ctx: TContext) => T[K]) | T[K],
   selector: K,
 ) {
@@ -126,3 +129,36 @@ export function mergeSelect<T, K extends keyof T, TContext>(
     return resources;
   };
 }
+
+export function defer<TContext, T, U>(
+  fn: (ctx: TContext) => BluePrintTransform<TContext, T, U>,
+): BluePrintTransform<TContext, T, U> {
+  return function (_, ctx) {
+    return this.with(fn(ctx)).build(ctx);
+  };
+}
+
+export function compose<TContext, T, U>(
+  fn: (org: IBluePrint<TContext, T>, ctx?: TContext) => IBluePrint<TContext, U>,
+): BluePrintTransform<TContext, T, U> {
+  return function (_, ctx) {
+    return fn(this, ctx).build(ctx);
+  };
+}
+
+//const marks = Symbol.for("marks");
+
+export const mark = (name: string, unique: boolean = true) =>
+  <TContext extends {}, T>(fn: (t: T, ctx: TContext) => void) => {
+    return function (resources: T, ctx: TContext) {
+      //ctx[marks] = true;
+      return resources;
+    };
+  };
+
+<T, TContext>(fn: (t: T, ctx: TContext) => void) => {
+  return function (resources: T, ctx: TContext) {
+    fn(resources, ctx);
+    return resources;
+  };
+};

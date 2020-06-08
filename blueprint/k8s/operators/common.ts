@@ -1,7 +1,7 @@
 import * as k8s from "../../../generated/k8s/v1.18.3/api/mod.ts";
 import { KubeMetaContext } from "../types.ts";
 import { modify } from "../../blueprint.ts";
-import { addResources } from "./base.ts";
+import { addResources, addResource } from "./base.ts";
 import { DeploymentStrategy } from "../../../generated/k8s/v1.18.3/api/apps/v1/mod.ts";
 import { Container } from "../../../generated/k8s/v1.18.3/api/core/v1/mod.ts";
 
@@ -11,10 +11,10 @@ export const addSideCar = <
 >({ name, image, resources = {}, containerProps = {} }: {
   name: string;
   image: string;
-  resources: k8s.core.v1.ResourceRequirements;
+  resources?: k8s.core.v1.ResourceRequirements;
   containerProps?: Partial<Omit<Container, "image" | "resources">>;
 }) => {
-  return modify<T, TContext>((x) => {
+  return modify<TContext, T>((x) => {
     x.deployment.spec!.template.spec?.containers.push({
       name,
       image,
@@ -33,7 +33,7 @@ export const addInitContainer = <
   resources: k8s.core.v1.ResourceRequirements;
   containerProps?: Partial<Omit<Container, "image" | "resources">>;
 }) => {
-  return modify<T, TContext>((x) => {
+  return modify<TContext, T>((x) => {
     x.deployment.spec!.template.spec!.initContainers =
       x.deployment.spec!.template.spec?.initContainers || [];
     x.deployment.spec!.template.spec!.initContainers.push({
@@ -64,16 +64,23 @@ export const addSecret = (
     }),
   });
 
-export const addDeployment = (
-  { image, deploymentStrategy, resources = {}, containerProps = {} }: {
+export const addDeployment = <TKey extends string = "deployment">(
+  {
+    image,
+    deploymentStrategy,
+    resources = {},
+    containerProps = {},
+    resourceKey = "deployment" as TKey,
+  }: {
     image: string;
+    resourceKey?: TKey;
     deploymentStrategy?: DeploymentStrategy;
     resources?: k8s.core.v1.ResourceRequirements;
     containerProps?: Partial<Omit<Container, "image" | "resources">>;
   },
 ) =>
-  addResources((ctx) => ({
-    deployment: k8s.apps.v1.createDeployment({
+  addResource(resourceKey, (ctx) =>
+    k8s.apps.v1.createDeployment({
       spec: {
         selector: {
           matchLabels: ctx.labels,
@@ -95,12 +102,17 @@ export const addDeployment = (
           },
         },
       },
-    }),
-  }));
+    }));
 
-export const addService = ({ port }: { port: number }) =>
-  addResources({
-    service: k8s.core.v1.createService({
+export const addService = <TKey extends string = "service">(
+  { resourceKey = "service" as TKey, port }: {
+    resourceKey?: TKey;
+    port: number;
+  },
+) =>
+  addResource(
+    resourceKey,
+    k8s.core.v1.createService({
       spec: {
         ports: [
           {
@@ -110,7 +122,7 @@ export const addService = ({ port }: { port: number }) =>
         ],
       },
     }),
-  });
+  );
 
 export const addTls = <
   T extends { ingress: k8s.extensions.v1beta1.Ingress },
@@ -121,7 +133,7 @@ export const addTls = <
     hostsFilter?: (domain: string) => boolean;
   },
 ) => {
-  return modify<T, TContext>((resources: T) => {
+  return modify<TContext, T>((resources: T) => {
     let hosts = resources.ingress.spec!.rules!.map((x) => x.host!).filter((x) =>
       x
     );
@@ -137,9 +149,13 @@ export const addTls = <
 
 /** Adds an Ingress resource for routing external traffic to the service.
 */
-export const expose = ({ domain }: { domain: string }) => {
+export const expose = (
+  { domain }: {
+    domain: string;
+  },
+) => {
   return function <
-    T extends { service: k8s.core.v1.Service },
+    T extends { "service": k8s.core.v1.Service },
     TContext extends KubeMetaContext
   >(resources: T, ctx: TContext) {
     let r = addResources({
@@ -150,7 +166,7 @@ export const expose = ({ domain }: { domain: string }) => {
       }),
     })(resources, ctx);
 
-    return modify<typeof r, TContext>((x) =>
+    return modify<TContext, typeof r>((x) =>
       x.ingress.spec!.rules!.push(
         {
           host: domain,
