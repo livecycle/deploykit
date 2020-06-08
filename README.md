@@ -84,6 +84,7 @@ It has several advantages such as:
 
 * No need for typescript toolchain (tsc, prettier, etc...)
 * No need to manage dependencies or package.json or deployment project folder
+* Easy to publish, import and share code pieces (blueprint/operators/scripts) 
 * Sandboxed security - scripts can output configuration files and nothing more
 
 These capabilies allow us to easily create a single deploy.ts file that is easy to manage, execute, extend, integrate in CI/CD.
