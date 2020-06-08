@@ -16,7 +16,7 @@ export type AnalysisRun = {
       value?: string;
 
       valueFrom?: {
-        secretKeyRef: {
+        secretKeyRef?: {
           key: string;
 
           name: string;
@@ -42,7 +42,7 @@ export type AnalysisRun = {
       name: string;
 
       provider: {
-        job: {
+        job?: {
           metadata?: {};
 
           spec: {
@@ -73,7 +73,7 @@ export type AnalysisRun = {
             template: {
               metadata?: {};
 
-              spec: {
+              spec?: {
                 activeDeadlineSeconds?: number;
 
                 affinity?: {
@@ -100,7 +100,7 @@ export type AnalysisRun = {
                       weight: number;
                     }[];
 
-                    requiredDuringSchedulingIgnoredDuringExecution: {
+                    requiredDuringSchedulingIgnoredDuringExecution?: {
                       nodeSelectorTerms: {
                         matchExpressions?: {
                           key: string;
@@ -227,7 +227,7 @@ export type AnalysisRun = {
                     value?: string;
 
                     valueFrom?: {
-                      configMapKeyRef: {
+                      configMapKeyRef?: {
                         key: string;
 
                         name?: string;
@@ -235,13 +235,13 @@ export type AnalysisRun = {
                         optional?: boolean;
                       };
 
-                      fieldRef: {
+                      fieldRef?: {
                         apiVersion?: string;
 
                         fieldPath: string;
                       };
 
-                      resourceFieldRef: {
+                      resourceFieldRef?: {
                         containerName?: string;
 
                         divisor?: number | string;
@@ -249,7 +249,7 @@ export type AnalysisRun = {
                         resource: string;
                       };
 
-                      secretKeyRef: {
+                      secretKeyRef?: {
                         key: string;
 
                         name?: string;
@@ -285,7 +285,7 @@ export type AnalysisRun = {
                         command?: string[];
                       };
 
-                      httpGet: {
+                      httpGet?: {
                         host?: string;
 
                         httpHeaders?: {
@@ -301,7 +301,7 @@ export type AnalysisRun = {
                         scheme?: string;
                       };
 
-                      tcpSocket: {
+                      tcpSocket?: {
                         host?: string;
 
                         port: number | string;
@@ -313,7 +313,7 @@ export type AnalysisRun = {
                         command?: string[];
                       };
 
-                      httpGet: {
+                      httpGet?: {
                         host?: string;
 
                         httpHeaders?: {
@@ -329,7 +329,7 @@ export type AnalysisRun = {
                         scheme?: string;
                       };
 
-                      tcpSocket: {
+                      tcpSocket?: {
                         host?: string;
 
                         port: number | string;
@@ -344,7 +344,7 @@ export type AnalysisRun = {
 
                     failureThreshold?: number;
 
-                    httpGet: {
+                    httpGet?: {
                       host?: string;
 
                       httpHeaders?: {
@@ -366,7 +366,7 @@ export type AnalysisRun = {
 
                     successThreshold?: number;
 
-                    tcpSocket: {
+                    tcpSocket?: {
                       host?: string;
 
                       port: number | string;
@@ -396,7 +396,7 @@ export type AnalysisRun = {
 
                     failureThreshold?: number;
 
-                    httpGet: {
+                    httpGet?: {
                       host?: string;
 
                       httpHeaders?: {
@@ -418,7 +418,7 @@ export type AnalysisRun = {
 
                     successThreshold?: number;
 
-                    tcpSocket: {
+                    tcpSocket?: {
                       host?: string;
 
                       port: number | string;
@@ -476,7 +476,7 @@ export type AnalysisRun = {
 
                     failureThreshold?: number;
 
-                    httpGet: {
+                    httpGet?: {
                       host?: string;
 
                       httpHeaders?: {
@@ -498,7 +498,7 @@ export type AnalysisRun = {
 
                     successThreshold?: number;
 
-                    tcpSocket: {
+                    tcpSocket?: {
                       host?: string;
 
                       port: number | string;
@@ -567,7 +567,7 @@ export type AnalysisRun = {
                     value?: string;
 
                     valueFrom?: {
-                      configMapKeyRef: {
+                      configMapKeyRef?: {
                         key: string;
 
                         name?: string;
@@ -575,13 +575,13 @@ export type AnalysisRun = {
                         optional?: boolean;
                       };
 
-                      fieldRef: {
+                      fieldRef?: {
                         apiVersion?: string;
 
                         fieldPath: string;
                       };
 
-                      resourceFieldRef: {
+                      resourceFieldRef?: {
                         containerName?: string;
 
                         divisor?: number | string;
@@ -589,7 +589,7 @@ export type AnalysisRun = {
                         resource: string;
                       };
 
-                      secretKeyRef: {
+                      secretKeyRef?: {
                         key: string;
 
                         name?: string;
@@ -625,7 +625,7 @@ export type AnalysisRun = {
                         command?: string[];
                       };
 
-                      httpGet: {
+                      httpGet?: {
                         host?: string;
 
                         httpHeaders?: {
@@ -641,7 +641,7 @@ export type AnalysisRun = {
                         scheme?: string;
                       };
 
-                      tcpSocket: {
+                      tcpSocket?: {
                         host?: string;
 
                         port: number | string;
@@ -653,7 +653,7 @@ export type AnalysisRun = {
                         command?: string[];
                       };
 
-                      httpGet: {
+                      httpGet?: {
                         host?: string;
 
                         httpHeaders?: {
@@ -669,7 +669,7 @@ export type AnalysisRun = {
                         scheme?: string;
                       };
 
-                      tcpSocket: {
+                      tcpSocket?: {
                         host?: string;
 
                         port: number | string;
@@ -684,7 +684,7 @@ export type AnalysisRun = {
 
                     failureThreshold?: number;
 
-                    httpGet: {
+                    httpGet?: {
                       host?: string;
 
                       httpHeaders?: {
@@ -706,7 +706,7 @@ export type AnalysisRun = {
 
                     successThreshold?: number;
 
-                    tcpSocket: {
+                    tcpSocket?: {
                       host?: string;
 
                       port: number | string;
@@ -736,7 +736,7 @@ export type AnalysisRun = {
 
                     failureThreshold?: number;
 
-                    httpGet: {
+                    httpGet?: {
                       host?: string;
 
                       httpHeaders?: {
@@ -758,7 +758,7 @@ export type AnalysisRun = {
 
                     successThreshold?: number;
 
-                    tcpSocket: {
+                    tcpSocket?: {
                       host?: string;
 
                       port: number | string;
@@ -816,7 +816,7 @@ export type AnalysisRun = {
 
                     failureThreshold?: number;
 
-                    httpGet: {
+                    httpGet?: {
                       host?: string;
 
                       httpHeaders?: {
@@ -838,7 +838,7 @@ export type AnalysisRun = {
 
                     successThreshold?: number;
 
-                    tcpSocket: {
+                    tcpSocket?: {
                       host?: string;
 
                       port: number | string;
@@ -911,7 +911,7 @@ export type AnalysisRun = {
                     value?: string;
 
                     valueFrom?: {
-                      configMapKeyRef: {
+                      configMapKeyRef?: {
                         key: string;
 
                         name?: string;
@@ -919,13 +919,13 @@ export type AnalysisRun = {
                         optional?: boolean;
                       };
 
-                      fieldRef: {
+                      fieldRef?: {
                         apiVersion?: string;
 
                         fieldPath: string;
                       };
 
-                      resourceFieldRef: {
+                      resourceFieldRef?: {
                         containerName?: string;
 
                         divisor?: number | string;
@@ -933,7 +933,7 @@ export type AnalysisRun = {
                         resource: string;
                       };
 
-                      secretKeyRef: {
+                      secretKeyRef?: {
                         key: string;
 
                         name?: string;
@@ -969,7 +969,7 @@ export type AnalysisRun = {
                         command?: string[];
                       };
 
-                      httpGet: {
+                      httpGet?: {
                         host?: string;
 
                         httpHeaders?: {
@@ -985,7 +985,7 @@ export type AnalysisRun = {
                         scheme?: string;
                       };
 
-                      tcpSocket: {
+                      tcpSocket?: {
                         host?: string;
 
                         port: number | string;
@@ -997,7 +997,7 @@ export type AnalysisRun = {
                         command?: string[];
                       };
 
-                      httpGet: {
+                      httpGet?: {
                         host?: string;
 
                         httpHeaders?: {
@@ -1013,7 +1013,7 @@ export type AnalysisRun = {
                         scheme?: string;
                       };
 
-                      tcpSocket: {
+                      tcpSocket?: {
                         host?: string;
 
                         port: number | string;
@@ -1028,7 +1028,7 @@ export type AnalysisRun = {
 
                     failureThreshold?: number;
 
-                    httpGet: {
+                    httpGet?: {
                       host?: string;
 
                       httpHeaders?: {
@@ -1050,7 +1050,7 @@ export type AnalysisRun = {
 
                     successThreshold?: number;
 
-                    tcpSocket: {
+                    tcpSocket?: {
                       host?: string;
 
                       port: number | string;
@@ -1080,7 +1080,7 @@ export type AnalysisRun = {
 
                     failureThreshold?: number;
 
-                    httpGet: {
+                    httpGet?: {
                       host?: string;
 
                       httpHeaders?: {
@@ -1102,7 +1102,7 @@ export type AnalysisRun = {
 
                     successThreshold?: number;
 
-                    tcpSocket: {
+                    tcpSocket?: {
                       host?: string;
 
                       port: number | string;
@@ -1160,7 +1160,7 @@ export type AnalysisRun = {
 
                     failureThreshold?: number;
 
-                    httpGet: {
+                    httpGet?: {
                       host?: string;
 
                       httpHeaders?: {
@@ -1182,7 +1182,7 @@ export type AnalysisRun = {
 
                     successThreshold?: number;
 
-                    tcpSocket: {
+                    tcpSocket?: {
                       host?: string;
 
                       port: number | string;
@@ -1331,7 +1331,7 @@ export type AnalysisRun = {
                 }[];
 
                 volumes?: {
-                  awsElasticBlockStore: {
+                  awsElasticBlockStore?: {
                     fsType?: string;
 
                     partition?: number;
@@ -1341,7 +1341,7 @@ export type AnalysisRun = {
                     volumeID: string;
                   };
 
-                  azureDisk: {
+                  azureDisk?: {
                     cachingMode?: string;
 
                     diskName: string;
@@ -1355,7 +1355,7 @@ export type AnalysisRun = {
                     readOnly?: boolean;
                   };
 
-                  azureFile: {
+                  azureFile?: {
                     readOnly?: boolean;
 
                     secretName: string;
@@ -1363,7 +1363,7 @@ export type AnalysisRun = {
                     shareName: string;
                   };
 
-                  cephfs: {
+                  cephfs?: {
                     monitors: string[];
 
                     path?: string;
@@ -1379,7 +1379,7 @@ export type AnalysisRun = {
                     user?: string;
                   };
 
-                  cinder: {
+                  cinder?: {
                     fsType?: string;
 
                     readOnly?: boolean;
@@ -1391,7 +1391,7 @@ export type AnalysisRun = {
                     volumeID: string;
                   };
 
-                  csi: {
+                  csi?: {
                     driver: string;
 
                     fsType?: string;
@@ -1425,7 +1425,7 @@ export type AnalysisRun = {
                     wwids?: string[];
                   };
 
-                  flexVolume: {
+                  flexVolume?: {
                     driver: string;
 
                     fsType?: string;
@@ -1447,7 +1447,7 @@ export type AnalysisRun = {
                     datasetUUID?: string;
                   };
 
-                  gcePersistentDisk: {
+                  gcePersistentDisk?: {
                     fsType?: string;
 
                     partition?: number;
@@ -1457,7 +1457,7 @@ export type AnalysisRun = {
                     readOnly?: boolean;
                   };
 
-                  gitRepo: {
+                  gitRepo?: {
                     directory?: string;
 
                     repository: string;
@@ -1465,7 +1465,7 @@ export type AnalysisRun = {
                     revision?: string;
                   };
 
-                  glusterfs: {
+                  glusterfs?: {
                     endpoints: string;
 
                     path: string;
@@ -1473,13 +1473,13 @@ export type AnalysisRun = {
                     readOnly?: boolean;
                   };
 
-                  hostPath: {
+                  hostPath?: {
                     path: string;
 
                     type?: string;
                   };
 
-                  iscsi: {
+                  iscsi?: {
                     chapAuthDiscovery?: boolean;
 
                     chapAuthSession?: boolean;
@@ -1507,7 +1507,7 @@ export type AnalysisRun = {
 
                   name: string;
 
-                  nfs: {
+                  nfs?: {
                     path: string;
 
                     readOnly?: boolean;
@@ -1515,19 +1515,19 @@ export type AnalysisRun = {
                     server: string;
                   };
 
-                  persistentVolumeClaim: {
+                  persistentVolumeClaim?: {
                     claimName: string;
 
                     readOnly?: boolean;
                   };
 
-                  photonPersistentDisk: {
+                  photonPersistentDisk?: {
                     fsType?: string;
 
                     pdID: string;
                   };
 
-                  portworxVolume: {
+                  portworxVolume?: {
                     fsType?: string;
 
                     readOnly?: boolean;
@@ -1535,11 +1535,11 @@ export type AnalysisRun = {
                     volumeID: string;
                   };
 
-                  projected: {
+                  projected?: {
                     defaultMode?: number;
 
                     sources: {
-                      serviceAccountToken: {
+                      serviceAccountToken?: {
                         audience?: string;
 
                         expirationSeconds?: number;
@@ -1549,7 +1549,7 @@ export type AnalysisRun = {
                     }[];
                   };
 
-                  quobyte: {
+                  quobyte?: {
                     group?: string;
 
                     readOnly?: boolean;
@@ -1563,7 +1563,7 @@ export type AnalysisRun = {
                     volume: string;
                   };
 
-                  rbd: {
+                  rbd?: {
                     fsType?: string;
 
                     image: string;
@@ -1583,7 +1583,7 @@ export type AnalysisRun = {
                     user?: string;
                   };
 
-                  scaleIO: {
+                  scaleIO?: {
                     fsType?: string;
 
                     gateway: string;
@@ -1621,7 +1621,7 @@ export type AnalysisRun = {
                     volumeNamespace?: string;
                   };
 
-                  vsphereVolume: {
+                  vsphereVolume?: {
                     fsType?: string;
 
                     storagePolicyID?: string;
@@ -1638,7 +1638,7 @@ export type AnalysisRun = {
           };
         };
 
-        kayenta: {
+        kayenta?: {
           address: string;
 
           application: string;
@@ -1698,7 +1698,7 @@ export type AnalysisRun = {
           query?: string;
         };
 
-        web: {
+        web?: {
           headers?: {
             key: string;
 
@@ -1719,7 +1719,7 @@ export type AnalysisRun = {
     terminate?: boolean;
   };
 
-  status: {
+  status?: {
     message?: string;
 
     metricResults?: {
@@ -1807,11 +1807,11 @@ export type Rollout = {
     };
 
     strategy?: {
-      blueGreen: {
+      blueGreen?: {
         activeService: string;
 
         antiAffinity?: {
-          preferredDuringSchedulingIgnoredDuringExecution: {
+          preferredDuringSchedulingIgnoredDuringExecution?: {
             weight: number;
           };
 
@@ -1889,7 +1889,7 @@ export type Rollout = {
         };
 
         antiAffinity?: {
-          preferredDuringSchedulingIgnoredDuringExecution: {
+          preferredDuringSchedulingIgnoredDuringExecution?: {
             weight: number;
           };
 
@@ -1923,7 +1923,7 @@ export type Rollout = {
             }[];
           };
 
-          experiment: {
+          experiment?: {
             analyses?: {
               args?: {
                 name: string;
@@ -1983,7 +1983,7 @@ export type Rollout = {
         }[];
 
         trafficRouting?: {
-          alb: {
+          alb?: {
             annotationPrefix?: string;
 
             ingress: string;
@@ -1991,7 +1991,7 @@ export type Rollout = {
             servicePort: number;
           };
 
-          istio: {
+          istio?: {
             virtualService: {
               name: string;
 
@@ -1999,7 +1999,7 @@ export type Rollout = {
             };
           };
 
-          nginx: {
+          nginx?: {
             additionalIngressAnnotations?: {
               [key: string]: string;
             };
@@ -2015,7 +2015,7 @@ export type Rollout = {
     template: {
       metadata?: {};
 
-      spec: {
+      spec?: {
         activeDeadlineSeconds?: number;
 
         affinity?: {
@@ -2042,7 +2042,7 @@ export type Rollout = {
               weight: number;
             }[];
 
-            requiredDuringSchedulingIgnoredDuringExecution: {
+            requiredDuringSchedulingIgnoredDuringExecution?: {
               nodeSelectorTerms: {
                 matchExpressions?: {
                   key: string;
@@ -2169,7 +2169,7 @@ export type Rollout = {
             value?: string;
 
             valueFrom?: {
-              configMapKeyRef: {
+              configMapKeyRef?: {
                 key: string;
 
                 name?: string;
@@ -2177,13 +2177,13 @@ export type Rollout = {
                 optional?: boolean;
               };
 
-              fieldRef: {
+              fieldRef?: {
                 apiVersion?: string;
 
                 fieldPath: string;
               };
 
-              resourceFieldRef: {
+              resourceFieldRef?: {
                 containerName?: string;
 
                 divisor?: number | string;
@@ -2191,7 +2191,7 @@ export type Rollout = {
                 resource: string;
               };
 
-              secretKeyRef: {
+              secretKeyRef?: {
                 key: string;
 
                 name?: string;
@@ -2227,7 +2227,7 @@ export type Rollout = {
                 command?: string[];
               };
 
-              httpGet: {
+              httpGet?: {
                 host?: string;
 
                 httpHeaders?: {
@@ -2243,7 +2243,7 @@ export type Rollout = {
                 scheme?: string;
               };
 
-              tcpSocket: {
+              tcpSocket?: {
                 host?: string;
 
                 port: number | string;
@@ -2255,7 +2255,7 @@ export type Rollout = {
                 command?: string[];
               };
 
-              httpGet: {
+              httpGet?: {
                 host?: string;
 
                 httpHeaders?: {
@@ -2271,7 +2271,7 @@ export type Rollout = {
                 scheme?: string;
               };
 
-              tcpSocket: {
+              tcpSocket?: {
                 host?: string;
 
                 port: number | string;
@@ -2286,7 +2286,7 @@ export type Rollout = {
 
             failureThreshold?: number;
 
-            httpGet: {
+            httpGet?: {
               host?: string;
 
               httpHeaders?: {
@@ -2308,7 +2308,7 @@ export type Rollout = {
 
             successThreshold?: number;
 
-            tcpSocket: {
+            tcpSocket?: {
               host?: string;
 
               port: number | string;
@@ -2338,7 +2338,7 @@ export type Rollout = {
 
             failureThreshold?: number;
 
-            httpGet: {
+            httpGet?: {
               host?: string;
 
               httpHeaders?: {
@@ -2360,7 +2360,7 @@ export type Rollout = {
 
             successThreshold?: number;
 
-            tcpSocket: {
+            tcpSocket?: {
               host?: string;
 
               port: number | string;
@@ -2418,7 +2418,7 @@ export type Rollout = {
 
             failureThreshold?: number;
 
-            httpGet: {
+            httpGet?: {
               host?: string;
 
               httpHeaders?: {
@@ -2440,7 +2440,7 @@ export type Rollout = {
 
             successThreshold?: number;
 
-            tcpSocket: {
+            tcpSocket?: {
               host?: string;
 
               port: number | string;
@@ -2509,7 +2509,7 @@ export type Rollout = {
             value?: string;
 
             valueFrom?: {
-              configMapKeyRef: {
+              configMapKeyRef?: {
                 key: string;
 
                 name?: string;
@@ -2517,13 +2517,13 @@ export type Rollout = {
                 optional?: boolean;
               };
 
-              fieldRef: {
+              fieldRef?: {
                 apiVersion?: string;
 
                 fieldPath: string;
               };
 
-              resourceFieldRef: {
+              resourceFieldRef?: {
                 containerName?: string;
 
                 divisor?: number | string;
@@ -2531,7 +2531,7 @@ export type Rollout = {
                 resource: string;
               };
 
-              secretKeyRef: {
+              secretKeyRef?: {
                 key: string;
 
                 name?: string;
@@ -2567,7 +2567,7 @@ export type Rollout = {
                 command?: string[];
               };
 
-              httpGet: {
+              httpGet?: {
                 host?: string;
 
                 httpHeaders?: {
@@ -2583,7 +2583,7 @@ export type Rollout = {
                 scheme?: string;
               };
 
-              tcpSocket: {
+              tcpSocket?: {
                 host?: string;
 
                 port: number | string;
@@ -2595,7 +2595,7 @@ export type Rollout = {
                 command?: string[];
               };
 
-              httpGet: {
+              httpGet?: {
                 host?: string;
 
                 httpHeaders?: {
@@ -2611,7 +2611,7 @@ export type Rollout = {
                 scheme?: string;
               };
 
-              tcpSocket: {
+              tcpSocket?: {
                 host?: string;
 
                 port: number | string;
@@ -2626,7 +2626,7 @@ export type Rollout = {
 
             failureThreshold?: number;
 
-            httpGet: {
+            httpGet?: {
               host?: string;
 
               httpHeaders?: {
@@ -2648,7 +2648,7 @@ export type Rollout = {
 
             successThreshold?: number;
 
-            tcpSocket: {
+            tcpSocket?: {
               host?: string;
 
               port: number | string;
@@ -2678,7 +2678,7 @@ export type Rollout = {
 
             failureThreshold?: number;
 
-            httpGet: {
+            httpGet?: {
               host?: string;
 
               httpHeaders?: {
@@ -2700,7 +2700,7 @@ export type Rollout = {
 
             successThreshold?: number;
 
-            tcpSocket: {
+            tcpSocket?: {
               host?: string;
 
               port: number | string;
@@ -2758,7 +2758,7 @@ export type Rollout = {
 
             failureThreshold?: number;
 
-            httpGet: {
+            httpGet?: {
               host?: string;
 
               httpHeaders?: {
@@ -2780,7 +2780,7 @@ export type Rollout = {
 
             successThreshold?: number;
 
-            tcpSocket: {
+            tcpSocket?: {
               host?: string;
 
               port: number | string;
@@ -2853,7 +2853,7 @@ export type Rollout = {
             value?: string;
 
             valueFrom?: {
-              configMapKeyRef: {
+              configMapKeyRef?: {
                 key: string;
 
                 name?: string;
@@ -2861,13 +2861,13 @@ export type Rollout = {
                 optional?: boolean;
               };
 
-              fieldRef: {
+              fieldRef?: {
                 apiVersion?: string;
 
                 fieldPath: string;
               };
 
-              resourceFieldRef: {
+              resourceFieldRef?: {
                 containerName?: string;
 
                 divisor?: number | string;
@@ -2875,7 +2875,7 @@ export type Rollout = {
                 resource: string;
               };
 
-              secretKeyRef: {
+              secretKeyRef?: {
                 key: string;
 
                 name?: string;
@@ -2911,7 +2911,7 @@ export type Rollout = {
                 command?: string[];
               };
 
-              httpGet: {
+              httpGet?: {
                 host?: string;
 
                 httpHeaders?: {
@@ -2927,7 +2927,7 @@ export type Rollout = {
                 scheme?: string;
               };
 
-              tcpSocket: {
+              tcpSocket?: {
                 host?: string;
 
                 port: number | string;
@@ -2939,7 +2939,7 @@ export type Rollout = {
                 command?: string[];
               };
 
-              httpGet: {
+              httpGet?: {
                 host?: string;
 
                 httpHeaders?: {
@@ -2955,7 +2955,7 @@ export type Rollout = {
                 scheme?: string;
               };
 
-              tcpSocket: {
+              tcpSocket?: {
                 host?: string;
 
                 port: number | string;
@@ -2970,7 +2970,7 @@ export type Rollout = {
 
             failureThreshold?: number;
 
-            httpGet: {
+            httpGet?: {
               host?: string;
 
               httpHeaders?: {
@@ -2992,7 +2992,7 @@ export type Rollout = {
 
             successThreshold?: number;
 
-            tcpSocket: {
+            tcpSocket?: {
               host?: string;
 
               port: number | string;
@@ -3022,7 +3022,7 @@ export type Rollout = {
 
             failureThreshold?: number;
 
-            httpGet: {
+            httpGet?: {
               host?: string;
 
               httpHeaders?: {
@@ -3044,7 +3044,7 @@ export type Rollout = {
 
             successThreshold?: number;
 
-            tcpSocket: {
+            tcpSocket?: {
               host?: string;
 
               port: number | string;
@@ -3102,7 +3102,7 @@ export type Rollout = {
 
             failureThreshold?: number;
 
-            httpGet: {
+            httpGet?: {
               host?: string;
 
               httpHeaders?: {
@@ -3124,7 +3124,7 @@ export type Rollout = {
 
             successThreshold?: number;
 
-            tcpSocket: {
+            tcpSocket?: {
               host?: string;
 
               port: number | string;
@@ -3273,7 +3273,7 @@ export type Rollout = {
         }[];
 
         volumes?: {
-          awsElasticBlockStore: {
+          awsElasticBlockStore?: {
             fsType?: string;
 
             partition?: number;
@@ -3283,7 +3283,7 @@ export type Rollout = {
             volumeID: string;
           };
 
-          azureDisk: {
+          azureDisk?: {
             cachingMode?: string;
 
             diskName: string;
@@ -3297,7 +3297,7 @@ export type Rollout = {
             readOnly?: boolean;
           };
 
-          azureFile: {
+          azureFile?: {
             readOnly?: boolean;
 
             secretName: string;
@@ -3305,7 +3305,7 @@ export type Rollout = {
             shareName: string;
           };
 
-          cephfs: {
+          cephfs?: {
             monitors: string[];
 
             path?: string;
@@ -3321,7 +3321,7 @@ export type Rollout = {
             user?: string;
           };
 
-          cinder: {
+          cinder?: {
             fsType?: string;
 
             readOnly?: boolean;
@@ -3333,7 +3333,7 @@ export type Rollout = {
             volumeID: string;
           };
 
-          csi: {
+          csi?: {
             driver: string;
 
             fsType?: string;
@@ -3367,7 +3367,7 @@ export type Rollout = {
             wwids?: string[];
           };
 
-          flexVolume: {
+          flexVolume?: {
             driver: string;
 
             fsType?: string;
@@ -3389,7 +3389,7 @@ export type Rollout = {
             datasetUUID?: string;
           };
 
-          gcePersistentDisk: {
+          gcePersistentDisk?: {
             fsType?: string;
 
             partition?: number;
@@ -3399,7 +3399,7 @@ export type Rollout = {
             readOnly?: boolean;
           };
 
-          gitRepo: {
+          gitRepo?: {
             directory?: string;
 
             repository: string;
@@ -3407,7 +3407,7 @@ export type Rollout = {
             revision?: string;
           };
 
-          glusterfs: {
+          glusterfs?: {
             endpoints: string;
 
             path: string;
@@ -3415,13 +3415,13 @@ export type Rollout = {
             readOnly?: boolean;
           };
 
-          hostPath: {
+          hostPath?: {
             path: string;
 
             type?: string;
           };
 
-          iscsi: {
+          iscsi?: {
             chapAuthDiscovery?: boolean;
 
             chapAuthSession?: boolean;
@@ -3449,7 +3449,7 @@ export type Rollout = {
 
           name: string;
 
-          nfs: {
+          nfs?: {
             path: string;
 
             readOnly?: boolean;
@@ -3457,19 +3457,19 @@ export type Rollout = {
             server: string;
           };
 
-          persistentVolumeClaim: {
+          persistentVolumeClaim?: {
             claimName: string;
 
             readOnly?: boolean;
           };
 
-          photonPersistentDisk: {
+          photonPersistentDisk?: {
             fsType?: string;
 
             pdID: string;
           };
 
-          portworxVolume: {
+          portworxVolume?: {
             fsType?: string;
 
             readOnly?: boolean;
@@ -3477,11 +3477,11 @@ export type Rollout = {
             volumeID: string;
           };
 
-          projected: {
+          projected?: {
             defaultMode?: number;
 
             sources: {
-              serviceAccountToken: {
+              serviceAccountToken?: {
                 audience?: string;
 
                 expirationSeconds?: number;
@@ -3491,7 +3491,7 @@ export type Rollout = {
             }[];
           };
 
-          quobyte: {
+          quobyte?: {
             group?: string;
 
             readOnly?: boolean;
@@ -3505,7 +3505,7 @@ export type Rollout = {
             volume: string;
           };
 
-          rbd: {
+          rbd?: {
             fsType?: string;
 
             image: string;
@@ -3525,7 +3525,7 @@ export type Rollout = {
             user?: string;
           };
 
-          scaleIO: {
+          scaleIO?: {
             fsType?: string;
 
             gateway: string;
@@ -3563,7 +3563,7 @@ export type Rollout = {
             volumeNamespace?: string;
           };
 
-          vsphereVolume: {
+          vsphereVolume?: {
             fsType?: string;
 
             storagePolicyID?: string;
@@ -3677,7 +3677,7 @@ export type Experiment = {
         value?: string;
 
         valueFrom?: {
-          secretKeyRef: {
+          secretKeyRef?: {
             key: string;
 
             name: string;
@@ -3720,7 +3720,7 @@ export type Experiment = {
       template: {
         metadata?: {};
 
-        spec: {
+        spec?: {
           activeDeadlineSeconds?: number;
 
           affinity?: {
@@ -3747,7 +3747,7 @@ export type Experiment = {
                 weight: number;
               }[];
 
-              requiredDuringSchedulingIgnoredDuringExecution: {
+              requiredDuringSchedulingIgnoredDuringExecution?: {
                 nodeSelectorTerms: {
                   matchExpressions?: {
                     key: string;
@@ -3874,7 +3874,7 @@ export type Experiment = {
               value?: string;
 
               valueFrom?: {
-                configMapKeyRef: {
+                configMapKeyRef?: {
                   key: string;
 
                   name?: string;
@@ -3882,13 +3882,13 @@ export type Experiment = {
                   optional?: boolean;
                 };
 
-                fieldRef: {
+                fieldRef?: {
                   apiVersion?: string;
 
                   fieldPath: string;
                 };
 
-                resourceFieldRef: {
+                resourceFieldRef?: {
                   containerName?: string;
 
                   divisor?: number | string;
@@ -3896,7 +3896,7 @@ export type Experiment = {
                   resource: string;
                 };
 
-                secretKeyRef: {
+                secretKeyRef?: {
                   key: string;
 
                   name?: string;
@@ -3932,7 +3932,7 @@ export type Experiment = {
                   command?: string[];
                 };
 
-                httpGet: {
+                httpGet?: {
                   host?: string;
 
                   httpHeaders?: {
@@ -3948,7 +3948,7 @@ export type Experiment = {
                   scheme?: string;
                 };
 
-                tcpSocket: {
+                tcpSocket?: {
                   host?: string;
 
                   port: number | string;
@@ -3960,7 +3960,7 @@ export type Experiment = {
                   command?: string[];
                 };
 
-                httpGet: {
+                httpGet?: {
                   host?: string;
 
                   httpHeaders?: {
@@ -3976,7 +3976,7 @@ export type Experiment = {
                   scheme?: string;
                 };
 
-                tcpSocket: {
+                tcpSocket?: {
                   host?: string;
 
                   port: number | string;
@@ -3991,7 +3991,7 @@ export type Experiment = {
 
               failureThreshold?: number;
 
-              httpGet: {
+              httpGet?: {
                 host?: string;
 
                 httpHeaders?: {
@@ -4013,7 +4013,7 @@ export type Experiment = {
 
               successThreshold?: number;
 
-              tcpSocket: {
+              tcpSocket?: {
                 host?: string;
 
                 port: number | string;
@@ -4043,7 +4043,7 @@ export type Experiment = {
 
               failureThreshold?: number;
 
-              httpGet: {
+              httpGet?: {
                 host?: string;
 
                 httpHeaders?: {
@@ -4065,7 +4065,7 @@ export type Experiment = {
 
               successThreshold?: number;
 
-              tcpSocket: {
+              tcpSocket?: {
                 host?: string;
 
                 port: number | string;
@@ -4123,7 +4123,7 @@ export type Experiment = {
 
               failureThreshold?: number;
 
-              httpGet: {
+              httpGet?: {
                 host?: string;
 
                 httpHeaders?: {
@@ -4145,7 +4145,7 @@ export type Experiment = {
 
               successThreshold?: number;
 
-              tcpSocket: {
+              tcpSocket?: {
                 host?: string;
 
                 port: number | string;
@@ -4214,7 +4214,7 @@ export type Experiment = {
               value?: string;
 
               valueFrom?: {
-                configMapKeyRef: {
+                configMapKeyRef?: {
                   key: string;
 
                   name?: string;
@@ -4222,13 +4222,13 @@ export type Experiment = {
                   optional?: boolean;
                 };
 
-                fieldRef: {
+                fieldRef?: {
                   apiVersion?: string;
 
                   fieldPath: string;
                 };
 
-                resourceFieldRef: {
+                resourceFieldRef?: {
                   containerName?: string;
 
                   divisor?: number | string;
@@ -4236,7 +4236,7 @@ export type Experiment = {
                   resource: string;
                 };
 
-                secretKeyRef: {
+                secretKeyRef?: {
                   key: string;
 
                   name?: string;
@@ -4272,7 +4272,7 @@ export type Experiment = {
                   command?: string[];
                 };
 
-                httpGet: {
+                httpGet?: {
                   host?: string;
 
                   httpHeaders?: {
@@ -4288,7 +4288,7 @@ export type Experiment = {
                   scheme?: string;
                 };
 
-                tcpSocket: {
+                tcpSocket?: {
                   host?: string;
 
                   port: number | string;
@@ -4300,7 +4300,7 @@ export type Experiment = {
                   command?: string[];
                 };
 
-                httpGet: {
+                httpGet?: {
                   host?: string;
 
                   httpHeaders?: {
@@ -4316,7 +4316,7 @@ export type Experiment = {
                   scheme?: string;
                 };
 
-                tcpSocket: {
+                tcpSocket?: {
                   host?: string;
 
                   port: number | string;
@@ -4331,7 +4331,7 @@ export type Experiment = {
 
               failureThreshold?: number;
 
-              httpGet: {
+              httpGet?: {
                 host?: string;
 
                 httpHeaders?: {
@@ -4353,7 +4353,7 @@ export type Experiment = {
 
               successThreshold?: number;
 
-              tcpSocket: {
+              tcpSocket?: {
                 host?: string;
 
                 port: number | string;
@@ -4383,7 +4383,7 @@ export type Experiment = {
 
               failureThreshold?: number;
 
-              httpGet: {
+              httpGet?: {
                 host?: string;
 
                 httpHeaders?: {
@@ -4405,7 +4405,7 @@ export type Experiment = {
 
               successThreshold?: number;
 
-              tcpSocket: {
+              tcpSocket?: {
                 host?: string;
 
                 port: number | string;
@@ -4463,7 +4463,7 @@ export type Experiment = {
 
               failureThreshold?: number;
 
-              httpGet: {
+              httpGet?: {
                 host?: string;
 
                 httpHeaders?: {
@@ -4485,7 +4485,7 @@ export type Experiment = {
 
               successThreshold?: number;
 
-              tcpSocket: {
+              tcpSocket?: {
                 host?: string;
 
                 port: number | string;
@@ -4558,7 +4558,7 @@ export type Experiment = {
               value?: string;
 
               valueFrom?: {
-                configMapKeyRef: {
+                configMapKeyRef?: {
                   key: string;
 
                   name?: string;
@@ -4566,13 +4566,13 @@ export type Experiment = {
                   optional?: boolean;
                 };
 
-                fieldRef: {
+                fieldRef?: {
                   apiVersion?: string;
 
                   fieldPath: string;
                 };
 
-                resourceFieldRef: {
+                resourceFieldRef?: {
                   containerName?: string;
 
                   divisor?: number | string;
@@ -4580,7 +4580,7 @@ export type Experiment = {
                   resource: string;
                 };
 
-                secretKeyRef: {
+                secretKeyRef?: {
                   key: string;
 
                   name?: string;
@@ -4616,7 +4616,7 @@ export type Experiment = {
                   command?: string[];
                 };
 
-                httpGet: {
+                httpGet?: {
                   host?: string;
 
                   httpHeaders?: {
@@ -4632,7 +4632,7 @@ export type Experiment = {
                   scheme?: string;
                 };
 
-                tcpSocket: {
+                tcpSocket?: {
                   host?: string;
 
                   port: number | string;
@@ -4644,7 +4644,7 @@ export type Experiment = {
                   command?: string[];
                 };
 
-                httpGet: {
+                httpGet?: {
                   host?: string;
 
                   httpHeaders?: {
@@ -4660,7 +4660,7 @@ export type Experiment = {
                   scheme?: string;
                 };
 
-                tcpSocket: {
+                tcpSocket?: {
                   host?: string;
 
                   port: number | string;
@@ -4675,7 +4675,7 @@ export type Experiment = {
 
               failureThreshold?: number;
 
-              httpGet: {
+              httpGet?: {
                 host?: string;
 
                 httpHeaders?: {
@@ -4697,7 +4697,7 @@ export type Experiment = {
 
               successThreshold?: number;
 
-              tcpSocket: {
+              tcpSocket?: {
                 host?: string;
 
                 port: number | string;
@@ -4727,7 +4727,7 @@ export type Experiment = {
 
               failureThreshold?: number;
 
-              httpGet: {
+              httpGet?: {
                 host?: string;
 
                 httpHeaders?: {
@@ -4749,7 +4749,7 @@ export type Experiment = {
 
               successThreshold?: number;
 
-              tcpSocket: {
+              tcpSocket?: {
                 host?: string;
 
                 port: number | string;
@@ -4807,7 +4807,7 @@ export type Experiment = {
 
               failureThreshold?: number;
 
-              httpGet: {
+              httpGet?: {
                 host?: string;
 
                 httpHeaders?: {
@@ -4829,7 +4829,7 @@ export type Experiment = {
 
               successThreshold?: number;
 
-              tcpSocket: {
+              tcpSocket?: {
                 host?: string;
 
                 port: number | string;
@@ -4978,7 +4978,7 @@ export type Experiment = {
           }[];
 
           volumes?: {
-            awsElasticBlockStore: {
+            awsElasticBlockStore?: {
               fsType?: string;
 
               partition?: number;
@@ -4988,7 +4988,7 @@ export type Experiment = {
               volumeID: string;
             };
 
-            azureDisk: {
+            azureDisk?: {
               cachingMode?: string;
 
               diskName: string;
@@ -5002,7 +5002,7 @@ export type Experiment = {
               readOnly?: boolean;
             };
 
-            azureFile: {
+            azureFile?: {
               readOnly?: boolean;
 
               secretName: string;
@@ -5010,7 +5010,7 @@ export type Experiment = {
               shareName: string;
             };
 
-            cephfs: {
+            cephfs?: {
               monitors: string[];
 
               path?: string;
@@ -5026,7 +5026,7 @@ export type Experiment = {
               user?: string;
             };
 
-            cinder: {
+            cinder?: {
               fsType?: string;
 
               readOnly?: boolean;
@@ -5038,7 +5038,7 @@ export type Experiment = {
               volumeID: string;
             };
 
-            csi: {
+            csi?: {
               driver: string;
 
               fsType?: string;
@@ -5072,7 +5072,7 @@ export type Experiment = {
               wwids?: string[];
             };
 
-            flexVolume: {
+            flexVolume?: {
               driver: string;
 
               fsType?: string;
@@ -5094,7 +5094,7 @@ export type Experiment = {
               datasetUUID?: string;
             };
 
-            gcePersistentDisk: {
+            gcePersistentDisk?: {
               fsType?: string;
 
               partition?: number;
@@ -5104,7 +5104,7 @@ export type Experiment = {
               readOnly?: boolean;
             };
 
-            gitRepo: {
+            gitRepo?: {
               directory?: string;
 
               repository: string;
@@ -5112,7 +5112,7 @@ export type Experiment = {
               revision?: string;
             };
 
-            glusterfs: {
+            glusterfs?: {
               endpoints: string;
 
               path: string;
@@ -5120,13 +5120,13 @@ export type Experiment = {
               readOnly?: boolean;
             };
 
-            hostPath: {
+            hostPath?: {
               path: string;
 
               type?: string;
             };
 
-            iscsi: {
+            iscsi?: {
               chapAuthDiscovery?: boolean;
 
               chapAuthSession?: boolean;
@@ -5154,7 +5154,7 @@ export type Experiment = {
 
             name: string;
 
-            nfs: {
+            nfs?: {
               path: string;
 
               readOnly?: boolean;
@@ -5162,19 +5162,19 @@ export type Experiment = {
               server: string;
             };
 
-            persistentVolumeClaim: {
+            persistentVolumeClaim?: {
               claimName: string;
 
               readOnly?: boolean;
             };
 
-            photonPersistentDisk: {
+            photonPersistentDisk?: {
               fsType?: string;
 
               pdID: string;
             };
 
-            portworxVolume: {
+            portworxVolume?: {
               fsType?: string;
 
               readOnly?: boolean;
@@ -5182,11 +5182,11 @@ export type Experiment = {
               volumeID: string;
             };
 
-            projected: {
+            projected?: {
               defaultMode?: number;
 
               sources: {
-                serviceAccountToken: {
+                serviceAccountToken?: {
                   audience?: string;
 
                   expirationSeconds?: number;
@@ -5196,7 +5196,7 @@ export type Experiment = {
               }[];
             };
 
-            quobyte: {
+            quobyte?: {
               group?: string;
 
               readOnly?: boolean;
@@ -5210,7 +5210,7 @@ export type Experiment = {
               volume: string;
             };
 
-            rbd: {
+            rbd?: {
               fsType?: string;
 
               image: string;
@@ -5230,7 +5230,7 @@ export type Experiment = {
               user?: string;
             };
 
-            scaleIO: {
+            scaleIO?: {
               fsType?: string;
 
               gateway: string;
@@ -5268,7 +5268,7 @@ export type Experiment = {
               volumeNamespace?: string;
             };
 
-            vsphereVolume: {
+            vsphereVolume?: {
               fsType?: string;
 
               storagePolicyID?: string;
@@ -5358,7 +5358,7 @@ export type AnalysisTemplate = {
       value?: string;
 
       valueFrom?: {
-        secretKeyRef: {
+        secretKeyRef?: {
           key: string;
 
           name: string;
@@ -5384,7 +5384,7 @@ export type AnalysisTemplate = {
       name: string;
 
       provider: {
-        job: {
+        job?: {
           metadata?: {};
 
           spec: {
@@ -5415,7 +5415,7 @@ export type AnalysisTemplate = {
             template: {
               metadata?: {};
 
-              spec: {
+              spec?: {
                 activeDeadlineSeconds?: number;
 
                 affinity?: {
@@ -5442,7 +5442,7 @@ export type AnalysisTemplate = {
                       weight: number;
                     }[];
 
-                    requiredDuringSchedulingIgnoredDuringExecution: {
+                    requiredDuringSchedulingIgnoredDuringExecution?: {
                       nodeSelectorTerms: {
                         matchExpressions?: {
                           key: string;
@@ -5569,7 +5569,7 @@ export type AnalysisTemplate = {
                     value?: string;
 
                     valueFrom?: {
-                      configMapKeyRef: {
+                      configMapKeyRef?: {
                         key: string;
 
                         name?: string;
@@ -5577,13 +5577,13 @@ export type AnalysisTemplate = {
                         optional?: boolean;
                       };
 
-                      fieldRef: {
+                      fieldRef?: {
                         apiVersion?: string;
 
                         fieldPath: string;
                       };
 
-                      resourceFieldRef: {
+                      resourceFieldRef?: {
                         containerName?: string;
 
                         divisor?: number | string;
@@ -5591,7 +5591,7 @@ export type AnalysisTemplate = {
                         resource: string;
                       };
 
-                      secretKeyRef: {
+                      secretKeyRef?: {
                         key: string;
 
                         name?: string;
@@ -5627,7 +5627,7 @@ export type AnalysisTemplate = {
                         command?: string[];
                       };
 
-                      httpGet: {
+                      httpGet?: {
                         host?: string;
 
                         httpHeaders?: {
@@ -5643,7 +5643,7 @@ export type AnalysisTemplate = {
                         scheme?: string;
                       };
 
-                      tcpSocket: {
+                      tcpSocket?: {
                         host?: string;
 
                         port: number | string;
@@ -5655,7 +5655,7 @@ export type AnalysisTemplate = {
                         command?: string[];
                       };
 
-                      httpGet: {
+                      httpGet?: {
                         host?: string;
 
                         httpHeaders?: {
@@ -5671,7 +5671,7 @@ export type AnalysisTemplate = {
                         scheme?: string;
                       };
 
-                      tcpSocket: {
+                      tcpSocket?: {
                         host?: string;
 
                         port: number | string;
@@ -5686,7 +5686,7 @@ export type AnalysisTemplate = {
 
                     failureThreshold?: number;
 
-                    httpGet: {
+                    httpGet?: {
                       host?: string;
 
                       httpHeaders?: {
@@ -5708,7 +5708,7 @@ export type AnalysisTemplate = {
 
                     successThreshold?: number;
 
-                    tcpSocket: {
+                    tcpSocket?: {
                       host?: string;
 
                       port: number | string;
@@ -5738,7 +5738,7 @@ export type AnalysisTemplate = {
 
                     failureThreshold?: number;
 
-                    httpGet: {
+                    httpGet?: {
                       host?: string;
 
                       httpHeaders?: {
@@ -5760,7 +5760,7 @@ export type AnalysisTemplate = {
 
                     successThreshold?: number;
 
-                    tcpSocket: {
+                    tcpSocket?: {
                       host?: string;
 
                       port: number | string;
@@ -5818,7 +5818,7 @@ export type AnalysisTemplate = {
 
                     failureThreshold?: number;
 
-                    httpGet: {
+                    httpGet?: {
                       host?: string;
 
                       httpHeaders?: {
@@ -5840,7 +5840,7 @@ export type AnalysisTemplate = {
 
                     successThreshold?: number;
 
-                    tcpSocket: {
+                    tcpSocket?: {
                       host?: string;
 
                       port: number | string;
@@ -5909,7 +5909,7 @@ export type AnalysisTemplate = {
                     value?: string;
 
                     valueFrom?: {
-                      configMapKeyRef: {
+                      configMapKeyRef?: {
                         key: string;
 
                         name?: string;
@@ -5917,13 +5917,13 @@ export type AnalysisTemplate = {
                         optional?: boolean;
                       };
 
-                      fieldRef: {
+                      fieldRef?: {
                         apiVersion?: string;
 
                         fieldPath: string;
                       };
 
-                      resourceFieldRef: {
+                      resourceFieldRef?: {
                         containerName?: string;
 
                         divisor?: number | string;
@@ -5931,7 +5931,7 @@ export type AnalysisTemplate = {
                         resource: string;
                       };
 
-                      secretKeyRef: {
+                      secretKeyRef?: {
                         key: string;
 
                         name?: string;
@@ -5967,7 +5967,7 @@ export type AnalysisTemplate = {
                         command?: string[];
                       };
 
-                      httpGet: {
+                      httpGet?: {
                         host?: string;
 
                         httpHeaders?: {
@@ -5983,7 +5983,7 @@ export type AnalysisTemplate = {
                         scheme?: string;
                       };
 
-                      tcpSocket: {
+                      tcpSocket?: {
                         host?: string;
 
                         port: number | string;
@@ -5995,7 +5995,7 @@ export type AnalysisTemplate = {
                         command?: string[];
                       };
 
-                      httpGet: {
+                      httpGet?: {
                         host?: string;
 
                         httpHeaders?: {
@@ -6011,7 +6011,7 @@ export type AnalysisTemplate = {
                         scheme?: string;
                       };
 
-                      tcpSocket: {
+                      tcpSocket?: {
                         host?: string;
 
                         port: number | string;
@@ -6026,7 +6026,7 @@ export type AnalysisTemplate = {
 
                     failureThreshold?: number;
 
-                    httpGet: {
+                    httpGet?: {
                       host?: string;
 
                       httpHeaders?: {
@@ -6048,7 +6048,7 @@ export type AnalysisTemplate = {
 
                     successThreshold?: number;
 
-                    tcpSocket: {
+                    tcpSocket?: {
                       host?: string;
 
                       port: number | string;
@@ -6078,7 +6078,7 @@ export type AnalysisTemplate = {
 
                     failureThreshold?: number;
 
-                    httpGet: {
+                    httpGet?: {
                       host?: string;
 
                       httpHeaders?: {
@@ -6100,7 +6100,7 @@ export type AnalysisTemplate = {
 
                     successThreshold?: number;
 
-                    tcpSocket: {
+                    tcpSocket?: {
                       host?: string;
 
                       port: number | string;
@@ -6158,7 +6158,7 @@ export type AnalysisTemplate = {
 
                     failureThreshold?: number;
 
-                    httpGet: {
+                    httpGet?: {
                       host?: string;
 
                       httpHeaders?: {
@@ -6180,7 +6180,7 @@ export type AnalysisTemplate = {
 
                     successThreshold?: number;
 
-                    tcpSocket: {
+                    tcpSocket?: {
                       host?: string;
 
                       port: number | string;
@@ -6253,7 +6253,7 @@ export type AnalysisTemplate = {
                     value?: string;
 
                     valueFrom?: {
-                      configMapKeyRef: {
+                      configMapKeyRef?: {
                         key: string;
 
                         name?: string;
@@ -6261,13 +6261,13 @@ export type AnalysisTemplate = {
                         optional?: boolean;
                       };
 
-                      fieldRef: {
+                      fieldRef?: {
                         apiVersion?: string;
 
                         fieldPath: string;
                       };
 
-                      resourceFieldRef: {
+                      resourceFieldRef?: {
                         containerName?: string;
 
                         divisor?: number | string;
@@ -6275,7 +6275,7 @@ export type AnalysisTemplate = {
                         resource: string;
                       };
 
-                      secretKeyRef: {
+                      secretKeyRef?: {
                         key: string;
 
                         name?: string;
@@ -6311,7 +6311,7 @@ export type AnalysisTemplate = {
                         command?: string[];
                       };
 
-                      httpGet: {
+                      httpGet?: {
                         host?: string;
 
                         httpHeaders?: {
@@ -6327,7 +6327,7 @@ export type AnalysisTemplate = {
                         scheme?: string;
                       };
 
-                      tcpSocket: {
+                      tcpSocket?: {
                         host?: string;
 
                         port: number | string;
@@ -6339,7 +6339,7 @@ export type AnalysisTemplate = {
                         command?: string[];
                       };
 
-                      httpGet: {
+                      httpGet?: {
                         host?: string;
 
                         httpHeaders?: {
@@ -6355,7 +6355,7 @@ export type AnalysisTemplate = {
                         scheme?: string;
                       };
 
-                      tcpSocket: {
+                      tcpSocket?: {
                         host?: string;
 
                         port: number | string;
@@ -6370,7 +6370,7 @@ export type AnalysisTemplate = {
 
                     failureThreshold?: number;
 
-                    httpGet: {
+                    httpGet?: {
                       host?: string;
 
                       httpHeaders?: {
@@ -6392,7 +6392,7 @@ export type AnalysisTemplate = {
 
                     successThreshold?: number;
 
-                    tcpSocket: {
+                    tcpSocket?: {
                       host?: string;
 
                       port: number | string;
@@ -6422,7 +6422,7 @@ export type AnalysisTemplate = {
 
                     failureThreshold?: number;
 
-                    httpGet: {
+                    httpGet?: {
                       host?: string;
 
                       httpHeaders?: {
@@ -6444,7 +6444,7 @@ export type AnalysisTemplate = {
 
                     successThreshold?: number;
 
-                    tcpSocket: {
+                    tcpSocket?: {
                       host?: string;
 
                       port: number | string;
@@ -6502,7 +6502,7 @@ export type AnalysisTemplate = {
 
                     failureThreshold?: number;
 
-                    httpGet: {
+                    httpGet?: {
                       host?: string;
 
                       httpHeaders?: {
@@ -6524,7 +6524,7 @@ export type AnalysisTemplate = {
 
                     successThreshold?: number;
 
-                    tcpSocket: {
+                    tcpSocket?: {
                       host?: string;
 
                       port: number | string;
@@ -6673,7 +6673,7 @@ export type AnalysisTemplate = {
                 }[];
 
                 volumes?: {
-                  awsElasticBlockStore: {
+                  awsElasticBlockStore?: {
                     fsType?: string;
 
                     partition?: number;
@@ -6683,7 +6683,7 @@ export type AnalysisTemplate = {
                     volumeID: string;
                   };
 
-                  azureDisk: {
+                  azureDisk?: {
                     cachingMode?: string;
 
                     diskName: string;
@@ -6697,7 +6697,7 @@ export type AnalysisTemplate = {
                     readOnly?: boolean;
                   };
 
-                  azureFile: {
+                  azureFile?: {
                     readOnly?: boolean;
 
                     secretName: string;
@@ -6705,7 +6705,7 @@ export type AnalysisTemplate = {
                     shareName: string;
                   };
 
-                  cephfs: {
+                  cephfs?: {
                     monitors: string[];
 
                     path?: string;
@@ -6721,7 +6721,7 @@ export type AnalysisTemplate = {
                     user?: string;
                   };
 
-                  cinder: {
+                  cinder?: {
                     fsType?: string;
 
                     readOnly?: boolean;
@@ -6733,7 +6733,7 @@ export type AnalysisTemplate = {
                     volumeID: string;
                   };
 
-                  csi: {
+                  csi?: {
                     driver: string;
 
                     fsType?: string;
@@ -6767,7 +6767,7 @@ export type AnalysisTemplate = {
                     wwids?: string[];
                   };
 
-                  flexVolume: {
+                  flexVolume?: {
                     driver: string;
 
                     fsType?: string;
@@ -6789,7 +6789,7 @@ export type AnalysisTemplate = {
                     datasetUUID?: string;
                   };
 
-                  gcePersistentDisk: {
+                  gcePersistentDisk?: {
                     fsType?: string;
 
                     partition?: number;
@@ -6799,7 +6799,7 @@ export type AnalysisTemplate = {
                     readOnly?: boolean;
                   };
 
-                  gitRepo: {
+                  gitRepo?: {
                     directory?: string;
 
                     repository: string;
@@ -6807,7 +6807,7 @@ export type AnalysisTemplate = {
                     revision?: string;
                   };
 
-                  glusterfs: {
+                  glusterfs?: {
                     endpoints: string;
 
                     path: string;
@@ -6815,13 +6815,13 @@ export type AnalysisTemplate = {
                     readOnly?: boolean;
                   };
 
-                  hostPath: {
+                  hostPath?: {
                     path: string;
 
                     type?: string;
                   };
 
-                  iscsi: {
+                  iscsi?: {
                     chapAuthDiscovery?: boolean;
 
                     chapAuthSession?: boolean;
@@ -6849,7 +6849,7 @@ export type AnalysisTemplate = {
 
                   name: string;
 
-                  nfs: {
+                  nfs?: {
                     path: string;
 
                     readOnly?: boolean;
@@ -6857,19 +6857,19 @@ export type AnalysisTemplate = {
                     server: string;
                   };
 
-                  persistentVolumeClaim: {
+                  persistentVolumeClaim?: {
                     claimName: string;
 
                     readOnly?: boolean;
                   };
 
-                  photonPersistentDisk: {
+                  photonPersistentDisk?: {
                     fsType?: string;
 
                     pdID: string;
                   };
 
-                  portworxVolume: {
+                  portworxVolume?: {
                     fsType?: string;
 
                     readOnly?: boolean;
@@ -6877,11 +6877,11 @@ export type AnalysisTemplate = {
                     volumeID: string;
                   };
 
-                  projected: {
+                  projected?: {
                     defaultMode?: number;
 
                     sources: {
-                      serviceAccountToken: {
+                      serviceAccountToken?: {
                         audience?: string;
 
                         expirationSeconds?: number;
@@ -6891,7 +6891,7 @@ export type AnalysisTemplate = {
                     }[];
                   };
 
-                  quobyte: {
+                  quobyte?: {
                     group?: string;
 
                     readOnly?: boolean;
@@ -6905,7 +6905,7 @@ export type AnalysisTemplate = {
                     volume: string;
                   };
 
-                  rbd: {
+                  rbd?: {
                     fsType?: string;
 
                     image: string;
@@ -6925,7 +6925,7 @@ export type AnalysisTemplate = {
                     user?: string;
                   };
 
-                  scaleIO: {
+                  scaleIO?: {
                     fsType?: string;
 
                     gateway: string;
@@ -6963,7 +6963,7 @@ export type AnalysisTemplate = {
                     volumeNamespace?: string;
                   };
 
-                  vsphereVolume: {
+                  vsphereVolume?: {
                     fsType?: string;
 
                     storagePolicyID?: string;
@@ -6980,7 +6980,7 @@ export type AnalysisTemplate = {
           };
         };
 
-        kayenta: {
+        kayenta?: {
           address: string;
 
           application: string;
@@ -7040,7 +7040,7 @@ export type AnalysisTemplate = {
           query?: string;
         };
 
-        web: {
+        web?: {
           headers?: {
             key: string;
 
@@ -7112,7 +7112,7 @@ export type Application = {
       revision?: string;
 
       /** Source overrides the source definition set in the application. This is typically set in a Rollback operation and nil during a Sync operation */
-      source: {
+      source?: {
         /** Chart is a Helm chart name */
         chart?: string;
 
@@ -7457,7 +7457,7 @@ export type Application = {
       revision: string;
 
       /** ApplicationSource contains information about github repository, path within repository and target application environment. */
-      source: {
+      source?: {
         /** Chart is a Helm chart name */
         chart?: string;
 
@@ -7583,7 +7583,7 @@ export type Application = {
     observedAt?: string;
 
     /** OperationState contains information about state of currently performing operation on application. */
-    operationState: {
+    operationState?: {
       /** FinishedAt contains time of operation completion */
       finishedAt?: string;
 
@@ -7625,7 +7625,7 @@ export type Application = {
           revision?: string;
 
           /** Source overrides the source definition set in the application. This is typically set in a Rollback operation and nil during a Sync operation */
-          source: {
+          source?: {
             /** Chart is a Helm chart name */
             chart?: string;
 
@@ -7773,7 +7773,7 @@ export type Application = {
       startedAt: string;
 
       /** SyncResult is the result of a Sync operation */
-      syncResult: {
+      syncResult?: {
         /** Resources holds the sync result of each individual resource */
         resources?: {
           group: string;
@@ -7806,7 +7806,7 @@ export type Application = {
         revision: string;
 
         /** Source records the application source information of the sync, used for comparing auto-sync */
-        source: {
+        source?: {
           /** Chart is a Helm chart name */
           chart?: string;
 
@@ -7969,9 +7969,9 @@ export type Application = {
     };
 
     /** SyncStatus is a comparison result of application spec and deployed application. */
-    sync: {
+    sync?: {
       /** ComparedTo contains application source and target which was used for resources comparison */
-      comparedTo: {
+      comparedTo?: {
         /** ApplicationDestination contains deployment destination information */
         destination: {
           /** Namespace overrides the environment namespace value in the ksonnet app.yaml */

@@ -14,7 +14,7 @@ export type ScaledObject = {
     cooldownPeriod?: number;
 
     /** JobSpec describes how the job execution will look like. */
-    jobTargetRef: {
+    jobTargetRef?: {
       /** Specifies the duration in seconds relative to the startTime that the job may be active before the system tries to terminate it; value must be positive integer */
       activeDeadlineSeconds?: number;
 
@@ -56,7 +56,7 @@ export type ScaledObject = {
         metadata?: {};
 
         /** Specification of the desired behavior of the pod. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#spec-and-status */
-        spec: {
+        spec?: {
           /** Optional duration in seconds the pod may be active on the node relative to StartTime before the system will actively try to mark it failed and kill associated containers. Value must be a positive integer. */
           activeDeadlineSeconds?: number;
 
@@ -98,7 +98,7 @@ export type ScaledObject = {
               }[];
 
               /** If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. */
-              requiredDuringSchedulingIgnoredDuringExecution: {
+              requiredDuringSchedulingIgnoredDuringExecution?: {
                 /** Required. A list of node selector terms. The terms are ORed. */
                 nodeSelectorTerms: {
                   /** A list of node selector requirements by node's labels. */
@@ -285,7 +285,7 @@ export type ScaledObject = {
               /** Source for the environment variable's value. Cannot be used if value is not empty. */
               valueFrom?: {
                 /** Selects a key of a ConfigMap. */
-                configMapKeyRef: {
+                configMapKeyRef?: {
                   /** The key to select. */
                   key: string;
 
@@ -297,7 +297,7 @@ export type ScaledObject = {
                 };
 
                 /** Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP. */
-                fieldRef: {
+                fieldRef?: {
                   /** Version of the schema the FieldPath is written in terms of, defaults to "v1". */
                   apiVersion?: string;
 
@@ -306,7 +306,7 @@ export type ScaledObject = {
                 };
 
                 /** Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. */
-                resourceFieldRef: {
+                resourceFieldRef?: {
                   /** Container name: required for volumes, optional for env vars */
                   containerName?: string;
 
@@ -318,7 +318,7 @@ export type ScaledObject = {
                 };
 
                 /** Selects a key of a secret in the pod's namespace */
-                secretKeyRef: {
+                secretKeyRef?: {
                   /** The key of the secret to select from.  Must be a valid secret key. */
                   key: string;
 
@@ -372,7 +372,7 @@ export type ScaledObject = {
                 };
 
                 /** HTTPGet specifies the http request to perform. */
-                httpGet: {
+                httpGet?: {
                   /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
                   host?: string;
 
@@ -396,7 +396,7 @@ export type ScaledObject = {
                 };
 
                 /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
-                tcpSocket: {
+                tcpSocket?: {
                   /** Optional: Host name to connect to, defaults to the pod IP. */
                   host?: string;
 
@@ -414,7 +414,7 @@ export type ScaledObject = {
                 };
 
                 /** HTTPGet specifies the http request to perform. */
-                httpGet: {
+                httpGet?: {
                   /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
                   host?: string;
 
@@ -438,7 +438,7 @@ export type ScaledObject = {
                 };
 
                 /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
-                tcpSocket: {
+                tcpSocket?: {
                   /** Optional: Host name to connect to, defaults to the pod IP. */
                   host?: string;
 
@@ -460,7 +460,7 @@ export type ScaledObject = {
               failureThreshold?: number;
 
               /** HTTPGet specifies the http request to perform. */
-              httpGet: {
+              httpGet?: {
                 /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
                 host?: string;
 
@@ -493,7 +493,7 @@ export type ScaledObject = {
               successThreshold?: number;
 
               /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
-              tcpSocket: {
+              tcpSocket?: {
                 /** Optional: Host name to connect to, defaults to the pod IP. */
                 host?: string;
 
@@ -538,7 +538,7 @@ export type ScaledObject = {
               failureThreshold?: number;
 
               /** HTTPGet specifies the http request to perform. */
-              httpGet: {
+              httpGet?: {
                 /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
                 host?: string;
 
@@ -571,7 +571,7 @@ export type ScaledObject = {
               successThreshold?: number;
 
               /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
-              tcpSocket: {
+              tcpSocket?: {
                 /** Optional: Host name to connect to, defaults to the pod IP. */
                 host?: string;
 
@@ -762,7 +762,7 @@ export type ScaledObject = {
               /** Source for the environment variable's value. Cannot be used if value is not empty. */
               valueFrom?: {
                 /** Selects a key of a ConfigMap. */
-                configMapKeyRef: {
+                configMapKeyRef?: {
                   /** The key to select. */
                   key: string;
 
@@ -774,7 +774,7 @@ export type ScaledObject = {
                 };
 
                 /** Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP. */
-                fieldRef: {
+                fieldRef?: {
                   /** Version of the schema the FieldPath is written in terms of, defaults to "v1". */
                   apiVersion?: string;
 
@@ -783,7 +783,7 @@ export type ScaledObject = {
                 };
 
                 /** Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. */
-                resourceFieldRef: {
+                resourceFieldRef?: {
                   /** Container name: required for volumes, optional for env vars */
                   containerName?: string;
 
@@ -795,7 +795,7 @@ export type ScaledObject = {
                 };
 
                 /** Selects a key of a secret in the pod's namespace */
-                secretKeyRef: {
+                secretKeyRef?: {
                   /** The key of the secret to select from.  Must be a valid secret key. */
                   key: string;
 
@@ -849,7 +849,7 @@ export type ScaledObject = {
                 };
 
                 /** HTTPGet specifies the http request to perform. */
-                httpGet: {
+                httpGet?: {
                   /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
                   host?: string;
 
@@ -873,7 +873,7 @@ export type ScaledObject = {
                 };
 
                 /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
-                tcpSocket: {
+                tcpSocket?: {
                   /** Optional: Host name to connect to, defaults to the pod IP. */
                   host?: string;
 
@@ -891,7 +891,7 @@ export type ScaledObject = {
                 };
 
                 /** HTTPGet specifies the http request to perform. */
-                httpGet: {
+                httpGet?: {
                   /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
                   host?: string;
 
@@ -915,7 +915,7 @@ export type ScaledObject = {
                 };
 
                 /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
-                tcpSocket: {
+                tcpSocket?: {
                   /** Optional: Host name to connect to, defaults to the pod IP. */
                   host?: string;
 
@@ -937,7 +937,7 @@ export type ScaledObject = {
               failureThreshold?: number;
 
               /** HTTPGet specifies the http request to perform. */
-              httpGet: {
+              httpGet?: {
                 /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
                 host?: string;
 
@@ -970,7 +970,7 @@ export type ScaledObject = {
               successThreshold?: number;
 
               /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
-              tcpSocket: {
+              tcpSocket?: {
                 /** Optional: Host name to connect to, defaults to the pod IP. */
                 host?: string;
 
@@ -1015,7 +1015,7 @@ export type ScaledObject = {
               failureThreshold?: number;
 
               /** HTTPGet specifies the http request to perform. */
-              httpGet: {
+              httpGet?: {
                 /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
                 host?: string;
 
@@ -1048,7 +1048,7 @@ export type ScaledObject = {
               successThreshold?: number;
 
               /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
-              tcpSocket: {
+              tcpSocket?: {
                 /** Optional: Host name to connect to, defaults to the pod IP. */
                 host?: string;
 
@@ -1279,7 +1279,7 @@ export type ScaledObject = {
           /** List of volumes that can be mounted by containers belonging to the pod. More info: https:kubernetes.iodocsconceptsstoragevolumes */
           volumes?: {
             /** AWSElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https:kubernetes.iodocsconceptsstoragevolumes#awselasticblockstore */
-            awsElasticBlockStore: {
+            awsElasticBlockStore?: {
               /** Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https:kubernetes.iodocsconceptsstoragevolumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine */
               fsType?: string;
 
@@ -1294,7 +1294,7 @@ export type ScaledObject = {
             };
 
             /** AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. */
-            azureDisk: {
+            azureDisk?: {
               /** Host Caching mode: None, Read Only, Read Write. */
               cachingMode?: string;
 
@@ -1315,7 +1315,7 @@ export type ScaledObject = {
             };
 
             /** AzureFile represents an Azure File Service mount on the host and bind mount to the pod. */
-            azureFile: {
+            azureFile?: {
               /** Defaults to false (readwrite). ReadOnly here will force the ReadOnly setting in VolumeMounts. */
               readOnly?: boolean;
 
@@ -1327,7 +1327,7 @@ export type ScaledObject = {
             };
 
             /** CephFS represents a Ceph FS mount on the host that shares a pod's lifetime */
-            cephfs: {
+            cephfs?: {
               /** Required: Monitors is a collection of Ceph monitors More info: https:releases.k8s.ioHEADexamplesvolumescephfsREADME.md#how-to-use-it */
               monitors: string[];
 
@@ -1351,7 +1351,7 @@ export type ScaledObject = {
             };
 
             /** Cinder represents a cinder volume attached and mounted on kubelets host machine More info: https:releases.k8s.ioHEADexamplesmysql-cinder-pdREADME.md */
-            cinder: {
+            cinder?: {
               /** Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https:releases.k8s.ioHEADexamplesmysql-cinder-pdREADME.md */
               fsType?: string;
 
@@ -1393,7 +1393,7 @@ export type ScaledObject = {
             };
 
             /** CSI (Container Storage Interface) represents storage that is handled by an external CSI driver (Alpha feature). */
-            csi: {
+            csi?: {
               /** Driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster. */
               driver: string;
 
@@ -1423,7 +1423,7 @@ export type ScaledObject = {
               /** Items is a list of downward API volume file */
               items?: {
                 /** Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. */
-                fieldRef: {
+                fieldRef?: {
                   /** Version of the schema the FieldPath is written in terms of, defaults to "v1". */
                   apiVersion?: string;
 
@@ -1438,7 +1438,7 @@ export type ScaledObject = {
                 path: string;
 
                 /** Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. */
-                resourceFieldRef: {
+                resourceFieldRef?: {
                   /** Container name: required for volumes, optional for env vars */
                   containerName?: string;
 
@@ -1479,7 +1479,7 @@ export type ScaledObject = {
             };
 
             /** FlexVolume represents a generic volume resource that is provisionedattached using an exec based plugin. */
-            flexVolume: {
+            flexVolume?: {
               /** Driver is the name of the driver to use for this volume. */
               driver: string;
 
@@ -1511,7 +1511,7 @@ export type ScaledObject = {
             };
 
             /** GCEPersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https:kubernetes.iodocsconceptsstoragevolumes#gcepersistentdisk */
-            gcePersistentDisk: {
+            gcePersistentDisk?: {
               /** Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https:kubernetes.iodocsconceptsstoragevolumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine */
               fsType?: string;
 
@@ -1526,7 +1526,7 @@ export type ScaledObject = {
             };
 
             /** GitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container. */
-            gitRepo: {
+            gitRepo?: {
               /** Target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name. */
               directory?: string;
 
@@ -1538,7 +1538,7 @@ export type ScaledObject = {
             };
 
             /** Glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https:releases.k8s.ioHEADexamplesvolumesglusterfsREADME.md */
-            glusterfs: {
+            glusterfs?: {
               /** EndpointsName is the endpoint name that details Glusterfs topology. More info: https:releases.k8s.ioHEADexamplesvolumesglusterfsREADME.md#create-a-pod */
               endpoints: string;
 
@@ -1550,7 +1550,7 @@ export type ScaledObject = {
             };
 
             /** HostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https:kubernetes.iodocsconceptsstoragevolumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who cancan not mount host directories as readwrite. */
-            hostPath: {
+            hostPath?: {
               /** Path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https:kubernetes.iodocsconceptsstoragevolumes#hostpath */
               path: string;
 
@@ -1559,7 +1559,7 @@ export type ScaledObject = {
             };
 
             /** ISCSI represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https:releases.k8s.ioHEADexamplesvolumesiscsiREADME.md */
-            iscsi: {
+            iscsi?: {
               /** whether support iSCSI Discovery CHAP authentication */
               chapAuthDiscovery?: boolean;
 
@@ -1601,7 +1601,7 @@ export type ScaledObject = {
             name: string;
 
             /** NFS represents an NFS mount on the host that shares a pod's lifetime More info: https:kubernetes.iodocsconceptsstoragevolumes#nfs */
-            nfs: {
+            nfs?: {
               /** Path that is exported by the NFS server. More info: https:kubernetes.iodocsconceptsstoragevolumes#nfs */
               path: string;
 
@@ -1613,7 +1613,7 @@ export type ScaledObject = {
             };
 
             /** PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#persistentvolumeclaims */
-            persistentVolumeClaim: {
+            persistentVolumeClaim?: {
               /** ClaimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#persistentvolumeclaims */
               claimName: string;
 
@@ -1622,7 +1622,7 @@ export type ScaledObject = {
             };
 
             /** PhotonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine */
-            photonPersistentDisk: {
+            photonPersistentDisk?: {
               /** Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. */
               fsType?: string;
 
@@ -1631,7 +1631,7 @@ export type ScaledObject = {
             };
 
             /** PortworxVolume represents a portworx volume attached and mounted on kubelets host machine */
-            portworxVolume: {
+            portworxVolume?: {
               /** FSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs". Implicitly inferred to be "ext4" if unspecified. */
               fsType?: string;
 
@@ -1643,7 +1643,7 @@ export type ScaledObject = {
             };
 
             /** Items for all in one resources secrets, configmaps, and downward API */
-            projected: {
+            projected?: {
               /** Mode bits to use on created files by default. Must be a value between 0 and 0777. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
               defaultMode?: number;
 
@@ -1675,7 +1675,7 @@ export type ScaledObject = {
                   /** Items is a list of DownwardAPIVolume file */
                   items?: {
                     /** Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. */
-                    fieldRef: {
+                    fieldRef?: {
                       /** Version of the schema the FieldPath is written in terms of, defaults to "v1". */
                       apiVersion?: string;
 
@@ -1690,7 +1690,7 @@ export type ScaledObject = {
                     path: string;
 
                     /** Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. */
-                    resourceFieldRef: {
+                    resourceFieldRef?: {
                       /** Container name: required for volumes, optional for env vars */
                       containerName?: string;
 
@@ -1725,7 +1725,7 @@ export type ScaledObject = {
                 };
 
                 /** information about the serviceAccountToken data to project */
-                serviceAccountToken: {
+                serviceAccountToken?: {
                   /** Audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver. */
                   audience?: string;
 
@@ -1739,7 +1739,7 @@ export type ScaledObject = {
             };
 
             /** Quobyte represents a Quobyte mount on the host that shares a pod's lifetime */
-            quobyte: {
+            quobyte?: {
               /** Group to map volume access to Default is no group */
               group?: string;
 
@@ -1760,7 +1760,7 @@ export type ScaledObject = {
             };
 
             /** RBD represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https:releases.k8s.ioHEADexamplesvolumesrbdREADME.md */
-            rbd: {
+            rbd?: {
               /** Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https:kubernetes.iodocsconceptsstoragevolumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine */
               fsType?: string;
 
@@ -1790,7 +1790,7 @@ export type ScaledObject = {
             };
 
             /** ScaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. */
-            scaleIO: {
+            scaleIO?: {
               /** Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Default is "xfs". */
               fsType?: string;
 
@@ -1871,7 +1871,7 @@ export type ScaledObject = {
             };
 
             /** VsphereVolume represents a vSphere volume attached and mounted on kubelets host machine */
-            vsphereVolume: {
+            vsphereVolume?: {
               /** Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. */
               fsType?: string;
 
@@ -1899,7 +1899,7 @@ export type ScaledObject = {
     pollingInterval?: number;
 
     /** ObjectReference holds the a reference to the deployment this ScaledObject applies */
-    scaleTargetRef: {
+    scaleTargetRef?: {
       containerName?: string;
 
       deploymentName: string;
@@ -1910,7 +1910,7 @@ export type ScaledObject = {
 
     triggers: {
       /** ScaledObjectAuthRef points to the TriggerAuthentication object that is used to authenticate the scaler with the environment */
-      authenticationRef: {
+      authenticationRef?: {
         name: string;
       };
 

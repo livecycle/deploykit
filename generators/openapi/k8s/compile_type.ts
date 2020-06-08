@@ -17,9 +17,9 @@ export function compileType(def: Definition): string {
         Object.entries(properties).map(([key, prop]) =>
           `
     ${prop.description ? formatComment(prop.description) : ""}
-    ${formatTSPropName(key)}${
-            prop.required || required.includes(key) ? "" : "?"
-          }:${compileType(prop)};
+    ${formatTSPropName(key)}${required.includes(key) ? "" : "?"}:${
+            compileType(prop)
+          };
     `
         ).join("")
       }

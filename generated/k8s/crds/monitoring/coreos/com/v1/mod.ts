@@ -52,7 +52,7 @@ export type Alertmanager = {
         }[];
 
         /** If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. */
-        requiredDuringSchedulingIgnoredDuringExecution: {
+        requiredDuringSchedulingIgnoredDuringExecution?: {
           /** Required. A list of node selector terms. The terms are ORed. */
           nodeSelectorTerms: {
             /** A list of node selector requirements by node's labels. */
@@ -248,7 +248,7 @@ export type Alertmanager = {
         /** Source for the environment variable's value. Cannot be used if value is not empty. */
         valueFrom?: {
           /** Selects a key of a ConfigMap. */
-          configMapKeyRef: {
+          configMapKeyRef?: {
             /** The key to select. */
             key: string;
 
@@ -260,7 +260,7 @@ export type Alertmanager = {
           };
 
           /** Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. */
-          fieldRef: {
+          fieldRef?: {
             /** Version of the schema the FieldPath is written in terms of, defaults to "v1". */
             apiVersion?: string;
 
@@ -269,7 +269,7 @@ export type Alertmanager = {
           };
 
           /** Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. */
-          resourceFieldRef: {
+          resourceFieldRef?: {
             /** Container name: required for volumes, optional for env vars */
             containerName?: string;
 
@@ -281,7 +281,7 @@ export type Alertmanager = {
           };
 
           /** Selects a key of a secret in the pod's namespace */
-          secretKeyRef: {
+          secretKeyRef?: {
             /** The key of the secret to select from.  Must be a valid secret key. */
             key: string;
 
@@ -335,7 +335,7 @@ export type Alertmanager = {
           };
 
           /** HTTPGet specifies the http request to perform. */
-          httpGet: {
+          httpGet?: {
             /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
             host?: string;
 
@@ -359,7 +359,7 @@ export type Alertmanager = {
           };
 
           /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
-          tcpSocket: {
+          tcpSocket?: {
             /** Optional: Host name to connect to, defaults to the pod IP. */
             host?: string;
 
@@ -377,7 +377,7 @@ export type Alertmanager = {
           };
 
           /** HTTPGet specifies the http request to perform. */
-          httpGet: {
+          httpGet?: {
             /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
             host?: string;
 
@@ -401,7 +401,7 @@ export type Alertmanager = {
           };
 
           /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
-          tcpSocket: {
+          tcpSocket?: {
             /** Optional: Host name to connect to, defaults to the pod IP. */
             host?: string;
 
@@ -423,7 +423,7 @@ export type Alertmanager = {
         failureThreshold?: number;
 
         /** HTTPGet specifies the http request to perform. */
-        httpGet: {
+        httpGet?: {
           /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
           host?: string;
 
@@ -456,7 +456,7 @@ export type Alertmanager = {
         successThreshold?: number;
 
         /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
-        tcpSocket: {
+        tcpSocket?: {
           /** Optional: Host name to connect to, defaults to the pod IP. */
           host?: string;
 
@@ -501,7 +501,7 @@ export type Alertmanager = {
         failureThreshold?: number;
 
         /** HTTPGet specifies the http request to perform. */
-        httpGet: {
+        httpGet?: {
           /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
           host?: string;
 
@@ -534,7 +534,7 @@ export type Alertmanager = {
         successThreshold?: number;
 
         /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
-        tcpSocket: {
+        tcpSocket?: {
           /** Optional: Host name to connect to, defaults to the pod IP. */
           host?: string;
 
@@ -631,7 +631,7 @@ export type Alertmanager = {
         failureThreshold?: number;
 
         /** HTTPGet specifies the http request to perform. */
-        httpGet: {
+        httpGet?: {
           /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
           host?: string;
 
@@ -664,7 +664,7 @@ export type Alertmanager = {
         successThreshold?: number;
 
         /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
-        tcpSocket: {
+        tcpSocket?: {
           /** Optional: Host name to connect to, defaults to the pod IP. */
           host?: string;
 
@@ -756,7 +756,7 @@ export type Alertmanager = {
         /** Source for the environment variable's value. Cannot be used if value is not empty. */
         valueFrom?: {
           /** Selects a key of a ConfigMap. */
-          configMapKeyRef: {
+          configMapKeyRef?: {
             /** The key to select. */
             key: string;
 
@@ -768,7 +768,7 @@ export type Alertmanager = {
           };
 
           /** Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. */
-          fieldRef: {
+          fieldRef?: {
             /** Version of the schema the FieldPath is written in terms of, defaults to "v1". */
             apiVersion?: string;
 
@@ -777,7 +777,7 @@ export type Alertmanager = {
           };
 
           /** Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. */
-          resourceFieldRef: {
+          resourceFieldRef?: {
             /** Container name: required for volumes, optional for env vars */
             containerName?: string;
 
@@ -789,7 +789,7 @@ export type Alertmanager = {
           };
 
           /** Selects a key of a secret in the pod's namespace */
-          secretKeyRef: {
+          secretKeyRef?: {
             /** The key of the secret to select from.  Must be a valid secret key. */
             key: string;
 
@@ -843,7 +843,7 @@ export type Alertmanager = {
           };
 
           /** HTTPGet specifies the http request to perform. */
-          httpGet: {
+          httpGet?: {
             /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
             host?: string;
 
@@ -867,7 +867,7 @@ export type Alertmanager = {
           };
 
           /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
-          tcpSocket: {
+          tcpSocket?: {
             /** Optional: Host name to connect to, defaults to the pod IP. */
             host?: string;
 
@@ -885,7 +885,7 @@ export type Alertmanager = {
           };
 
           /** HTTPGet specifies the http request to perform. */
-          httpGet: {
+          httpGet?: {
             /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
             host?: string;
 
@@ -909,7 +909,7 @@ export type Alertmanager = {
           };
 
           /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
-          tcpSocket: {
+          tcpSocket?: {
             /** Optional: Host name to connect to, defaults to the pod IP. */
             host?: string;
 
@@ -931,7 +931,7 @@ export type Alertmanager = {
         failureThreshold?: number;
 
         /** HTTPGet specifies the http request to perform. */
-        httpGet: {
+        httpGet?: {
           /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
           host?: string;
 
@@ -964,7 +964,7 @@ export type Alertmanager = {
         successThreshold?: number;
 
         /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
-        tcpSocket: {
+        tcpSocket?: {
           /** Optional: Host name to connect to, defaults to the pod IP. */
           host?: string;
 
@@ -1009,7 +1009,7 @@ export type Alertmanager = {
         failureThreshold?: number;
 
         /** HTTPGet specifies the http request to perform. */
-        httpGet: {
+        httpGet?: {
           /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
           host?: string;
 
@@ -1042,7 +1042,7 @@ export type Alertmanager = {
         successThreshold?: number;
 
         /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
-        tcpSocket: {
+        tcpSocket?: {
           /** Optional: Host name to connect to, defaults to the pod IP. */
           host?: string;
 
@@ -1139,7 +1139,7 @@ export type Alertmanager = {
         failureThreshold?: number;
 
         /** HTTPGet specifies the http request to perform. */
-        httpGet: {
+        httpGet?: {
           /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
           host?: string;
 
@@ -1172,7 +1172,7 @@ export type Alertmanager = {
         successThreshold?: number;
 
         /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
-        tcpSocket: {
+        tcpSocket?: {
           /** Optional: Host name to connect to, defaults to the pod IP. */
           host?: string;
 
@@ -1406,7 +1406,7 @@ export type Alertmanager = {
           accessModes?: string[];
 
           /** This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.ioVolumeSnapshot - Beta) * An existing PVC (PersistentVolumeClaim) * An existing custom resourceobject that implements data population (Alpha) In order to use VolumeSnapshot object types, the appropriate feature gate must be enabled (VolumeSnapshotDataSource or AnyVolumeDataSource) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the specified data source is not supported, the volume will not be created and the failure will be reported as an event. In the future, we plan to support more data source types and the behavior of the provisioner may change. */
-          dataSource: {
+          dataSource?: {
             /** APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required. */
             apiGroup?: string;
 
@@ -1544,7 +1544,7 @@ export type Alertmanager = {
     /** Volumes allows configuration of additional volumes on the output StatefulSet definition. Volumes specified will be appended to other volumes that are generated as a result of StorageSpec objects. */
     volumes?: {
       /** AWSElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https:kubernetes.iodocsconceptsstoragevolumes#awselasticblockstore */
-      awsElasticBlockStore: {
+      awsElasticBlockStore?: {
         /** Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https:kubernetes.iodocsconceptsstoragevolumes#awselasticblockstore TODO: how do we prevent errors in the filesystem from compromising the machine */
         fsType?: string;
 
@@ -1559,7 +1559,7 @@ export type Alertmanager = {
       };
 
       /** AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod. */
-      azureDisk: {
+      azureDisk?: {
         /** Host Caching mode: None, Read Only, Read Write. */
         cachingMode?: string;
 
@@ -1580,7 +1580,7 @@ export type Alertmanager = {
       };
 
       /** AzureFile represents an Azure File Service mount on the host and bind mount to the pod. */
-      azureFile: {
+      azureFile?: {
         /** Defaults to false (readwrite). ReadOnly here will force the ReadOnly setting in VolumeMounts. */
         readOnly?: boolean;
 
@@ -1592,7 +1592,7 @@ export type Alertmanager = {
       };
 
       /** CephFS represents a Ceph FS mount on the host that shares a pod's lifetime */
-      cephfs: {
+      cephfs?: {
         /** Required: Monitors is a collection of Ceph monitors More info: https:examples.k8s.iovolumescephfsREADME.md#how-to-use-it */
         monitors: string[];
 
@@ -1616,7 +1616,7 @@ export type Alertmanager = {
       };
 
       /** Cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https:examples.k8s.iomysql-cinder-pdREADME.md */
-      cinder: {
+      cinder?: {
         /** Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https:examples.k8s.iomysql-cinder-pdREADME.md */
         fsType?: string;
 
@@ -1658,7 +1658,7 @@ export type Alertmanager = {
       };
 
       /** CSI (Container Storage Interface) represents storage that is handled by an external CSI driver (Alpha feature). */
-      csi: {
+      csi?: {
         /** Driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster. */
         driver: string;
 
@@ -1688,7 +1688,7 @@ export type Alertmanager = {
         /** Items is a list of downward API volume file */
         items?: {
           /** Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. */
-          fieldRef: {
+          fieldRef?: {
             /** Version of the schema the FieldPath is written in terms of, defaults to "v1". */
             apiVersion?: string;
 
@@ -1703,7 +1703,7 @@ export type Alertmanager = {
           path: string;
 
           /** Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. */
-          resourceFieldRef: {
+          resourceFieldRef?: {
             /** Container name: required for volumes, optional for env vars */
             containerName?: string;
 
@@ -1744,7 +1744,7 @@ export type Alertmanager = {
       };
 
       /** FlexVolume represents a generic volume resource that is provisionedattached using an exec based plugin. */
-      flexVolume: {
+      flexVolume?: {
         /** Driver is the name of the driver to use for this volume. */
         driver: string;
 
@@ -1776,7 +1776,7 @@ export type Alertmanager = {
       };
 
       /** GCEPersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https:kubernetes.iodocsconceptsstoragevolumes#gcepersistentdisk */
-      gcePersistentDisk: {
+      gcePersistentDisk?: {
         /** Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https:kubernetes.iodocsconceptsstoragevolumes#gcepersistentdisk TODO: how do we prevent errors in the filesystem from compromising the machine */
         fsType?: string;
 
@@ -1791,7 +1791,7 @@ export type Alertmanager = {
       };
 
       /** GitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container. */
-      gitRepo: {
+      gitRepo?: {
         /** Target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name. */
         directory?: string;
 
@@ -1803,7 +1803,7 @@ export type Alertmanager = {
       };
 
       /** Glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https:examples.k8s.iovolumesglusterfsREADME.md */
-      glusterfs: {
+      glusterfs?: {
         /** EndpointsName is the endpoint name that details Glusterfs topology. More info: https:examples.k8s.iovolumesglusterfsREADME.md#create-a-pod */
         endpoints: string;
 
@@ -1815,7 +1815,7 @@ export type Alertmanager = {
       };
 
       /** HostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https:kubernetes.iodocsconceptsstoragevolumes#hostpath --- TODO(jonesdl) We need to restrict who can use host directory mounts and who cancan not mount host directories as readwrite. */
-      hostPath: {
+      hostPath?: {
         /** Path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https:kubernetes.iodocsconceptsstoragevolumes#hostpath */
         path: string;
 
@@ -1824,7 +1824,7 @@ export type Alertmanager = {
       };
 
       /** ISCSI represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https:examples.k8s.iovolumesiscsiREADME.md */
-      iscsi: {
+      iscsi?: {
         /** whether support iSCSI Discovery CHAP authentication */
         chapAuthDiscovery?: boolean;
 
@@ -1866,7 +1866,7 @@ export type Alertmanager = {
       name: string;
 
       /** NFS represents an NFS mount on the host that shares a pod's lifetime More info: https:kubernetes.iodocsconceptsstoragevolumes#nfs */
-      nfs: {
+      nfs?: {
         /** Path that is exported by the NFS server. More info: https:kubernetes.iodocsconceptsstoragevolumes#nfs */
         path: string;
 
@@ -1878,7 +1878,7 @@ export type Alertmanager = {
       };
 
       /** PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#persistentvolumeclaims */
-      persistentVolumeClaim: {
+      persistentVolumeClaim?: {
         /** ClaimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#persistentvolumeclaims */
         claimName: string;
 
@@ -1887,7 +1887,7 @@ export type Alertmanager = {
       };
 
       /** PhotonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine */
-      photonPersistentDisk: {
+      photonPersistentDisk?: {
         /** Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. */
         fsType?: string;
 
@@ -1896,7 +1896,7 @@ export type Alertmanager = {
       };
 
       /** PortworxVolume represents a portworx volume attached and mounted on kubelets host machine */
-      portworxVolume: {
+      portworxVolume?: {
         /** FSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs". Implicitly inferred to be "ext4" if unspecified. */
         fsType?: string;
 
@@ -1908,7 +1908,7 @@ export type Alertmanager = {
       };
 
       /** Items for all in one resources secrets, configmaps, and downward API */
-      projected: {
+      projected?: {
         /** Mode bits to use on created files by default. Must be a value between 0 and 0777. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
         defaultMode?: number;
 
@@ -1940,7 +1940,7 @@ export type Alertmanager = {
             /** Items is a list of DownwardAPIVolume file */
             items?: {
               /** Required: Selects a field of the pod: only annotations, labels, name and namespace are supported. */
-              fieldRef: {
+              fieldRef?: {
                 /** Version of the schema the FieldPath is written in terms of, defaults to "v1". */
                 apiVersion?: string;
 
@@ -1955,7 +1955,7 @@ export type Alertmanager = {
               path: string;
 
               /** Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported. */
-              resourceFieldRef: {
+              resourceFieldRef?: {
                 /** Container name: required for volumes, optional for env vars */
                 containerName?: string;
 
@@ -1990,7 +1990,7 @@ export type Alertmanager = {
           };
 
           /** information about the serviceAccountToken data to project */
-          serviceAccountToken: {
+          serviceAccountToken?: {
             /** Audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver. */
             audience?: string;
 
@@ -2004,7 +2004,7 @@ export type Alertmanager = {
       };
 
       /** Quobyte represents a Quobyte mount on the host that shares a pod's lifetime */
-      quobyte: {
+      quobyte?: {
         /** Group to map volume access to Default is no group */
         group?: string;
 
@@ -2025,7 +2025,7 @@ export type Alertmanager = {
       };
 
       /** RBD represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https:examples.k8s.iovolumesrbdREADME.md */
-      rbd: {
+      rbd?: {
         /** Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https:kubernetes.iodocsconceptsstoragevolumes#rbd TODO: how do we prevent errors in the filesystem from compromising the machine */
         fsType?: string;
 
@@ -2055,7 +2055,7 @@ export type Alertmanager = {
       };
 
       /** ScaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes. */
-      scaleIO: {
+      scaleIO?: {
         /** Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Default is "xfs". */
         fsType?: string;
 
@@ -2136,7 +2136,7 @@ export type Alertmanager = {
       };
 
       /** VsphereVolume represents a vSphere volume attached and mounted on kubelets host machine */
-      vsphereVolume: {
+      vsphereVolume?: {
         /** Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. */
         fsType?: string;
 
@@ -2153,7 +2153,7 @@ export type Alertmanager = {
   };
 
   /** Most recent observed status of the Alertmanager cluster. Read-only. Not included when requesting from the apiserver, only from the Prometheus Operator API itself. More info: https:github.comkubernetescommunityblobmastercontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
-  status: {
+  status?: {
     /** Total number of available pods (ready for at least minReadySeconds) targeted by this Alertmanager cluster. */
     availableReplicas: number;
 
@@ -2195,7 +2195,7 @@ export type ServiceMonitor = {
       /** BasicAuth allow an endpoint to authenticate over basic authentication More info: https:prometheus.iodocsoperatingconfiguration#endpoints */
       basicAuth?: {
         /** The secret in the service monitor namespace that contains the password for authentication. */
-        password: {
+        password?: {
           /** The key of the secret to select from.  Must be a valid secret key. */
           key: string;
 
@@ -2207,7 +2207,7 @@ export type ServiceMonitor = {
         };
 
         /** The secret in the service monitor namespace that contains the username for authentication. */
-        username: {
+        username?: {
           /** The key of the secret to select from.  Must be a valid secret key. */
           key: string;
 
@@ -2223,7 +2223,7 @@ export type ServiceMonitor = {
       bearerTokenFile?: string;
 
       /** Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the service monitor and accessible by the Prometheus Operator. */
-      bearerTokenSecret: {
+      bearerTokenSecret?: {
         /** The key of the secret to select from.  Must be a valid secret key. */
         key: string;
 
@@ -2319,7 +2319,7 @@ export type ServiceMonitor = {
         /** Stuct containing the CA cert to use for the targets. */
         ca?: {
           /** ConfigMap containing data to use for the targets. */
-          configMap: {
+          configMap?: {
             /** The key to select. */
             key: string;
 
@@ -2331,7 +2331,7 @@ export type ServiceMonitor = {
           };
 
           /** Secret containing data to use for the targets. */
-          secret: {
+          secret?: {
             /** The key of the secret to select from.  Must be a valid secret key. */
             key: string;
 
@@ -2349,7 +2349,7 @@ export type ServiceMonitor = {
         /** Struct containing the client cert file for the targets. */
         cert?: {
           /** ConfigMap containing data to use for the targets. */
-          configMap: {
+          configMap?: {
             /** The key to select. */
             key: string;
 
@@ -2361,7 +2361,7 @@ export type ServiceMonitor = {
           };
 
           /** Secret containing data to use for the targets. */
-          secret: {
+          secret?: {
             /** The key of the secret to select from.  Must be a valid secret key. */
             key: string;
 
@@ -2383,7 +2383,7 @@ export type ServiceMonitor = {
         keyFile?: string;
 
         /** Secret containing the client key file for the targets. */
-        keySecret: {
+        keySecret?: {
           /** The key of the secret to select from.  Must be a valid secret key. */
           key: string;
 
