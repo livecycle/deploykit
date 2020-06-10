@@ -7106,6 +7106,8 @@ export type Application = {
         kind: string;
 
         name: string;
+
+        namespace?: string;
       }[];
 
       /** Revision is the revision in which to sync the application to. If omitted, will use the revision specified in app spec. */
@@ -7619,6 +7621,8 @@ export type Application = {
             kind: string;
 
             name: string;
+
+            namespace?: string;
           }[];
 
           /** Revision is the revision in which to sync the application to. If omitted, will use the revision specified in app spec. */
