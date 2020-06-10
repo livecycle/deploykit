@@ -56,6 +56,7 @@ export function addResource<
       ? factoryOrInstance(ctx, resources)
       : (copy(factoryOrInstance, undefined) as U);
 
+    console.log("add resource was called for:" + name);
     if (!newResource.metadata) {
       newResource.metadata = {
         name: ctx.name,

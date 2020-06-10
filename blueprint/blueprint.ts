@@ -70,7 +70,7 @@ class BluePrint<TContext, TResources>
       (acc, next) =>
         new BluePrint<TContext, any>(
           (ctx) =>
-            next.call(this, cleanObject(copy(acc.build(ctx), undefined)), ctx),
+            next.call(acc, cleanObject(copy(acc.build(ctx), undefined)), ctx),
           this.format,
         ),
       this as IBluePrint<TContext, any>,

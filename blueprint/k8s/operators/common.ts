@@ -1,21 +1,31 @@
 import * as k8s from "../../../generated/k8s/v1.18.3/api/mod.ts";
 import { KubeMetaContext } from "../types.ts";
-import { modify } from "../../blueprint.ts";
-import { addResources, addResource } from "./base.ts";
+import { modify, compose, IBluePrint } from "../../blueprint.ts";
+import { addResource } from "./base.ts";
 import { DeploymentStrategy } from "../../../generated/k8s/v1.18.3/api/apps/v1/mod.ts";
 import { Container } from "../../../generated/k8s/v1.18.3/api/core/v1/mod.ts";
 
 export const addSideCar = <
-  T extends { deployment: k8s.apps.v1.Deployment },
+  T extends Record<TDeploymentKey, k8s.apps.v1.Deployment>,
   TContext extends KubeMetaContext,
->({ name, image, resources = {}, containerProps = {} }: {
-  name: string;
-  image: string;
-  resources?: k8s.core.v1.ResourceRequirements;
-  containerProps?: Partial<Omit<Container, "image" | "resources">>;
-}) => {
+  TDeploymentKey extends string = "deployment",
+>(
+  {
+    name,
+    image,
+    resources = {},
+    containerProps = {},
+    delpoymentResourceKey = "deployment" as TDeploymentKey,
+  }: {
+    name: string;
+    image: string;
+    resources?: k8s.core.v1.ResourceRequirements;
+    containerProps?: Partial<Omit<Container, "image" | "resources">>;
+    delpoymentResourceKey?: TDeploymentKey;
+  },
+) => {
   return modify<TContext, T>((x) => {
-    x.deployment.spec!.template.spec?.containers.push({
+    x[delpoymentResourceKey].spec!.template.spec?.containers.push({
       name,
       image,
       resources,
@@ -25,18 +35,28 @@ export const addSideCar = <
 };
 
 export const addInitContainer = <
-  T extends { deployment: k8s.apps.v1.Deployment },
+  T extends Record<TDeploymentKey, k8s.apps.v1.Deployment>,
   TContext extends KubeMetaContext,
->({ name, image, resources = {}, containerProps = {} }: {
-  name: string;
-  image: string;
-  resources: k8s.core.v1.ResourceRequirements;
-  containerProps?: Partial<Omit<Container, "image" | "resources">>;
-}) => {
+  TDeploymentKey extends string = "deployment",
+>(
+  {
+    name,
+    image,
+    resources = {},
+    containerProps = {},
+    delpoymentResourceKey = "deployment" as TDeploymentKey,
+  }: {
+    name: string;
+    image: string;
+    resources: k8s.core.v1.ResourceRequirements;
+    containerProps?: Partial<Omit<Container, "image" | "resources">>;
+    delpoymentResourceKey?: TDeploymentKey;
+  },
+) => {
   return modify<TContext, T>((x) => {
-    x.deployment.spec!.template.spec!.initContainers =
-      x.deployment.spec!.template.spec?.initContainers || [];
-    x.deployment.spec!.template.spec!.initContainers.push({
+    x[delpoymentResourceKey].spec!.template.spec!.initContainers =
+      x[delpoymentResourceKey].spec!.template.spec?.initContainers || [];
+    x[delpoymentResourceKey].spec!.template.spec!.initContainers!.push({
       name,
       image,
       resources,
@@ -45,24 +65,32 @@ export const addInitContainer = <
   });
 };
 
-export const addConfigMap = ({ data }: { data: { [key: string]: string } }) =>
-  addResources({
-    config: k8s.core.v1.createConfigMap({
-      data,
-    }),
-  });
-
-export const addSecret = (
-  { data, isBase64 = false }: {
+export const addConfigMap = <TResourceKey extends string = "config">(
+  { data, resourceKey = "config" as TResourceKey }: {
     data: { [key: string]: string };
-    isBase64: boolean;
+    resourceKey?: TResourceKey;
   },
 ) =>
-  addResources({
-    secret: k8s.core.v1.createSecret({
+  addResource(
+    resourceKey,
+    k8s.core.v1.createConfigMap({
+      data,
+    }),
+  );
+
+export const addSecret = <TResourceKey extends string = "secret">(
+  { data, resourceKey = "secret" as TResourceKey, isBase64 = false }: {
+    data: { [key: string]: string };
+    isBase64?: boolean;
+    resourceKey?: TResourceKey;
+  },
+) =>
+  addResource(
+    resourceKey,
+    k8s.core.v1.createSecret({
       [isBase64 ? "data" : "stringData"]: data,
     }),
-  });
+  );
 
 export const addDeployment = <TKey extends string = "deployment">(
   {
@@ -149,41 +177,50 @@ export const addTls = <
 
 /** Adds an Ingress resource for routing external traffic to the service.
 */
-export const expose = <TServiceKey extends string = "service">(
-  { serviceResourceKey = "service" as TServiceKey, domain }: {
+export const expose = <
+  T extends Record<TServiceKey, k8s.core.v1.Service>,
+  TContext extends KubeMetaContext,
+  TServiceKey extends string = "service",
+  TIngressKey extends string = "ingress",
+>(
+  {
+    domain,
+    serviceResourceKey = "service" as TServiceKey,
+    ingressResourceKey = "ingress" as TIngressKey,
+  }: {
     domain: string;
     serviceResourceKey?: TServiceKey;
+    ingressResourceKey?: TIngressKey;
   },
-) => {
-  return function <
-    T extends Record<TServiceKey, k8s.core.v1.Service>,
-    TContext extends KubeMetaContext
-  >(resources: T, ctx: TContext) {
-    let r = addResources({
-      ingress: k8s.extensions.v1beta1.createIngress({
-        spec: {
-          rules: [],
-        },
-      }),
-    })(resources, ctx);
-
-    return modify<TContext, typeof r>((x) =>
-      x.ingress.spec!.rules!.push(
-        {
-          host: domain,
-          http: {
-            paths: [
-              {
-                backend: {
-                  serviceName: resources[serviceResourceKey].metadata!.name,
-                  servicePort:
-                    resources[serviceResourceKey].spec!.ports![0].port,
-                },
-              },
-            ],
+) =>
+  compose((blueprint: IBluePrint<TContext, T>) =>
+    blueprint.with(
+      addResource(
+        ingressResourceKey,
+        k8s.extensions.v1beta1.createIngress(
+          {
+            spec: {
+              rules: [],
+            },
           },
-        },
-      )
-    )(r, ctx);
-  };
-};
+        ),
+      ),
+      modify((x) => {
+        x[ingressResourceKey].spec!.rules!.push(
+          {
+            host: domain,
+            http: {
+              paths: [
+                {
+                  backend: {
+                    serviceName: x[serviceResourceKey].metadata!.name,
+                    servicePort: x[serviceResourceKey].spec!.ports![0].port,
+                  },
+                },
+              ],
+            },
+          },
+        );
+      }),
+    )
+  );
