@@ -1,5 +1,5 @@
 import { expandGlobSync } from "https://deno.land/std/fs/mod.ts";
-let target = "0.0.12";
+let target = "0.0.14";
 
 let replaced = `https://deno.land/x/gh:yshayy:deploykit@${target}`;
 let regex = /https:\/\/deno\.land\/x\/gh:yshayy:deploykit@[0-9.]+/g;
