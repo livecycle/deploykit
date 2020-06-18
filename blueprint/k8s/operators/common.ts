@@ -98,12 +98,14 @@ export const addDeployment = <TKey extends string = "deployment">(
     deploymentStrategy,
     resources = {},
     containerProps = {},
+    volumes = [],
     resourceKey = "deployment" as TKey,
   }: {
     image: string;
     resourceKey?: TKey;
     deploymentStrategy?: DeploymentStrategy;
     resources?: k8s.core.v1.ResourceRequirements;
+    volumes?: k8s.core.v1.Volume[];
     containerProps?: Partial<Omit<Container, "image" | "resources">>;
   },
 ) =>
@@ -119,6 +121,7 @@ export const addDeployment = <TKey extends string = "deployment">(
             labels: ctx.labels,
           },
           spec: {
+            volumes,
             containers: [
               {
                 name: "app",
