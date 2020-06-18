@@ -1,12 +1,12 @@
 import * as k8s from "../../../generated/k8s/v1.18.3/api/mod.ts";
-import { KubeMetaContext } from "../types.ts";
+import { KubeMetaContext, Workload } from "../types.ts";
 import { modify, compose, IBluePrint } from "../../blueprint.ts";
 import { addResource } from "./base.ts";
 import { DeploymentStrategy } from "../../../generated/k8s/v1.18.3/api/apps/v1/mod.ts";
 import { Container } from "../../../generated/k8s/v1.18.3/api/core/v1/mod.ts";
 
 export const addSideCar = <
-  T extends Record<TDeploymentKey, k8s.apps.v1.Deployment>,
+  T extends Record<TDeploymentKey, Workload>,
   TContext extends KubeMetaContext,
   TDeploymentKey extends string = "deployment",
 >(
@@ -35,7 +35,7 @@ export const addSideCar = <
 };
 
 export const addInitContainer = <
-  T extends Record<TDeploymentKey, k8s.apps.v1.Deployment>,
+  T extends Record<TDeploymentKey, Workload>,
   TContext extends KubeMetaContext,
   TDeploymentKey extends string = "deployment",
 >(
