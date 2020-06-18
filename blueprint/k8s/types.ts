@@ -10,4 +10,5 @@ export type KubeMetaContext = {
 export type Workload =
   | k8s.apps.v1.Deployment
   | k8s.apps.v1.StatefulSet
-  | k8s.apps.v1.DaemonSet;
+  | k8s.apps.v1.DaemonSet
+  | k8s.batch.v1.Job;
