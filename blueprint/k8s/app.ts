@@ -3,6 +3,6 @@ import { KubeMetaContext } from "./types.ts";
 
 export function createMicroservice<
   T extends KubeMetaContext = KubeMetaContext,
->(): IBluePrint<KubeMetaContext, {}> {
+>(): IBluePrint<T, {}> {
   return createBluePrint<T>();
 }
