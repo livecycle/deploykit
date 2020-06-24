@@ -1,7 +1,7 @@
-import { createDeployment } from "https://deno.land/x/gh:yshayy:deploykit@0.0.14/generated/k8s/v1.18.3/api/apps/v1/mod.ts";
-import { v1 } from "https://deno.land/x/gh:yshayy:deploykit@0.0.14/generated/k8s/v1.18.3/api/core/mod.ts";
-import { formatYaml } from "https://deno.land/x/gh:yshayy:deploykit@0.0.14/utils/format.ts";
-import { createKamusSecret } from "https://deno.land/x/gh:yshayy:deploykit@0.0.14/generated/k8s/crds/soluto/com/v1alpha2/mod.ts";
+import { createDeployment } from "https://deno.land/x/gh:yshayy:deploykit@0.0.15/generated/k8s/v1.18.3/api/apps/v1/mod.ts";
+import { v1 } from "https://deno.land/x/gh:yshayy:deploykit@0.0.15/generated/k8s/v1.18.3/api/core/mod.ts";
+import { formatYaml } from "https://deno.land/x/gh:yshayy:deploykit@0.0.15/utils/format.ts";
+import { createKamusSecret } from "https://deno.land/x/gh:yshayy:deploykit@0.0.15/generated/k8s/crds/soluto/com/v1alpha2/mod.ts";
 
 let secret = createKamusSecret({
   metadata: {
