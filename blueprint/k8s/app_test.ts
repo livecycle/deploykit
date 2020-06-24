@@ -10,23 +10,22 @@ Deno.test("basic k8s service test", () => {
   ).build(
     { name: "my-app", namespace: "my-namespace", labels: { app: "my-app" } },
   );
-
   [
-    s.dep.metadata?.name,
-    s.service.metadata?.name,
-    s.ingress.metadata?.name,
+    s.dep.metadata.name,
+    s.service.metadata.name,
+    s.ingress.metadata.name,
   ].every((x) => assertEquals(x, "my-app"));
 
   [
-    s.dep.metadata?.namespace,
-    s.service.metadata?.namespace,
-    s.ingress.metadata?.namespace,
+    s.dep.metadata.namespace,
+    s.service.metadata.namespace,
+    s.ingress.metadata.namespace,
   ].every((x) => assertEquals(x, "my-namespace"));
 
   [
-    s.dep.metadata?.labels,
-    s.service.metadata?.labels,
-    s.ingress.metadata?.labels,
+    s.dep.metadata.labels,
+    s.service.metadata.labels,
+    s.ingress.metadata.labels,
   ].every((x) => assertEquals(x, { app: "my-app" }));
 
   assertEquals(
@@ -34,6 +33,6 @@ Deno.test("basic k8s service test", () => {
     "my-image",
   );
 
-  assertEquals(s.service.spec?.ports![0].port, 80);
-  assertEquals(s.ingress.spec?.rules![0].host, "my-app.com");
+  assertEquals(s.service.spec.ports[0].port, 80);
+  assertEquals(s.ingress.spec.rules[0].host, "my-app.com");
 });

@@ -34,9 +34,9 @@ export type RuntimeClass = {
   /** Scheduling holds the scheduling constraints to ensure that pods running with this RuntimeClass are scheduled to nodes that support it. If scheduling is nil, this RuntimeClass is assumed to be supported by all nodes. */
   scheduling?: Scheduling;
 };
-export function createRuntimeClass(
-  data: Omit<RuntimeClass, "apiVersion" | "kind">,
-): RuntimeClass {
+export function createRuntimeClass<
+  T extends Omit<RuntimeClass, "apiVersion" | "kind">,
+>(data: T): RuntimeClass & T & Pick<RuntimeClass, "apiVersion" | "kind"> {
   return { apiVersion: "node.k8s.io/v1beta1", kind: "RuntimeClass", ...data };
 }
 
@@ -54,9 +54,11 @@ export type RuntimeClassList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createRuntimeClassList(
-  data: Omit<RuntimeClassList, "apiVersion" | "kind">,
-): RuntimeClassList {
+export function createRuntimeClassList<
+  T extends Omit<RuntimeClassList, "apiVersion" | "kind">,
+>(
+  data: T,
+): RuntimeClassList & T & Pick<RuntimeClassList, "apiVersion" | "kind"> {
   return {
     apiVersion: "node.k8s.io/v1beta1",
     kind: "RuntimeClassList",

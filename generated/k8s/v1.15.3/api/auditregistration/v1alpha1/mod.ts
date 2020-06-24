@@ -17,9 +17,9 @@ export type AuditSink = {
   /** Spec defines the audit configuration spec */
   spec?: AuditSinkSpec;
 };
-export function createAuditSink(
-  data: Omit<AuditSink, "apiVersion" | "kind">,
-): AuditSink {
+export function createAuditSink<
+  T extends Omit<AuditSink, "apiVersion" | "kind">,
+>(data: T): AuditSink & T & Pick<AuditSink, "apiVersion" | "kind"> {
   return {
     apiVersion: "auditregistration.k8s.io/v1alpha1",
     kind: "AuditSink",
@@ -40,9 +40,9 @@ export type AuditSinkList = {
 
   metadata?: ListMeta;
 };
-export function createAuditSinkList(
-  data: Omit<AuditSinkList, "apiVersion" | "kind">,
-): AuditSinkList {
+export function createAuditSinkList<
+  T extends Omit<AuditSinkList, "apiVersion" | "kind">,
+>(data: T): AuditSinkList & T & Pick<AuditSinkList, "apiVersion" | "kind"> {
   return {
     apiVersion: "auditregistration.k8s.io/v1alpha1",
     kind: "AuditSinkList",

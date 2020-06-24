@@ -1,6 +1,7 @@
 import * as k8s from "../../../generated/k8s/v1.18.3/mod.ts";
 import copy from "https://cdn.pika.dev/fast-copy@^2.0.4";
 import { KubeMetaContext } from "../types.ts";
+import { RequiredKeysInPath } from "../../ts-helpers.ts";
 
 export function addResources<
   TContext extends KubeMetaContext,
@@ -40,6 +41,7 @@ export function addResources<
 export function addResource<
   TKey extends string,
   TContext extends KubeMetaContext,
+  TResources,
   U extends {
     ["metadata"]?:
       | k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta
@@ -49,14 +51,16 @@ export function addResource<
   name: TKey,
   factoryOrInstance:
     | U
-    | (<TResources>(ctx: TContext, resources: TResources) => U),
+    | ((ctx: TContext, resources: TResources) => U),
 ) {
-  return function <T>(resources: T, ctx: TContext) {
+  return function <T extends TResources, TT extends TContext>(
+    resources: T,
+    ctx: TT,
+  ) {
     let newResource = typeof (factoryOrInstance) === "function"
       ? factoryOrInstance(ctx, resources)
       : (copy(factoryOrInstance, undefined) as U);
 
-    console.log("add resource was called for:" + name);
     if (!newResource.metadata) {
       newResource.metadata = {
         name: ctx.name,
@@ -68,6 +72,11 @@ export function addResource<
     return {
       [name]: newResource,
       ...resources,
-    } as T & Record<TKey, U>;
+    } as
+      & T
+      & Record<
+        TKey,
+        RequiredKeysInPath<U, ["metadata"], "name" | "namespace" | "labels">
+      >;
   };
 }

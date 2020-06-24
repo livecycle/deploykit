@@ -55,9 +55,14 @@ export type CustomResourceDefinition = {
   /** Status indicates the actual state of the CustomResourceDefinition */
   status?: CustomResourceDefinitionStatus;
 };
-export function createCustomResourceDefinition(
-  data: Omit<CustomResourceDefinition, "apiVersion" | "kind">,
-): CustomResourceDefinition {
+export function createCustomResourceDefinition<
+  T extends Omit<CustomResourceDefinition, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & CustomResourceDefinition
+  & T
+  & Pick<CustomResourceDefinition, "apiVersion" | "kind"> {
   return {
     apiVersion: "apiextensions.k8s.io/v1beta1",
     kind: "CustomResourceDefinition",
@@ -96,9 +101,14 @@ export type CustomResourceDefinitionList = {
 
   metadata?: ListMeta;
 };
-export function createCustomResourceDefinitionList(
-  data: Omit<CustomResourceDefinitionList, "apiVersion" | "kind">,
-): CustomResourceDefinitionList {
+export function createCustomResourceDefinitionList<
+  T extends Omit<CustomResourceDefinitionList, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & CustomResourceDefinitionList
+  & T
+  & Pick<CustomResourceDefinitionList, "apiVersion" | "kind"> {
   return {
     apiVersion: "apiextensions.k8s.io/v1beta1",
     kind: "CustomResourceDefinitionList",

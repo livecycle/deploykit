@@ -54,9 +54,14 @@ export type HorizontalPodAutoscaler = {
   /** status is the current information about the autoscaler. */
   status?: HorizontalPodAutoscalerStatus;
 };
-export function createHorizontalPodAutoscaler(
-  data: Omit<HorizontalPodAutoscaler, "apiVersion" | "kind">,
-): HorizontalPodAutoscaler {
+export function createHorizontalPodAutoscaler<
+  T extends Omit<HorizontalPodAutoscaler, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & HorizontalPodAutoscaler
+  & T
+  & Pick<HorizontalPodAutoscaler, "apiVersion" | "kind"> {
   return {
     apiVersion: "autoscaling/v2beta2",
     kind: "HorizontalPodAutoscaler",
@@ -96,9 +101,14 @@ export type HorizontalPodAutoscalerList = {
   /** metadata is the standard list metadata. */
   metadata?: ListMeta;
 };
-export function createHorizontalPodAutoscalerList(
-  data: Omit<HorizontalPodAutoscalerList, "apiVersion" | "kind">,
-): HorizontalPodAutoscalerList {
+export function createHorizontalPodAutoscalerList<
+  T extends Omit<HorizontalPodAutoscalerList, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & HorizontalPodAutoscalerList
+  & T
+  & Pick<HorizontalPodAutoscalerList, "apiVersion" | "kind"> {
   return {
     apiVersion: "autoscaling/v2beta2",
     kind: "HorizontalPodAutoscalerList",

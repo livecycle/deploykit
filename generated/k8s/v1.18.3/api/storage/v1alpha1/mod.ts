@@ -25,9 +25,11 @@ export type VolumeAttachment = {
   /** Status of the VolumeAttachment request. Populated by the entity completing the attach or detach operation, i.e. the external-attacher. */
   status?: VolumeAttachmentStatus;
 };
-export function createVolumeAttachment(
-  data: Omit<VolumeAttachment, "apiVersion" | "kind">,
-): VolumeAttachment {
+export function createVolumeAttachment<
+  T extends Omit<VolumeAttachment, "apiVersion" | "kind">,
+>(
+  data: T,
+): VolumeAttachment & T & Pick<VolumeAttachment, "apiVersion" | "kind"> {
   return {
     apiVersion: "storage.k8s.io/v1alpha1",
     kind: "VolumeAttachment",
@@ -49,9 +51,14 @@ export type VolumeAttachmentList = {
   /** Standard list metadata More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createVolumeAttachmentList(
-  data: Omit<VolumeAttachmentList, "apiVersion" | "kind">,
-): VolumeAttachmentList {
+export function createVolumeAttachmentList<
+  T extends Omit<VolumeAttachmentList, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & VolumeAttachmentList
+  & T
+  & Pick<VolumeAttachmentList, "apiVersion" | "kind"> {
   return {
     apiVersion: "storage.k8s.io/v1alpha1",
     kind: "VolumeAttachmentList",

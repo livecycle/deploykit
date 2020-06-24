@@ -28,9 +28,9 @@ export type FlowSchema = {
   /** `status` is the current status of a FlowSchema. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#spec-and-status */
   status?: FlowSchemaStatus;
 };
-export function createFlowSchema(
-  data: Omit<FlowSchema, "apiVersion" | "kind">,
-): FlowSchema {
+export function createFlowSchema<
+  T extends Omit<FlowSchema, "apiVersion" | "kind">,
+>(data: T): FlowSchema & T & Pick<FlowSchema, "apiVersion" | "kind"> {
   return {
     apiVersion: "flowcontrol.apiserver.k8s.io/v1alpha1",
     kind: "FlowSchema",
@@ -70,9 +70,9 @@ export type FlowSchemaList = {
   /** `metadata` is the standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createFlowSchemaList(
-  data: Omit<FlowSchemaList, "apiVersion" | "kind">,
-): FlowSchemaList {
+export function createFlowSchemaList<
+  T extends Omit<FlowSchemaList, "apiVersion" | "kind">,
+>(data: T): FlowSchemaList & T & Pick<FlowSchemaList, "apiVersion" | "kind"> {
   return {
     apiVersion: "flowcontrol.apiserver.k8s.io/v1alpha1",
     kind: "FlowSchemaList",
@@ -175,9 +175,14 @@ export type PriorityLevelConfiguration = {
   /** `status` is the current status of a "request-priority". More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#spec-and-status */
   status?: PriorityLevelConfigurationStatus;
 };
-export function createPriorityLevelConfiguration(
-  data: Omit<PriorityLevelConfiguration, "apiVersion" | "kind">,
-): PriorityLevelConfiguration {
+export function createPriorityLevelConfiguration<
+  T extends Omit<PriorityLevelConfiguration, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & PriorityLevelConfiguration
+  & T
+  & Pick<PriorityLevelConfiguration, "apiVersion" | "kind"> {
   return {
     apiVersion: "flowcontrol.apiserver.k8s.io/v1alpha1",
     kind: "PriorityLevelConfiguration",
@@ -217,9 +222,14 @@ export type PriorityLevelConfigurationList = {
   /** `metadata` is the standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createPriorityLevelConfigurationList(
-  data: Omit<PriorityLevelConfigurationList, "apiVersion" | "kind">,
-): PriorityLevelConfigurationList {
+export function createPriorityLevelConfigurationList<
+  T extends Omit<PriorityLevelConfigurationList, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & PriorityLevelConfigurationList
+  & T
+  & Pick<PriorityLevelConfigurationList, "apiVersion" | "kind"> {
   return {
     apiVersion: "flowcontrol.apiserver.k8s.io/v1alpha1",
     kind: "PriorityLevelConfigurationList",

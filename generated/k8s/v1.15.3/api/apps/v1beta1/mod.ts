@@ -26,9 +26,11 @@ export type ControllerRevision = {
   /** Revision indicates the revision of the state represented by Data. */
   revision: number;
 };
-export function createControllerRevision(
-  data: Omit<ControllerRevision, "apiVersion" | "kind">,
-): ControllerRevision {
+export function createControllerRevision<
+  T extends Omit<ControllerRevision, "apiVersion" | "kind">,
+>(
+  data: T,
+): ControllerRevision & T & Pick<ControllerRevision, "apiVersion" | "kind"> {
   return { apiVersion: "apps/v1beta1", kind: "ControllerRevision", ...data };
 }
 
@@ -46,9 +48,14 @@ export type ControllerRevisionList = {
   /** More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createControllerRevisionList(
-  data: Omit<ControllerRevisionList, "apiVersion" | "kind">,
-): ControllerRevisionList {
+export function createControllerRevisionList<
+  T extends Omit<ControllerRevisionList, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & ControllerRevisionList
+  & T
+  & Pick<ControllerRevisionList, "apiVersion" | "kind"> {
   return {
     apiVersion: "apps/v1beta1",
     kind: "ControllerRevisionList",
@@ -73,9 +80,9 @@ export type Deployment = {
   /** Most recently observed status of the Deployment. */
   status?: DeploymentStatus;
 };
-export function createDeployment(
-  data: Omit<Deployment, "apiVersion" | "kind">,
-): Deployment {
+export function createDeployment<
+  T extends Omit<Deployment, "apiVersion" | "kind">,
+>(data: T): Deployment & T & Pick<Deployment, "apiVersion" | "kind"> {
   return { apiVersion: "apps/v1beta1", kind: "Deployment", ...data };
 }
 
@@ -114,9 +121,9 @@ export type DeploymentList = {
   /** Standard list metadata. */
   metadata?: ListMeta;
 };
-export function createDeploymentList(
-  data: Omit<DeploymentList, "apiVersion" | "kind">,
-): DeploymentList {
+export function createDeploymentList<
+  T extends Omit<DeploymentList, "apiVersion" | "kind">,
+>(data: T): DeploymentList & T & Pick<DeploymentList, "apiVersion" | "kind"> {
   return { apiVersion: "apps/v1beta1", kind: "DeploymentList", ...data };
 }
 
@@ -139,9 +146,11 @@ export type DeploymentRollback = {
     [key: string]: string;
   };
 };
-export function createDeploymentRollback(
-  data: Omit<DeploymentRollback, "apiVersion" | "kind">,
-): DeploymentRollback {
+export function createDeploymentRollback<
+  T extends Omit<DeploymentRollback, "apiVersion" | "kind">,
+>(
+  data: T,
+): DeploymentRollback & T & Pick<DeploymentRollback, "apiVersion" | "kind"> {
   return { apiVersion: "apps/v1beta1", kind: "DeploymentRollback", ...data };
 }
 
@@ -249,7 +258,9 @@ export type Scale = {
   /** current status of the scale. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#spec-and-status. Read-only. */
   status?: ScaleStatus;
 };
-export function createScale(data: Omit<Scale, "apiVersion" | "kind">): Scale {
+export function createScale<T extends Omit<Scale, "apiVersion" | "kind">>(
+  data: T,
+): Scale & T & Pick<Scale, "apiVersion" | "kind"> {
   return { apiVersion: "apps/v1beta1", kind: "Scale", ...data };
 }
 
@@ -292,9 +303,9 @@ export type StatefulSet = {
   /** Status is the current status of Pods in this StatefulSet. This data may be out of date by some window of time. */
   status?: StatefulSetStatus;
 };
-export function createStatefulSet(
-  data: Omit<StatefulSet, "apiVersion" | "kind">,
-): StatefulSet {
+export function createStatefulSet<
+  T extends Omit<StatefulSet, "apiVersion" | "kind">,
+>(data: T): StatefulSet & T & Pick<StatefulSet, "apiVersion" | "kind"> {
   return { apiVersion: "apps/v1beta1", kind: "StatefulSet", ...data };
 }
 
@@ -328,9 +339,9 @@ export type StatefulSetList = {
 
   metadata?: ListMeta;
 };
-export function createStatefulSetList(
-  data: Omit<StatefulSetList, "apiVersion" | "kind">,
-): StatefulSetList {
+export function createStatefulSetList<
+  T extends Omit<StatefulSetList, "apiVersion" | "kind">,
+>(data: T): StatefulSetList & T & Pick<StatefulSetList, "apiVersion" | "kind"> {
   return { apiVersion: "apps/v1beta1", kind: "StatefulSetList", ...data };
 }
 

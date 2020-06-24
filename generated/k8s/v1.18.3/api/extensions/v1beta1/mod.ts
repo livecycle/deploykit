@@ -54,9 +54,9 @@ export type Ingress = {
   /** Status is the current state of the Ingress. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
   status?: IngressStatus;
 };
-export function createIngress(
-  data: Omit<Ingress, "apiVersion" | "kind">,
-): Ingress {
+export function createIngress<T extends Omit<Ingress, "apiVersion" | "kind">>(
+  data: T,
+): Ingress & T & Pick<Ingress, "apiVersion" | "kind"> {
   return { apiVersion: "extensions/v1beta1", kind: "Ingress", ...data };
 }
 
@@ -86,9 +86,9 @@ export type IngressList = {
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createIngressList(
-  data: Omit<IngressList, "apiVersion" | "kind">,
-): IngressList {
+export function createIngressList<
+  T extends Omit<IngressList, "apiVersion" | "kind">,
+>(data: T): IngressList & T & Pick<IngressList, "apiVersion" | "kind"> {
   return { apiVersion: "extensions/v1beta1", kind: "IngressList", ...data };
 }
 

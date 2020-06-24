@@ -49,7 +49,6 @@ export interface IBluePrint<TContext, T> {
     op6: BluePrintTransform<TContext, E, F>,
     op7: BluePrintTransform<TContext, F, G>,
   ): IBluePrint<TContext, G>;
-  //with(...transforms: BluePrintTransform<TContext,any, any>[]):IBluePrint<TContext,any>
   build(t: TContext): T;
   format(t: T): string;
   dump(ctx: TContext): void;

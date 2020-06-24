@@ -21,9 +21,9 @@ export type APIService = {
   /** Status contains derived information about an API server */
   status?: APIServiceStatus;
 };
-export function createAPIService(
-  data: Omit<APIService, "apiVersion" | "kind">,
-): APIService {
+export function createAPIService<
+  T extends Omit<APIService, "apiVersion" | "kind">,
+>(data: T): APIService & T & Pick<APIService, "apiVersion" | "kind"> {
   return {
     apiVersion: "apiregistration.k8s.io/v1",
     kind: "APIService",
@@ -61,9 +61,9 @@ export type APIServiceList = {
 
   metadata?: ListMeta;
 };
-export function createAPIServiceList(
-  data: Omit<APIServiceList, "apiVersion" | "kind">,
-): APIServiceList {
+export function createAPIServiceList<
+  T extends Omit<APIServiceList, "apiVersion" | "kind">,
+>(data: T): APIServiceList & T & Pick<APIServiceList, "apiVersion" | "kind"> {
   return {
     apiVersion: "apiregistration.k8s.io/v1",
     kind: "APIServiceList",

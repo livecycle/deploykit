@@ -34,9 +34,14 @@ export type HorizontalPodAutoscaler = {
   /** current information about the autoscaler. */
   status?: HorizontalPodAutoscalerStatus;
 };
-export function createHorizontalPodAutoscaler(
-  data: Omit<HorizontalPodAutoscaler, "apiVersion" | "kind">,
-): HorizontalPodAutoscaler {
+export function createHorizontalPodAutoscaler<
+  T extends Omit<HorizontalPodAutoscaler, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & HorizontalPodAutoscaler
+  & T
+  & Pick<HorizontalPodAutoscaler, "apiVersion" | "kind"> {
   return {
     apiVersion: "autoscaling/v1",
     kind: "HorizontalPodAutoscaler",
@@ -58,9 +63,14 @@ export type HorizontalPodAutoscalerList = {
   /** Standard list metadata. */
   metadata?: ListMeta;
 };
-export function createHorizontalPodAutoscalerList(
-  data: Omit<HorizontalPodAutoscalerList, "apiVersion" | "kind">,
-): HorizontalPodAutoscalerList {
+export function createHorizontalPodAutoscalerList<
+  T extends Omit<HorizontalPodAutoscalerList, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & HorizontalPodAutoscalerList
+  & T
+  & Pick<HorizontalPodAutoscalerList, "apiVersion" | "kind"> {
   return {
     apiVersion: "autoscaling/v1",
     kind: "HorizontalPodAutoscalerList",
@@ -118,7 +128,9 @@ export type Scale = {
   /** current status of the scale. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status. Read-only. */
   status?: ScaleStatus;
 };
-export function createScale(data: Omit<Scale, "apiVersion" | "kind">): Scale {
+export function createScale<T extends Omit<Scale, "apiVersion" | "kind">>(
+  data: T,
+): Scale & T & Pick<Scale, "apiVersion" | "kind"> {
   return { apiVersion: "autoscaling/v1", kind: "Scale", ...data };
 }
 

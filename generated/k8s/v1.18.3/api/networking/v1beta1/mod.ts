@@ -54,9 +54,9 @@ export type Ingress = {
   /** Status is the current state of the Ingress. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
   status?: IngressStatus;
 };
-export function createIngress(
-  data: Omit<Ingress, "apiVersion" | "kind">,
-): Ingress {
+export function createIngress<T extends Omit<Ingress, "apiVersion" | "kind">>(
+  data: T,
+): Ingress & T & Pick<Ingress, "apiVersion" | "kind"> {
   return { apiVersion: "networking.k8s.io/v1beta1", kind: "Ingress", ...data };
 }
 
@@ -86,9 +86,9 @@ export type IngressClass = {
   /** Spec is the desired state of the IngressClass. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
   spec?: IngressClassSpec;
 };
-export function createIngressClass(
-  data: Omit<IngressClass, "apiVersion" | "kind">,
-): IngressClass {
+export function createIngressClass<
+  T extends Omit<IngressClass, "apiVersion" | "kind">,
+>(data: T): IngressClass & T & Pick<IngressClass, "apiVersion" | "kind"> {
   return {
     apiVersion: "networking.k8s.io/v1beta1",
     kind: "IngressClass",
@@ -110,9 +110,11 @@ export type IngressClassList = {
   /** Standard list metadata. */
   metadata?: ListMeta;
 };
-export function createIngressClassList(
-  data: Omit<IngressClassList, "apiVersion" | "kind">,
-): IngressClassList {
+export function createIngressClassList<
+  T extends Omit<IngressClassList, "apiVersion" | "kind">,
+>(
+  data: T,
+): IngressClassList & T & Pick<IngressClassList, "apiVersion" | "kind"> {
   return {
     apiVersion: "networking.k8s.io/v1beta1",
     kind: "IngressClassList",
@@ -143,9 +145,9 @@ export type IngressList = {
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createIngressList(
-  data: Omit<IngressList, "apiVersion" | "kind">,
-): IngressList {
+export function createIngressList<
+  T extends Omit<IngressList, "apiVersion" | "kind">,
+>(data: T): IngressList & T & Pick<IngressList, "apiVersion" | "kind"> {
   return {
     apiVersion: "networking.k8s.io/v1beta1",
     kind: "IngressList",

@@ -200,30 +200,31 @@ export const expose = <
     blueprint.with(
       addResource(
         ingressResourceKey,
-        k8s.extensions.v1beta1.createIngress(
-          {
-            spec: {
-              rules: [],
-            },
-          },
-        ),
-      ),
-      modify((x) => {
-        x[ingressResourceKey].spec!.rules!.push(
-          {
-            host: domain,
-            http: {
-              paths: [
-                {
-                  backend: {
-                    serviceName: x[serviceResourceKey].metadata!.name,
-                    servicePort: x[serviceResourceKey].spec!.ports![0].port,
+        (ctx, resources: T) =>
+          k8s.extensions.v1beta1.createIngress(
+            {
+              spec: {
+                rules: [
+                  {
+                    host: domain,
+                    http: {
+                      paths: [
+                        {
+                          backend: {
+                            serviceName:
+                              resources[serviceResourceKey].metadata!.name,
+                            servicePort:
+                              resources[serviceResourceKey].spec!.ports![0]
+                                .port,
+                          },
+                        },
+                      ],
+                    },
                   },
-                },
-              ],
+                ],
+              },
             },
-          },
-        );
-      }),
+          ),
+      ),
     )
   );

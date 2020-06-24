@@ -27,9 +27,9 @@ export type PriorityClass = {
   /** The value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec. */
   value: number;
 };
-export function createPriorityClass(
-  data: Omit<PriorityClass, "apiVersion" | "kind">,
-): PriorityClass {
+export function createPriorityClass<
+  T extends Omit<PriorityClass, "apiVersion" | "kind">,
+>(data: T): PriorityClass & T & Pick<PriorityClass, "apiVersion" | "kind"> {
   return { apiVersion: "scheduling.k8s.io/v1", kind: "PriorityClass", ...data };
 }
 
@@ -47,9 +47,11 @@ export type PriorityClassList = {
   /** Standard list metadata More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createPriorityClassList(
-  data: Omit<PriorityClassList, "apiVersion" | "kind">,
-): PriorityClassList {
+export function createPriorityClassList<
+  T extends Omit<PriorityClassList, "apiVersion" | "kind">,
+>(
+  data: T,
+): PriorityClassList & T & Pick<PriorityClassList, "apiVersion" | "kind"> {
   return {
     apiVersion: "scheduling.k8s.io/v1",
     kind: "PriorityClassList",

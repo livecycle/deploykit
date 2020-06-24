@@ -2170,9 +2170,9 @@ export type Alertmanager = {
     updatedReplicas: number;
   };
 };
-export function createAlertmanager(
-  data: Omit<Alertmanager, "apiVersion" | "kind">,
-): Alertmanager {
+export function createAlertmanager<
+  T extends Omit<Alertmanager, "apiVersion" | "kind">,
+>(data: T): Alertmanager & T & Pick<Alertmanager, "apiVersion" | "kind"> {
   return {
     apiVersion: "monitoring.coreos.com/v1",
     kind: "Alertmanager",
@@ -2441,9 +2441,9 @@ export type ServiceMonitor = {
     targetLabels?: string[];
   };
 };
-export function createServiceMonitor(
-  data: Omit<ServiceMonitor, "apiVersion" | "kind">,
-): ServiceMonitor {
+export function createServiceMonitor<
+  T extends Omit<ServiceMonitor, "apiVersion" | "kind">,
+>(data: T): ServiceMonitor & T & Pick<ServiceMonitor, "apiVersion" | "kind"> {
   return {
     apiVersion: "monitoring.coreos.com/v1",
     kind: "ServiceMonitor",
@@ -2583,9 +2583,9 @@ export type PodMonitor = {
     };
   };
 };
-export function createPodMonitor(
-  data: Omit<PodMonitor, "apiVersion" | "kind">,
-): PodMonitor {
+export function createPodMonitor<
+  T extends Omit<PodMonitor, "apiVersion" | "kind">,
+>(data: T): PodMonitor & T & Pick<PodMonitor, "apiVersion" | "kind"> {
   return {
     apiVersion: "monitoring.coreos.com/v1",
     kind: "PodMonitor",

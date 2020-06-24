@@ -24,7 +24,9 @@ export type Job = {
   /** Current status of a job. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#spec-and-status */
   status?: JobStatus;
 };
-export function createJob(data: Omit<Job, "apiVersion" | "kind">): Job {
+export function createJob<T extends Omit<Job, "apiVersion" | "kind">>(
+  data: T,
+): Job & T & Pick<Job, "apiVersion" | "kind"> {
   return { apiVersion: "batch/v1", kind: "Job", ...data };
 }
 
@@ -63,9 +65,9 @@ export type JobList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createJobList(
-  data: Omit<JobList, "apiVersion" | "kind">,
-): JobList {
+export function createJobList<T extends Omit<JobList, "apiVersion" | "kind">>(
+  data: T,
+): JobList & T & Pick<JobList, "apiVersion" | "kind"> {
   return { apiVersion: "batch/v1", kind: "JobList", ...data };
 }
 

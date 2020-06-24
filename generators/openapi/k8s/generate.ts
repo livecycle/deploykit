@@ -24,7 +24,7 @@ function writeType(name: string, def: Definition): string {
     let apiVersion = [gvk[0].group, gvk[0].version].filter((x) => x != "")
       .join("/");
     let funcDef = `
-export function create${name}(data:Omit<${name}, "apiVersion" | "kind">):${name}{
+export function create${name}<T extends Omit<${name}, "apiVersion" | "kind">>(data:T):${name} & T & Pick<${name}, "apiVersion" | "kind">{
   return {apiVersion: "${apiVersion}", kind: "${gvk[0].kind}", ...data}
 }
 `;

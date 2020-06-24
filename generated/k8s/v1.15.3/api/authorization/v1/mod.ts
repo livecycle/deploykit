@@ -17,9 +17,14 @@ export type LocalSubjectAccessReview = {
   /** Status is filled in by the server and indicates whether the request is allowed or not */
   status?: SubjectAccessReviewStatus;
 };
-export function createLocalSubjectAccessReview(
-  data: Omit<LocalSubjectAccessReview, "apiVersion" | "kind">,
-): LocalSubjectAccessReview {
+export function createLocalSubjectAccessReview<
+  T extends Omit<LocalSubjectAccessReview, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & LocalSubjectAccessReview
+  & T
+  & Pick<LocalSubjectAccessReview, "apiVersion" | "kind"> {
   return {
     apiVersion: "authorization.k8s.io/v1",
     kind: "LocalSubjectAccessReview",
@@ -101,9 +106,14 @@ export type SelfSubjectAccessReview = {
   /** Status is filled in by the server and indicates whether the request is allowed or not */
   status?: SubjectAccessReviewStatus;
 };
-export function createSelfSubjectAccessReview(
-  data: Omit<SelfSubjectAccessReview, "apiVersion" | "kind">,
-): SelfSubjectAccessReview {
+export function createSelfSubjectAccessReview<
+  T extends Omit<SelfSubjectAccessReview, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & SelfSubjectAccessReview
+  & T
+  & Pick<SelfSubjectAccessReview, "apiVersion" | "kind"> {
   return {
     apiVersion: "authorization.k8s.io/v1",
     kind: "SelfSubjectAccessReview",
@@ -136,9 +146,14 @@ export type SelfSubjectRulesReview = {
   /** Status is filled in by the server and indicates the set of actions a user can perform. */
   status?: SubjectRulesReviewStatus;
 };
-export function createSelfSubjectRulesReview(
-  data: Omit<SelfSubjectRulesReview, "apiVersion" | "kind">,
-): SelfSubjectRulesReview {
+export function createSelfSubjectRulesReview<
+  T extends Omit<SelfSubjectRulesReview, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & SelfSubjectRulesReview
+  & T
+  & Pick<SelfSubjectRulesReview, "apiVersion" | "kind"> {
   return {
     apiVersion: "authorization.k8s.io/v1",
     kind: "SelfSubjectRulesReview",
@@ -168,9 +183,11 @@ export type SubjectAccessReview = {
   /** Status is filled in by the server and indicates whether the request is allowed or not */
   status?: SubjectAccessReviewStatus;
 };
-export function createSubjectAccessReview(
-  data: Omit<SubjectAccessReview, "apiVersion" | "kind">,
-): SubjectAccessReview {
+export function createSubjectAccessReview<
+  T extends Omit<SubjectAccessReview, "apiVersion" | "kind">,
+>(
+  data: T,
+): SubjectAccessReview & T & Pick<SubjectAccessReview, "apiVersion" | "kind"> {
   return {
     apiVersion: "authorization.k8s.io/v1",
     kind: "SubjectAccessReview",

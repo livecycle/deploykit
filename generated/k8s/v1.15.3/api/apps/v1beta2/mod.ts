@@ -26,9 +26,11 @@ export type ControllerRevision = {
   /** Revision indicates the revision of the state represented by Data. */
   revision: number;
 };
-export function createControllerRevision(
-  data: Omit<ControllerRevision, "apiVersion" | "kind">,
-): ControllerRevision {
+export function createControllerRevision<
+  T extends Omit<ControllerRevision, "apiVersion" | "kind">,
+>(
+  data: T,
+): ControllerRevision & T & Pick<ControllerRevision, "apiVersion" | "kind"> {
   return { apiVersion: "apps/v1beta2", kind: "ControllerRevision", ...data };
 }
 
@@ -46,9 +48,14 @@ export type ControllerRevisionList = {
   /** More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createControllerRevisionList(
-  data: Omit<ControllerRevisionList, "apiVersion" | "kind">,
-): ControllerRevisionList {
+export function createControllerRevisionList<
+  T extends Omit<ControllerRevisionList, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & ControllerRevisionList
+  & T
+  & Pick<ControllerRevisionList, "apiVersion" | "kind"> {
   return {
     apiVersion: "apps/v1beta2",
     kind: "ControllerRevisionList",
@@ -73,9 +80,9 @@ export type DaemonSet = {
   /** The current status of this daemon set. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
   status?: DaemonSetStatus;
 };
-export function createDaemonSet(
-  data: Omit<DaemonSet, "apiVersion" | "kind">,
-): DaemonSet {
+export function createDaemonSet<
+  T extends Omit<DaemonSet, "apiVersion" | "kind">,
+>(data: T): DaemonSet & T & Pick<DaemonSet, "apiVersion" | "kind"> {
   return { apiVersion: "apps/v1beta2", kind: "DaemonSet", ...data };
 }
 
@@ -111,9 +118,9 @@ export type DaemonSetList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createDaemonSetList(
-  data: Omit<DaemonSetList, "apiVersion" | "kind">,
-): DaemonSetList {
+export function createDaemonSetList<
+  T extends Omit<DaemonSetList, "apiVersion" | "kind">,
+>(data: T): DaemonSetList & T & Pick<DaemonSetList, "apiVersion" | "kind"> {
   return { apiVersion: "apps/v1beta2", kind: "DaemonSetList", ...data };
 }
 
@@ -194,9 +201,9 @@ export type Deployment = {
   /** Most recently observed status of the Deployment. */
   status?: DeploymentStatus;
 };
-export function createDeployment(
-  data: Omit<Deployment, "apiVersion" | "kind">,
-): Deployment {
+export function createDeployment<
+  T extends Omit<Deployment, "apiVersion" | "kind">,
+>(data: T): Deployment & T & Pick<Deployment, "apiVersion" | "kind"> {
   return { apiVersion: "apps/v1beta2", kind: "Deployment", ...data };
 }
 
@@ -235,9 +242,9 @@ export type DeploymentList = {
   /** Standard list metadata. */
   metadata?: ListMeta;
 };
-export function createDeploymentList(
-  data: Omit<DeploymentList, "apiVersion" | "kind">,
-): DeploymentList {
+export function createDeploymentList<
+  T extends Omit<DeploymentList, "apiVersion" | "kind">,
+>(data: T): DeploymentList & T & Pick<DeploymentList, "apiVersion" | "kind"> {
   return { apiVersion: "apps/v1beta2", kind: "DeploymentList", ...data };
 }
 
@@ -321,9 +328,9 @@ export type ReplicaSet = {
   /** Status is the most recently observed status of the ReplicaSet. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
   status?: ReplicaSetStatus;
 };
-export function createReplicaSet(
-  data: Omit<ReplicaSet, "apiVersion" | "kind">,
-): ReplicaSet {
+export function createReplicaSet<
+  T extends Omit<ReplicaSet, "apiVersion" | "kind">,
+>(data: T): ReplicaSet & T & Pick<ReplicaSet, "apiVersion" | "kind"> {
   return { apiVersion: "apps/v1beta2", kind: "ReplicaSet", ...data };
 }
 
@@ -359,9 +366,9 @@ export type ReplicaSetList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
 };
-export function createReplicaSetList(
-  data: Omit<ReplicaSetList, "apiVersion" | "kind">,
-): ReplicaSetList {
+export function createReplicaSetList<
+  T extends Omit<ReplicaSetList, "apiVersion" | "kind">,
+>(data: T): ReplicaSetList & T & Pick<ReplicaSetList, "apiVersion" | "kind"> {
   return { apiVersion: "apps/v1beta2", kind: "ReplicaSetList", ...data };
 }
 
@@ -439,7 +446,9 @@ export type Scale = {
   /** current status of the scale. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status. Read-only. */
   status?: ScaleStatus;
 };
-export function createScale(data: Omit<Scale, "apiVersion" | "kind">): Scale {
+export function createScale<T extends Omit<Scale, "apiVersion" | "kind">>(
+  data: T,
+): Scale & T & Pick<Scale, "apiVersion" | "kind"> {
   return { apiVersion: "apps/v1beta2", kind: "Scale", ...data };
 }
 
@@ -482,9 +491,9 @@ export type StatefulSet = {
   /** Status is the current status of Pods in this StatefulSet. This data may be out of date by some window of time. */
   status?: StatefulSetStatus;
 };
-export function createStatefulSet(
-  data: Omit<StatefulSet, "apiVersion" | "kind">,
-): StatefulSet {
+export function createStatefulSet<
+  T extends Omit<StatefulSet, "apiVersion" | "kind">,
+>(data: T): StatefulSet & T & Pick<StatefulSet, "apiVersion" | "kind"> {
   return { apiVersion: "apps/v1beta2", kind: "StatefulSet", ...data };
 }
 
@@ -518,9 +527,9 @@ export type StatefulSetList = {
 
   metadata?: ListMeta;
 };
-export function createStatefulSetList(
-  data: Omit<StatefulSetList, "apiVersion" | "kind">,
-): StatefulSetList {
+export function createStatefulSetList<
+  T extends Omit<StatefulSetList, "apiVersion" | "kind">,
+>(data: T): StatefulSetList & T & Pick<StatefulSetList, "apiVersion" | "kind"> {
   return { apiVersion: "apps/v1beta2", kind: "StatefulSetList", ...data };
 }
 

@@ -1931,8 +1931,8 @@ export type ScaledObject = {
     lastActiveTime?: string;
   };
 };
-export function createScaledObject(
-  data: Omit<ScaledObject, "apiVersion" | "kind">,
-): ScaledObject {
+export function createScaledObject<
+  T extends Omit<ScaledObject, "apiVersion" | "kind">,
+>(data: T): ScaledObject & T & Pick<ScaledObject, "apiVersion" | "kind"> {
   return { apiVersion: "keda.k8s.io/v1alpha1", kind: "ScaledObject", ...data };
 }

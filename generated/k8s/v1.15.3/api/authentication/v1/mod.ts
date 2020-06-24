@@ -17,9 +17,9 @@ export type TokenReview = {
   /** Status is filled in by the server and indicates whether the request can be authenticated. */
   status?: TokenReviewStatus;
 };
-export function createTokenReview(
-  data: Omit<TokenReview, "apiVersion" | "kind">,
-): TokenReview {
+export function createTokenReview<
+  T extends Omit<TokenReview, "apiVersion" | "kind">,
+>(data: T): TokenReview & T & Pick<TokenReview, "apiVersion" | "kind"> {
   return {
     apiVersion: "authentication.k8s.io/v1",
     kind: "TokenReview",

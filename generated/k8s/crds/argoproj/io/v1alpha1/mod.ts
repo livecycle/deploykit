@@ -43,7 +43,15 @@ export type AnalysisRun = {
 
       provider: {
         job?: {
-          metadata?: {};
+          metadata?: {
+            annotations?: {
+              [key: string]: string;
+            };
+
+            labels?: {
+              [key: string]: string;
+            };
+          };
 
           spec: {
             activeDeadlineSeconds?: number;
@@ -71,7 +79,15 @@ export type AnalysisRun = {
             };
 
             template: {
-              metadata?: {};
+              metadata?: {
+                annotations?: {
+                  [key: string]: string;
+                };
+
+                labels?: {
+                  [key: string]: string;
+                };
+              };
 
               spec?: {
                 activeDeadlineSeconds?: number;
@@ -1765,9 +1781,9 @@ export type AnalysisRun = {
     startedAt?: string;
   };
 };
-export function createAnalysisRun(
-  data: Omit<AnalysisRun, "apiVersion" | "kind">,
-): AnalysisRun {
+export function createAnalysisRun<
+  T extends Omit<AnalysisRun, "apiVersion" | "kind">,
+>(data: T): AnalysisRun & T & Pick<AnalysisRun, "apiVersion" | "kind"> {
   return { apiVersion: "argoproj.io/v1alpha1", kind: "AnalysisRun", ...data };
 }
 
@@ -2008,12 +2024,26 @@ export type Rollout = {
 
             stableIngress: string;
           };
+
+          smi?: {
+            rootService?: string;
+
+            trafficSplitName?: string;
+          };
         };
       };
     };
 
     template: {
-      metadata?: {};
+      metadata?: {
+        annotations?: {
+          [key: string]: string;
+        };
+
+        labels?: {
+          [key: string]: string;
+        };
+      };
 
       spec?: {
         activeDeadlineSeconds?: number;
@@ -3655,9 +3685,9 @@ export type Rollout = {
     updatedReplicas?: number;
   };
 };
-export function createRollout(
-  data: Omit<Rollout, "apiVersion" | "kind">,
-): Rollout {
+export function createRollout<T extends Omit<Rollout, "apiVersion" | "kind">>(
+  data: T,
+): Rollout & T & Pick<Rollout, "apiVersion" | "kind"> {
   return { apiVersion: "argoproj.io/v1alpha1", kind: "Rollout", ...data };
 }
 
@@ -3718,7 +3748,15 @@ export type Experiment = {
       };
 
       template: {
-        metadata?: {};
+        metadata?: {
+          annotations?: {
+            [key: string]: string;
+          };
+
+          labels?: {
+            [key: string]: string;
+          };
+        };
 
         spec?: {
           activeDeadlineSeconds?: number;
@@ -5337,9 +5375,9 @@ export type Experiment = {
     }[];
   };
 };
-export function createExperiment(
-  data: Omit<Experiment, "apiVersion" | "kind">,
-): Experiment {
+export function createExperiment<
+  T extends Omit<Experiment, "apiVersion" | "kind">,
+>(data: T): Experiment & T & Pick<Experiment, "apiVersion" | "kind"> {
   return { apiVersion: "argoproj.io/v1alpha1", kind: "Experiment", ...data };
 }
 
@@ -5385,7 +5423,15 @@ export type AnalysisTemplate = {
 
       provider: {
         job?: {
-          metadata?: {};
+          metadata?: {
+            annotations?: {
+              [key: string]: string;
+            };
+
+            labels?: {
+              [key: string]: string;
+            };
+          };
 
           spec: {
             activeDeadlineSeconds?: number;
@@ -5413,7 +5459,15 @@ export type AnalysisTemplate = {
             };
 
             template: {
-              metadata?: {};
+              metadata?: {
+                annotations?: {
+                  [key: string]: string;
+                };
+
+                labels?: {
+                  [key: string]: string;
+                };
+              };
 
               spec?: {
                 activeDeadlineSeconds?: number;
@@ -7059,9 +7113,11 @@ export type AnalysisTemplate = {
     }[];
   };
 };
-export function createAnalysisTemplate(
-  data: Omit<AnalysisTemplate, "apiVersion" | "kind">,
-): AnalysisTemplate {
+export function createAnalysisTemplate<
+  T extends Omit<AnalysisTemplate, "apiVersion" | "kind">,
+>(
+  data: T,
+): AnalysisTemplate & T & Pick<AnalysisTemplate, "apiVersion" | "kind"> {
   return {
     apiVersion: "argoproj.io/v1alpha1",
     kind: "AnalysisTemplate",
@@ -7079,6 +7135,12 @@ export type Application = {
 
   /** Operation contains requested operation parameters. */
   operation?: {
+    info?: {
+      name: string;
+
+      value: string;
+    }[];
+
     /** OperationInitiator holds information about the operation initiator */
     initiatedBy?: {
       /** Automated is set to true if operation was initiated automatically by the application controller. */
@@ -7259,6 +7321,9 @@ export type Application = {
   spec: {
     /** Destination overrides the kubernetes server and namespace defined in the environment ksonnet app.yaml */
     destination: {
+      /** Name of the destination cluster which can be used instead of server (url) field */
+      name?: string;
+
       /** Namespace overrides the environment namespace value in the ksonnet app.yaml */
       namespace?: string;
 
@@ -7452,10 +7517,16 @@ export type Application = {
 
     /** RevisionHistories is a array of history, oldest first and newest last */
     history?: {
+      /** DeployStartedAt holds the time the deployment started */
+      deployStartedAt?: string;
+
+      /** DeployedAt holds the time the deployment completed */
       deployedAt: string;
 
+      /** ID is an auto incrementing identifier of the RevisionHistory */
       id: number;
 
+      /** Revision holds the revision of the sync */
       revision: string;
 
       /** ApplicationSource contains information about github repository, path within repository and target application environment. */
@@ -7594,6 +7665,12 @@ export type Application = {
 
       /** Operation is the original requested operation */
       operation: {
+        info?: {
+          name: string;
+
+          value: string;
+        }[];
+
         /** OperationInitiator holds information about the operation initiator */
         initiatedBy?: {
           /** Automated is set to true if operation was initiated automatically by the application controller. */
@@ -7978,6 +8055,9 @@ export type Application = {
       comparedTo?: {
         /** ApplicationDestination contains deployment destination information */
         destination: {
+          /** Name of the destination cluster which can be used instead of server (url) field */
+          name?: string;
+
           /** Namespace overrides the environment namespace value in the ksonnet app.yaml */
           namespace?: string;
 
@@ -8115,9 +8195,9 @@ export type Application = {
     };
   };
 };
-export function createApplication(
-  data: Omit<Application, "apiVersion" | "kind">,
-): Application {
+export function createApplication<
+  T extends Omit<Application, "apiVersion" | "kind">,
+>(data: T): Application & T & Pick<Application, "apiVersion" | "kind"> {
   return { apiVersion: "argoproj.io/v1alpha1", kind: "Application", ...data };
 }
 
@@ -8143,6 +8223,9 @@ export type AppProject = {
 
     /** Destinations contains list of destinations available for deployment */
     destinations?: {
+      /** Name of the destination cluster which can be used instead of server (url) field */
+      name?: string;
+
       /** Namespace overrides the environment namespace value in the ksonnet app.yaml */
       namespace?: string;
 
@@ -8194,6 +8277,12 @@ export type AppProject = {
       policies?: string[];
     }[];
 
+    /** List of PGP key IDs that commits to be synced to must be signed with */
+    signatureKeys?: {
+      /** The ID of the key in hexadecimal notation */
+      keyID: string;
+    }[];
+
     /** SourceRepos contains list of repository URLs which can be used for deployment */
     sourceRepos?: string[];
 
@@ -8222,8 +8311,8 @@ export type AppProject = {
     }[];
   };
 };
-export function createAppProject(
-  data: Omit<AppProject, "apiVersion" | "kind">,
-): AppProject {
+export function createAppProject<
+  T extends Omit<AppProject, "apiVersion" | "kind">,
+>(data: T): AppProject & T & Pick<AppProject, "apiVersion" | "kind"> {
   return { apiVersion: "argoproj.io/v1alpha1", kind: "AppProject", ...data };
 }

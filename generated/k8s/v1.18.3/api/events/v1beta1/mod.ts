@@ -59,7 +59,9 @@ export type Event = {
   /** Type of this event (Normal, Warning), new types could be added in the future. */
   type?: string;
 };
-export function createEvent(data: Omit<Event, "apiVersion" | "kind">): Event {
+export function createEvent<T extends Omit<Event, "apiVersion" | "kind">>(
+  data: T,
+): Event & T & Pick<Event, "apiVersion" | "kind"> {
   return { apiVersion: "events.k8s.io/v1beta1", kind: "Event", ...data };
 }
 
@@ -77,9 +79,9 @@ export type EventList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createEventList(
-  data: Omit<EventList, "apiVersion" | "kind">,
-): EventList {
+export function createEventList<
+  T extends Omit<EventList, "apiVersion" | "kind">,
+>(data: T): EventList & T & Pick<EventList, "apiVersion" | "kind"> {
   return { apiVersion: "events.k8s.io/v1beta1", kind: "EventList", ...data };
 }
 

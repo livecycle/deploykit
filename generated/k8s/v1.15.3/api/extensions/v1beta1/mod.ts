@@ -52,9 +52,9 @@ export type DaemonSet = {
   /** The current status of this daemon set. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
   status?: DaemonSetStatus;
 };
-export function createDaemonSet(
-  data: Omit<DaemonSet, "apiVersion" | "kind">,
-): DaemonSet {
+export function createDaemonSet<
+  T extends Omit<DaemonSet, "apiVersion" | "kind">,
+>(data: T): DaemonSet & T & Pick<DaemonSet, "apiVersion" | "kind"> {
   return { apiVersion: "extensions/v1beta1", kind: "DaemonSet", ...data };
 }
 
@@ -90,9 +90,9 @@ export type DaemonSetList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createDaemonSetList(
-  data: Omit<DaemonSetList, "apiVersion" | "kind">,
-): DaemonSetList {
+export function createDaemonSetList<
+  T extends Omit<DaemonSetList, "apiVersion" | "kind">,
+>(data: T): DaemonSetList & T & Pick<DaemonSetList, "apiVersion" | "kind"> {
   return { apiVersion: "extensions/v1beta1", kind: "DaemonSetList", ...data };
 }
 
@@ -176,9 +176,9 @@ export type Deployment = {
   /** Most recently observed status of the Deployment. */
   status?: DeploymentStatus;
 };
-export function createDeployment(
-  data: Omit<Deployment, "apiVersion" | "kind">,
-): Deployment {
+export function createDeployment<
+  T extends Omit<Deployment, "apiVersion" | "kind">,
+>(data: T): Deployment & T & Pick<Deployment, "apiVersion" | "kind"> {
   return { apiVersion: "extensions/v1beta1", kind: "Deployment", ...data };
 }
 
@@ -217,9 +217,9 @@ export type DeploymentList = {
   /** Standard list metadata. */
   metadata?: ListMeta;
 };
-export function createDeploymentList(
-  data: Omit<DeploymentList, "apiVersion" | "kind">,
-): DeploymentList {
+export function createDeploymentList<
+  T extends Omit<DeploymentList, "apiVersion" | "kind">,
+>(data: T): DeploymentList & T & Pick<DeploymentList, "apiVersion" | "kind"> {
   return { apiVersion: "extensions/v1beta1", kind: "DeploymentList", ...data };
 }
 
@@ -242,9 +242,11 @@ export type DeploymentRollback = {
     [key: string]: string;
   };
 };
-export function createDeploymentRollback(
-  data: Omit<DeploymentRollback, "apiVersion" | "kind">,
-): DeploymentRollback {
+export function createDeploymentRollback<
+  T extends Omit<DeploymentRollback, "apiVersion" | "kind">,
+>(
+  data: T,
+): DeploymentRollback & T & Pick<DeploymentRollback, "apiVersion" | "kind"> {
   return {
     apiVersion: "extensions/v1beta1",
     kind: "DeploymentRollback",
@@ -386,9 +388,9 @@ export type Ingress = {
   /** Status is the current state of the Ingress. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
   status?: IngressStatus;
 };
-export function createIngress(
-  data: Omit<Ingress, "apiVersion" | "kind">,
-): Ingress {
+export function createIngress<T extends Omit<Ingress, "apiVersion" | "kind">>(
+  data: T,
+): Ingress & T & Pick<Ingress, "apiVersion" | "kind"> {
   return { apiVersion: "extensions/v1beta1", kind: "Ingress", ...data };
 }
 
@@ -415,9 +417,9 @@ export type IngressList = {
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createIngressList(
-  data: Omit<IngressList, "apiVersion" | "kind">,
-): IngressList {
+export function createIngressList<
+  T extends Omit<IngressList, "apiVersion" | "kind">,
+>(data: T): IngressList & T & Pick<IngressList, "apiVersion" | "kind"> {
   return { apiVersion: "extensions/v1beta1", kind: "IngressList", ...data };
 }
 
@@ -475,9 +477,9 @@ export type NetworkPolicy = {
   /** Specification of the desired behavior for this NetworkPolicy. */
   spec?: NetworkPolicySpec;
 };
-export function createNetworkPolicy(
-  data: Omit<NetworkPolicy, "apiVersion" | "kind">,
-): NetworkPolicy {
+export function createNetworkPolicy<
+  T extends Omit<NetworkPolicy, "apiVersion" | "kind">,
+>(data: T): NetworkPolicy & T & Pick<NetworkPolicy, "apiVersion" | "kind"> {
   return { apiVersion: "extensions/v1beta1", kind: "NetworkPolicy", ...data };
 }
 
@@ -513,9 +515,11 @@ export type NetworkPolicyList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createNetworkPolicyList(
-  data: Omit<NetworkPolicyList, "apiVersion" | "kind">,
-): NetworkPolicyList {
+export function createNetworkPolicyList<
+  T extends Omit<NetworkPolicyList, "apiVersion" | "kind">,
+>(
+  data: T,
+): NetworkPolicyList & T & Pick<NetworkPolicyList, "apiVersion" | "kind"> {
   return {
     apiVersion: "extensions/v1beta1",
     kind: "NetworkPolicyList",
@@ -577,9 +581,11 @@ export type PodSecurityPolicy = {
   /** spec defines the policy enforced. */
   spec?: PodSecurityPolicySpec;
 };
-export function createPodSecurityPolicy(
-  data: Omit<PodSecurityPolicy, "apiVersion" | "kind">,
-): PodSecurityPolicy {
+export function createPodSecurityPolicy<
+  T extends Omit<PodSecurityPolicy, "apiVersion" | "kind">,
+>(
+  data: T,
+): PodSecurityPolicy & T & Pick<PodSecurityPolicy, "apiVersion" | "kind"> {
   return {
     apiVersion: "extensions/v1beta1",
     kind: "PodSecurityPolicy",
@@ -601,9 +607,14 @@ export type PodSecurityPolicyList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createPodSecurityPolicyList(
-  data: Omit<PodSecurityPolicyList, "apiVersion" | "kind">,
-): PodSecurityPolicyList {
+export function createPodSecurityPolicyList<
+  T extends Omit<PodSecurityPolicyList, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & PodSecurityPolicyList
+  & T
+  & Pick<PodSecurityPolicyList, "apiVersion" | "kind"> {
   return {
     apiVersion: "extensions/v1beta1",
     kind: "PodSecurityPolicyList",
@@ -707,9 +718,9 @@ export type ReplicaSet = {
   /** Status is the most recently observed status of the ReplicaSet. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
   status?: ReplicaSetStatus;
 };
-export function createReplicaSet(
-  data: Omit<ReplicaSet, "apiVersion" | "kind">,
-): ReplicaSet {
+export function createReplicaSet<
+  T extends Omit<ReplicaSet, "apiVersion" | "kind">,
+>(data: T): ReplicaSet & T & Pick<ReplicaSet, "apiVersion" | "kind"> {
   return { apiVersion: "extensions/v1beta1", kind: "ReplicaSet", ...data };
 }
 
@@ -745,9 +756,9 @@ export type ReplicaSetList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
 };
-export function createReplicaSetList(
-  data: Omit<ReplicaSetList, "apiVersion" | "kind">,
-): ReplicaSetList {
+export function createReplicaSetList<
+  T extends Omit<ReplicaSetList, "apiVersion" | "kind">,
+>(data: T): ReplicaSetList & T & Pick<ReplicaSetList, "apiVersion" | "kind"> {
   return { apiVersion: "extensions/v1beta1", kind: "ReplicaSetList", ...data };
 }
 
@@ -861,7 +872,9 @@ export type Scale = {
   /** current status of the scale. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status. Read-only. */
   status?: ScaleStatus;
 };
-export function createScale(data: Omit<Scale, "apiVersion" | "kind">): Scale {
+export function createScale<T extends Omit<Scale, "apiVersion" | "kind">>(
+  data: T,
+): Scale & T & Pick<Scale, "apiVersion" | "kind"> {
   return { apiVersion: "extensions/v1beta1", kind: "Scale", ...data };
 }
 

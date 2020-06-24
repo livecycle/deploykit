@@ -23,9 +23,9 @@ export type PodPreset = {
 
   spec?: PodPresetSpec;
 };
-export function createPodPreset(
-  data: Omit<PodPreset, "apiVersion" | "kind">,
-): PodPreset {
+export function createPodPreset<
+  T extends Omit<PodPreset, "apiVersion" | "kind">,
+>(data: T): PodPreset & T & Pick<PodPreset, "apiVersion" | "kind"> {
   return { apiVersion: "settings.k8s.io/v1alpha1", kind: "PodPreset", ...data };
 }
 
@@ -43,9 +43,9 @@ export type PodPresetList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createPodPresetList(
-  data: Omit<PodPresetList, "apiVersion" | "kind">,
-): PodPresetList {
+export function createPodPresetList<
+  T extends Omit<PodPresetList, "apiVersion" | "kind">,
+>(data: T): PodPresetList & T & Pick<PodPresetList, "apiVersion" | "kind"> {
   return {
     apiVersion: "settings.k8s.io/v1alpha1",
     kind: "PodPresetList",

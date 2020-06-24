@@ -24,9 +24,9 @@ export type CronJob = {
   /** Current status of a cron job. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
   status?: CronJobStatus;
 };
-export function createCronJob(
-  data: Omit<CronJob, "apiVersion" | "kind">,
-): CronJob {
+export function createCronJob<T extends Omit<CronJob, "apiVersion" | "kind">>(
+  data: T,
+): CronJob & T & Pick<CronJob, "apiVersion" | "kind"> {
   return { apiVersion: "batch/v1beta1", kind: "CronJob", ...data };
 }
 
@@ -44,9 +44,9 @@ export type CronJobList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createCronJobList(
-  data: Omit<CronJobList, "apiVersion" | "kind">,
-): CronJobList {
+export function createCronJobList<
+  T extends Omit<CronJobList, "apiVersion" | "kind">,
+>(data: T): CronJobList & T & Pick<CronJobList, "apiVersion" | "kind"> {
   return { apiVersion: "batch/v1beta1", kind: "CronJobList", ...data };
 }
 

@@ -23,9 +23,9 @@ export type CSIDriver = {
   /** Specification of the CSI Driver. */
   spec: CSIDriverSpec;
 };
-export function createCSIDriver(
-  data: Omit<CSIDriver, "apiVersion" | "kind">,
-): CSIDriver {
+export function createCSIDriver<
+  T extends Omit<CSIDriver, "apiVersion" | "kind">,
+>(data: T): CSIDriver & T & Pick<CSIDriver, "apiVersion" | "kind"> {
   return { apiVersion: "storage.k8s.io/v1", kind: "CSIDriver", ...data };
 }
 
@@ -43,9 +43,9 @@ export type CSIDriverList = {
   /** Standard list metadata More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createCSIDriverList(
-  data: Omit<CSIDriverList, "apiVersion" | "kind">,
-): CSIDriverList {
+export function createCSIDriverList<
+  T extends Omit<CSIDriverList, "apiVersion" | "kind">,
+>(data: T): CSIDriverList & T & Pick<CSIDriverList, "apiVersion" | "kind"> {
   return { apiVersion: "storage.k8s.io/v1", kind: "CSIDriverList", ...data };
 }
 
@@ -78,9 +78,9 @@ export type CSINode = {
   /** spec is the specification of CSINode */
   spec: CSINodeSpec;
 };
-export function createCSINode(
-  data: Omit<CSINode, "apiVersion" | "kind">,
-): CSINode {
+export function createCSINode<T extends Omit<CSINode, "apiVersion" | "kind">>(
+  data: T,
+): CSINode & T & Pick<CSINode, "apiVersion" | "kind"> {
   return { apiVersion: "storage.k8s.io/v1", kind: "CSINode", ...data };
 }
 
@@ -113,9 +113,9 @@ export type CSINodeList = {
   /** Standard list metadata More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createCSINodeList(
-  data: Omit<CSINodeList, "apiVersion" | "kind">,
-): CSINodeList {
+export function createCSINodeList<
+  T extends Omit<CSINodeList, "apiVersion" | "kind">,
+>(data: T): CSINodeList & T & Pick<CSINodeList, "apiVersion" | "kind"> {
   return { apiVersion: "storage.k8s.io/v1", kind: "CSINodeList", ...data };
 }
 
@@ -161,9 +161,9 @@ export type StorageClass = {
   /** VolumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound.  When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature. */
   volumeBindingMode?: string;
 };
-export function createStorageClass(
-  data: Omit<StorageClass, "apiVersion" | "kind">,
-): StorageClass {
+export function createStorageClass<
+  T extends Omit<StorageClass, "apiVersion" | "kind">,
+>(data: T): StorageClass & T & Pick<StorageClass, "apiVersion" | "kind"> {
   return { apiVersion: "storage.k8s.io/v1", kind: "StorageClass", ...data };
 }
 
@@ -181,9 +181,11 @@ export type StorageClassList = {
   /** Standard list metadata More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createStorageClassList(
-  data: Omit<StorageClassList, "apiVersion" | "kind">,
-): StorageClassList {
+export function createStorageClassList<
+  T extends Omit<StorageClassList, "apiVersion" | "kind">,
+>(
+  data: T,
+): StorageClassList & T & Pick<StorageClassList, "apiVersion" | "kind"> {
   return { apiVersion: "storage.k8s.io/v1", kind: "StorageClassList", ...data };
 }
 
@@ -206,9 +208,11 @@ export type VolumeAttachment = {
   /** Status of the VolumeAttachment request. Populated by the entity completing the attach or detach operation, i.e. the external-attacher. */
   status?: VolumeAttachmentStatus;
 };
-export function createVolumeAttachment(
-  data: Omit<VolumeAttachment, "apiVersion" | "kind">,
-): VolumeAttachment {
+export function createVolumeAttachment<
+  T extends Omit<VolumeAttachment, "apiVersion" | "kind">,
+>(
+  data: T,
+): VolumeAttachment & T & Pick<VolumeAttachment, "apiVersion" | "kind"> {
   return { apiVersion: "storage.k8s.io/v1", kind: "VolumeAttachment", ...data };
 }
 
@@ -226,9 +230,14 @@ export type VolumeAttachmentList = {
   /** Standard list metadata More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createVolumeAttachmentList(
-  data: Omit<VolumeAttachmentList, "apiVersion" | "kind">,
-): VolumeAttachmentList {
+export function createVolumeAttachmentList<
+  T extends Omit<VolumeAttachmentList, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & VolumeAttachmentList
+  & T
+  & Pick<VolumeAttachmentList, "apiVersion" | "kind"> {
   return {
     apiVersion: "storage.k8s.io/v1",
     kind: "VolumeAttachmentList",

@@ -21,9 +21,14 @@ export type CertificateSigningRequest = {
   /** Derived information about the request. */
   status?: CertificateSigningRequestStatus;
 };
-export function createCertificateSigningRequest(
-  data: Omit<CertificateSigningRequest, "apiVersion" | "kind">,
-): CertificateSigningRequest {
+export function createCertificateSigningRequest<
+  T extends Omit<CertificateSigningRequest, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & CertificateSigningRequest
+  & T
+  & Pick<CertificateSigningRequest, "apiVersion" | "kind"> {
   return {
     apiVersion: "certificates.k8s.io/v1beta1",
     kind: "CertificateSigningRequest",
@@ -58,9 +63,14 @@ export type CertificateSigningRequestList = {
 
   metadata?: ListMeta;
 };
-export function createCertificateSigningRequestList(
-  data: Omit<CertificateSigningRequestList, "apiVersion" | "kind">,
-): CertificateSigningRequestList {
+export function createCertificateSigningRequestList<
+  T extends Omit<CertificateSigningRequestList, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & CertificateSigningRequestList
+  & T
+  & Pick<CertificateSigningRequestList, "apiVersion" | "kind"> {
   return {
     apiVersion: "certificates.k8s.io/v1beta1",
     kind: "CertificateSigningRequestList",

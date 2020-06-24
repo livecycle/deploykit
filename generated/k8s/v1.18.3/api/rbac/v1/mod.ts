@@ -28,9 +28,9 @@ export type ClusterRole = {
   /** Rules holds all the PolicyRules for this ClusterRole */
   rules?: PolicyRule[];
 };
-export function createClusterRole(
-  data: Omit<ClusterRole, "apiVersion" | "kind">,
-): ClusterRole {
+export function createClusterRole<
+  T extends Omit<ClusterRole, "apiVersion" | "kind">,
+>(data: T): ClusterRole & T & Pick<ClusterRole, "apiVersion" | "kind"> {
   return {
     apiVersion: "rbac.authorization.k8s.io/v1",
     kind: "ClusterRole",
@@ -55,9 +55,11 @@ export type ClusterRoleBinding = {
   /** Subjects holds references to the objects the role applies to. */
   subjects?: Subject[];
 };
-export function createClusterRoleBinding(
-  data: Omit<ClusterRoleBinding, "apiVersion" | "kind">,
-): ClusterRoleBinding {
+export function createClusterRoleBinding<
+  T extends Omit<ClusterRoleBinding, "apiVersion" | "kind">,
+>(
+  data: T,
+): ClusterRoleBinding & T & Pick<ClusterRoleBinding, "apiVersion" | "kind"> {
   return {
     apiVersion: "rbac.authorization.k8s.io/v1",
     kind: "ClusterRoleBinding",
@@ -79,9 +81,14 @@ export type ClusterRoleBindingList = {
   /** Standard object's metadata. */
   metadata?: ListMeta;
 };
-export function createClusterRoleBindingList(
-  data: Omit<ClusterRoleBindingList, "apiVersion" | "kind">,
-): ClusterRoleBindingList {
+export function createClusterRoleBindingList<
+  T extends Omit<ClusterRoleBindingList, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & ClusterRoleBindingList
+  & T
+  & Pick<ClusterRoleBindingList, "apiVersion" | "kind"> {
   return {
     apiVersion: "rbac.authorization.k8s.io/v1",
     kind: "ClusterRoleBindingList",
@@ -103,9 +110,9 @@ export type ClusterRoleList = {
   /** Standard object's metadata. */
   metadata?: ListMeta;
 };
-export function createClusterRoleList(
-  data: Omit<ClusterRoleList, "apiVersion" | "kind">,
-): ClusterRoleList {
+export function createClusterRoleList<
+  T extends Omit<ClusterRoleList, "apiVersion" | "kind">,
+>(data: T): ClusterRoleList & T & Pick<ClusterRoleList, "apiVersion" | "kind"> {
   return {
     apiVersion: "rbac.authorization.k8s.io/v1",
     kind: "ClusterRoleList",
@@ -145,7 +152,9 @@ export type Role = {
   /** Rules holds all the PolicyRules for this Role */
   rules?: PolicyRule[];
 };
-export function createRole(data: Omit<Role, "apiVersion" | "kind">): Role {
+export function createRole<T extends Omit<Role, "apiVersion" | "kind">>(
+  data: T,
+): Role & T & Pick<Role, "apiVersion" | "kind"> {
   return { apiVersion: "rbac.authorization.k8s.io/v1", kind: "Role", ...data };
 }
 
@@ -166,9 +175,9 @@ export type RoleBinding = {
   /** Subjects holds references to the objects the role applies to. */
   subjects?: Subject[];
 };
-export function createRoleBinding(
-  data: Omit<RoleBinding, "apiVersion" | "kind">,
-): RoleBinding {
+export function createRoleBinding<
+  T extends Omit<RoleBinding, "apiVersion" | "kind">,
+>(data: T): RoleBinding & T & Pick<RoleBinding, "apiVersion" | "kind"> {
   return {
     apiVersion: "rbac.authorization.k8s.io/v1",
     kind: "RoleBinding",
@@ -190,9 +199,9 @@ export type RoleBindingList = {
   /** Standard object's metadata. */
   metadata?: ListMeta;
 };
-export function createRoleBindingList(
-  data: Omit<RoleBindingList, "apiVersion" | "kind">,
-): RoleBindingList {
+export function createRoleBindingList<
+  T extends Omit<RoleBindingList, "apiVersion" | "kind">,
+>(data: T): RoleBindingList & T & Pick<RoleBindingList, "apiVersion" | "kind"> {
   return {
     apiVersion: "rbac.authorization.k8s.io/v1",
     kind: "RoleBindingList",
@@ -214,9 +223,9 @@ export type RoleList = {
   /** Standard object's metadata. */
   metadata?: ListMeta;
 };
-export function createRoleList(
-  data: Omit<RoleList, "apiVersion" | "kind">,
-): RoleList {
+export function createRoleList<T extends Omit<RoleList, "apiVersion" | "kind">>(
+  data: T,
+): RoleList & T & Pick<RoleList, "apiVersion" | "kind"> {
   return {
     apiVersion: "rbac.authorization.k8s.io/v1",
     kind: "RoleList",

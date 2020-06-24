@@ -72,9 +72,9 @@ export type EndpointSlice = {
   /** ports specifies the list of network ports exposed by each endpoint in this slice. Each port must have a unique name. When ports is empty, it indicates that there are no defined ports. When a port is defined with a nil port value, it indicates "all ports". Each slice may include a maximum of 100 ports. */
   ports?: EndpointPort[];
 };
-export function createEndpointSlice(
-  data: Omit<EndpointSlice, "apiVersion" | "kind">,
-): EndpointSlice {
+export function createEndpointSlice<
+  T extends Omit<EndpointSlice, "apiVersion" | "kind">,
+>(data: T): EndpointSlice & T & Pick<EndpointSlice, "apiVersion" | "kind"> {
   return {
     apiVersion: "discovery.k8s.io/v1beta1",
     kind: "EndpointSlice",
@@ -96,9 +96,11 @@ export type EndpointSliceList = {
   /** Standard list metadata. */
   metadata?: ListMeta;
 };
-export function createEndpointSliceList(
-  data: Omit<EndpointSliceList, "apiVersion" | "kind">,
-): EndpointSliceList {
+export function createEndpointSliceList<
+  T extends Omit<EndpointSliceList, "apiVersion" | "kind">,
+>(
+  data: T,
+): EndpointSliceList & T & Pick<EndpointSliceList, "apiVersion" | "kind"> {
   return {
     apiVersion: "discovery.k8s.io/v1beta1",
     kind: "EndpointSliceList",

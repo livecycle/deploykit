@@ -18,9 +18,9 @@ export type RuntimeClass = {
   /** Specification of the RuntimeClass More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#spec-and-status */
   spec: RuntimeClassSpec;
 };
-export function createRuntimeClass(
-  data: Omit<RuntimeClass, "apiVersion" | "kind">,
-): RuntimeClass {
+export function createRuntimeClass<
+  T extends Omit<RuntimeClass, "apiVersion" | "kind">,
+>(data: T): RuntimeClass & T & Pick<RuntimeClass, "apiVersion" | "kind"> {
   return { apiVersion: "node.k8s.io/v1alpha1", kind: "RuntimeClass", ...data };
 }
 
@@ -38,9 +38,11 @@ export type RuntimeClassList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createRuntimeClassList(
-  data: Omit<RuntimeClassList, "apiVersion" | "kind">,
-): RuntimeClassList {
+export function createRuntimeClassList<
+  T extends Omit<RuntimeClassList, "apiVersion" | "kind">,
+>(
+  data: T,
+): RuntimeClassList & T & Pick<RuntimeClassList, "apiVersion" | "kind"> {
   return {
     apiVersion: "node.k8s.io/v1alpha1",
     kind: "RuntimeClassList",

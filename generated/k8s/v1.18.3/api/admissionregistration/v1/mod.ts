@@ -97,9 +97,14 @@ export type MutatingWebhookConfiguration = {
   /** Webhooks is a list of webhooks and the affected resources and operations. */
   webhooks?: MutatingWebhook[];
 };
-export function createMutatingWebhookConfiguration(
-  data: Omit<MutatingWebhookConfiguration, "apiVersion" | "kind">,
-): MutatingWebhookConfiguration {
+export function createMutatingWebhookConfiguration<
+  T extends Omit<MutatingWebhookConfiguration, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & MutatingWebhookConfiguration
+  & T
+  & Pick<MutatingWebhookConfiguration, "apiVersion" | "kind"> {
   return {
     apiVersion: "admissionregistration.k8s.io/v1",
     kind: "MutatingWebhookConfiguration",
@@ -121,9 +126,14 @@ export type MutatingWebhookConfigurationList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
 };
-export function createMutatingWebhookConfigurationList(
-  data: Omit<MutatingWebhookConfigurationList, "apiVersion" | "kind">,
-): MutatingWebhookConfigurationList {
+export function createMutatingWebhookConfigurationList<
+  T extends Omit<MutatingWebhookConfigurationList, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & MutatingWebhookConfigurationList
+  & T
+  & Pick<MutatingWebhookConfigurationList, "apiVersion" | "kind"> {
   return {
     apiVersion: "admissionregistration.k8s.io/v1",
     kind: "MutatingWebhookConfigurationList",
@@ -253,9 +263,14 @@ export type ValidatingWebhookConfiguration = {
   /** Webhooks is a list of webhooks and the affected resources and operations. */
   webhooks?: ValidatingWebhook[];
 };
-export function createValidatingWebhookConfiguration(
-  data: Omit<ValidatingWebhookConfiguration, "apiVersion" | "kind">,
-): ValidatingWebhookConfiguration {
+export function createValidatingWebhookConfiguration<
+  T extends Omit<ValidatingWebhookConfiguration, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & ValidatingWebhookConfiguration
+  & T
+  & Pick<ValidatingWebhookConfiguration, "apiVersion" | "kind"> {
   return {
     apiVersion: "admissionregistration.k8s.io/v1",
     kind: "ValidatingWebhookConfiguration",
@@ -277,9 +292,14 @@ export type ValidatingWebhookConfigurationList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
 };
-export function createValidatingWebhookConfigurationList(
-  data: Omit<ValidatingWebhookConfigurationList, "apiVersion" | "kind">,
-): ValidatingWebhookConfigurationList {
+export function createValidatingWebhookConfigurationList<
+  T extends Omit<ValidatingWebhookConfigurationList, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & ValidatingWebhookConfigurationList
+  & T
+  & Pick<ValidatingWebhookConfigurationList, "apiVersion" | "kind"> {
   return {
     apiVersion: "admissionregistration.k8s.io/v1",
     kind: "ValidatingWebhookConfigurationList",

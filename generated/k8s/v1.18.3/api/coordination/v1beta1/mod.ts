@@ -19,7 +19,9 @@ export type Lease = {
   /** Specification of the Lease. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
   spec?: LeaseSpec;
 };
-export function createLease(data: Omit<Lease, "apiVersion" | "kind">): Lease {
+export function createLease<T extends Omit<Lease, "apiVersion" | "kind">>(
+  data: T,
+): Lease & T & Pick<Lease, "apiVersion" | "kind"> {
   return { apiVersion: "coordination.k8s.io/v1beta1", kind: "Lease", ...data };
 }
 
@@ -37,9 +39,9 @@ export type LeaseList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createLeaseList(
-  data: Omit<LeaseList, "apiVersion" | "kind">,
-): LeaseList {
+export function createLeaseList<
+  T extends Omit<LeaseList, "apiVersion" | "kind">,
+>(data: T): LeaseList & T & Pick<LeaseList, "apiVersion" | "kind"> {
   return {
     apiVersion: "coordination.k8s.io/v1beta1",
     kind: "LeaseList",

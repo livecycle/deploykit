@@ -21,9 +21,9 @@ export type APIGroup = {
   /** versions are the versions supported in this group. */
   versions: GroupVersionForDiscovery[];
 };
-export function createAPIGroup(
-  data: Omit<APIGroup, "apiVersion" | "kind">,
-): APIGroup {
+export function createAPIGroup<T extends Omit<APIGroup, "apiVersion" | "kind">>(
+  data: T,
+): APIGroup & T & Pick<APIGroup, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "APIGroup", ...data };
 }
 
@@ -38,9 +38,9 @@ export type APIGroupList = {
   /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
   kind?: string;
 };
-export function createAPIGroupList(
-  data: Omit<APIGroupList, "apiVersion" | "kind">,
-): APIGroupList {
+export function createAPIGroupList<
+  T extends Omit<APIGroupList, "apiVersion" | "kind">,
+>(data: T): APIGroupList & T & Pick<APIGroupList, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "APIGroupList", ...data };
 }
 
@@ -91,9 +91,9 @@ export type APIResourceList = {
   /** resources contains the name of the resources and if they are namespaced. */
   resources: APIResource[];
 };
-export function createAPIResourceList(
-  data: Omit<APIResourceList, "apiVersion" | "kind">,
-): APIResourceList {
+export function createAPIResourceList<
+  T extends Omit<APIResourceList, "apiVersion" | "kind">,
+>(data: T): APIResourceList & T & Pick<APIResourceList, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "APIResourceList", ...data };
 }
 
@@ -111,9 +111,9 @@ export type APIVersions = {
   /** versions are the api versions that are available. */
   versions: string[];
 };
-export function createAPIVersions(
-  data: Omit<APIVersions, "apiVersion" | "kind">,
-): APIVersions {
+export function createAPIVersions<
+  T extends Omit<APIVersions, "apiVersion" | "kind">,
+>(data: T): APIVersions & T & Pick<APIVersions, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "APIVersions", ...data };
 }
 
@@ -140,9 +140,9 @@ export type DeleteOptions = {
   /** Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. */
   propagationPolicy?: string;
 };
-export function createDeleteOptions(
-  data: Omit<DeleteOptions, "apiVersion" | "kind">,
-): DeleteOptions {
+export function createDeleteOptions<
+  T extends Omit<DeleteOptions, "apiVersion" | "kind">,
+>(data: T): DeleteOptions & T & Pick<DeleteOptions, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "DeleteOptions", ...data };
 }
 
@@ -380,9 +380,9 @@ export type Status = {
   /** Status of the operation. One of: "Success" or "Failure". More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#spec-and-status */
   status?: string;
 };
-export function createStatus(
-  data: Omit<Status, "apiVersion" | "kind">,
-): Status {
+export function createStatus<T extends Omit<Status, "apiVersion" | "kind">>(
+  data: T,
+): Status & T & Pick<Status, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "Status", ...data };
 }
 

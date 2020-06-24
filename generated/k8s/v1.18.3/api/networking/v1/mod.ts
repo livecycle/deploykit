@@ -29,9 +29,9 @@ export type NetworkPolicy = {
   /** Specification of the desired behavior for this NetworkPolicy. */
   spec?: NetworkPolicySpec;
 };
-export function createNetworkPolicy(
-  data: Omit<NetworkPolicy, "apiVersion" | "kind">,
-): NetworkPolicy {
+export function createNetworkPolicy<
+  T extends Omit<NetworkPolicy, "apiVersion" | "kind">,
+>(data: T): NetworkPolicy & T & Pick<NetworkPolicy, "apiVersion" | "kind"> {
   return { apiVersion: "networking.k8s.io/v1", kind: "NetworkPolicy", ...data };
 }
 
@@ -67,9 +67,11 @@ export type NetworkPolicyList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createNetworkPolicyList(
-  data: Omit<NetworkPolicyList, "apiVersion" | "kind">,
-): NetworkPolicyList {
+export function createNetworkPolicyList<
+  T extends Omit<NetworkPolicyList, "apiVersion" | "kind">,
+>(
+  data: T,
+): NetworkPolicyList & T & Pick<NetworkPolicyList, "apiVersion" | "kind"> {
   return {
     apiVersion: "networking.k8s.io/v1",
     kind: "NetworkPolicyList",

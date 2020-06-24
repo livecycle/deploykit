@@ -21,8 +21,8 @@ export type KamusSecret = {
 
   kind?: string;
 };
-export function createKamusSecret(
-  data: Omit<KamusSecret, "apiVersion" | "kind">,
-): KamusSecret {
+export function createKamusSecret<
+  T extends Omit<KamusSecret, "apiVersion" | "kind">,
+>(data: T): KamusSecret & T & Pick<KamusSecret, "apiVersion" | "kind"> {
   return { apiVersion: "soluto.com/v1alpha2", kind: "KamusSecret", ...data };
 }

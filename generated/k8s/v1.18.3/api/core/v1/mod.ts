@@ -109,9 +109,9 @@ export type Binding = {
   /** The target object that you want to bind to the standard object. */
   target: ObjectReference;
 };
-export function createBinding(
-  data: Omit<Binding, "apiVersion" | "kind">,
-): Binding {
+export function createBinding<T extends Omit<Binding, "apiVersion" | "kind">>(
+  data: T,
+): Binding & T & Pick<Binding, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "Binding", ...data };
 }
 
@@ -283,9 +283,9 @@ export type ComponentStatus = {
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ObjectMeta;
 };
-export function createComponentStatus(
-  data: Omit<ComponentStatus, "apiVersion" | "kind">,
-): ComponentStatus {
+export function createComponentStatus<
+  T extends Omit<ComponentStatus, "apiVersion" | "kind">,
+>(data: T): ComponentStatus & T & Pick<ComponentStatus, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "ComponentStatus", ...data };
 }
 
@@ -303,9 +303,11 @@ export type ComponentStatusList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
 };
-export function createComponentStatusList(
-  data: Omit<ComponentStatusList, "apiVersion" | "kind">,
-): ComponentStatusList {
+export function createComponentStatusList<
+  T extends Omit<ComponentStatusList, "apiVersion" | "kind">,
+>(
+  data: T,
+): ComponentStatusList & T & Pick<ComponentStatusList, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "ComponentStatusList", ...data };
 }
 
@@ -333,9 +335,9 @@ export type ConfigMap = {
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ObjectMeta;
 };
-export function createConfigMap(
-  data: Omit<ConfigMap, "apiVersion" | "kind">,
-): ConfigMap {
+export function createConfigMap<
+  T extends Omit<ConfigMap, "apiVersion" | "kind">,
+>(data: T): ConfigMap & T & Pick<ConfigMap, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "ConfigMap", ...data };
 }
 
@@ -376,9 +378,9 @@ export type ConfigMapList = {
   /** More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createConfigMapList(
-  data: Omit<ConfigMapList, "apiVersion" | "kind">,
-): ConfigMapList {
+export function createConfigMapList<
+  T extends Omit<ConfigMapList, "apiVersion" | "kind">,
+>(data: T): ConfigMapList & T & Pick<ConfigMapList, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "ConfigMapList", ...data };
 }
 
@@ -727,9 +729,9 @@ export type Endpoints = {
   /** The set of all endpoints is the union of all subsets. Addresses are placed into subsets according to the IPs they share. A single address with multiple ports, some of which are ready and some of which are not (because they come from different containers) will result in the address being displayed in different subsets for the different ports. No address will appear in both Addresses and NotReadyAddresses in the same subset. Sets of addresses and ports that comprise a service. */
   subsets?: EndpointSubset[];
 };
-export function createEndpoints(
-  data: Omit<Endpoints, "apiVersion" | "kind">,
-): Endpoints {
+export function createEndpoints<
+  T extends Omit<Endpoints, "apiVersion" | "kind">,
+>(data: T): Endpoints & T & Pick<Endpoints, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "Endpoints", ...data };
 }
 
@@ -747,9 +749,9 @@ export type EndpointsList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
 };
-export function createEndpointsList(
-  data: Omit<EndpointsList, "apiVersion" | "kind">,
-): EndpointsList {
+export function createEndpointsList<
+  T extends Omit<EndpointsList, "apiVersion" | "kind">,
+>(data: T): EndpointsList & T & Pick<EndpointsList, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "EndpointsList", ...data };
 }
 
@@ -917,7 +919,9 @@ export type Event = {
   /** Type of this event (Normal, Warning), new types could be added in the future */
   type?: string;
 };
-export function createEvent(data: Omit<Event, "apiVersion" | "kind">): Event {
+export function createEvent<T extends Omit<Event, "apiVersion" | "kind">>(
+  data: T,
+): Event & T & Pick<Event, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "Event", ...data };
 }
 
@@ -935,9 +939,9 @@ export type EventList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
 };
-export function createEventList(
-  data: Omit<EventList, "apiVersion" | "kind">,
-): EventList {
+export function createEventList<
+  T extends Omit<EventList, "apiVersion" | "kind">,
+>(data: T): EventList & T & Pick<EventList, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "EventList", ...data };
 }
 
@@ -1257,9 +1261,9 @@ export type LimitRange = {
   /** Spec defines the limits enforced. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
   spec?: LimitRangeSpec;
 };
-export function createLimitRange(
-  data: Omit<LimitRange, "apiVersion" | "kind">,
-): LimitRange {
+export function createLimitRange<
+  T extends Omit<LimitRange, "apiVersion" | "kind">,
+>(data: T): LimitRange & T & Pick<LimitRange, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "LimitRange", ...data };
 }
 
@@ -1308,9 +1312,9 @@ export type LimitRangeList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
 };
-export function createLimitRangeList(
-  data: Omit<LimitRangeList, "apiVersion" | "kind">,
-): LimitRangeList {
+export function createLimitRangeList<
+  T extends Omit<LimitRangeList, "apiVersion" | "kind">,
+>(data: T): LimitRangeList & T & Pick<LimitRangeList, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "LimitRangeList", ...data };
 }
 
@@ -1379,9 +1383,9 @@ export type Namespace = {
   /** Status describes the current status of a Namespace. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
   status?: NamespaceStatus;
 };
-export function createNamespace(
-  data: Omit<Namespace, "apiVersion" | "kind">,
-): Namespace {
+export function createNamespace<
+  T extends Omit<Namespace, "apiVersion" | "kind">,
+>(data: T): Namespace & T & Pick<Namespace, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "Namespace", ...data };
 }
 
@@ -1414,9 +1418,9 @@ export type NamespaceList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
 };
-export function createNamespaceList(
-  data: Omit<NamespaceList, "apiVersion" | "kind">,
-): NamespaceList {
+export function createNamespaceList<
+  T extends Omit<NamespaceList, "apiVersion" | "kind">,
+>(data: T): NamespaceList & T & Pick<NamespaceList, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "NamespaceList", ...data };
 }
 
@@ -1452,7 +1456,9 @@ export type Node = {
   /** Most recently observed status of the node. Populated by the system. Read-only. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
   status?: NodeStatus;
 };
-export function createNode(data: Omit<Node, "apiVersion" | "kind">): Node {
+export function createNode<T extends Omit<Node, "apiVersion" | "kind">>(
+  data: T,
+): Node & T & Pick<Node, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "Node", ...data };
 }
 
@@ -1536,9 +1542,9 @@ export type NodeList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
 };
-export function createNodeList(
-  data: Omit<NodeList, "apiVersion" | "kind">,
-): NodeList {
+export function createNodeList<T extends Omit<NodeList, "apiVersion" | "kind">>(
+  data: T,
+): NodeList & T & Pick<NodeList, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "NodeList", ...data };
 }
 
@@ -1716,9 +1722,11 @@ export type PersistentVolume = {
   /** Status represents the current informationstatus for the persistent volume. Populated by the system. Read-only. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#persistent-volumes */
   status?: PersistentVolumeStatus;
 };
-export function createPersistentVolume(
-  data: Omit<PersistentVolume, "apiVersion" | "kind">,
-): PersistentVolume {
+export function createPersistentVolume<
+  T extends Omit<PersistentVolume, "apiVersion" | "kind">,
+>(
+  data: T,
+): PersistentVolume & T & Pick<PersistentVolume, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "PersistentVolume", ...data };
 }
 
@@ -1739,9 +1747,14 @@ export type PersistentVolumeClaim = {
   /** Status represents the current informationstatus of a persistent volume claim. Read-only. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#persistentvolumeclaims */
   status?: PersistentVolumeClaimStatus;
 };
-export function createPersistentVolumeClaim(
-  data: Omit<PersistentVolumeClaim, "apiVersion" | "kind">,
-): PersistentVolumeClaim {
+export function createPersistentVolumeClaim<
+  T extends Omit<PersistentVolumeClaim, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & PersistentVolumeClaim
+  & T
+  & Pick<PersistentVolumeClaim, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "PersistentVolumeClaim", ...data };
 }
 
@@ -1778,9 +1791,14 @@ export type PersistentVolumeClaimList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
 };
-export function createPersistentVolumeClaimList(
-  data: Omit<PersistentVolumeClaimList, "apiVersion" | "kind">,
-): PersistentVolumeClaimList {
+export function createPersistentVolumeClaimList<
+  T extends Omit<PersistentVolumeClaimList, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & PersistentVolumeClaimList
+  & T
+  & Pick<PersistentVolumeClaimList, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "PersistentVolumeClaimList", ...data };
 }
 
@@ -1848,9 +1866,14 @@ export type PersistentVolumeList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
 };
-export function createPersistentVolumeList(
-  data: Omit<PersistentVolumeList, "apiVersion" | "kind">,
-): PersistentVolumeList {
+export function createPersistentVolumeList<
+  T extends Omit<PersistentVolumeList, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & PersistentVolumeList
+  & T
+  & Pick<PersistentVolumeList, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "PersistentVolumeList", ...data };
 }
 
@@ -1987,7 +2010,9 @@ export type Pod = {
   /** Most recently observed status of the pod. This data may not be up to date. Populated by the system. Read-only. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
   status?: PodStatus;
 };
-export function createPod(data: Omit<Pod, "apiVersion" | "kind">): Pod {
+export function createPod<T extends Omit<Pod, "apiVersion" | "kind">>(
+  data: T,
+): Pod & T & Pick<Pod, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "Pod", ...data };
 }
 
@@ -2083,9 +2108,9 @@ export type PodList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
 };
-export function createPodList(
-  data: Omit<PodList, "apiVersion" | "kind">,
-): PodList {
+export function createPodList<T extends Omit<PodList, "apiVersion" | "kind">>(
+  data: T,
+): PodList & T & Pick<PodList, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "PodList", ...data };
 }
 
@@ -2298,9 +2323,9 @@ export type PodTemplate = {
   /** Template defines the pods that will be created from this pod template. https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
   template?: PodTemplateSpec;
 };
-export function createPodTemplate(
-  data: Omit<PodTemplate, "apiVersion" | "kind">,
-): PodTemplate {
+export function createPodTemplate<
+  T extends Omit<PodTemplate, "apiVersion" | "kind">,
+>(data: T): PodTemplate & T & Pick<PodTemplate, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "PodTemplate", ...data };
 }
 
@@ -2318,9 +2343,9 @@ export type PodTemplateList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
 };
-export function createPodTemplateList(
-  data: Omit<PodTemplateList, "apiVersion" | "kind">,
-): PodTemplateList {
+export function createPodTemplateList<
+  T extends Omit<PodTemplateList, "apiVersion" | "kind">,
+>(data: T): PodTemplateList & T & Pick<PodTemplateList, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "PodTemplateList", ...data };
 }
 
@@ -2482,9 +2507,14 @@ export type ReplicationController = {
   /** Status is the most recently observed status of the replication controller. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
   status?: ReplicationControllerStatus;
 };
-export function createReplicationController(
-  data: Omit<ReplicationController, "apiVersion" | "kind">,
-): ReplicationController {
+export function createReplicationController<
+  T extends Omit<ReplicationController, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & ReplicationController
+  & T
+  & Pick<ReplicationController, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "ReplicationController", ...data };
 }
 
@@ -2520,9 +2550,14 @@ export type ReplicationControllerList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
 };
-export function createReplicationControllerList(
-  data: Omit<ReplicationControllerList, "apiVersion" | "kind">,
-): ReplicationControllerList {
+export function createReplicationControllerList<
+  T extends Omit<ReplicationControllerList, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & ReplicationControllerList
+  & T
+  & Pick<ReplicationControllerList, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "ReplicationControllerList", ...data };
 }
 
@@ -2593,9 +2628,9 @@ export type ResourceQuota = {
   /** Status defines the actual enforced quota and its current usage. https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
   status?: ResourceQuotaStatus;
 };
-export function createResourceQuota(
-  data: Omit<ResourceQuota, "apiVersion" | "kind">,
-): ResourceQuota {
+export function createResourceQuota<
+  T extends Omit<ResourceQuota, "apiVersion" | "kind">,
+>(data: T): ResourceQuota & T & Pick<ResourceQuota, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "ResourceQuota", ...data };
 }
 
@@ -2613,9 +2648,11 @@ export type ResourceQuotaList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
 };
-export function createResourceQuotaList(
-  data: Omit<ResourceQuotaList, "apiVersion" | "kind">,
-): ResourceQuotaList {
+export function createResourceQuotaList<
+  T extends Omit<ResourceQuotaList, "apiVersion" | "kind">,
+>(
+  data: T,
+): ResourceQuotaList & T & Pick<ResourceQuotaList, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "ResourceQuotaList", ...data };
 }
 
@@ -2785,9 +2822,9 @@ export type Secret = {
   /** Used to facilitate programmatic handling of secret data. */
   type?: string;
 };
-export function createSecret(
-  data: Omit<Secret, "apiVersion" | "kind">,
-): Secret {
+export function createSecret<T extends Omit<Secret, "apiVersion" | "kind">>(
+  data: T,
+): Secret & T & Pick<Secret, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "Secret", ...data };
 }
 
@@ -2828,9 +2865,9 @@ export type SecretList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
 };
-export function createSecretList(
-  data: Omit<SecretList, "apiVersion" | "kind">,
-): SecretList {
+export function createSecretList<
+  T extends Omit<SecretList, "apiVersion" | "kind">,
+>(data: T): SecretList & T & Pick<SecretList, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "SecretList", ...data };
 }
 
@@ -2924,9 +2961,9 @@ export type Service = {
   /** Most recently observed status of the service. Populated by the system. Read-only. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#spec-and-status */
   status?: ServiceStatus;
 };
-export function createService(
-  data: Omit<Service, "apiVersion" | "kind">,
-): Service {
+export function createService<T extends Omit<Service, "apiVersion" | "kind">>(
+  data: T,
+): Service & T & Pick<Service, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "Service", ...data };
 }
 
@@ -2950,9 +2987,9 @@ export type ServiceAccount = {
   /** Secrets is the list of secrets allowed to be used by pods running using this ServiceAccount. More info: https:kubernetes.iodocsconceptsconfigurationsecret */
   secrets?: ObjectReference[];
 };
-export function createServiceAccount(
-  data: Omit<ServiceAccount, "apiVersion" | "kind">,
-): ServiceAccount {
+export function createServiceAccount<
+  T extends Omit<ServiceAccount, "apiVersion" | "kind">,
+>(data: T): ServiceAccount & T & Pick<ServiceAccount, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "ServiceAccount", ...data };
 }
 
@@ -2970,9 +3007,11 @@ export type ServiceAccountList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
 };
-export function createServiceAccountList(
-  data: Omit<ServiceAccountList, "apiVersion" | "kind">,
-): ServiceAccountList {
+export function createServiceAccountList<
+  T extends Omit<ServiceAccountList, "apiVersion" | "kind">,
+>(
+  data: T,
+): ServiceAccountList & T & Pick<ServiceAccountList, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "ServiceAccountList", ...data };
 }
 
@@ -3002,9 +3041,9 @@ export type ServiceList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
 };
-export function createServiceList(
-  data: Omit<ServiceList, "apiVersion" | "kind">,
-): ServiceList {
+export function createServiceList<
+  T extends Omit<ServiceList, "apiVersion" | "kind">,
+>(data: T): ServiceList & T & Pick<ServiceList, "apiVersion" | "kind"> {
   return { apiVersion: "v1", kind: "ServiceList", ...data };
 }
 

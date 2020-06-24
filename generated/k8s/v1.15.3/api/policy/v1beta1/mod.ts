@@ -46,9 +46,9 @@ export type Eviction = {
   /** ObjectMeta describes the pod that is being evicted. */
   metadata?: ObjectMeta;
 };
-export function createEviction(
-  data: Omit<Eviction, "apiVersion" | "kind">,
-): Eviction {
+export function createEviction<T extends Omit<Eviction, "apiVersion" | "kind">>(
+  data: T,
+): Eviction & T & Pick<Eviction, "apiVersion" | "kind"> {
   return { apiVersion: "policy/v1beta1", kind: "Eviction", ...data };
 }
 
@@ -95,9 +95,11 @@ export type PodDisruptionBudget = {
   /** Most recently observed status of the PodDisruptionBudget. */
   status?: PodDisruptionBudgetStatus;
 };
-export function createPodDisruptionBudget(
-  data: Omit<PodDisruptionBudget, "apiVersion" | "kind">,
-): PodDisruptionBudget {
+export function createPodDisruptionBudget<
+  T extends Omit<PodDisruptionBudget, "apiVersion" | "kind">,
+>(
+  data: T,
+): PodDisruptionBudget & T & Pick<PodDisruptionBudget, "apiVersion" | "kind"> {
   return { apiVersion: "policy/v1beta1", kind: "PodDisruptionBudget", ...data };
 }
 
@@ -113,9 +115,14 @@ export type PodDisruptionBudgetList = {
 
   metadata?: ListMeta;
 };
-export function createPodDisruptionBudgetList(
-  data: Omit<PodDisruptionBudgetList, "apiVersion" | "kind">,
-): PodDisruptionBudgetList {
+export function createPodDisruptionBudgetList<
+  T extends Omit<PodDisruptionBudgetList, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & PodDisruptionBudgetList
+  & T
+  & Pick<PodDisruptionBudgetList, "apiVersion" | "kind"> {
   return {
     apiVersion: "policy/v1beta1",
     kind: "PodDisruptionBudgetList",
@@ -172,9 +179,11 @@ export type PodSecurityPolicy = {
   /** spec defines the policy enforced. */
   spec?: PodSecurityPolicySpec;
 };
-export function createPodSecurityPolicy(
-  data: Omit<PodSecurityPolicy, "apiVersion" | "kind">,
-): PodSecurityPolicy {
+export function createPodSecurityPolicy<
+  T extends Omit<PodSecurityPolicy, "apiVersion" | "kind">,
+>(
+  data: T,
+): PodSecurityPolicy & T & Pick<PodSecurityPolicy, "apiVersion" | "kind"> {
   return { apiVersion: "policy/v1beta1", kind: "PodSecurityPolicy", ...data };
 }
 
@@ -192,9 +201,14 @@ export type PodSecurityPolicyList = {
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ListMeta;
 };
-export function createPodSecurityPolicyList(
-  data: Omit<PodSecurityPolicyList, "apiVersion" | "kind">,
-): PodSecurityPolicyList {
+export function createPodSecurityPolicyList<
+  T extends Omit<PodSecurityPolicyList, "apiVersion" | "kind">,
+>(
+  data: T,
+):
+  & PodSecurityPolicyList
+  & T
+  & Pick<PodSecurityPolicyList, "apiVersion" | "kind"> {
   return {
     apiVersion: "policy/v1beta1",
     kind: "PodSecurityPolicyList",
