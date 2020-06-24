@@ -3,6 +3,60 @@ import copy from "https://cdn.pika.dev/fast-copy@^2.0.4";
 import { KubeMetaContext } from "../types.ts";
 import { RequiredKeysInPath } from "../../ts-helpers.ts";
 
+export function createAddResourceOp<
+  TParams,
+  TContext extends KubeMetaContext,
+  TResources,
+  TNewResource,
+  TKey extends string,
+>(
+  defaultResourceKey: TKey,
+  fn: (
+    p: TParams,
+  ) => ((ctx: TContext, r: TResources) => TNewResource) | TNewResource,
+) {
+  return <
+    TResources2 extends TResources,
+    TContext2 extends TContext,
+    TKey2 extends string = TKey,
+  >(
+    opts:
+      | (TParams & { resourceKey?: TKey2 })
+      | ((
+        ctx: TContext2,
+        resources: TResources2,
+      ) => TParams & { resourceKey?: TKey2 }),
+  ) =>
+    (r: TResources2, ctx: TContext2) => {
+      let results = typeof (opts) === "function"
+        ? (opts as ((
+          ctx: TContext2,
+          resources: TResources2,
+        ) => TParams & { resourceKey?: TKey2 }))(
+          ctx,
+          r,
+        )
+        : opts;
+      let builderOrInstance = fn(results);
+      let ff = typeof builderOrInstance === "function"
+        ? (builderOrInstance as (
+          ctx: TContext2,
+          r: TResources,
+        ) => TNewResource)(ctx, r)
+        : builderOrInstance;
+
+      return addResource<
+        TKey2,
+        TContext2,
+        TResources2,
+        typeof ff
+      >(
+        results["resourceKey"] || defaultResourceKey as any,
+        ff,
+      )(r, ctx);
+    };
+}
+
 export function addResources<
   TContext extends KubeMetaContext,
   U extends {
@@ -53,9 +107,9 @@ export function addResource<
     | U
     | ((ctx: TContext, resources: TResources) => U),
 ) {
-  return function <T extends TResources, TT extends TContext>(
-    resources: T,
-    ctx: TT,
+  return function (
+    resources: TResources,
+    ctx: TContext,
   ) {
     let newResource = typeof (factoryOrInstance) === "function"
       ? factoryOrInstance(ctx, resources)
@@ -69,14 +123,16 @@ export function addResource<
       };
     }
 
-    return {
+    let n = {
       [name]: newResource,
+    } as Record<
+      TKey,
+      RequiredKeysInPath<U, ["metadata"], "name" | "namespace" | "labels">
+    >;
+
+    return {
+      ...n,
       ...resources,
-    } as
-      & T
-      & Record<
-        TKey,
-        RequiredKeysInPath<U, ["metadata"], "name" | "namespace" | "labels">
-      >;
+    };
   };
 }

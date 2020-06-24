@@ -1,7 +1,7 @@
 import * as k8s from "../../../generated/k8s/v1.18.3/api/mod.ts";
 import { KubeMetaContext, Workload } from "../types.ts";
 import { modify, compose, IBluePrint } from "../../blueprint.ts";
-import { addResource } from "./base.ts";
+import { addResource, createAddResourceOp } from "./base.ts";
 import { DeploymentStrategy } from "../../../generated/k8s/v1.18.3/api/apps/v1/mod.ts";
 import { Container } from "../../../generated/k8s/v1.18.3/api/core/v1/mod.ts";
 
@@ -92,58 +92,61 @@ export const addSecret = <TResourceKey extends string = "secret">(
     }),
   );
 
-export const addDeployment = <TKey extends string = "deployment">(
-  {
-    image,
-    deploymentStrategy,
-    resources = {},
-    containerProps = {},
-    volumes = [],
-    resourceKey = "deployment" as TKey,
-  }: {
-    image: string;
-    resourceKey?: TKey;
-    deploymentStrategy?: DeploymentStrategy;
-    resources?: k8s.core.v1.ResourceRequirements;
-    volumes?: k8s.core.v1.Volume[];
-    containerProps?: Partial<Omit<Container, "image" | "resources">>;
+export const addDeployment = createAddResourceOp(
+  "deployment",
+  function deploymentFactory(
+    {
+      image,
+      deploymentStrategy,
+      resources,
+      containerProps = {},
+      volumes = [],
+    }: {
+      image: string;
+      deploymentStrategy?: DeploymentStrategy;
+      resources?: k8s.core.v1.ResourceRequirements;
+      volumes?: k8s.core.v1.Volume[];
+      containerProps?: Partial<Omit<Container, "image" | "resources">>;
+    },
+  ) {
+    return <TContext extends KubeMetaContext>(
+      ctx: TContext,
+    ) =>
+      k8s.apps.v1.createDeployment({
+        spec: {
+          selector: {
+            matchLabels: ctx.labels,
+          },
+          strategy: deploymentStrategy,
+          template: {
+            metadata: {
+              labels: ctx.labels,
+            },
+            spec: {
+              volumes,
+              containers: [
+                {
+                  name: "app",
+                  image,
+                  resources,
+                  ...containerProps,
+                },
+              ],
+            },
+          },
+        },
+      });
   },
-) =>
-  addResource(resourceKey, (ctx) =>
-    k8s.apps.v1.createDeployment({
-      spec: {
-        selector: {
-          matchLabels: ctx.labels,
-        },
-        strategy: deploymentStrategy,
-        template: {
-          metadata: {
-            labels: ctx.labels,
-          },
-          spec: {
-            volumes,
-            containers: [
-              {
-                name: "app",
-                image,
-                resources,
-                ...containerProps,
-              },
-            ],
-          },
-        },
-      },
-    }));
+);
 
-export const addService = <TKey extends string = "service">(
-  { resourceKey = "service" as TKey, port }: {
-    resourceKey?: TKey;
-    port: number;
-  },
-) =>
-  addResource(
-    resourceKey,
-    k8s.core.v1.createService({
+export const addService = createAddResourceOp(
+  "service",
+  function serviceFactory(
+    { port }: {
+      port: number;
+    },
+  ) {
+    return k8s.core.v1.createService({
       spec: {
         ports: [
           {
@@ -152,8 +155,9 @@ export const addService = <TKey extends string = "service">(
           },
         ],
       },
-    }),
-  );
+    });
+  },
+);
 
 export const addTls = <
   T extends { ingress: k8s.extensions.v1beta1.Ingress },
@@ -177,6 +181,9 @@ export const addTls = <
     );
   });
 };
+
+/** Adds an Ingress resource for routing external traffic to the service.
+*/
 
 /** Adds an Ingress resource for routing external traffic to the service.
 */

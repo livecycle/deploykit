@@ -1,8 +1,11 @@
-import { createBluePrint, IBluePrint } from "../blueprint.ts";
+import { createBluePrint, InitCompose, IBluePrint } from "../blueprint.ts";
 import { KubeMetaContext } from "./types.ts";
 
-export function createMicroservice<
-  T extends KubeMetaContext = KubeMetaContext,
->(): IBluePrint<T, {}> {
-  return createBluePrint<T>();
+export function createKubeBlueprint<
+  TContext extends KubeMetaContext = KubeMetaContext,
+  U = {},
+>(
+  c?: InitCompose<TContext, U>,
+) {
+  return createBluePrint<TContext>(c) as IBluePrint<TContext, U>;
 }

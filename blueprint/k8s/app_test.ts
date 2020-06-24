@@ -1,9 +1,13 @@
 import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
-import { createMicroservice } from "./app.ts";
-import { addDeployment, addService, expose } from "./operators/all.ts";
+import { createKubeBlueprint } from "./app.ts";
+import {
+  addDeployment,
+  addService,
+  expose,
+} from "./operators/all.ts";
 
 Deno.test("basic k8s service test", () => {
-  let s = createMicroservice().with(
+  let s = createKubeBlueprint().with(
     addDeployment({ resourceKey: "dep", image: "my-image" }),
     addService({ port: 80 }),
     expose({ domain: "my-app.com" }),

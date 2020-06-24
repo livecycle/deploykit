@@ -6,6 +6,11 @@ export interface BluePrintTransform<TContext, T, U> {
   (this: IBluePrint<TContext, T>, resources: T, ctx: TContext): U;
 }
 
+export type InitCompose<TContext, U = {}> = (
+  org: IBluePrint<TContext, {}>,
+  ctx: TContext,
+) => IBluePrint<TContext, U>;
+
 export interface IBluePrint<TContext, T> {
   with(): IBluePrint<TContext, T>;
 
@@ -81,13 +86,13 @@ class BluePrint<TContext, TResources>
   }
 }
 
-export function createBluePrint<TContext = undefined>(): IBluePrint<
-  TContext,
-  {}
-> {
+export function createBluePrint<TContext = undefined, U = {}>(
+  composition: InitCompose<TContext, U> = (x) =>
+    (x as any) as IBluePrint<TContext, U>,
+): IBluePrint<TContext, U> {
   return new BluePrint<TContext, {}>(() => {
     return {};
-  });
+  }).with(compose(composition));
 }
 
 export const modify = <TContext, T>(fn: (t: T, ctx: TContext) => void) => {
@@ -130,15 +135,15 @@ export function mergeSelect<TContext, T, K extends keyof T>(
 }
 
 export function defer<TContext, T, U>(
-  fn: (ctx: TContext) => BluePrintTransform<TContext, T, U>,
+  fn: (resources: T, ctx: TContext) => BluePrintTransform<TContext, T, U>,
 ): BluePrintTransform<TContext, T, U> {
-  return function (_, ctx) {
-    return this.with(fn(ctx)).build(ctx);
+  return function (r, ctx) {
+    return this.with(fn(r, ctx)).build(ctx);
   };
 }
 
 export function compose<TContext, T, U>(
-  fn: (org: IBluePrint<TContext, T>, ctx?: TContext) => IBluePrint<TContext, U>,
+  fn: (org: IBluePrint<TContext, T>, ctx: TContext) => IBluePrint<TContext, U>,
 ): BluePrintTransform<TContext, T, U> {
   return function (_, ctx) {
     return fn(this, ctx).build(ctx);

@@ -1,13 +1,12 @@
-import { createMicroservice } from "https://deno.land/x/gh:yshayy:deploykit@0.0.15/blueprint/k8s/app.ts";
+import { createKubeBlueprint } from "../../blueprint/k8s/mod.ts";
 import {
   addDeployment,
   addService,
   expose,
   addResource,
-} from "https://deno.land/x/gh:yshayy:deploykit@0.0.15/blueprint/k8s/operators/all.ts";
+} from "../../blueprint/k8s/operators/all.ts";
 import * as crds from "https://deno.land/x/gh:yshayy:deploykit@0.0.15/generated/k8s/crds/mod.ts";
 import { KubeMetaContext } from "https://deno.land/x/gh:yshayy:deploykit@0.0.15/blueprint/k8s/types.ts";
-import { defer } from "https://deno.land/x/gh:yshayy:deploykit@0.0.15/blueprint/mod.ts";
 
 interface MyServiceParams extends KubeMetaContext {
   image: {
@@ -18,30 +17,30 @@ interface MyServiceParams extends KubeMetaContext {
   domain: string;
 }
 
-let blueprint = createMicroservice<MyServiceParams>().with(
-  defer(({ image }) => {
-    return addDeployment(
-      { image: `${image.registry}/${image.name}:${image.version}` },
-    );
-  }),
-  addService({ port: 80 }),
-  addResource(
-    "monitor",
-    ({ labels }) =>
-      crds.monitoring.coreos.com.v1.createServiceMonitor({
-        spec: {
-          endpoints: [
-            {
-              path: "/metrics",
+let blueprint = createKubeBlueprint((x, { image, domain }: MyServiceParams) =>
+  x.with(
+    addDeployment({
+      image: `${image.registry}/${image.name}:${image.version}`,
+    }),
+    addService({ port: 80 }),
+    addResource(
+      "monitor",
+      ({ labels }) =>
+        crds.monitoring.coreos.com.v1.createServiceMonitor({
+          spec: {
+            endpoints: [
+              {
+                path: "/metrics",
+              },
+            ],
+            selector: {
+              matchLabels: labels,
             },
-          ],
-          selector: {
-            matchLabels: labels,
           },
-        },
-      }),
-  ),
-  defer(({ domain }) => expose({ domain })),
+        }),
+    ),
+    expose({ domain }),
+  )
 );
 
 blueprint.dump(
