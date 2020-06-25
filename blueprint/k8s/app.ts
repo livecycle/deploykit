@@ -9,3 +9,5 @@ export function createKubeBlueprint<
 ) {
   return createBluePrint<TContext>(c) as IBluePrint<TContext, U>;
 }
+
+export const createMicroervice = createKubeBlueprint;

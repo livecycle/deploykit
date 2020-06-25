@@ -1,4 +1,4 @@
-import { createKubeBlueprint } from "../../blueprint/k8s/mod.ts";
+import { createKubeBlueprint } from "https://deno.land/x/gh:yshayy:deploykit@0.0.15/blueprint/k8s/mod.ts";
 import {
   addDeployment,
   addService,
@@ -17,8 +17,8 @@ interface MyServiceParams extends KubeMetaContext {
   domain: string;
 }
 
-let blueprint = createKubeBlueprint((x, { image, domain }: MyServiceParams) =>
-  x.with(
+let blueprint = createKubeBlueprint((b, { image, domain }: MyServiceParams) =>
+  b.with(
     addDeployment({
       image: `${image.registry}/${image.name}:${image.version}`,
     }),
