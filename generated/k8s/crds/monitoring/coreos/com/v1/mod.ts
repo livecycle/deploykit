@@ -1,5 +1,5 @@
 /* Generated for monitoring/coreos/com/v1/mod.ts */
-import { ObjectMeta } from "https://deno.land/x/gh:yshayy:deploykit@0.0.10/generated/k8s/v1.18.3/apimachinery/pkg/apis/meta/v1/mod.ts";
+import { ObjectMeta } from "https://deno.land/x/gh:yshayy:deploykit@0.0.16/generated/k8s/v1.18.3/apimachinery/pkg/apis/meta/v1/mod.ts";
 
 /** Alertmanager describes an Alertmanager cluster. */
 export type Alertmanager = {
