@@ -1,5 +1,5 @@
 /* Generated for argoproj/io/v1alpha1/mod.ts */
-import { ObjectMeta } from "https://deno.land/x/gh:yshayy:deploykit@0.0.16/generated/k8s/v1.18.3/apimachinery/pkg/apis/meta/v1/mod.ts";
+import { ObjectMeta } from "https://raw.githubusercontent.com/yshayy/deploykit/0.0.17/generated/k8s/v1.18.3/apimachinery/pkg/apis/meta/v1/mod.ts";
 
 undefined;
 export type AnalysisRun = {
@@ -8249,6 +8249,14 @@ export type AppProject = {
 
     /** OrphanedResources specifies if controller should monitor orphaned resources of apps in this project */
     orphanedResources?: {
+      ignore?: {
+        group?: string;
+
+        kind?: string;
+
+        name?: string;
+      }[];
+
       /** Warn indicates if warning condition should be created for apps which have orphaned resources */
       warn?: boolean;
     };
@@ -8309,6 +8317,21 @@ export type AppProject = {
       /** Schedule is the time the window will begin, specified in cron format */
       schedule?: string;
     }[];
+  };
+
+  /** AppProjectStatus contains information about appproj */
+  status?: {
+    jwtTokensByRole?: {
+      [key: string]: {
+        items?: {
+          exp?: number;
+
+          iat: number;
+
+          id?: string;
+        }[];
+      };
+    };
   };
 };
 export function createAppProject<

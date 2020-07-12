@@ -150,6 +150,15 @@ export function compose<TContext, T, U>(
   };
 }
 
+export function applyIf<TContext, T, U, TCondition extends boolean = false>(
+  value: TCondition,
+  transform: BluePrintTransform<TContext, T, U>,
+): TCondition extends true ? BluePrintTransform<TContext, T, U>
+  : BluePrintTransform<TContext, T, T> {
+  let op = (value) ? transform : ((x: T) => x);
+  return op as any;
+}
+
 //const marks = Symbol.for("marks");
 
 export const mark = (name: string, unique: boolean = true) =>

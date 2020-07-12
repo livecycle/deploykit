@@ -1,5 +1,5 @@
 /* Generated for monitoring/coreos/com/v1/mod.ts */
-import { ObjectMeta } from "https://deno.land/x/gh:yshayy:deploykit@0.0.16/generated/k8s/v1.18.3/apimachinery/pkg/apis/meta/v1/mod.ts";
+import { ObjectMeta } from "https://raw.githubusercontent.com/yshayy/deploykit/0.0.17/generated/k8s/v1.18.3/apimachinery/pkg/apis/meta/v1/mod.ts";
 
 /** Alertmanager describes an Alertmanager cluster. */
 export type Alertmanager = {
@@ -217,7 +217,7 @@ export type Alertmanager = {
       };
     };
 
-    /** Base image that is used to deploy pods, without tag. */
+    /** Base image that is used to deploy pods, without tag. Deprecated: use 'image' instead */
     baseImage?: string;
 
     /** ClusterAdvertiseAddress is the explicit address to advertise in cluster. Needs to be provided for non RFC1918 [1] (public) addresses. [1] RFC1918: https:tools.ietf.orghtmlrfc1918 */
@@ -1359,7 +1359,7 @@ export type Alertmanager = {
     /** ServiceAccountName is the name of the ServiceAccount to use to run the Prometheus Pods. */
     serviceAccountName?: string;
 
-    /** SHA of Alertmanager container image to be deployed. Defaults to the value of `version`. Similar to a tag, but the SHA explicitly deploys an immutable container image. Version and Tag are ignored if SHA is set. */
+    /** SHA of Alertmanager container image to be deployed. Defaults to the value of `version`. Similar to a tag, but the SHA explicitly deploys an immutable container image. Version and Tag are ignored if SHA is set. Deprecated: use 'image' instead.  The image digest can be specified as part of the image URL. */
     sha?: string;
 
     /** Storage is the definition of how storage will be used by the Alertmanager instances. */
@@ -1496,7 +1496,7 @@ export type Alertmanager = {
       };
     };
 
-    /** Tag of Alertmanager container image to be deployed. Defaults to the value of `version`. Version is ignored if Tag is set. */
+    /** Tag of Alertmanager container image to be deployed. Defaults to the value of `version`. Version is ignored if Tag is set. Deprecated: use 'image' instead.  The image tag can be specified as part of the image URL. */
     tag?: string;
 
     /** If specified, the pod's tolerations. */

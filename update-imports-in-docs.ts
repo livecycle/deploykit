@@ -1,8 +1,9 @@
 import { expandGlobSync } from "https://deno.land/std/fs/mod.ts";
 let target = "0.0.17";
 
-let replaced = `https://deno.land/x/gh:yshayy:deploykit@${target}`;
-let regex = /https:\/\/deno\.land\/x\/gh:yshayy:deploykit@[0-9.]+/g;
+let replaced = `https://raw.githubusercontent.com/yshayy/deploykit/${target}`;
+let regex =
+  /https:\/\/raw\.githubusercontent\.com\/yshayy\/deploykit\/[0-9.]+/g;
 
 for await (
   const fileInfo of [
