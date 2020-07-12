@@ -158,20 +158,3 @@ export function applyIf<TContext, T, U, TCondition extends boolean = false>(
   let op = (value) ? transform : ((x: T) => x);
   return op as any;
 }
-
-//const marks = Symbol.for("marks");
-
-export const mark = (name: string, unique: boolean = true) =>
-  <TContext extends {}, T>(fn: (t: T, ctx: TContext) => void) => {
-    return function (resources: T, ctx: TContext) {
-      //ctx[marks] = true;
-      return resources;
-    };
-  };
-
-<T, TContext>(fn: (t: T, ctx: TContext) => void) => {
-  return function (resources: T, ctx: TContext) {
-    fn(resources, ctx);
-    return resources;
-  };
-};
