@@ -2,7 +2,6 @@
     "editor.formatOnSave": true,
     "deno.enable": true,
     "typescript.enablePromptUseWorkspaceTsdk": true,
-    "typescript.tsdk": "/Users/yshay/.vscode/extensions/denoland.vscode-deno-1.24.0/server/node_modules/typescript/lib",
     "[typescript]": {
         "editor.defaultFormatter": "denoland.vscode-deno"
     }
