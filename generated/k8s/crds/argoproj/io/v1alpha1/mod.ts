@@ -1,5 +1,5 @@
 /* Generated for argoproj/io/v1alpha1/mod.ts */
-import { ObjectMeta } from "https://raw.githubusercontent.com/yshayy/deploykit/0.0.17/generated/k8s/v1.18.3/apimachinery/pkg/apis/meta/v1/mod.ts";
+import { ObjectMeta } from "https://deno.land/x/deploykit@0.0.19/generated/k8s/v1.18.3/apimachinery/pkg/apis/meta/v1/mod.ts";
 
 undefined;
 export type AnalysisRun = {
@@ -1849,10 +1849,14 @@ export type Rollout = {
             };
           }[];
 
+          clusterScope?: boolean;
+
           templateName?: string;
 
           templates?: {
-            templateName: string;
+            clusterScope?: boolean;
+
+            templateName?: string;
           }[];
         };
 
@@ -1867,10 +1871,14 @@ export type Rollout = {
             };
           }[];
 
+          clusterScope?: boolean;
+
           templateName?: string;
 
           templates?: {
-            templateName: string;
+            clusterScope?: boolean;
+
+            templateName?: string;
           }[];
         };
 
@@ -1895,12 +1903,16 @@ export type Rollout = {
             };
           }[];
 
+          clusterScope?: boolean;
+
           startingStep?: number;
 
           templateName?: string;
 
           templates?: {
-            templateName: string;
+            clusterScope?: boolean;
+
+            templateName?: string;
           }[];
         };
 
@@ -1932,10 +1944,14 @@ export type Rollout = {
               };
             }[];
 
+            clusterScope?: boolean;
+
             templateName?: string;
 
             templates?: {
-              templateName: string;
+              clusterScope?: boolean;
+
+              templateName?: string;
             }[];
           };
 
@@ -1950,6 +1966,8 @@ export type Rollout = {
                   podTemplateHashValue?: string;
                 };
               }[];
+
+              clusterScope?: boolean;
 
               name: string;
 
@@ -3612,6 +3630,8 @@ export type Rollout = {
 
     abort?: boolean;
 
+    abortedAt?: boolean;
+
     availableReplicas?: number;
 
     blueGreen?: {
@@ -3619,7 +3639,23 @@ export type Rollout = {
 
       postPromotionAnalysisRun?: string;
 
+      postPromotionAnalysisRunStatus?: {
+        message?: string;
+
+        name: string;
+
+        status: string;
+      };
+
       prePromotionAnalysisRun?: string;
+
+      prePromotionAnalysisRunStatus?: {
+        message?: string;
+
+        name: string;
+
+        status: string;
+      };
 
       previewSelector?: string;
 
@@ -3633,9 +3669,25 @@ export type Rollout = {
     canary?: {
       currentBackgroundAnalysisRun?: string;
 
+      currentBackgroundAnalysisRunStatus?: {
+        message?: string;
+
+        name: string;
+
+        status: string;
+      };
+
       currentExperiment?: string;
 
       currentStepAnalysisRun?: string;
+
+      currentStepAnalysisRunStatus?: {
+        message?: string;
+
+        name: string;
+
+        status: string;
+      };
 
       stableRS?: string;
     };
@@ -3714,6 +3766,8 @@ export type Experiment = {
           };
         };
       }[];
+
+      clusterScope?: boolean;
 
       name: string;
 
@@ -7150,6 +7204,24 @@ export type Application = {
       username?: string;
     };
 
+    /** Retry controls failed sync retry behavior */
+    retry?: {
+      /** Backoff is a backoff strategy */
+      backoff?: {
+        /** Duration is the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h") */
+        duration?: string;
+
+        /** Factor is a factor to multiply the base duration after each failed retry */
+        factor?: number;
+
+        /** MaxDuration is the maximum amount of time allowed for the backoff strategy */
+        maxDuration?: string;
+      };
+
+      /** Limit is the maximum number of attempts when retrying a container */
+      limit?: number;
+    };
+
     /** SyncOperation contains sync operation details. */
     sync?: {
       /** DryRun will perform a `kubectl apply --dry-run` without actually performing the sync */
@@ -7192,6 +7264,9 @@ export type Application = {
 
               value: string;
             }[];
+
+            /** Additional library search dirs */
+            libs?: string[];
 
             /** TLAS is a list of Jsonnet Top-level Arguments */
             tlas?: {
@@ -7375,6 +7450,9 @@ export type Application = {
             value: string;
           }[];
 
+          /** Additional library search dirs */
+          libs?: string[];
+
           /** TLAS is a list of Jsonnet Top-level Arguments */
           tlas?: {
             code?: boolean;
@@ -7490,6 +7568,24 @@ export type Application = {
         selfHeal?: boolean;
       };
 
+      /** Retry controls failed sync retry behavior */
+      retry?: {
+        /** Backoff is a backoff strategy */
+        backoff?: {
+          /** Duration is the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h") */
+          duration?: string;
+
+          /** Factor is a factor to multiply the base duration after each failed retry */
+          factor?: number;
+
+          /** MaxDuration is the maximum amount of time allowed for the backoff strategy */
+          maxDuration?: string;
+        };
+
+        /** Limit is the maximum number of attempts when retrying a container */
+        limit?: number;
+      };
+
       /** Options allow you to specify whole app sync-options */
       syncOptions?: string[];
     };
@@ -7546,6 +7642,9 @@ export type Application = {
 
               value: string;
             }[];
+
+            /** Additional library search dirs */
+            libs?: string[];
 
             /** TLAS is a list of Jsonnet Top-level Arguments */
             tlas?: {
@@ -7680,6 +7779,24 @@ export type Application = {
           username?: string;
         };
 
+        /** Retry controls failed sync retry behavior */
+        retry?: {
+          /** Backoff is a backoff strategy */
+          backoff?: {
+            /** Duration is the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h") */
+            duration?: string;
+
+            /** Factor is a factor to multiply the base duration after each failed retry */
+            factor?: number;
+
+            /** MaxDuration is the maximum amount of time allowed for the backoff strategy */
+            maxDuration?: string;
+          };
+
+          /** Limit is the maximum number of attempts when retrying a container */
+          limit?: number;
+        };
+
         /** SyncOperation contains sync operation details. */
         sync?: {
           /** DryRun will perform a `kubectl apply --dry-run` without actually performing the sync */
@@ -7722,6 +7839,9 @@ export type Application = {
 
                   value: string;
                 }[];
+
+                /** Additional library search dirs */
+                libs?: string[];
 
                 /** TLAS is a list of Jsonnet Top-level Arguments */
                 tlas?: {
@@ -7850,6 +7970,9 @@ export type Application = {
       /** Phase is the current phase of the operation */
       phase: string;
 
+      /** RetryCount contains time of operation retries */
+      retryCount?: number;
+
       /** StartedAt contains time of operation start */
       startedAt: string;
 
@@ -7903,6 +8026,9 @@ export type Application = {
 
                 value: string;
               }[];
+
+              /** Additional library search dirs */
+              libs?: string[];
 
               /** TLAS is a list of Jsonnet Top-level Arguments */
               tlas?: {
@@ -8082,6 +8208,9 @@ export type Application = {
 
                 value: string;
               }[];
+
+              /** Additional library search dirs */
+              libs?: string[];
 
               /** TLAS is a list of Jsonnet Top-level Arguments */
               tlas?: {

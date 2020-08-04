@@ -1,5 +1,5 @@
 /* Generated for keda/k8s/io/v1alpha1/mod.ts */
-import { ObjectMeta } from "https://raw.githubusercontent.com/yshayy/deploykit/0.0.17/generated/k8s/v1.18.3/apimachinery/pkg/apis/meta/v1/mod.ts";
+import { ObjectMeta } from "https://deno.land/x/deploykit@0.0.19/generated/k8s/v1.18.3/apimachinery/pkg/apis/meta/v1/mod.ts";
 
 /** ScaledObject is a specification for a ScaledObject resource */
 export type ScaledObject = {

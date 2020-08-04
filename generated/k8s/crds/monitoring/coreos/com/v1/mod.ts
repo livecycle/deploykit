@@ -1,5 +1,5 @@
 /* Generated for monitoring/coreos/com/v1/mod.ts */
-import { ObjectMeta } from "https://raw.githubusercontent.com/yshayy/deploykit/0.0.17/generated/k8s/v1.18.3/apimachinery/pkg/apis/meta/v1/mod.ts";
+import { ObjectMeta } from "https://deno.land/x/deploykit@0.0.19/generated/k8s/v1.18.3/apimachinery/pkg/apis/meta/v1/mod.ts";
 
 /** Alertmanager describes an Alertmanager cluster. */
 export type Alertmanager = {
@@ -727,6 +727,9 @@ export type Alertmanager = {
 
     /** The external URL the Alertmanager instances will be available under. This is necessary to generate correct URLs. This is necessary if Alertmanager is not served from root of a DNS name. */
     externalUrl?: string;
+
+    /** ForceEnableClusterMode ensures Alertmanager does not deactivate the cluster mode when running with a single replica. Use case is e.g. spanning an Alertmanager cluster across Kubernetes clusters with a single replica in each. */
+    forceEnableClusterMode?: boolean;
 
     /** Image if specified has precedence over baseImage, tag and sha combinations. Specifying the version is still necessary to ensure the Prometheus Operator knows what version of Alertmanager is being configured. */
     image?: string;
@@ -2311,7 +2314,7 @@ export type ServiceMonitor = {
       /** Timeout after which the scrape is ended */
       scrapeTimeout?: string;
 
-      /** Name or number of the pod port this endpoint refers to. Mutually exclusive with port. */
+      /** Name or number of the target port of the Pod behind the Service, the port must be specified with container port property. Mutually exclusive with port. */
       targetPort?: number | string;
 
       /** TLS configuration to use when scraping the endpoint */

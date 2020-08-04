@@ -1,12 +1,12 @@
-import { createKubeBlueprint } from "https://raw.githubusercontent.com/yshayy/deploykit/0.0.17/blueprint/k8s/mod.ts";
+import { createKubeBlueprint } from "https://deno.land/x/deploykit@0.0.19/blueprint/k8s/mod.ts";
 import {
   addDeployment,
   addService,
   expose,
   addResource,
 } from "../../blueprint/k8s/operators/all.ts";
-import * as crds from "https://raw.githubusercontent.com/yshayy/deploykit/0.0.17/generated/k8s/crds/mod.ts";
-import { KubeMetaContext } from "https://raw.githubusercontent.com/yshayy/deploykit/0.0.17/blueprint/k8s/types.ts";
+import * as crds from "https://deno.land/x/deploykit@0.0.19/generated/k8s/crds/mod.ts";
+import { KubeMetaContext } from "https://deno.land/x/deploykit@0.0.19/blueprint/k8s/types.ts";
 
 interface MyServiceParams extends KubeMetaContext {
   image: {
