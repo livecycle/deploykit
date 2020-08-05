@@ -6,7 +6,7 @@ Inspired by Pulumi, JKCfg, ts-kubernetes-models, CDK, Helm and others...
 
 ## Quick example
 
-#### deploy.ts
+#### deploy.ts (./examples/deploy.ts)
 ```typescript
 import { createMicroservice } from "https://deno.land/x/deploykit@0.0.19/blueprint/k8s/app.ts";
 import { addDeployment, addService, expose } from "https://deno.land/x/deploykit@0.0.19/blueprint/k8s/operators/all.ts";
@@ -19,6 +19,9 @@ createMicroservice().with(
     { name: "my-app", namespace: "my-namespace", labels: { app: "my-app" } },
   )
 ```
+
+Run ```deno run https://raw.githubusercontent.com/Yshayy/deploykit/master/examples/deploy.ts```
+
 <details><summary>Output</summary>
 
 ```yaml
