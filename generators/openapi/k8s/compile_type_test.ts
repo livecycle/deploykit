@@ -1,5 +1,4 @@
 import { compileType } from "./compile_type.ts";
-import { __ } from "https://deno.land/x/dirname/mod.ts";
 
 Deno.test("compile type", () => {
   let dataType = {
