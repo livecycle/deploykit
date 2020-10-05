@@ -20,7 +20,7 @@ createMicroservice().with(
   )
 ```
 
-Run ```deno run https://raw.githubusercontent.com/Yshayy/deploykit/master/examples/deploy.ts```
+Run ```deno run https://deno.land/x/deploykit@0.0.19/examples/deploy.ts```
 
 <details><summary>Output</summary>
 
