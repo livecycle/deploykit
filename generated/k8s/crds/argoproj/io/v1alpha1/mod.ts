@@ -16,6 +16,10 @@ export type AnalysisRun = {
       value?: string;
 
       valueFrom?: {
+        fieldRef?: {
+          fieldPath: string;
+        };
+
         secretKeyRef?: {
           key: string;
 
@@ -42,6 +46,12 @@ export type AnalysisRun = {
       name: string;
 
       provider: {
+        datadog?: {
+          interval?: string;
+
+          query: string;
+        };
+
         job?: {
           metadata?: {
             annotations?: {
@@ -1269,6 +1279,8 @@ export type AnalysisRun = {
                 securityContext?: {
                   fsGroup?: number;
 
+                  fsGroupChangePolicy?: string;
+
                   runAsGroup?: number;
 
                   runAsNonRoot?: boolean;
@@ -1702,6 +1714,12 @@ export type AnalysisRun = {
           };
         };
 
+        newRelic?: {
+          profile?: string;
+
+          query: string;
+        };
+
         prometheus?: {
           address?: string;
 
@@ -1721,7 +1739,9 @@ export type AnalysisRun = {
             value: string;
           }[];
 
-          jsonPath: string;
+          insecure?: boolean;
+
+          jsonPath?: string;
 
           timeoutSeconds?: number;
 
@@ -1845,6 +1865,10 @@ export type Rollout = {
             value?: string;
 
             valueFrom?: {
+              fieldRef?: {
+                fieldPath: string;
+              };
+
               podTemplateHashValue?: string;
             };
           }[];
@@ -1867,6 +1891,10 @@ export type Rollout = {
             value?: string;
 
             valueFrom?: {
+              fieldRef?: {
+                fieldPath: string;
+              };
+
               podTemplateHashValue?: string;
             };
           }[];
@@ -1899,6 +1927,10 @@ export type Rollout = {
             value?: string;
 
             valueFrom?: {
+              fieldRef?: {
+                fieldPath: string;
+              };
+
               podTemplateHashValue?: string;
             };
           }[];
@@ -1924,11 +1956,31 @@ export type Rollout = {
           requiredDuringSchedulingIgnoredDuringExecution?: {};
         };
 
+        canaryMetadata?: {
+          annotations?: {
+            [key: string]: string;
+          };
+
+          labels?: {
+            [key: string]: string;
+          };
+        };
+
         canaryService?: string;
 
         maxSurge?: number | string;
 
         maxUnavailable?: number | string;
+
+        stableMetadata?: {
+          annotations?: {
+            [key: string]: string;
+          };
+
+          labels?: {
+            [key: string]: string;
+          };
+        };
 
         stableService?: string;
 
@@ -1940,6 +1992,10 @@ export type Rollout = {
               value?: string;
 
               valueFrom?: {
+                fieldRef?: {
+                  fieldPath: string;
+                };
+
                 podTemplateHashValue?: string;
               };
             }[];
@@ -1963,6 +2019,10 @@ export type Rollout = {
                 value?: string;
 
                 valueFrom?: {
+                  fieldRef?: {
+                    fieldPath: string;
+                  };
+
                   podTemplateHashValue?: string;
                 };
               }[];
@@ -2013,6 +2073,14 @@ export type Rollout = {
             duration?: number | string;
           };
 
+          setCanaryScale?: {
+            matchTrafficWeight?: boolean;
+
+            replicas?: number;
+
+            weight?: number;
+          };
+
           setWeight?: number;
         }[];
 
@@ -2021,6 +2089,8 @@ export type Rollout = {
             annotationPrefix?: string;
 
             ingress: string;
+
+            rootService?: string;
 
             servicePort: number;
           };
@@ -3243,6 +3313,8 @@ export type Rollout = {
         securityContext?: {
           fsGroup?: number;
 
+          fsGroupChangePolicy?: string;
+
           runAsGroup?: number;
 
           runAsNonRoot?: boolean;
@@ -3630,7 +3702,7 @@ export type Rollout = {
 
     abort?: boolean;
 
-    abortedAt?: boolean;
+    abortedAt?: string;
 
     availableReplicas?: number;
 
@@ -3688,8 +3760,6 @@ export type Rollout = {
 
         status: string;
       };
-
-      stableRS?: string;
     };
 
     collisionCount?: number;
@@ -3723,6 +3793,8 @@ export type Rollout = {
 
       startTime: string;
     }[];
+
+    promoteFull?: boolean;
 
     readyReplicas?: number;
 
@@ -3759,6 +3831,10 @@ export type Experiment = {
         value?: string;
 
         valueFrom?: {
+          fieldRef?: {
+            fieldPath: string;
+          };
+
           secretKeyRef?: {
             key: string;
 
@@ -4992,6 +5068,8 @@ export type Experiment = {
           securityContext?: {
             fsGroup?: number;
 
+            fsGroupChangePolicy?: string;
+
             runAsGroup?: number;
 
             runAsNonRoot?: boolean;
@@ -5450,6 +5528,10 @@ export type AnalysisTemplate = {
       value?: string;
 
       valueFrom?: {
+        fieldRef?: {
+          fieldPath: string;
+        };
+
         secretKeyRef?: {
           key: string;
 
@@ -5476,6 +5558,12 @@ export type AnalysisTemplate = {
       name: string;
 
       provider: {
+        datadog?: {
+          interval?: string;
+
+          query: string;
+        };
+
         job?: {
           metadata?: {
             annotations?: {
@@ -6703,6 +6791,8 @@ export type AnalysisTemplate = {
                 securityContext?: {
                   fsGroup?: number;
 
+                  fsGroupChangePolicy?: string;
+
                   runAsGroup?: number;
 
                   runAsNonRoot?: boolean;
@@ -7136,6 +7226,12 @@ export type AnalysisTemplate = {
           };
         };
 
+        newRelic?: {
+          profile?: string;
+
+          query: string;
+        };
+
         prometheus?: {
           address?: string;
 
@@ -7155,7 +7251,9 @@ export type AnalysisTemplate = {
             value: string;
           }[];
 
-          jsonPath: string;
+          insecure?: boolean;
+
+          jsonPath?: string;
 
           timeoutSeconds?: number;
 
@@ -7254,6 +7352,8 @@ export type Application = {
 
         /** Directory holds pathdirectory specific options */
         directory?: {
+          exclude?: string;
+
           /** ApplicationSourceJsonnet holds jsonnet specific options */
           jsonnet?: {
             /** ExtVars is a list of Jsonnet External Variables */
@@ -7312,6 +7412,9 @@ export type Application = {
 
           /** Values is Helm values, typically defined as a block */
           values?: string;
+
+          /** Version is the Helm version to use for templating with */
+          version?: string;
         };
 
         /** Ksonnet holds ksonnet specific options */
@@ -7331,6 +7434,11 @@ export type Application = {
 
         /** Kustomize holds kustomize specific options */
         kustomize?: {
+          /** CommonAnnotations adds additional kustomize commonAnnotations */
+          commonAnnotations?: {
+            [key: string]: string;
+          };
+
           /** CommonLabels adds additional kustomize commonLabels */
           commonLabels?: {
             [key: string]: string;
@@ -7377,7 +7485,7 @@ export type Application = {
 
       /** SyncStrategy describes how to perform the sync */
       syncStrategy?: {
-        /** Apply wil perform a `kubectl apply` to perform the sync. */
+        /** Apply will perform a `kubectl apply` to perform the sync. */
         apply?: {
           /** Force indicates whether or not to supply the --force flag to `kubectl apply`. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times. */
           force?: boolean;
@@ -7439,6 +7547,8 @@ export type Application = {
 
       /** Directory holds pathdirectory specific options */
       directory?: {
+        exclude?: string;
+
         /** ApplicationSourceJsonnet holds jsonnet specific options */
         jsonnet?: {
           /** ExtVars is a list of Jsonnet External Variables */
@@ -7497,6 +7607,9 @@ export type Application = {
 
         /** Values is Helm values, typically defined as a block */
         values?: string;
+
+        /** Version is the Helm version to use for templating with */
+        version?: string;
       };
 
       /** Ksonnet holds ksonnet specific options */
@@ -7516,6 +7629,11 @@ export type Application = {
 
       /** Kustomize holds kustomize specific options */
       kustomize?: {
+        /** CommonAnnotations adds additional kustomize commonAnnotations */
+        commonAnnotations?: {
+          [key: string]: string;
+        };
+
         /** CommonLabels adds additional kustomize commonLabels */
         commonLabels?: {
           [key: string]: string;
@@ -7561,6 +7679,9 @@ export type Application = {
     syncPolicy?: {
       /** Automated will keep an application synced to the target revision */
       automated?: {
+        /** AllowEmpty allows apps have zero live resources (default: false) */
+        allowEmpty?: boolean;
+
         /** Prune will prune resources automatically as part of automated sync (default: false) */
         prune?: boolean;
 
@@ -7632,6 +7753,8 @@ export type Application = {
 
         /** Directory holds pathdirectory specific options */
         directory?: {
+          exclude?: string;
+
           /** ApplicationSourceJsonnet holds jsonnet specific options */
           jsonnet?: {
             /** ExtVars is a list of Jsonnet External Variables */
@@ -7690,6 +7813,9 @@ export type Application = {
 
           /** Values is Helm values, typically defined as a block */
           values?: string;
+
+          /** Version is the Helm version to use for templating with */
+          version?: string;
         };
 
         /** Ksonnet holds ksonnet specific options */
@@ -7709,6 +7835,11 @@ export type Application = {
 
         /** Kustomize holds kustomize specific options */
         kustomize?: {
+          /** CommonAnnotations adds additional kustomize commonAnnotations */
+          commonAnnotations?: {
+            [key: string]: string;
+          };
+
           /** CommonLabels adds additional kustomize commonLabels */
           commonLabels?: {
             [key: string]: string;
@@ -7751,7 +7882,7 @@ export type Application = {
       };
     }[];
 
-    /** ObservedAt indicates when the application state was updated without querying latest git state */
+    /** ObservedAt indicates when the application state was updated without querying latest git state Deprecated: controller no longer updates ObservedAt field */
     observedAt?: string;
 
     /** OperationState contains information about state of currently performing operation on application. */
@@ -7829,6 +7960,8 @@ export type Application = {
 
             /** Directory holds pathdirectory specific options */
             directory?: {
+              exclude?: string;
+
               /** ApplicationSourceJsonnet holds jsonnet specific options */
               jsonnet?: {
                 /** ExtVars is a list of Jsonnet External Variables */
@@ -7887,6 +8020,9 @@ export type Application = {
 
               /** Values is Helm values, typically defined as a block */
               values?: string;
+
+              /** Version is the Helm version to use for templating with */
+              version?: string;
             };
 
             /** Ksonnet holds ksonnet specific options */
@@ -7906,6 +8042,11 @@ export type Application = {
 
             /** Kustomize holds kustomize specific options */
             kustomize?: {
+              /** CommonAnnotations adds additional kustomize commonAnnotations */
+              commonAnnotations?: {
+                [key: string]: string;
+              };
+
               /** CommonLabels adds additional kustomize commonLabels */
               commonLabels?: {
                 [key: string]: string;
@@ -7952,7 +8093,7 @@ export type Application = {
 
           /** SyncStrategy describes how to perform the sync */
           syncStrategy?: {
-            /** Apply wil perform a `kubectl apply` to perform the sync. */
+            /** Apply will perform a `kubectl apply` to perform the sync. */
             apply?: {
               /** Force indicates whether or not to supply the --force flag to `kubectl apply`. The --force flag deletes and re-create the resource, when PATCH encounters conflict and has retried for 5 times. */
               force?: boolean;
@@ -8016,6 +8157,8 @@ export type Application = {
 
           /** Directory holds pathdirectory specific options */
           directory?: {
+            exclude?: string;
+
             /** ApplicationSourceJsonnet holds jsonnet specific options */
             jsonnet?: {
               /** ExtVars is a list of Jsonnet External Variables */
@@ -8074,6 +8217,9 @@ export type Application = {
 
             /** Values is Helm values, typically defined as a block */
             values?: string;
+
+            /** Version is the Helm version to use for templating with */
+            version?: string;
           };
 
           /** Ksonnet holds ksonnet specific options */
@@ -8093,6 +8239,11 @@ export type Application = {
 
           /** Kustomize holds kustomize specific options */
           kustomize?: {
+            /** CommonAnnotations adds additional kustomize commonAnnotations */
+            commonAnnotations?: {
+              [key: string]: string;
+            };
+
             /** CommonLabels adds additional kustomize commonLabels */
             commonLabels?: {
               [key: string]: string;
@@ -8198,6 +8349,8 @@ export type Application = {
 
           /** Directory holds pathdirectory specific options */
           directory?: {
+            exclude?: string;
+
             /** ApplicationSourceJsonnet holds jsonnet specific options */
             jsonnet?: {
               /** ExtVars is a list of Jsonnet External Variables */
@@ -8256,6 +8409,9 @@ export type Application = {
 
             /** Values is Helm values, typically defined as a block */
             values?: string;
+
+            /** Version is the Helm version to use for templating with */
+            version?: string;
           };
 
           /** Ksonnet holds ksonnet specific options */
@@ -8275,6 +8431,11 @@ export type Application = {
 
           /** Kustomize holds kustomize specific options */
           kustomize?: {
+            /** CommonAnnotations adds additional kustomize commonAnnotations */
+            commonAnnotations?: {
+              [key: string]: string;
+            };
+
             /** CommonLabels adds additional kustomize commonLabels */
             commonLabels?: {
               [key: string]: string;
@@ -8340,6 +8501,13 @@ export type AppProject = {
 
   /** AppProjectSpec is the specification of an AppProject */
   spec: {
+    /** ClusterResourceBlacklist contains list of blacklisted cluster level resources */
+    clusterResourceBlacklist?: {
+      group: string;
+
+      kind: string;
+    }[];
+
     /** ClusterResourceWhitelist contains list of whitelisted cluster level resources */
     clusterResourceWhitelist?: {
       group: string;
@@ -8446,21 +8614,6 @@ export type AppProject = {
       /** Schedule is the time the window will begin, specified in cron format */
       schedule?: string;
     }[];
-  };
-
-  /** AppProjectStatus contains information about appproj */
-  status?: {
-    jwtTokensByRole?: {
-      [key: string]: {
-        items?: {
-          exp?: number;
-
-          iat: number;
-
-          id?: string;
-        }[];
-      };
-    };
   };
 };
 export function createAppProject<

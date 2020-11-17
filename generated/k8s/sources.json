@@ -7,13 +7,17 @@
         "https://raw.githubusercontent.com/coreos/prometheus-operator/master/example/prometheus-operator-crd/monitoring.coreos.com_alertmanagers.yaml",
         "https://raw.githubusercontent.com/coreos/prometheus-operator/master/example/prometheus-operator-crd/monitoring.coreos.com_servicemonitors.yaml",
         "https://raw.githubusercontent.com/coreos/prometheus-operator/master/example/prometheus-operator-crd/monitoring.coreos.com_podmonitors.yaml",
-        "https://raw.githubusercontent.com/kedacore/keda/master/deploy/crds/keda.k8s.io_scaledobjects_crd.yaml",
+        "https://raw.githubusercontent.com/kedacore/keda/main/config/crd/bases/keda.sh_scaledobjects.yaml",
         "https://raw.githubusercontent.com/Soluto/kamus/master/tests/crd-controller/crd.yaml",
         "https://raw.githubusercontent.com/argoproj/argo-rollouts/master/manifests/crds/analysis-run-crd.yaml",
         "https://raw.githubusercontent.com/argoproj/argo-rollouts/master/manifests/crds/rollout-crd.yaml",
         "https://raw.githubusercontent.com/argoproj/argo-rollouts/master/manifests/crds/experiment-crd.yaml",
         "https://raw.githubusercontent.com/argoproj/argo-rollouts/master/manifests/crds/analysis-template-crd.yaml",
         "https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/crds/application-crd.yaml",
-        "https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/crds/appproject-crd.yaml"
+        "https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/crds/appproject-crd.yaml",
+        "https://raw.githubusercontent.com/keycloak/keycloak-operator/master/deploy/crds/keycloak.org_keycloakrealms_crd.yaml",
+        "https://raw.githubusercontent.com/keycloak/keycloak-operator/master/deploy/crds/keycloak.org_keycloakclients_crd.yaml",
+        "https://raw.githubusercontent.com/keycloak/keycloak-operator/master/deploy/crds/keycloak.org_keycloakusers_crd.yaml",
+        "https://raw.githubusercontent.com/keycloak/keycloak-operator/master/deploy/crds/keycloak.org_keycloaks_crd.yaml"
     ]
 }

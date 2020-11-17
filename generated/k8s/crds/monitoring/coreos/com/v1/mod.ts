@@ -217,11 +217,60 @@ export type Alertmanager = {
       };
     };
 
+    /** Namespaces to be selected for AlertmanagerConfig discovery. If nil, only check own namespace. */
+    alertmanagerConfigNamespaceSelector?: {
+      /** matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+      matchExpressions?: {
+        /** key is the label key that the selector applies to. */
+        key: string;
+
+        /** operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. */
+        operator: string;
+
+        /** values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+        values?: string[];
+      }[];
+
+      /** matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+      matchLabels?: {
+        [key: string]: string;
+      };
+    };
+
+    /** AlertmanagerConfigs to be selected for to merge and configure Alertmanager with. */
+    alertmanagerConfigSelector?: {
+      /** matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+      matchExpressions?: {
+        /** key is the label key that the selector applies to. */
+        key: string;
+
+        /** operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. */
+        operator: string;
+
+        /** values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+        values?: string[];
+      }[];
+
+      /** matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+      matchLabels?: {
+        [key: string]: string;
+      };
+    };
+
     /** Base image that is used to deploy pods, without tag. Deprecated: use 'image' instead */
     baseImage?: string;
 
     /** ClusterAdvertiseAddress is the explicit address to advertise in cluster. Needs to be provided for non RFC1918 [1] (public) addresses. [1] RFC1918: https:tools.ietf.orghtmlrfc1918 */
     clusterAdvertiseAddress?: string;
+
+    /** Interval between gossip attempts. */
+    clusterGossipInterval?: string;
+
+    /** Timeout for cluster peering. */
+    clusterPeerTimeout?: string;
+
+    /** Interval between pushpull attempts. */
+    clusterPushpullInterval?: string;
 
     /** ConfigMaps is a list of ConfigMaps in the same namespace as the Alertmanager object, which shall be mounted into the Alertmanager Pods. The ConfigMaps are mounted into etcalertmanagerconfigmaps<configmap-name>. */
     configMaps?: string[];
@@ -229,7 +278,7 @@ export type Alertmanager = {
     /** ConfigSecret is the name of a Kubernetes Secret in the same namespace as the Alertmanager object, which contains configuration for this Alertmanager instance. Defaults to 'alertmanager-<alertmanager-name>' The secret is mounted into etcalertmanagerconfig. */
     configSecret?: string;
 
-    /** Containers allows injecting additional containers. This is meant to allow adding an authentication proxy to an Alertmanager pod. */
+    /** Containers allows injecting additional containers. This is meant to allow adding an authentication proxy to an Alertmanager pod. Containers described here modify an operator generated container if they share the same name and modifications are done via a strategic merge patch. The current container names are: `alertmanager` and `config-reloader`. Overriding containers is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice. */
     containers?: {
       /** Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https:kubernetes.iodocstasksinject-data-applicationdefine-command-argument-container#running-a-command-in-a-shell */
       args?: string[];
@@ -1250,7 +1299,7 @@ export type Alertmanager = {
       [key: string]: string;
     };
 
-    /** If set to true all actions on the underlaying managed objects are not goint to be performed, except for delete actions. */
+    /** If set to true all actions on the underlying managed objects are not goint to be performed, except for delete actions. */
     paused?: boolean;
 
     /** PodMetadata configures Labels and Annotations which are propagated to the alertmanager pods. */
@@ -1518,6 +1567,38 @@ export type Alertmanager = {
 
       /** Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string. */
       value?: string;
+    }[];
+
+    /** If specified, the pod's topology spread constraints. */
+    topologySpreadConstraints?: {
+      /** LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain. */
+      labelSelector?: {
+        /** matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+        matchExpressions?: {
+          /** key is the label key that the selector applies to. */
+          key: string;
+
+          /** operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. */
+          operator: string;
+
+          /** values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+          values?: string[];
+        }[];
+
+        /** matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+        matchLabels?: {
+          [key: string]: string;
+        };
+      };
+
+      /** MaxSkew describes the degree to which pods may be unevenly distributed. It's the maximum permitted difference between the number of matching pods in any two topology domains of a given topology type. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 110: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 111; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. It's a required field. Default value is 1 and 0 is not allowed. */
+      maxSkew: number;
+
+      /** TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. It's a required field. */
+      topologyKey: string;
+
+      /** WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it - ScheduleAnyway tells the scheduler to still schedule it It's considered as "Unsatisfiable" if and only if placing incoming pod on any topology violates "MaxSkew". For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 311: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 321(312) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field. */
+      whenUnsatisfiable: string;
     }[];
 
     /** Version the cluster should be on. */
@@ -2160,7 +2241,7 @@ export type Alertmanager = {
     /** Total number of available pods (ready for at least minReadySeconds) targeted by this Alertmanager cluster. */
     availableReplicas: number;
 
-    /** Represents whether any actions on the underlaying managed objects are being performed. Only delete actions will be performed. */
+    /** Represents whether any actions on the underlying managed objects are being performed. Only delete actions will be performed. */
     paused: boolean;
 
     /** Total number of non-terminated pods targeted by this Alertmanager cluster (their labels match the selector). */
@@ -2319,7 +2400,7 @@ export type ServiceMonitor = {
 
       /** TLS configuration to use when scraping the endpoint */
       tlsConfig?: {
-        /** Stuct containing the CA cert to use for the targets. */
+        /** Struct containing the CA cert to use for the targets. */
         ca?: {
           /** ConfigMap containing data to use for the targets. */
           configMap?: {
@@ -2442,6 +2523,9 @@ export type ServiceMonitor = {
 
     /** TargetLabels transfers labels on the Kubernetes Service onto the target. */
     targetLabels?: string[];
+
+    /** TargetLimit defines a limit on the number of scraped targets that will be accepted. */
+    targetLimit?: number;
   };
 };
 export function createServiceMonitor<
@@ -2478,6 +2562,45 @@ export type PodMonitor = {
 
     /** A list of endpoints allowed as part of this PodMonitor. */
     podMetricsEndpoints: {
+      /** BasicAuth allow an endpoint to authenticate over basic authentication. More info: https:prometheus.iodocsoperatingconfiguration#endpoint */
+      basicAuth?: {
+        /** The secret in the service monitor namespace that contains the password for authentication. */
+        password?: {
+          /** The key of the secret to select from.  Must be a valid secret key. */
+          key: string;
+
+          /** Name of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#names TODO: Add other useful fields. apiVersion, kind, uid? */
+          name?: string;
+
+          /** Specify whether the Secret or its key must be defined */
+          optional?: boolean;
+        };
+
+        /** The secret in the service monitor namespace that contains the username for authentication. */
+        username?: {
+          /** The key of the secret to select from.  Must be a valid secret key. */
+          key: string;
+
+          /** Name of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#names TODO: Add other useful fields. apiVersion, kind, uid? */
+          name?: string;
+
+          /** Specify whether the Secret or its key must be defined */
+          optional?: boolean;
+        };
+      };
+
+      /** Secret to mount to read bearer token for scraping targets. The secret needs to be in the same namespace as the pod monitor and accessible by the Prometheus Operator. */
+      bearerTokenSecret?: {
+        /** The key of the secret to select from.  Must be a valid secret key. */
+        key: string;
+
+        /** Name of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#names TODO: Add other useful fields. apiVersion, kind, uid? */
+        name?: string;
+
+        /** Specify whether the Secret or its key must be defined */
+        optional?: boolean;
+      };
+
       /** HonorLabels chooses the metric's labels on collisions with target labels. */
       honorLabels?: boolean;
 
@@ -2557,6 +2680,81 @@ export type PodMonitor = {
 
       /** Deprecated: Use 'port' instead. */
       targetPort?: number | string;
+
+      /** TLS configuration to use when scraping the endpoint. */
+      tlsConfig?: {
+        /** Struct containing the CA cert to use for the targets. */
+        ca?: {
+          /** ConfigMap containing data to use for the targets. */
+          configMap?: {
+            /** The key to select. */
+            key: string;
+
+            /** Name of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#names TODO: Add other useful fields. apiVersion, kind, uid? */
+            name?: string;
+
+            /** Specify whether the ConfigMap or its key must be defined */
+            optional?: boolean;
+          };
+
+          /** Secret containing data to use for the targets. */
+          secret?: {
+            /** The key of the secret to select from.  Must be a valid secret key. */
+            key: string;
+
+            /** Name of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#names TODO: Add other useful fields. apiVersion, kind, uid? */
+            name?: string;
+
+            /** Specify whether the Secret or its key must be defined */
+            optional?: boolean;
+          };
+        };
+
+        /** Struct containing the client cert file for the targets. */
+        cert?: {
+          /** ConfigMap containing data to use for the targets. */
+          configMap?: {
+            /** The key to select. */
+            key: string;
+
+            /** Name of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#names TODO: Add other useful fields. apiVersion, kind, uid? */
+            name?: string;
+
+            /** Specify whether the ConfigMap or its key must be defined */
+            optional?: boolean;
+          };
+
+          /** Secret containing data to use for the targets. */
+          secret?: {
+            /** The key of the secret to select from.  Must be a valid secret key. */
+            key: string;
+
+            /** Name of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#names TODO: Add other useful fields. apiVersion, kind, uid? */
+            name?: string;
+
+            /** Specify whether the Secret or its key must be defined */
+            optional?: boolean;
+          };
+        };
+
+        /** Disable target certificate validation. */
+        insecureSkipVerify?: boolean;
+
+        /** Secret containing the client key file for the targets. */
+        keySecret?: {
+          /** The key of the secret to select from.  Must be a valid secret key. */
+          key: string;
+
+          /** Name of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#names TODO: Add other useful fields. apiVersion, kind, uid? */
+          name?: string;
+
+          /** Specify whether the Secret or its key must be defined */
+          optional?: boolean;
+        };
+
+        /** Used to verify the hostname for the targets. */
+        serverName?: string;
+      };
     }[];
 
     /** PodTargetLabels transfers labels on the Kubernetes Pod onto the target. */
@@ -2584,6 +2782,9 @@ export type PodMonitor = {
         [key: string]: string;
       };
     };
+
+    /** TargetLimit defines a limit on the number of scraped targets that will be accepted. */
+    targetLimit?: number;
   };
 };
 export function createPodMonitor<
