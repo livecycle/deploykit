@@ -16,6 +16,7 @@
 	"settings": {
 		"typescript.enablePromptUseWorkspaceTsdk": false,
 		"terminal.integrated.shell.linux": "/bin/zsh",
+		"deno.enable": true,
 	},
 	"postCreateCommand": "deno cache examples/**/*.ts blueprint/**/*.ts cmd/**/*.ts mod.ts"
 	// Add the IDs of extensions you want installed when the container is created.

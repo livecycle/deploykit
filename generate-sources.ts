@@ -1,4 +1,4 @@
-import { parseAll } from "https://deno.land/std/encoding/yaml.ts";
+import { parseAll } from "https://deno.land/std@0.103.0/encoding/yaml.ts";
 import {
   CRD,
   generateFromCRDs,
@@ -7,8 +7,8 @@ import {
   addStubModules,
   generateDefs,
 } from "./generators/openapi/k8s/generate.ts";
-import { parse } from "https://deno.land/std/flags/mod.ts";
-import { dirname, normalize } from "https://deno.land/std/path/mod.ts";
+import { parse } from "https://deno.land/std@0.103.0/flags/mod.ts";
+import { dirname, normalize } from "https://deno.land/std@0.103.0/path/mod.ts";
 import { Definition } from "./generators/openapi/k8s/types.ts";
 
 let args = parse(Deno.args);
