@@ -11,12 +11,12 @@ Inspired by Pulumi, JKCfg, ts-kubernetes-models, CDK, Helm and others...
 #### deploy.ts (./examples/deploy.ts)
 
 ```typescript
-import { createMicroservice } from "https://deno.land/x/deploykit@0.0.22/blueprint/k8s/app.ts";
+import { createMicroservice } from "https://deno.land/x/deploykit@0.0.23/blueprint/k8s/app.ts";
 import {
   addDeployment,
   addService,
   expose,
-} from "https://deno.land/x/deploykit@0.0.22/blueprint/k8s/operators/all.ts";
+} from "https://deno.land/x/deploykit@0.0.23/blueprint/k8s/operators/all.ts";
 
 createMicroservice().with(
   addDeployment({ image: "my-image" }),
