@@ -1,19 +1,16 @@
 /* Generated for api/batch/v1/mod.ts */
 import { PodTemplateSpec } from "../../core/v1/mod.ts";
 import {
+  LabelSelector,
+  ListMeta,
   ObjectMeta,
   Time,
-  ListMeta,
-  LabelSelector,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 
 /** Job represents the configuration of a single job. */
 export type Job = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "batch/v1";
+  kind: "Job";
 
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ObjectMeta;
@@ -53,14 +50,11 @@ export type JobCondition = {
 
 /** JobList is a collection of jobs. */
 export type JobList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "batch/v1";
 
   /** items is the list of Jobs. */
   items: Job[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "JobList";
 
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;

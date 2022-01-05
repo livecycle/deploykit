@@ -1,16 +1,13 @@
 /* Generated for api/auditregistration/v1alpha1/mod.ts */
 import {
-  ObjectMeta,
   ListMeta,
+  ObjectMeta,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 
 /** AuditSink represents a cluster level audit sink */
 export type AuditSink = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "auditregistration.k8s.io/v1alpha1";
+  kind: "AuditSink";
 
   metadata?: ObjectMeta;
 
@@ -29,14 +26,11 @@ export function createAuditSink<
 
 /** AuditSinkList is a list of AuditSink items. */
 export type AuditSinkList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "auditregistration.k8s.io/v1alpha1";
 
   /** List of audit configurations. */
   items: AuditSink[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "AuditSinkList";
 
   metadata?: ListMeta;
 };

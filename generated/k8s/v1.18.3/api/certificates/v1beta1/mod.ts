@@ -1,17 +1,14 @@
 /* Generated for api/certificates/v1beta1/mod.ts */
 import {
+  ListMeta,
   ObjectMeta,
   Time,
-  ListMeta,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 
 /** Describes a certificate signing request */
 export type CertificateSigningRequest = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "certificates.k8s.io/v1beta1";
+  kind: "CertificateSigningRequest";
 
   metadata?: ObjectMeta;
 
@@ -53,13 +50,10 @@ export type CertificateSigningRequestCondition = {
 
 undefined;
 export type CertificateSigningRequestList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "certificates.k8s.io/v1beta1";
 
   items: CertificateSigningRequest[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "CertificateSigningRequestList";
 
   metadata?: ListMeta;
 };

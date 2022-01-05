@@ -1,8 +1,8 @@
 /* Generated for apiextensions-apiserver/pkg/apis/apiextensions/v1/mod.ts */
 import {
+  ListMeta,
   ObjectMeta,
   Time,
-  ListMeta,
 } from "../../../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 
 /** CustomResourceColumnDefinition specifies a column for server side printing. */
@@ -38,11 +38,8 @@ export type CustomResourceConversion = {
 
 /** CustomResourceDefinition represents a resource that should be exposed on the API server.  Its name MUST be in the format <.spec.name>.<.spec.group>. */
 export type CustomResourceDefinition = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "apiextensions.k8s.io/v1";
+  kind: "CustomResourceDefinition";
 
   metadata?: ObjectMeta;
 
@@ -87,14 +84,11 @@ export type CustomResourceDefinitionCondition = {
 
 /** CustomResourceDefinitionList is a list of CustomResourceDefinition objects. */
 export type CustomResourceDefinitionList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "apiextensions.k8s.io/v1";
 
   /** items list individual CustomResourceDefinition objects */
   items: CustomResourceDefinition[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "CustomResourceDefinitionList";
 
   metadata?: ListMeta;
 };

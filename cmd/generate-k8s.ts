@@ -1,9 +1,9 @@
 import {
-  generateDefs,
   addStubModules,
+  generateDefs,
 } from "../generators/openapi/k8s/generate.ts";
 import { parse } from "https://deno.land/std/flags/mod.ts";
-import { normalize, dirname } from "https://deno.land/std/path/mod.ts";
+import { dirname, normalize } from "https://deno.land/std/path/mod.ts";
 const { args } = Deno;
 
 let params = parse(args);

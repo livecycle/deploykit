@@ -1,8 +1,8 @@
 /* Generated for api/rbac/v1beta1/mod.ts */
 import {
   LabelSelector,
-  ObjectMeta,
   ListMeta,
+  ObjectMeta,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 
 /** AggregationRule describes how to locate ClusterRoles to aggregate into the ClusterRole */
@@ -15,12 +15,8 @@ export type AggregationRule = {
 export type ClusterRole = {
   /** AggregationRule is an optional field that describes how to build the Rules for this ClusterRole. If AggregationRule is set, then the Rules are controller managed and direct changes to Rules will be stomped by the controller. */
   aggregationRule?: AggregationRule;
-
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "rbac.authorization.k8s.io/v1beta1";
+  kind: "ClusterRole";
 
   /** Standard object's metadata. */
   metadata?: ObjectMeta;
@@ -40,11 +36,8 @@ export function createClusterRole<
 
 /** ClusterRoleBinding references a ClusterRole, but not contain it.  It can reference a ClusterRole in the global namespace, and adds who information via Subject. Deprecated in v1.17 in favor of rbac.authorization.k8s.iov1 ClusterRoleBinding, and will no longer be served in v1.20. */
 export type ClusterRoleBinding = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "rbac.authorization.k8s.io/v1beta1";
+  kind: "ClusterRoleBinding";
 
   /** Standard object's metadata. */
   metadata?: ObjectMeta;
@@ -69,14 +62,11 @@ export function createClusterRoleBinding<
 
 /** ClusterRoleBindingList is a collection of ClusterRoleBindings. Deprecated in v1.17 in favor of rbac.authorization.k8s.iov1 ClusterRoleBindingList, and will no longer be served in v1.20. */
 export type ClusterRoleBindingList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "rbac.authorization.k8s.io/v1beta1";
 
   /** Items is a list of ClusterRoleBindings */
   items: ClusterRoleBinding[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "ClusterRoleBindingList";
 
   /** Standard object's metadata. */
   metadata?: ListMeta;
@@ -98,14 +88,11 @@ export function createClusterRoleBindingList<
 
 /** ClusterRoleList is a collection of ClusterRoles. Deprecated in v1.17 in favor of rbac.authorization.k8s.iov1 ClusterRoles, and will no longer be served in v1.20. */
 export type ClusterRoleList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "rbac.authorization.k8s.io/v1beta1";
 
   /** Items is a list of ClusterRoles */
   items: ClusterRole[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "ClusterRoleList";
 
   /** Standard object's metadata. */
   metadata?: ListMeta;
@@ -140,11 +127,8 @@ export type PolicyRule = {
 
 /** Role is a namespaced, logical grouping of PolicyRules that can be referenced as a unit by a RoleBinding. Deprecated in v1.17 in favor of rbac.authorization.k8s.iov1 Role, and will no longer be served in v1.20. */
 export type Role = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "rbac.authorization.k8s.io/v1beta1";
+  kind: "Role";
 
   /** Standard object's metadata. */
   metadata?: ObjectMeta;
@@ -164,11 +148,8 @@ export function createRole<T extends Omit<Role, "apiVersion" | "kind">>(
 
 /** RoleBinding references a role, but does not contain it.  It can reference a Role in the same namespace or a ClusterRole in the global namespace. It adds who information via Subjects and namespace information by which namespace it exists in.  RoleBindings in a given namespace only have effect in that namespace. Deprecated in v1.17 in favor of rbac.authorization.k8s.iov1 RoleBinding, and will no longer be served in v1.20. */
 export type RoleBinding = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "rbac.authorization.k8s.io/v1beta1";
+  kind: "RoleBinding";
 
   /** Standard object's metadata. */
   metadata?: ObjectMeta;
@@ -191,14 +172,11 @@ export function createRoleBinding<
 
 /** RoleBindingList is a collection of RoleBindings Deprecated in v1.17 in favor of rbac.authorization.k8s.iov1 RoleBindingList, and will no longer be served in v1.20. */
 export type RoleBindingList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "rbac.authorization.k8s.io/v1beta1";
 
   /** Items is a list of RoleBindings */
   items: RoleBinding[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "RoleBindingList";
 
   /** Standard object's metadata. */
   metadata?: ListMeta;
@@ -215,14 +193,11 @@ export function createRoleBindingList<
 
 /** RoleList is a collection of Roles Deprecated in v1.17 in favor of rbac.authorization.k8s.iov1 RoleList, and will no longer be served in v1.20. */
 export type RoleList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "rbac.authorization.k8s.io/v1beta1";
 
   /** Items is a list of Roles */
   items: Role[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "RoleList";
 
   /** Standard object's metadata. */
   metadata?: ListMeta;

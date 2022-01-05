@@ -3,29 +3,33 @@ import { mergeWithArrayConcat } from "../../../utils/object.ts";
 import { dirname } from "https://deno.land/std/path/mod.ts";
 import {
   appendToObject,
-  getType,
-  getImports,
-  getImportPath,
   formatComment,
+  getImportPath,
+  getImports,
+  getType,
 } from "./utils.ts";
 import { compileType } from "./compile_type.ts";
 
 function writeType(name: string, def: Definition): string {
-  let interfaceDef = `
-  ${def.description && formatComment(def.description)}
-  export type ${name} = ${compileType(def)}`;
   let gvk = def["x-kubernetes-group-version-kind"] as
     | GroupVersionKind[]
     | null;
+  let apiVersion = gvk && gvk.length > 0
+    ? [gvk[0].group, gvk[0].version].filter((x) => x != "")
+      .join("/")
+    : undefined;
+  let kind = gvk && gvk.length > 0 ? gvk[0].kind : undefined;
+  let interfaceDef = `
+  ${def.description && formatComment(def.description)}
+  export type ${name} = ${compileType(def, apiVersion, kind)}`;
+
   if (
-    gvk && gvk.length > 0 &&
+    apiVersion && kind &&
     Object.keys(def.properties || {}).includes("apiVersion")
   ) {
-    let apiVersion = [gvk[0].group, gvk[0].version].filter((x) => x != "")
-      .join("/");
     let funcDef = `
 export function create${name}<T extends Omit<${name}, "apiVersion" | "kind">>(data:T):${name} & T & Pick<${name}, "apiVersion" | "kind">{
-  return {apiVersion: "${apiVersion}", kind: "${gvk[0].kind}", ...data}
+  return {apiVersion: "${apiVersion}", kind: "${kind}", ...data}
 }
 `;
     return [interfaceDef, funcDef].join("");
@@ -99,11 +103,9 @@ export function addStubModules(
     results.push(
       {
         location: path + "/mod.ts",
-        content: Object.keys(node).map((x) =>
-          `
+        content: Object.keys(node).map((x) => `
 export * as ${x.replace(/-/g, "_")} from "./${x}/mod.ts"
-`
-        ).join(""),
+`).join(""),
       },
     );
     nodesToVisit.push(

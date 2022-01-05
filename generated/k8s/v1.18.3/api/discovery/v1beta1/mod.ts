@@ -1,8 +1,8 @@
 /* Generated for api/discovery/v1beta1/mod.ts */
 import { ObjectReference } from "../../core/v1/mod.ts";
 import {
-  ObjectMeta,
   ListMeta,
+  ObjectMeta,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 
 /** Endpoint represents a single logical "backend" implementing a service. */
@@ -56,15 +56,11 @@ export type EndpointPort = {
 export type EndpointSlice = {
   /** addressType specifies the type of address carried by this EndpointSlice. All addresses in this slice must be the same type. This field is immutable after creation. The following address types are currently supported: * IPv4: Represents an IPv4 Address. * IPv6: Represents an IPv6 Address. * FQDN: Represents a Fully Qualified Domain Name. */
   addressType: string;
-
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "discovery.k8s.io/v1beta1";
 
   /** endpoints is a list of unique endpoints in this slice. Each slice may include a maximum of 1000 endpoints. */
   endpoints: Endpoint[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "EndpointSlice";
 
   /** Standard object's metadata. */
   metadata?: ObjectMeta;
@@ -84,14 +80,11 @@ export function createEndpointSlice<
 
 /** EndpointSliceList represents a list of endpoint slices */
 export type EndpointSliceList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "discovery.k8s.io/v1beta1";
 
   /** List of endpoint slices */
   items: EndpointSlice[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "EndpointSliceList";
 
   /** Standard list metadata. */
   metadata?: ListMeta;

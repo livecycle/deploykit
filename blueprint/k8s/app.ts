@@ -1,4 +1,4 @@
-import { createBluePrint, InitCompose, IBluePrint } from "../blueprint.ts";
+import { createBluePrint, IBluePrint, InitCompose } from "../blueprint.ts";
 import { KubeMetaContext } from "./types.ts";
 
 export function createKubeBlueprint<

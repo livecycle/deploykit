@@ -3,11 +3,8 @@ import { RawExtension } from "../../../runtime/mod.ts";
 
 /** APIGroup contains the name, the supported versions, and the preferred version of a group. */
 export type APIGroup = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "v1";
+  kind: "APIGroup";
 
   /** name is the name of the group. */
   name: string;
@@ -29,14 +26,11 @@ export function createAPIGroup<T extends Omit<APIGroup, "apiVersion" | "kind">>(
 
 /** APIGroupList is a list of APIGroup, to allow clients to discover the API at apis. */
 export type APIGroupList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "v1";
 
   /** groups is a list of APIGroup. */
   groups: APIGroup[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "APIGroupList";
 };
 export function createAPIGroupList<
   T extends Omit<APIGroupList, "apiVersion" | "kind">,
@@ -79,14 +73,11 @@ export type APIResource = {
 
 /** APIResourceList is a list of APIResource, it is used to expose the name of the resources supported in a specific group and version, and if the resource is namespaced. */
 export type APIResourceList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "v1";
 
   /** groupVersion is the group and version this APIResourceList is for. */
   groupVersion: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "APIResourceList";
 
   /** resources contains the name of the resources and if they are namespaced. */
   resources: APIResource[];
@@ -99,11 +90,8 @@ export function createAPIResourceList<
 
 /** APIVersions lists the versions that are available, to allow clients to discover the API at api, which is the root path of the legacy v1 API. */
 export type APIVersions = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "v1";
+  kind: "APIVersions";
 
   /** a map of client CIDR to server address that is serving this group. This is to help clients reach servers in the most network-efficient way possible. Clients can use the appropriate server address as per the CIDR that they match. In case of multiple matches, clients should use the longest matching CIDR. The server returns only those CIDRs that it thinks that the client can match. For example: the master will return an internal IP CIDR only, if the client reaches the server using an internal IP. Server looks at X-Forwarded-For header or X-Real-Ip header or request.RemoteAddr (in that order) to get the client IP. */
   serverAddressByClientCIDRs: ServerAddressByClientCIDR[];
@@ -119,17 +107,14 @@ export function createAPIVersions<
 
 /** DeleteOptions may be provided when deleting an API object. */
 export type DeleteOptions = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "v1";
 
   /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
   dryRun?: string[];
 
   /** The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. */
   gracePeriodSeconds?: number;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "DeleteOptions";
 
   /** Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If truefalse, the "orphan" finalizer will be added toremoved from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. */
   orphanDependents?: boolean;
@@ -356,17 +341,14 @@ export type ServerAddressByClientCIDR = {
 
 /** Status is a return value for calls that don't return other objects. */
 export type Status = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "v1";
 
   /** Suggested HTTP return code for this status, 0 if not set. */
   code?: number;
 
   /** Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type. */
   details?: StatusDetails;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "Status";
 
   /** A human-readable description of the status of this operation. */
   message?: string;

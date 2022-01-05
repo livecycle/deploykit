@@ -3,9 +3,8 @@ import { ObjectMeta } from "https://deno.land/x/deploykit@0.0.19/generated/k8s/v
 
 undefined;
 export type AnalysisRun = {
-  apiVersion?: string;
-
-  kind?: string;
+  apiVersion: "argoproj.io/v1alpha1";
+  kind: "AnalysisRun";
 
   metadata?: ObjectMeta;
 
@@ -28,16 +27,20 @@ export type AnalysisRun = {
       };
     }[];
 
-    metrics: {
-      consecutiveErrorLimit?: number;
+    dryRun?: {
+      metricName: string;
+    }[];
 
-      count?: number;
+    metrics: {
+      consecutiveErrorLimit?: number | string;
+
+      count?: number | string;
 
       failureCondition?: string;
 
-      failureLimit?: number;
+      failureLimit?: number | string;
 
-      inconclusiveLimit?: number;
+      inconclusiveLimit?: number | string;
 
       initialDelay?: string;
 
@@ -46,10 +49,52 @@ export type AnalysisRun = {
       name: string;
 
       provider: {
+        cloudWatch?: {
+          interval?: string;
+
+          metricDataQueries: {
+            expression?: string;
+
+            id?: string;
+
+            label?: string;
+
+            metricStat?: {
+              metric?: {
+                dimensions?: {
+                  name?: string;
+
+                  value?: string;
+                }[];
+
+                metricName?: string;
+
+                namespace?: string;
+              };
+
+              period?: number | string;
+
+              stat?: string;
+
+              unit?: string;
+            };
+
+            period?: number | string;
+
+            returnData?: boolean;
+          }[];
+        };
+
         datadog?: {
           interval?: string;
 
           query: string;
+        };
+
+        graphite?: {
+          address?: string;
+
+          query?: string;
         };
 
         job?: {
@@ -67,6 +112,8 @@ export type AnalysisRun = {
             activeDeadlineSeconds?: number;
 
             backoffLimit?: number;
+
+            completionMode?: string;
 
             completions?: number;
 
@@ -87,6 +134,8 @@ export type AnalysisRun = {
                 [key: string]: string;
               };
             };
+
+            suspend?: boolean;
 
             template: {
               metadata?: {
@@ -164,6 +213,20 @@ export type AnalysisRun = {
                           };
                         };
 
+                        namespaceSelector?: {
+                          matchExpressions?: {
+                            key: string;
+
+                            operator: string;
+
+                            values?: string[];
+                          }[];
+
+                          matchLabels?: {
+                            [key: string]: string;
+                          };
+                        };
+
                         namespaces?: string[];
 
                         topologyKey: string;
@@ -174,6 +237,20 @@ export type AnalysisRun = {
 
                     requiredDuringSchedulingIgnoredDuringExecution?: {
                       labelSelector?: {
+                        matchExpressions?: {
+                          key: string;
+
+                          operator: string;
+
+                          values?: string[];
+                        }[];
+
+                        matchLabels?: {
+                          [key: string]: string;
+                        };
+                      };
+
+                      namespaceSelector?: {
                         matchExpressions?: {
                           key: string;
 
@@ -210,6 +287,20 @@ export type AnalysisRun = {
                           };
                         };
 
+                        namespaceSelector?: {
+                          matchExpressions?: {
+                            key: string;
+
+                            operator: string;
+
+                            values?: string[];
+                          }[];
+
+                          matchLabels?: {
+                            [key: string]: string;
+                          };
+                        };
+
                         namespaces?: string[];
 
                         topologyKey: string;
@@ -220,6 +311,20 @@ export type AnalysisRun = {
 
                     requiredDuringSchedulingIgnoredDuringExecution?: {
                       labelSelector?: {
+                        matchExpressions?: {
+                          key: string;
+
+                          operator: string;
+
+                          values?: string[];
+                        }[];
+
+                        matchLabels?: {
+                          [key: string]: string;
+                        };
+                      };
+
+                      namespaceSelector?: {
                         matchExpressions?: {
                           key: string;
 
@@ -398,6 +503,8 @@ export type AnalysisRun = {
                       port: number | string;
                     };
 
+                    terminationGracePeriodSeconds?: number;
+
                     timeoutSeconds?: number;
                   };
 
@@ -450,10 +557,16 @@ export type AnalysisRun = {
                       port: number | string;
                     };
 
+                    terminationGracePeriodSeconds?: number;
+
                     timeoutSeconds?: number;
                   };
 
-                  resources?: {};
+                  resources?: {
+                    limits?: any;
+
+                    requests?: any;
+                  };
 
                   securityContext?: {
                     allowPrivilegeEscalation?: boolean;
@@ -484,6 +597,12 @@ export type AnalysisRun = {
                       type?: string;
 
                       user?: string;
+                    };
+
+                    seccompProfile?: {
+                      localhostProfile?: string;
+
+                      type: string;
                     };
 
                     windowsOptions?: {
@@ -529,6 +648,8 @@ export type AnalysisRun = {
 
                       port: number | string;
                     };
+
+                    terminationGracePeriodSeconds?: number;
 
                     timeoutSeconds?: number;
                   };
@@ -738,6 +859,8 @@ export type AnalysisRun = {
                       port: number | string;
                     };
 
+                    terminationGracePeriodSeconds?: number;
+
                     timeoutSeconds?: number;
                   };
 
@@ -790,10 +913,16 @@ export type AnalysisRun = {
                       port: number | string;
                     };
 
+                    terminationGracePeriodSeconds?: number;
+
                     timeoutSeconds?: number;
                   };
 
-                  resources?: {};
+                  resources?: {
+                    limits?: any;
+
+                    requests?: any;
+                  };
 
                   securityContext?: {
                     allowPrivilegeEscalation?: boolean;
@@ -824,6 +953,12 @@ export type AnalysisRun = {
                       type?: string;
 
                       user?: string;
+                    };
+
+                    seccompProfile?: {
+                      localhostProfile?: string;
+
+                      type: string;
                     };
 
                     windowsOptions?: {
@@ -869,6 +1004,8 @@ export type AnalysisRun = {
 
                       port: number | string;
                     };
+
+                    terminationGracePeriodSeconds?: number;
 
                     timeoutSeconds?: number;
                   };
@@ -1082,6 +1219,8 @@ export type AnalysisRun = {
                       port: number | string;
                     };
 
+                    terminationGracePeriodSeconds?: number;
+
                     timeoutSeconds?: number;
                   };
 
@@ -1134,10 +1273,16 @@ export type AnalysisRun = {
                       port: number | string;
                     };
 
+                    terminationGracePeriodSeconds?: number;
+
                     timeoutSeconds?: number;
                   };
 
-                  resources?: {};
+                  resources?: {
+                    limits?: any;
+
+                    requests?: any;
+                  };
 
                   securityContext?: {
                     allowPrivilegeEscalation?: boolean;
@@ -1168,6 +1313,12 @@ export type AnalysisRun = {
                       type?: string;
 
                       user?: string;
+                    };
+
+                    seccompProfile?: {
+                      localhostProfile?: string;
+
+                      type: string;
                     };
 
                     windowsOptions?: {
@@ -1213,6 +1364,8 @@ export type AnalysisRun = {
 
                       port: number | string;
                     };
+
+                    terminationGracePeriodSeconds?: number;
 
                     timeoutSeconds?: number;
                   };
@@ -1297,6 +1450,12 @@ export type AnalysisRun = {
                     user?: string;
                   };
 
+                  seccompProfile?: {
+                    localhostProfile?: string;
+
+                    type: string;
+                  };
+
                   supplementalGroups?: number[];
 
                   sysctls?: {
@@ -1317,6 +1476,8 @@ export type AnalysisRun = {
                 serviceAccount?: string;
 
                 serviceAccountName?: string;
+
+                setHostnameAsFQDN?: boolean;
 
                 shareProcessNamespace?: boolean;
 
@@ -1358,307 +1519,7 @@ export type AnalysisRun = {
                   whenUnsatisfiable: string;
                 }[];
 
-                volumes?: {
-                  awsElasticBlockStore?: {
-                    fsType?: string;
-
-                    partition?: number;
-
-                    readOnly?: boolean;
-
-                    volumeID: string;
-                  };
-
-                  azureDisk?: {
-                    cachingMode?: string;
-
-                    diskName: string;
-
-                    diskURI: string;
-
-                    fsType?: string;
-
-                    kind?: string;
-
-                    readOnly?: boolean;
-                  };
-
-                  azureFile?: {
-                    readOnly?: boolean;
-
-                    secretName: string;
-
-                    shareName: string;
-                  };
-
-                  cephfs?: {
-                    monitors: string[];
-
-                    path?: string;
-
-                    readOnly?: boolean;
-
-                    secretFile?: string;
-
-                    secretRef?: {
-                      name?: string;
-                    };
-
-                    user?: string;
-                  };
-
-                  cinder?: {
-                    fsType?: string;
-
-                    readOnly?: boolean;
-
-                    secretRef?: {
-                      name?: string;
-                    };
-
-                    volumeID: string;
-                  };
-
-                  csi?: {
-                    driver: string;
-
-                    fsType?: string;
-
-                    nodePublishSecretRef?: {
-                      name?: string;
-                    };
-
-                    readOnly?: boolean;
-
-                    volumeAttributes?: {
-                      [key: string]: string;
-                    };
-                  };
-
-                  emptyDir?: {
-                    medium?: string;
-
-                    sizeLimit?: number | string;
-                  };
-
-                  fc?: {
-                    fsType?: string;
-
-                    lun?: number;
-
-                    readOnly?: boolean;
-
-                    targetWWNs?: string[];
-
-                    wwids?: string[];
-                  };
-
-                  flexVolume?: {
-                    driver: string;
-
-                    fsType?: string;
-
-                    options?: {
-                      [key: string]: string;
-                    };
-
-                    readOnly?: boolean;
-
-                    secretRef?: {
-                      name?: string;
-                    };
-                  };
-
-                  flocker?: {
-                    datasetName?: string;
-
-                    datasetUUID?: string;
-                  };
-
-                  gcePersistentDisk?: {
-                    fsType?: string;
-
-                    partition?: number;
-
-                    pdName: string;
-
-                    readOnly?: boolean;
-                  };
-
-                  gitRepo?: {
-                    directory?: string;
-
-                    repository: string;
-
-                    revision?: string;
-                  };
-
-                  glusterfs?: {
-                    endpoints: string;
-
-                    path: string;
-
-                    readOnly?: boolean;
-                  };
-
-                  hostPath?: {
-                    path: string;
-
-                    type?: string;
-                  };
-
-                  iscsi?: {
-                    chapAuthDiscovery?: boolean;
-
-                    chapAuthSession?: boolean;
-
-                    fsType?: string;
-
-                    initiatorName?: string;
-
-                    iqn: string;
-
-                    iscsiInterface?: string;
-
-                    lun: number;
-
-                    portals?: string[];
-
-                    readOnly?: boolean;
-
-                    secretRef?: {
-                      name?: string;
-                    };
-
-                    targetPortal: string;
-                  };
-
-                  name: string;
-
-                  nfs?: {
-                    path: string;
-
-                    readOnly?: boolean;
-
-                    server: string;
-                  };
-
-                  persistentVolumeClaim?: {
-                    claimName: string;
-
-                    readOnly?: boolean;
-                  };
-
-                  photonPersistentDisk?: {
-                    fsType?: string;
-
-                    pdID: string;
-                  };
-
-                  portworxVolume?: {
-                    fsType?: string;
-
-                    readOnly?: boolean;
-
-                    volumeID: string;
-                  };
-
-                  projected?: {
-                    defaultMode?: number;
-
-                    sources: {
-                      serviceAccountToken?: {
-                        audience?: string;
-
-                        expirationSeconds?: number;
-
-                        path: string;
-                      };
-                    }[];
-                  };
-
-                  quobyte?: {
-                    group?: string;
-
-                    readOnly?: boolean;
-
-                    registry: string;
-
-                    tenant?: string;
-
-                    user?: string;
-
-                    volume: string;
-                  };
-
-                  rbd?: {
-                    fsType?: string;
-
-                    image: string;
-
-                    keyring?: string;
-
-                    monitors: string[];
-
-                    pool?: string;
-
-                    readOnly?: boolean;
-
-                    secretRef?: {
-                      name?: string;
-                    };
-
-                    user?: string;
-                  };
-
-                  scaleIO?: {
-                    fsType?: string;
-
-                    gateway: string;
-
-                    protectionDomain?: string;
-
-                    readOnly?: boolean;
-
-                    secretRef: {
-                      name?: string;
-                    };
-
-                    sslEnabled?: boolean;
-
-                    storageMode?: string;
-
-                    storagePool?: string;
-
-                    system: string;
-
-                    volumeName?: string;
-                  };
-
-                  storageos?: {
-                    fsType?: string;
-
-                    readOnly?: boolean;
-
-                    secretRef?: {
-                      name?: string;
-                    };
-
-                    volumeName?: string;
-
-                    volumeNamespace?: string;
-                  };
-
-                  vsphereVolume?: {
-                    fsType?: string;
-
-                    storagePolicyID?: string;
-
-                    storagePolicyName?: string;
-
-                    volumePath: string;
-                  };
-                }[];
+                volumes?: any;
               };
             };
 
@@ -1733,6 +1594,8 @@ export type AnalysisRun = {
         };
 
         web?: {
+          body?: string;
+
           headers?: {
             key: string;
 
@@ -1742,6 +1605,8 @@ export type AnalysisRun = {
           insecure?: boolean;
 
           jsonPath?: string;
+
+          method?: string;
 
           timeoutSeconds?: number;
 
@@ -1756,12 +1621,26 @@ export type AnalysisRun = {
   };
 
   status?: {
+    dryRunSummary?: {
+      count?: number;
+
+      error?: number;
+
+      failed?: number;
+
+      inconclusive?: number;
+
+      successful?: number;
+    };
+
     message?: string;
 
     metricResults?: {
       consecutiveError?: number;
 
       count?: number;
+
+      dryRun?: boolean;
 
       error?: number;
 
@@ -1798,6 +1677,18 @@ export type AnalysisRun = {
 
     phase: string;
 
+    runSummary?: {
+      count?: number;
+
+      error?: number;
+
+      failed?: number;
+
+      inconclusive?: number;
+
+      successful?: number;
+    };
+
     startedAt?: string;
   };
 };
@@ -1809,16 +1700,23 @@ export function createAnalysisRun<
 
 undefined;
 export type Rollout = {
-  apiVersion?: string;
-
-  kind?: string;
+  apiVersion: "argoproj.io/v1alpha1";
+  kind: "Rollout";
 
   metadata?: ObjectMeta;
 
   spec: {
+    analysis?: {
+      successfulRunHistoryLimit?: number;
+
+      unsuccessfulRunHistoryLimit?: number;
+    };
+
     minReadySeconds?: number;
 
     paused?: boolean;
+
+    progressDeadlineAbort?: boolean;
 
     progressDeadlineSeconds?: number;
 
@@ -1828,7 +1726,7 @@ export type Rollout = {
 
     revisionHistoryLimit?: number;
 
-    selector: {
+    selector?: {
       matchExpressions?: {
         key: string;
 
@@ -1844,6 +1742,18 @@ export type Rollout = {
 
     strategy?: {
       blueGreen?: {
+        abortScaleDownDelaySeconds?: number;
+
+        activeMetadata?: {
+          annotations?: {
+            [key: string]: string;
+          };
+
+          labels?: {
+            [key: string]: string;
+          };
+        };
+
         activeService: string;
 
         antiAffinity?: {
@@ -1857,6 +1767,8 @@ export type Rollout = {
         autoPromotionEnabled?: boolean;
 
         autoPromotionSeconds?: number;
+
+        maxUnavailable?: number | string;
 
         postPromotionAnalysis?: {
           args?: {
@@ -1873,9 +1785,9 @@ export type Rollout = {
             };
           }[];
 
-          clusterScope?: boolean;
-
-          templateName?: string;
+          dryRun?: {
+            metricName: string;
+          }[];
 
           templates?: {
             clusterScope?: boolean;
@@ -1899,15 +1811,25 @@ export type Rollout = {
             };
           }[];
 
-          clusterScope?: boolean;
-
-          templateName?: string;
+          dryRun?: {
+            metricName: string;
+          }[];
 
           templates?: {
             clusterScope?: boolean;
 
             templateName?: string;
           }[];
+        };
+
+        previewMetadata?: {
+          annotations?: {
+            [key: string]: string;
+          };
+
+          labels?: {
+            [key: string]: string;
+          };
         };
 
         previewReplicaCount?: number;
@@ -1920,6 +1842,8 @@ export type Rollout = {
       };
 
       canary?: {
+        abortScaleDownDelaySeconds?: number;
+
         analysis?: {
           args?: {
             name: string;
@@ -1935,11 +1859,11 @@ export type Rollout = {
             };
           }[];
 
-          clusterScope?: boolean;
+          dryRun?: {
+            metricName: string;
+          }[];
 
           startingStep?: number;
-
-          templateName?: string;
 
           templates?: {
             clusterScope?: boolean;
@@ -1968,9 +1892,15 @@ export type Rollout = {
 
         canaryService?: string;
 
+        dynamicStableScale?: boolean;
+
         maxSurge?: number | string;
 
         maxUnavailable?: number | string;
+
+        scaleDownDelayRevisionLimit?: number;
+
+        scaleDownDelaySeconds?: number;
 
         stableMetadata?: {
           annotations?: {
@@ -2000,9 +1930,9 @@ export type Rollout = {
               };
             }[];
 
-            clusterScope?: boolean;
-
-            templateName?: string;
+            dryRun?: {
+              metricName: string;
+            }[];
 
             templates?: {
               clusterScope?: boolean;
@@ -2030,6 +1960,8 @@ export type Rollout = {
               clusterScope?: boolean;
 
               name: string;
+
+              requiredForCompletion?: boolean;
 
               templateName: string;
             }[];
@@ -2066,6 +1998,8 @@ export type Rollout = {
               };
 
               specRef: string;
+
+              weight?: number;
             }[];
           };
 
@@ -2093,14 +2027,50 @@ export type Rollout = {
             rootService?: string;
 
             servicePort: number;
+
+            stickinessConfig?: {
+              durationSeconds: number;
+
+              enabled: boolean;
+            };
+          };
+
+          ambassador?: {
+            mappings: string[];
           };
 
           istio?: {
-            virtualService: {
+            destinationRule?: {
+              canarySubsetName: string;
+
               name: string;
 
-              routes: string[];
+              stableSubsetName: string;
             };
+
+            virtualService?: {
+              name: string;
+
+              routes?: string[];
+
+              tlsRoutes?: {
+                port?: number;
+
+                sniHosts?: string[];
+              }[];
+            };
+
+            virtualServices?: {
+              name: string;
+
+              routes?: string[];
+
+              tlsRoutes?: {
+                port?: number;
+
+                sniHosts?: string[];
+              }[];
+            }[];
           };
 
           nginx?: {
@@ -2122,7 +2092,7 @@ export type Rollout = {
       };
     };
 
-    template: {
+    template?: {
       metadata?: {
         annotations?: {
           [key: string]: string;
@@ -2198,6 +2168,20 @@ export type Rollout = {
                   };
                 };
 
+                namespaceSelector?: {
+                  matchExpressions?: {
+                    key: string;
+
+                    operator: string;
+
+                    values?: string[];
+                  }[];
+
+                  matchLabels?: {
+                    [key: string]: string;
+                  };
+                };
+
                 namespaces?: string[];
 
                 topologyKey: string;
@@ -2208,6 +2192,20 @@ export type Rollout = {
 
             requiredDuringSchedulingIgnoredDuringExecution?: {
               labelSelector?: {
+                matchExpressions?: {
+                  key: string;
+
+                  operator: string;
+
+                  values?: string[];
+                }[];
+
+                matchLabels?: {
+                  [key: string]: string;
+                };
+              };
+
+              namespaceSelector?: {
                 matchExpressions?: {
                   key: string;
 
@@ -2244,6 +2242,20 @@ export type Rollout = {
                   };
                 };
 
+                namespaceSelector?: {
+                  matchExpressions?: {
+                    key: string;
+
+                    operator: string;
+
+                    values?: string[];
+                  }[];
+
+                  matchLabels?: {
+                    [key: string]: string;
+                  };
+                };
+
                 namespaces?: string[];
 
                 topologyKey: string;
@@ -2254,6 +2266,20 @@ export type Rollout = {
 
             requiredDuringSchedulingIgnoredDuringExecution?: {
               labelSelector?: {
+                matchExpressions?: {
+                  key: string;
+
+                  operator: string;
+
+                  values?: string[];
+                }[];
+
+                matchLabels?: {
+                  [key: string]: string;
+                };
+              };
+
+              namespaceSelector?: {
                 matchExpressions?: {
                   key: string;
 
@@ -2432,6 +2458,8 @@ export type Rollout = {
               port: number | string;
             };
 
+            terminationGracePeriodSeconds?: number;
+
             timeoutSeconds?: number;
           };
 
@@ -2484,10 +2512,16 @@ export type Rollout = {
               port: number | string;
             };
 
+            terminationGracePeriodSeconds?: number;
+
             timeoutSeconds?: number;
           };
 
-          resources?: {};
+          resources?: {
+            limits?: any;
+
+            requests?: any;
+          };
 
           securityContext?: {
             allowPrivilegeEscalation?: boolean;
@@ -2518,6 +2552,12 @@ export type Rollout = {
               type?: string;
 
               user?: string;
+            };
+
+            seccompProfile?: {
+              localhostProfile?: string;
+
+              type: string;
             };
 
             windowsOptions?: {
@@ -2563,6 +2603,8 @@ export type Rollout = {
 
               port: number | string;
             };
+
+            terminationGracePeriodSeconds?: number;
 
             timeoutSeconds?: number;
           };
@@ -2772,6 +2814,8 @@ export type Rollout = {
               port: number | string;
             };
 
+            terminationGracePeriodSeconds?: number;
+
             timeoutSeconds?: number;
           };
 
@@ -2824,10 +2868,16 @@ export type Rollout = {
               port: number | string;
             };
 
+            terminationGracePeriodSeconds?: number;
+
             timeoutSeconds?: number;
           };
 
-          resources?: {};
+          resources?: {
+            limits?: any;
+
+            requests?: any;
+          };
 
           securityContext?: {
             allowPrivilegeEscalation?: boolean;
@@ -2858,6 +2908,12 @@ export type Rollout = {
               type?: string;
 
               user?: string;
+            };
+
+            seccompProfile?: {
+              localhostProfile?: string;
+
+              type: string;
             };
 
             windowsOptions?: {
@@ -2903,6 +2959,8 @@ export type Rollout = {
 
               port: number | string;
             };
+
+            terminationGracePeriodSeconds?: number;
 
             timeoutSeconds?: number;
           };
@@ -3116,6 +3174,8 @@ export type Rollout = {
               port: number | string;
             };
 
+            terminationGracePeriodSeconds?: number;
+
             timeoutSeconds?: number;
           };
 
@@ -3168,10 +3228,16 @@ export type Rollout = {
               port: number | string;
             };
 
+            terminationGracePeriodSeconds?: number;
+
             timeoutSeconds?: number;
           };
 
-          resources?: {};
+          resources?: {
+            limits?: any;
+
+            requests?: any;
+          };
 
           securityContext?: {
             allowPrivilegeEscalation?: boolean;
@@ -3202,6 +3268,12 @@ export type Rollout = {
               type?: string;
 
               user?: string;
+            };
+
+            seccompProfile?: {
+              localhostProfile?: string;
+
+              type: string;
             };
 
             windowsOptions?: {
@@ -3247,6 +3319,8 @@ export type Rollout = {
 
               port: number | string;
             };
+
+            terminationGracePeriodSeconds?: number;
 
             timeoutSeconds?: number;
           };
@@ -3331,6 +3405,12 @@ export type Rollout = {
             user?: string;
           };
 
+          seccompProfile?: {
+            localhostProfile?: string;
+
+            type: string;
+          };
+
           supplementalGroups?: number[];
 
           sysctls?: {
@@ -3351,6 +3431,8 @@ export type Rollout = {
         serviceAccount?: string;
 
         serviceAccountName?: string;
+
+        setHostnameAsFQDN?: boolean;
 
         shareProcessNamespace?: boolean;
 
@@ -3392,308 +3474,16 @@ export type Rollout = {
           whenUnsatisfiable: string;
         }[];
 
-        volumes?: {
-          awsElasticBlockStore?: {
-            fsType?: string;
-
-            partition?: number;
-
-            readOnly?: boolean;
-
-            volumeID: string;
-          };
-
-          azureDisk?: {
-            cachingMode?: string;
-
-            diskName: string;
-
-            diskURI: string;
-
-            fsType?: string;
-
-            kind?: string;
-
-            readOnly?: boolean;
-          };
-
-          azureFile?: {
-            readOnly?: boolean;
-
-            secretName: string;
-
-            shareName: string;
-          };
-
-          cephfs?: {
-            monitors: string[];
-
-            path?: string;
-
-            readOnly?: boolean;
-
-            secretFile?: string;
-
-            secretRef?: {
-              name?: string;
-            };
-
-            user?: string;
-          };
-
-          cinder?: {
-            fsType?: string;
-
-            readOnly?: boolean;
-
-            secretRef?: {
-              name?: string;
-            };
-
-            volumeID: string;
-          };
-
-          csi?: {
-            driver: string;
-
-            fsType?: string;
-
-            nodePublishSecretRef?: {
-              name?: string;
-            };
-
-            readOnly?: boolean;
-
-            volumeAttributes?: {
-              [key: string]: string;
-            };
-          };
-
-          emptyDir?: {
-            medium?: string;
-
-            sizeLimit?: number | string;
-          };
-
-          fc?: {
-            fsType?: string;
-
-            lun?: number;
-
-            readOnly?: boolean;
-
-            targetWWNs?: string[];
-
-            wwids?: string[];
-          };
-
-          flexVolume?: {
-            driver: string;
-
-            fsType?: string;
-
-            options?: {
-              [key: string]: string;
-            };
-
-            readOnly?: boolean;
-
-            secretRef?: {
-              name?: string;
-            };
-          };
-
-          flocker?: {
-            datasetName?: string;
-
-            datasetUUID?: string;
-          };
-
-          gcePersistentDisk?: {
-            fsType?: string;
-
-            partition?: number;
-
-            pdName: string;
-
-            readOnly?: boolean;
-          };
-
-          gitRepo?: {
-            directory?: string;
-
-            repository: string;
-
-            revision?: string;
-          };
-
-          glusterfs?: {
-            endpoints: string;
-
-            path: string;
-
-            readOnly?: boolean;
-          };
-
-          hostPath?: {
-            path: string;
-
-            type?: string;
-          };
-
-          iscsi?: {
-            chapAuthDiscovery?: boolean;
-
-            chapAuthSession?: boolean;
-
-            fsType?: string;
-
-            initiatorName?: string;
-
-            iqn: string;
-
-            iscsiInterface?: string;
-
-            lun: number;
-
-            portals?: string[];
-
-            readOnly?: boolean;
-
-            secretRef?: {
-              name?: string;
-            };
-
-            targetPortal: string;
-          };
-
-          name: string;
-
-          nfs?: {
-            path: string;
-
-            readOnly?: boolean;
-
-            server: string;
-          };
-
-          persistentVolumeClaim?: {
-            claimName: string;
-
-            readOnly?: boolean;
-          };
-
-          photonPersistentDisk?: {
-            fsType?: string;
-
-            pdID: string;
-          };
-
-          portworxVolume?: {
-            fsType?: string;
-
-            readOnly?: boolean;
-
-            volumeID: string;
-          };
-
-          projected?: {
-            defaultMode?: number;
-
-            sources: {
-              serviceAccountToken?: {
-                audience?: string;
-
-                expirationSeconds?: number;
-
-                path: string;
-              };
-            }[];
-          };
-
-          quobyte?: {
-            group?: string;
-
-            readOnly?: boolean;
-
-            registry: string;
-
-            tenant?: string;
-
-            user?: string;
-
-            volume: string;
-          };
-
-          rbd?: {
-            fsType?: string;
-
-            image: string;
-
-            keyring?: string;
-
-            monitors: string[];
-
-            pool?: string;
-
-            readOnly?: boolean;
-
-            secretRef?: {
-              name?: string;
-            };
-
-            user?: string;
-          };
-
-          scaleIO?: {
-            fsType?: string;
-
-            gateway: string;
-
-            protectionDomain?: string;
-
-            readOnly?: boolean;
-
-            secretRef: {
-              name?: string;
-            };
-
-            sslEnabled?: boolean;
-
-            storageMode?: string;
-
-            storagePool?: string;
-
-            system: string;
-
-            volumeName?: string;
-          };
-
-          storageos?: {
-            fsType?: string;
-
-            readOnly?: boolean;
-
-            secretRef?: {
-              name?: string;
-            };
-
-            volumeName?: string;
-
-            volumeNamespace?: string;
-          };
-
-          vsphereVolume?: {
-            fsType?: string;
-
-            storagePolicyID?: string;
-
-            storagePolicyName?: string;
-
-            volumePath: string;
-          };
-        }[];
+        volumes?: any;
       };
+    };
+
+    workloadRef?: {
+      apiVersion?: string;
+
+      kind?: string;
+
+      name?: string;
     };
   };
 
@@ -3704,12 +3494,30 @@ export type Rollout = {
 
     abortedAt?: string;
 
+    alb?: {
+      canaryTargetGroup?: {
+        arn: string;
+
+        name: string;
+      };
+
+      loadBalancer?: {
+        arn: string;
+
+        name: string;
+      };
+
+      stableTargetGroup?: {
+        arn: string;
+
+        name: string;
+      };
+    };
+
     availableReplicas?: number;
 
     blueGreen?: {
       activeSelector?: string;
-
-      postPromotionAnalysisRun?: string;
 
       postPromotionAnalysisRunStatus?: {
         message?: string;
@@ -3718,8 +3526,6 @@ export type Rollout = {
 
         status: string;
       };
-
-      prePromotionAnalysisRun?: string;
 
       prePromotionAnalysisRunStatus?: {
         message?: string;
@@ -3731,16 +3537,10 @@ export type Rollout = {
 
       previewSelector?: string;
 
-      previousActiveSelector?: string;
-
-      scaleDownDelayStartTime?: string;
-
       scaleUpPreviewCheckPoint?: boolean;
     };
 
     canary?: {
-      currentBackgroundAnalysisRun?: string;
-
       currentBackgroundAnalysisRunStatus?: {
         message?: string;
 
@@ -3751,14 +3551,40 @@ export type Rollout = {
 
       currentExperiment?: string;
 
-      currentStepAnalysisRun?: string;
-
       currentStepAnalysisRunStatus?: {
         message?: string;
 
         name: string;
 
         status: string;
+      };
+
+      weights?: {
+        additional?: {
+          podTemplateHash?: string;
+
+          serviceName?: string;
+
+          weight: number;
+        }[];
+
+        canary: {
+          podTemplateHash?: string;
+
+          serviceName?: string;
+
+          weight: number;
+        };
+
+        stable: {
+          podTemplateHash?: string;
+
+          serviceName?: string;
+
+          weight: number;
+        };
+
+        verified?: boolean;
       };
     };
 
@@ -3786,6 +3612,8 @@ export type Rollout = {
 
     currentStepIndex?: number;
 
+    message?: string;
+
     observedGeneration?: string;
 
     pauseConditions?: {
@@ -3793,6 +3621,8 @@ export type Rollout = {
 
       startTime: string;
     }[];
+
+    phase?: string;
 
     promoteFull?: boolean;
 
@@ -3807,6 +3637,8 @@ export type Rollout = {
     stableRS?: string;
 
     updatedReplicas?: number;
+
+    workloadObservedGeneration?: string;
   };
 };
 export function createRollout<T extends Omit<Rollout, "apiVersion" | "kind">>(
@@ -3817,9 +3649,8 @@ export function createRollout<T extends Omit<Rollout, "apiVersion" | "kind">>(
 
 undefined;
 export type Experiment = {
-  apiVersion?: string;
-
-  kind?: string;
+  apiVersion: "argoproj.io/v1alpha1";
+  kind: "Experiment";
 
   metadata?: ObjectMeta;
 
@@ -3852,9 +3683,15 @@ export type Experiment = {
       templateName: string;
     }[];
 
+    dryRun?: {
+      metricName: string;
+    }[];
+
     duration?: string;
 
     progressDeadlineSeconds?: number;
+
+    scaleDownDelaySeconds?: number;
 
     templates: {
       minReadySeconds?: number;
@@ -3876,6 +3713,8 @@ export type Experiment = {
           [key: string]: string;
         };
       };
+
+      service?: {};
 
       template: {
         metadata?: {
@@ -3953,6 +3792,20 @@ export type Experiment = {
                     };
                   };
 
+                  namespaceSelector?: {
+                    matchExpressions?: {
+                      key: string;
+
+                      operator: string;
+
+                      values?: string[];
+                    }[];
+
+                    matchLabels?: {
+                      [key: string]: string;
+                    };
+                  };
+
                   namespaces?: string[];
 
                   topologyKey: string;
@@ -3963,6 +3816,20 @@ export type Experiment = {
 
               requiredDuringSchedulingIgnoredDuringExecution?: {
                 labelSelector?: {
+                  matchExpressions?: {
+                    key: string;
+
+                    operator: string;
+
+                    values?: string[];
+                  }[];
+
+                  matchLabels?: {
+                    [key: string]: string;
+                  };
+                };
+
+                namespaceSelector?: {
                   matchExpressions?: {
                     key: string;
 
@@ -3999,6 +3866,20 @@ export type Experiment = {
                     };
                   };
 
+                  namespaceSelector?: {
+                    matchExpressions?: {
+                      key: string;
+
+                      operator: string;
+
+                      values?: string[];
+                    }[];
+
+                    matchLabels?: {
+                      [key: string]: string;
+                    };
+                  };
+
                   namespaces?: string[];
 
                   topologyKey: string;
@@ -4009,6 +3890,20 @@ export type Experiment = {
 
               requiredDuringSchedulingIgnoredDuringExecution?: {
                 labelSelector?: {
+                  matchExpressions?: {
+                    key: string;
+
+                    operator: string;
+
+                    values?: string[];
+                  }[];
+
+                  matchLabels?: {
+                    [key: string]: string;
+                  };
+                };
+
+                namespaceSelector?: {
                   matchExpressions?: {
                     key: string;
 
@@ -4187,6 +4082,8 @@ export type Experiment = {
                 port: number | string;
               };
 
+              terminationGracePeriodSeconds?: number;
+
               timeoutSeconds?: number;
             };
 
@@ -4239,10 +4136,16 @@ export type Experiment = {
                 port: number | string;
               };
 
+              terminationGracePeriodSeconds?: number;
+
               timeoutSeconds?: number;
             };
 
-            resources?: {};
+            resources?: {
+              limits?: any;
+
+              requests?: any;
+            };
 
             securityContext?: {
               allowPrivilegeEscalation?: boolean;
@@ -4273,6 +4176,12 @@ export type Experiment = {
                 type?: string;
 
                 user?: string;
+              };
+
+              seccompProfile?: {
+                localhostProfile?: string;
+
+                type: string;
               };
 
               windowsOptions?: {
@@ -4318,6 +4227,8 @@ export type Experiment = {
 
                 port: number | string;
               };
+
+              terminationGracePeriodSeconds?: number;
 
               timeoutSeconds?: number;
             };
@@ -4527,6 +4438,8 @@ export type Experiment = {
                 port: number | string;
               };
 
+              terminationGracePeriodSeconds?: number;
+
               timeoutSeconds?: number;
             };
 
@@ -4579,10 +4492,16 @@ export type Experiment = {
                 port: number | string;
               };
 
+              terminationGracePeriodSeconds?: number;
+
               timeoutSeconds?: number;
             };
 
-            resources?: {};
+            resources?: {
+              limits?: any;
+
+              requests?: any;
+            };
 
             securityContext?: {
               allowPrivilegeEscalation?: boolean;
@@ -4613,6 +4532,12 @@ export type Experiment = {
                 type?: string;
 
                 user?: string;
+              };
+
+              seccompProfile?: {
+                localhostProfile?: string;
+
+                type: string;
               };
 
               windowsOptions?: {
@@ -4658,6 +4583,8 @@ export type Experiment = {
 
                 port: number | string;
               };
+
+              terminationGracePeriodSeconds?: number;
 
               timeoutSeconds?: number;
             };
@@ -4871,6 +4798,8 @@ export type Experiment = {
                 port: number | string;
               };
 
+              terminationGracePeriodSeconds?: number;
+
               timeoutSeconds?: number;
             };
 
@@ -4923,10 +4852,16 @@ export type Experiment = {
                 port: number | string;
               };
 
+              terminationGracePeriodSeconds?: number;
+
               timeoutSeconds?: number;
             };
 
-            resources?: {};
+            resources?: {
+              limits?: any;
+
+              requests?: any;
+            };
 
             securityContext?: {
               allowPrivilegeEscalation?: boolean;
@@ -4957,6 +4892,12 @@ export type Experiment = {
                 type?: string;
 
                 user?: string;
+              };
+
+              seccompProfile?: {
+                localhostProfile?: string;
+
+                type: string;
               };
 
               windowsOptions?: {
@@ -5002,6 +4943,8 @@ export type Experiment = {
 
                 port: number | string;
               };
+
+              terminationGracePeriodSeconds?: number;
 
               timeoutSeconds?: number;
             };
@@ -5086,6 +5029,12 @@ export type Experiment = {
               user?: string;
             };
 
+            seccompProfile?: {
+              localhostProfile?: string;
+
+              type: string;
+            };
+
             supplementalGroups?: number[];
 
             sysctls?: {
@@ -5106,6 +5055,8 @@ export type Experiment = {
           serviceAccount?: string;
 
           serviceAccountName?: string;
+
+          setHostnameAsFQDN?: boolean;
 
           shareProcessNamespace?: boolean;
 
@@ -5147,307 +5098,7 @@ export type Experiment = {
             whenUnsatisfiable: string;
           }[];
 
-          volumes?: {
-            awsElasticBlockStore?: {
-              fsType?: string;
-
-              partition?: number;
-
-              readOnly?: boolean;
-
-              volumeID: string;
-            };
-
-            azureDisk?: {
-              cachingMode?: string;
-
-              diskName: string;
-
-              diskURI: string;
-
-              fsType?: string;
-
-              kind?: string;
-
-              readOnly?: boolean;
-            };
-
-            azureFile?: {
-              readOnly?: boolean;
-
-              secretName: string;
-
-              shareName: string;
-            };
-
-            cephfs?: {
-              monitors: string[];
-
-              path?: string;
-
-              readOnly?: boolean;
-
-              secretFile?: string;
-
-              secretRef?: {
-                name?: string;
-              };
-
-              user?: string;
-            };
-
-            cinder?: {
-              fsType?: string;
-
-              readOnly?: boolean;
-
-              secretRef?: {
-                name?: string;
-              };
-
-              volumeID: string;
-            };
-
-            csi?: {
-              driver: string;
-
-              fsType?: string;
-
-              nodePublishSecretRef?: {
-                name?: string;
-              };
-
-              readOnly?: boolean;
-
-              volumeAttributes?: {
-                [key: string]: string;
-              };
-            };
-
-            emptyDir?: {
-              medium?: string;
-
-              sizeLimit?: number | string;
-            };
-
-            fc?: {
-              fsType?: string;
-
-              lun?: number;
-
-              readOnly?: boolean;
-
-              targetWWNs?: string[];
-
-              wwids?: string[];
-            };
-
-            flexVolume?: {
-              driver: string;
-
-              fsType?: string;
-
-              options?: {
-                [key: string]: string;
-              };
-
-              readOnly?: boolean;
-
-              secretRef?: {
-                name?: string;
-              };
-            };
-
-            flocker?: {
-              datasetName?: string;
-
-              datasetUUID?: string;
-            };
-
-            gcePersistentDisk?: {
-              fsType?: string;
-
-              partition?: number;
-
-              pdName: string;
-
-              readOnly?: boolean;
-            };
-
-            gitRepo?: {
-              directory?: string;
-
-              repository: string;
-
-              revision?: string;
-            };
-
-            glusterfs?: {
-              endpoints: string;
-
-              path: string;
-
-              readOnly?: boolean;
-            };
-
-            hostPath?: {
-              path: string;
-
-              type?: string;
-            };
-
-            iscsi?: {
-              chapAuthDiscovery?: boolean;
-
-              chapAuthSession?: boolean;
-
-              fsType?: string;
-
-              initiatorName?: string;
-
-              iqn: string;
-
-              iscsiInterface?: string;
-
-              lun: number;
-
-              portals?: string[];
-
-              readOnly?: boolean;
-
-              secretRef?: {
-                name?: string;
-              };
-
-              targetPortal: string;
-            };
-
-            name: string;
-
-            nfs?: {
-              path: string;
-
-              readOnly?: boolean;
-
-              server: string;
-            };
-
-            persistentVolumeClaim?: {
-              claimName: string;
-
-              readOnly?: boolean;
-            };
-
-            photonPersistentDisk?: {
-              fsType?: string;
-
-              pdID: string;
-            };
-
-            portworxVolume?: {
-              fsType?: string;
-
-              readOnly?: boolean;
-
-              volumeID: string;
-            };
-
-            projected?: {
-              defaultMode?: number;
-
-              sources: {
-                serviceAccountToken?: {
-                  audience?: string;
-
-                  expirationSeconds?: number;
-
-                  path: string;
-                };
-              }[];
-            };
-
-            quobyte?: {
-              group?: string;
-
-              readOnly?: boolean;
-
-              registry: string;
-
-              tenant?: string;
-
-              user?: string;
-
-              volume: string;
-            };
-
-            rbd?: {
-              fsType?: string;
-
-              image: string;
-
-              keyring?: string;
-
-              monitors: string[];
-
-              pool?: string;
-
-              readOnly?: boolean;
-
-              secretRef?: {
-                name?: string;
-              };
-
-              user?: string;
-            };
-
-            scaleIO?: {
-              fsType?: string;
-
-              gateway: string;
-
-              protectionDomain?: string;
-
-              readOnly?: boolean;
-
-              secretRef: {
-                name?: string;
-              };
-
-              sslEnabled?: boolean;
-
-              storageMode?: string;
-
-              storagePool?: string;
-
-              system: string;
-
-              volumeName?: string;
-            };
-
-            storageos?: {
-              fsType?: string;
-
-              readOnly?: boolean;
-
-              secretRef?: {
-                name?: string;
-              };
-
-              volumeName?: string;
-
-              volumeNamespace?: string;
-            };
-
-            vsphereVolume?: {
-              fsType?: string;
-
-              storagePolicyID?: string;
-
-              storagePolicyName?: string;
-
-              volumePath: string;
-            };
-          }[];
+          volumes?: any;
         };
       };
     }[];
@@ -5497,9 +5148,13 @@ export type Experiment = {
 
       name: string;
 
+      podTemplateHash?: string;
+
       readyReplicas: number;
 
       replicas: number;
+
+      serviceName?: string;
 
       status?: string;
 
@@ -5515,9 +5170,8 @@ export function createExperiment<
 
 undefined;
 export type AnalysisTemplate = {
-  apiVersion?: string;
-
-  kind?: string;
+  apiVersion: "argoproj.io/v1alpha1";
+  kind: "AnalysisTemplate";
 
   metadata?: ObjectMeta;
 
@@ -5540,16 +5194,20 @@ export type AnalysisTemplate = {
       };
     }[];
 
-    metrics: {
-      consecutiveErrorLimit?: number;
+    dryRun?: {
+      metricName: string;
+    }[];
 
-      count?: number;
+    metrics: {
+      consecutiveErrorLimit?: number | string;
+
+      count?: number | string;
 
       failureCondition?: string;
 
-      failureLimit?: number;
+      failureLimit?: number | string;
 
-      inconclusiveLimit?: number;
+      inconclusiveLimit?: number | string;
 
       initialDelay?: string;
 
@@ -5558,10 +5216,52 @@ export type AnalysisTemplate = {
       name: string;
 
       provider: {
+        cloudWatch?: {
+          interval?: string;
+
+          metricDataQueries: {
+            expression?: string;
+
+            id?: string;
+
+            label?: string;
+
+            metricStat?: {
+              metric?: {
+                dimensions?: {
+                  name?: string;
+
+                  value?: string;
+                }[];
+
+                metricName?: string;
+
+                namespace?: string;
+              };
+
+              period?: number | string;
+
+              stat?: string;
+
+              unit?: string;
+            };
+
+            period?: number | string;
+
+            returnData?: boolean;
+          }[];
+        };
+
         datadog?: {
           interval?: string;
 
           query: string;
+        };
+
+        graphite?: {
+          address?: string;
+
+          query?: string;
         };
 
         job?: {
@@ -5579,6 +5279,8 @@ export type AnalysisTemplate = {
             activeDeadlineSeconds?: number;
 
             backoffLimit?: number;
+
+            completionMode?: string;
 
             completions?: number;
 
@@ -5599,6 +5301,8 @@ export type AnalysisTemplate = {
                 [key: string]: string;
               };
             };
+
+            suspend?: boolean;
 
             template: {
               metadata?: {
@@ -5676,6 +5380,20 @@ export type AnalysisTemplate = {
                           };
                         };
 
+                        namespaceSelector?: {
+                          matchExpressions?: {
+                            key: string;
+
+                            operator: string;
+
+                            values?: string[];
+                          }[];
+
+                          matchLabels?: {
+                            [key: string]: string;
+                          };
+                        };
+
                         namespaces?: string[];
 
                         topologyKey: string;
@@ -5686,6 +5404,20 @@ export type AnalysisTemplate = {
 
                     requiredDuringSchedulingIgnoredDuringExecution?: {
                       labelSelector?: {
+                        matchExpressions?: {
+                          key: string;
+
+                          operator: string;
+
+                          values?: string[];
+                        }[];
+
+                        matchLabels?: {
+                          [key: string]: string;
+                        };
+                      };
+
+                      namespaceSelector?: {
                         matchExpressions?: {
                           key: string;
 
@@ -5722,6 +5454,20 @@ export type AnalysisTemplate = {
                           };
                         };
 
+                        namespaceSelector?: {
+                          matchExpressions?: {
+                            key: string;
+
+                            operator: string;
+
+                            values?: string[];
+                          }[];
+
+                          matchLabels?: {
+                            [key: string]: string;
+                          };
+                        };
+
                         namespaces?: string[];
 
                         topologyKey: string;
@@ -5732,6 +5478,20 @@ export type AnalysisTemplate = {
 
                     requiredDuringSchedulingIgnoredDuringExecution?: {
                       labelSelector?: {
+                        matchExpressions?: {
+                          key: string;
+
+                          operator: string;
+
+                          values?: string[];
+                        }[];
+
+                        matchLabels?: {
+                          [key: string]: string;
+                        };
+                      };
+
+                      namespaceSelector?: {
                         matchExpressions?: {
                           key: string;
 
@@ -5910,6 +5670,8 @@ export type AnalysisTemplate = {
                       port: number | string;
                     };
 
+                    terminationGracePeriodSeconds?: number;
+
                     timeoutSeconds?: number;
                   };
 
@@ -5962,10 +5724,16 @@ export type AnalysisTemplate = {
                       port: number | string;
                     };
 
+                    terminationGracePeriodSeconds?: number;
+
                     timeoutSeconds?: number;
                   };
 
-                  resources?: {};
+                  resources?: {
+                    limits?: any;
+
+                    requests?: any;
+                  };
 
                   securityContext?: {
                     allowPrivilegeEscalation?: boolean;
@@ -5996,6 +5764,12 @@ export type AnalysisTemplate = {
                       type?: string;
 
                       user?: string;
+                    };
+
+                    seccompProfile?: {
+                      localhostProfile?: string;
+
+                      type: string;
                     };
 
                     windowsOptions?: {
@@ -6041,6 +5815,8 @@ export type AnalysisTemplate = {
 
                       port: number | string;
                     };
+
+                    terminationGracePeriodSeconds?: number;
 
                     timeoutSeconds?: number;
                   };
@@ -6250,6 +6026,8 @@ export type AnalysisTemplate = {
                       port: number | string;
                     };
 
+                    terminationGracePeriodSeconds?: number;
+
                     timeoutSeconds?: number;
                   };
 
@@ -6302,10 +6080,16 @@ export type AnalysisTemplate = {
                       port: number | string;
                     };
 
+                    terminationGracePeriodSeconds?: number;
+
                     timeoutSeconds?: number;
                   };
 
-                  resources?: {};
+                  resources?: {
+                    limits?: any;
+
+                    requests?: any;
+                  };
 
                   securityContext?: {
                     allowPrivilegeEscalation?: boolean;
@@ -6336,6 +6120,12 @@ export type AnalysisTemplate = {
                       type?: string;
 
                       user?: string;
+                    };
+
+                    seccompProfile?: {
+                      localhostProfile?: string;
+
+                      type: string;
                     };
 
                     windowsOptions?: {
@@ -6381,6 +6171,8 @@ export type AnalysisTemplate = {
 
                       port: number | string;
                     };
+
+                    terminationGracePeriodSeconds?: number;
 
                     timeoutSeconds?: number;
                   };
@@ -6594,6 +6386,8 @@ export type AnalysisTemplate = {
                       port: number | string;
                     };
 
+                    terminationGracePeriodSeconds?: number;
+
                     timeoutSeconds?: number;
                   };
 
@@ -6646,10 +6440,16 @@ export type AnalysisTemplate = {
                       port: number | string;
                     };
 
+                    terminationGracePeriodSeconds?: number;
+
                     timeoutSeconds?: number;
                   };
 
-                  resources?: {};
+                  resources?: {
+                    limits?: any;
+
+                    requests?: any;
+                  };
 
                   securityContext?: {
                     allowPrivilegeEscalation?: boolean;
@@ -6680,6 +6480,12 @@ export type AnalysisTemplate = {
                       type?: string;
 
                       user?: string;
+                    };
+
+                    seccompProfile?: {
+                      localhostProfile?: string;
+
+                      type: string;
                     };
 
                     windowsOptions?: {
@@ -6725,6 +6531,8 @@ export type AnalysisTemplate = {
 
                       port: number | string;
                     };
+
+                    terminationGracePeriodSeconds?: number;
 
                     timeoutSeconds?: number;
                   };
@@ -6809,6 +6617,12 @@ export type AnalysisTemplate = {
                     user?: string;
                   };
 
+                  seccompProfile?: {
+                    localhostProfile?: string;
+
+                    type: string;
+                  };
+
                   supplementalGroups?: number[];
 
                   sysctls?: {
@@ -6829,6 +6643,8 @@ export type AnalysisTemplate = {
                 serviceAccount?: string;
 
                 serviceAccountName?: string;
+
+                setHostnameAsFQDN?: boolean;
 
                 shareProcessNamespace?: boolean;
 
@@ -6870,307 +6686,7 @@ export type AnalysisTemplate = {
                   whenUnsatisfiable: string;
                 }[];
 
-                volumes?: {
-                  awsElasticBlockStore?: {
-                    fsType?: string;
-
-                    partition?: number;
-
-                    readOnly?: boolean;
-
-                    volumeID: string;
-                  };
-
-                  azureDisk?: {
-                    cachingMode?: string;
-
-                    diskName: string;
-
-                    diskURI: string;
-
-                    fsType?: string;
-
-                    kind?: string;
-
-                    readOnly?: boolean;
-                  };
-
-                  azureFile?: {
-                    readOnly?: boolean;
-
-                    secretName: string;
-
-                    shareName: string;
-                  };
-
-                  cephfs?: {
-                    monitors: string[];
-
-                    path?: string;
-
-                    readOnly?: boolean;
-
-                    secretFile?: string;
-
-                    secretRef?: {
-                      name?: string;
-                    };
-
-                    user?: string;
-                  };
-
-                  cinder?: {
-                    fsType?: string;
-
-                    readOnly?: boolean;
-
-                    secretRef?: {
-                      name?: string;
-                    };
-
-                    volumeID: string;
-                  };
-
-                  csi?: {
-                    driver: string;
-
-                    fsType?: string;
-
-                    nodePublishSecretRef?: {
-                      name?: string;
-                    };
-
-                    readOnly?: boolean;
-
-                    volumeAttributes?: {
-                      [key: string]: string;
-                    };
-                  };
-
-                  emptyDir?: {
-                    medium?: string;
-
-                    sizeLimit?: number | string;
-                  };
-
-                  fc?: {
-                    fsType?: string;
-
-                    lun?: number;
-
-                    readOnly?: boolean;
-
-                    targetWWNs?: string[];
-
-                    wwids?: string[];
-                  };
-
-                  flexVolume?: {
-                    driver: string;
-
-                    fsType?: string;
-
-                    options?: {
-                      [key: string]: string;
-                    };
-
-                    readOnly?: boolean;
-
-                    secretRef?: {
-                      name?: string;
-                    };
-                  };
-
-                  flocker?: {
-                    datasetName?: string;
-
-                    datasetUUID?: string;
-                  };
-
-                  gcePersistentDisk?: {
-                    fsType?: string;
-
-                    partition?: number;
-
-                    pdName: string;
-
-                    readOnly?: boolean;
-                  };
-
-                  gitRepo?: {
-                    directory?: string;
-
-                    repository: string;
-
-                    revision?: string;
-                  };
-
-                  glusterfs?: {
-                    endpoints: string;
-
-                    path: string;
-
-                    readOnly?: boolean;
-                  };
-
-                  hostPath?: {
-                    path: string;
-
-                    type?: string;
-                  };
-
-                  iscsi?: {
-                    chapAuthDiscovery?: boolean;
-
-                    chapAuthSession?: boolean;
-
-                    fsType?: string;
-
-                    initiatorName?: string;
-
-                    iqn: string;
-
-                    iscsiInterface?: string;
-
-                    lun: number;
-
-                    portals?: string[];
-
-                    readOnly?: boolean;
-
-                    secretRef?: {
-                      name?: string;
-                    };
-
-                    targetPortal: string;
-                  };
-
-                  name: string;
-
-                  nfs?: {
-                    path: string;
-
-                    readOnly?: boolean;
-
-                    server: string;
-                  };
-
-                  persistentVolumeClaim?: {
-                    claimName: string;
-
-                    readOnly?: boolean;
-                  };
-
-                  photonPersistentDisk?: {
-                    fsType?: string;
-
-                    pdID: string;
-                  };
-
-                  portworxVolume?: {
-                    fsType?: string;
-
-                    readOnly?: boolean;
-
-                    volumeID: string;
-                  };
-
-                  projected?: {
-                    defaultMode?: number;
-
-                    sources: {
-                      serviceAccountToken?: {
-                        audience?: string;
-
-                        expirationSeconds?: number;
-
-                        path: string;
-                      };
-                    }[];
-                  };
-
-                  quobyte?: {
-                    group?: string;
-
-                    readOnly?: boolean;
-
-                    registry: string;
-
-                    tenant?: string;
-
-                    user?: string;
-
-                    volume: string;
-                  };
-
-                  rbd?: {
-                    fsType?: string;
-
-                    image: string;
-
-                    keyring?: string;
-
-                    monitors: string[];
-
-                    pool?: string;
-
-                    readOnly?: boolean;
-
-                    secretRef?: {
-                      name?: string;
-                    };
-
-                    user?: string;
-                  };
-
-                  scaleIO?: {
-                    fsType?: string;
-
-                    gateway: string;
-
-                    protectionDomain?: string;
-
-                    readOnly?: boolean;
-
-                    secretRef: {
-                      name?: string;
-                    };
-
-                    sslEnabled?: boolean;
-
-                    storageMode?: string;
-
-                    storagePool?: string;
-
-                    system: string;
-
-                    volumeName?: string;
-                  };
-
-                  storageos?: {
-                    fsType?: string;
-
-                    readOnly?: boolean;
-
-                    secretRef?: {
-                      name?: string;
-                    };
-
-                    volumeName?: string;
-
-                    volumeNamespace?: string;
-                  };
-
-                  vsphereVolume?: {
-                    fsType?: string;
-
-                    storagePolicyID?: string;
-
-                    storagePolicyName?: string;
-
-                    volumePath: string;
-                  };
-                }[];
+                volumes?: any;
               };
             };
 
@@ -7245,6 +6761,8 @@ export type AnalysisTemplate = {
         };
 
         web?: {
+          body?: string;
+
           headers?: {
             key: string;
 
@@ -7254,6 +6772,8 @@ export type AnalysisTemplate = {
           insecure?: boolean;
 
           jsonPath?: string;
+
+          method?: string;
 
           timeoutSeconds?: number;
 
@@ -7279,32 +6799,32 @@ export function createAnalysisTemplate<
 
 /** Application is a definition of Application resource. */
 export type Application = {
-  apiVersion?: string;
-
-  kind?: string;
+  apiVersion: "argoproj.io/v1alpha1";
+  kind: "Application";
 
   metadata: ObjectMeta;
 
-  /** Operation contains requested operation parameters. */
+  /** Operation contains information about a requested or running operation */
   operation?: {
+    /** Info is a list of informational items for this operation */
     info?: {
       name: string;
 
       value: string;
     }[];
 
-    /** OperationInitiator holds information about the operation initiator */
+    /** InitiatedBy contains information about who initiated the operations */
     initiatedBy?: {
       /** Automated is set to true if operation was initiated automatically by the application controller. */
       automated?: boolean;
 
-      /** Name of a user who started operation. */
+      /** Username contains the name of a user who started operation */
       username?: string;
     };
 
-    /** Retry controls failed sync retry behavior */
+    /** Retry controls the strategy to apply if a sync fails */
     retry?: {
-      /** Backoff is a backoff strategy */
+      /** Backoff controls how to backoff on subsequent retries of failed syncs */
       backoff?: {
         /** Duration is the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h") */
         duration?: string;
@@ -7316,22 +6836,22 @@ export type Application = {
         maxDuration?: string;
       };
 
-      /** Limit is the maximum number of attempts when retrying a container */
+      /** Limit is the maximum number of attempts for retrying a failed sync. If set to 0, no retries will be performed. */
       limit?: number;
     };
 
-    /** SyncOperation contains sync operation details. */
+    /** Sync contains parameters for the operation */
     sync?: {
-      /** DryRun will perform a `kubectl apply --dry-run` without actually performing the sync */
+      /** DryRun specifies to perform a `kubectl apply --dry-run` without actually performing the sync */
       dryRun?: boolean;
 
       /** Manifests is an optional field that overrides sync source with a local directory for development */
       manifests?: string[];
 
-      /** Prune deletes resources that are no longer tracked in git */
+      /** Prune specifies to delete resources from the cluster that are no longer tracked in git */
       prune?: boolean;
 
-      /** Resources describes which resources to sync */
+      /** Resources describes which resources shall be part of the sync */
       resources?: {
         group?: string;
 
@@ -7342,19 +6862,23 @@ export type Application = {
         namespace?: string;
       }[];
 
-      /** Revision is the revision in which to sync the application to. If omitted, will use the revision specified in app spec. */
+      /** Revision is the revision (Git) or chart version (Helm) which to sync the application to If omitted, will use the revision specified in app spec. */
       revision?: string;
 
-      /** Source overrides the source definition set in the application. This is typically set in a Rollback operation and nil during a Sync operation */
+      /** Source overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation */
       source?: {
-        /** Chart is a Helm chart name */
+        /** Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo. */
         chart?: string;
 
         /** Directory holds pathdirectory specific options */
         directory?: {
+          /** Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation */
           exclude?: string;
 
-          /** ApplicationSourceJsonnet holds jsonnet specific options */
+          /** Include contains a glob pattern to match paths against that should be explicitly included during manifest generation */
+          include?: string;
+
+          /** Jsonnet holds options specific to Jsonnet */
           jsonnet?: {
             /** ExtVars is a list of Jsonnet External Variables */
             extVars?: {
@@ -7378,6 +6902,7 @@ export type Application = {
             }[];
           };
 
+          /** Recurse specifies whether to scan a directory recursively for manifests */
           recurse?: boolean;
         };
 
@@ -7385,35 +6910,41 @@ export type Application = {
         helm?: {
           /** FileParameters are file parameters to the helm template */
           fileParameters?: {
-            /** Name is the name of the helm parameter */
+            /** Name is the name of the Helm parameter */
             name?: string;
 
-            /** Path is the path value for the helm parameter */
+            /** Path is the path to the file containing the values for the Helm parameter */
             path?: string;
           }[];
 
-          /** Parameters are parameters to the helm template */
+          /** IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values */
+          ignoreMissingValueFiles?: boolean;
+
+          /** Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation */
           parameters?: {
             /** ForceString determines whether to tell Helm to interpret booleans and numbers as strings */
             forceString?: boolean;
 
-            /** Name is the name of the helm parameter */
+            /** Name is the name of the Helm parameter */
             name?: string;
 
-            /** Value is the value for the helm parameter */
+            /** Value is the value for the Helm parameter */
             value?: string;
           }[];
 
-          /** The Helm release name. If omitted it will use the application name */
+          /** PassCredentials pass credentials to all domains (Helm's --pass-credentials) */
+          passCredentials?: boolean;
+
+          /** ReleaseName is the Helm release name to use. If omitted it will use the application name */
           releaseName?: string;
 
           /** ValuesFiles is a list of Helm value files to use when generating a template */
           valueFiles?: string[];
 
-          /** Values is Helm values, typically defined as a block */
+          /** Values specifies Helm values to be passed to helm template, typically defined as a block */
           values?: string;
 
-          /** Version is the Helm version to use for templating with */
+          /** Version is the Helm version to use for templating (either "2" or "3") */
           version?: string;
         };
 
@@ -7434,49 +6965,56 @@ export type Application = {
 
         /** Kustomize holds kustomize specific options */
         kustomize?: {
-          /** CommonAnnotations adds additional kustomize commonAnnotations */
+          /** CommonAnnotations is a list of additional annotations to add to rendered manifests */
           commonAnnotations?: {
             [key: string]: string;
           };
 
-          /** CommonLabels adds additional kustomize commonLabels */
+          /** CommonLabels is a list of additional labels to add to rendered manifests */
           commonLabels?: {
             [key: string]: string;
           };
 
-          /** Images are kustomize image overrides */
+          /** ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps */
+          forceCommonAnnotations?: boolean;
+
+          /** ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps */
+          forceCommonLabels?: boolean;
+
+          /** Images is a list of Kustomize image override specifications */
           images?: string[];
 
-          /** NamePrefix is a prefix appended to resources for kustomize apps */
+          /** NamePrefix is a prefix appended to resources for Kustomize apps */
           namePrefix?: string;
 
-          /** NameSuffix is a suffix appended to resources for kustomize apps */
+          /** NameSuffix is a suffix appended to resources for Kustomize apps */
           nameSuffix?: string;
 
-          /** Version contains optional Kustomize version */
+          /** Version controls which version of Kustomize to use for rendering manifests */
           version?: string;
         };
 
-        /** Path is a directory path within the Git repository */
+        /** Path is a directory path within the Git repository, and is only valid for applications sourced from Git. */
         path?: string;
 
         /** ConfigManagementPlugin holds config management plugin specific options */
         plugin?: {
+          /** Env is a list of environment variable entries */
           env?: {
-            /** the name, usually uppercase */
+            /** Name is the name of the variable, usually expressed in uppercase */
             name: string;
 
-            /** the value */
+            /** Value is the value of the variable */
             value: string;
           }[];
 
           name?: string;
         };
 
-        /** RepoURL is the repository URL of the application manifests */
+        /** RepoURL is the URL to the repository (Git or Helm) that contains the application manifests */
         repoURL: string;
 
-        /** TargetRevision defines the commit, tag, or branch in which to sync the application to. If omitted, will sync to HEAD */
+        /** TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version. */
         targetRevision?: string;
       };
 
@@ -7502,54 +7040,63 @@ export type Application = {
 
   /** ApplicationSpec represents desired application state. Contains link to repository with application definition and additional parameters link definition revision. */
   spec: {
-    /** Destination overrides the kubernetes server and namespace defined in the environment ksonnet app.yaml */
+    /** Destination is a reference to the target Kubernetes server and namespace */
     destination: {
-      /** Name of the destination cluster which can be used instead of server (url) field */
+      /** Name is an alternate way of specifying the target cluster by its symbolic name */
       name?: string;
 
-      /** Namespace overrides the environment namespace value in the ksonnet app.yaml */
+      /** Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace */
       namespace?: string;
 
-      /** Server overrides the environment server value in the ksonnet app.yaml */
+      /** Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API */
       server?: string;
     };
 
-    /** IgnoreDifferences controls resources fields which should be ignored during comparison */
+    /** IgnoreDifferences is a list of resources and their fields which should be ignored during comparison */
     ignoreDifferences?: {
       group?: string;
 
-      jsonPointers: string[];
+      jqPathExpressions?: string[];
+
+      jsonPointers?: string[];
 
       kind: string;
+
+      /** ManagedFieldsManagers is a list of trusted managers. Fields mutated by those managers will take precedence over the desired state defined in the SCM and won't be displayed in diffs */
+      managedFieldsManagers?: string[];
 
       name?: string;
 
       namespace?: string;
     }[];
 
-    /** Infos contains a list of useful information (URLs, email addresses, and plain text) that relates to the application */
+    /** Info contains a list of information (URLs, email addresses, and plain text) that relates to the application */
     info?: {
       name: string;
 
       value: string;
     }[];
 
-    /** Project is a application project name. Empty name means that application belongs to 'default' project. */
+    /** Project is a reference to the project this application belongs to. The empty string means that application belongs to the 'default' project. */
     project: string;
 
-    /** This limits this number of items kept in the apps revision history. This should only be changed in exceptional circumstances. Setting to zero will store no history. This will reduce storage used. Increasing will increase the space used to store the history, so we do not recommend increasing it. Default is 10. */
+    /** RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions. This should only be changed in exceptional circumstances. Setting to zero will store no history. This will reduce storage used. Increasing will increase the space used to store the history, so we do not recommend increasing it. Default is 10. */
     revisionHistoryLimit?: number;
 
-    /** Source is a reference to the location ksonnet application definition */
+    /** Source is a reference to the location of the application's manifests or chart */
     source: {
-      /** Chart is a Helm chart name */
+      /** Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo. */
       chart?: string;
 
       /** Directory holds pathdirectory specific options */
       directory?: {
+        /** Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation */
         exclude?: string;
 
-        /** ApplicationSourceJsonnet holds jsonnet specific options */
+        /** Include contains a glob pattern to match paths against that should be explicitly included during manifest generation */
+        include?: string;
+
+        /** Jsonnet holds options specific to Jsonnet */
         jsonnet?: {
           /** ExtVars is a list of Jsonnet External Variables */
           extVars?: {
@@ -7573,6 +7120,7 @@ export type Application = {
           }[];
         };
 
+        /** Recurse specifies whether to scan a directory recursively for manifests */
         recurse?: boolean;
       };
 
@@ -7580,35 +7128,41 @@ export type Application = {
       helm?: {
         /** FileParameters are file parameters to the helm template */
         fileParameters?: {
-          /** Name is the name of the helm parameter */
+          /** Name is the name of the Helm parameter */
           name?: string;
 
-          /** Path is the path value for the helm parameter */
+          /** Path is the path to the file containing the values for the Helm parameter */
           path?: string;
         }[];
 
-        /** Parameters are parameters to the helm template */
+        /** IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values */
+        ignoreMissingValueFiles?: boolean;
+
+        /** Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation */
         parameters?: {
           /** ForceString determines whether to tell Helm to interpret booleans and numbers as strings */
           forceString?: boolean;
 
-          /** Name is the name of the helm parameter */
+          /** Name is the name of the Helm parameter */
           name?: string;
 
-          /** Value is the value for the helm parameter */
+          /** Value is the value for the Helm parameter */
           value?: string;
         }[];
 
-        /** The Helm release name. If omitted it will use the application name */
+        /** PassCredentials pass credentials to all domains (Helm's --pass-credentials) */
+        passCredentials?: boolean;
+
+        /** ReleaseName is the Helm release name to use. If omitted it will use the application name */
         releaseName?: string;
 
         /** ValuesFiles is a list of Helm value files to use when generating a template */
         valueFiles?: string[];
 
-        /** Values is Helm values, typically defined as a block */
+        /** Values specifies Helm values to be passed to helm template, typically defined as a block */
         values?: string;
 
-        /** Version is the Helm version to use for templating with */
+        /** Version is the Helm version to use for templating (either "2" or "3") */
         version?: string;
       };
 
@@ -7629,69 +7183,76 @@ export type Application = {
 
       /** Kustomize holds kustomize specific options */
       kustomize?: {
-        /** CommonAnnotations adds additional kustomize commonAnnotations */
+        /** CommonAnnotations is a list of additional annotations to add to rendered manifests */
         commonAnnotations?: {
           [key: string]: string;
         };
 
-        /** CommonLabels adds additional kustomize commonLabels */
+        /** CommonLabels is a list of additional labels to add to rendered manifests */
         commonLabels?: {
           [key: string]: string;
         };
 
-        /** Images are kustomize image overrides */
+        /** ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps */
+        forceCommonAnnotations?: boolean;
+
+        /** ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps */
+        forceCommonLabels?: boolean;
+
+        /** Images is a list of Kustomize image override specifications */
         images?: string[];
 
-        /** NamePrefix is a prefix appended to resources for kustomize apps */
+        /** NamePrefix is a prefix appended to resources for Kustomize apps */
         namePrefix?: string;
 
-        /** NameSuffix is a suffix appended to resources for kustomize apps */
+        /** NameSuffix is a suffix appended to resources for Kustomize apps */
         nameSuffix?: string;
 
-        /** Version contains optional Kustomize version */
+        /** Version controls which version of Kustomize to use for rendering manifests */
         version?: string;
       };
 
-      /** Path is a directory path within the Git repository */
+      /** Path is a directory path within the Git repository, and is only valid for applications sourced from Git. */
       path?: string;
 
       /** ConfigManagementPlugin holds config management plugin specific options */
       plugin?: {
+        /** Env is a list of environment variable entries */
         env?: {
-          /** the name, usually uppercase */
+          /** Name is the name of the variable, usually expressed in uppercase */
           name: string;
 
-          /** the value */
+          /** Value is the value of the variable */
           value: string;
         }[];
 
         name?: string;
       };
 
-      /** RepoURL is the repository URL of the application manifests */
+      /** RepoURL is the URL to the repository (Git or Helm) that contains the application manifests */
       repoURL: string;
 
-      /** TargetRevision defines the commit, tag, or branch in which to sync the application to. If omitted, will sync to HEAD */
+      /** TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version. */
       targetRevision?: string;
     };
 
-    /** SyncPolicy controls when a sync will be performed */
+    /** SyncPolicy controls when and how a sync will be performed */
     syncPolicy?: {
       /** Automated will keep an application synced to the target revision */
       automated?: {
         /** AllowEmpty allows apps have zero live resources (default: false) */
         allowEmpty?: boolean;
 
-        /** Prune will prune resources automatically as part of automated sync (default: false) */
+        /** Prune specifies whether to delete resources from the cluster that are not found in the sources anymore as part of automated sync (default: false) */
         prune?: boolean;
 
-        /** SelfHeal enables auto-syncing if  (default: false) */
+        /** SelfHeal specifes whether to revert resources back to their desired state upon modification in the cluster (default: false) */
         selfHeal?: boolean;
       };
 
       /** Retry controls failed sync retry behavior */
       retry?: {
-        /** Backoff is a backoff strategy */
+        /** Backoff controls how to backoff on subsequent retries of failed syncs */
         backoff?: {
           /** Duration is the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h") */
           duration?: string;
@@ -7703,7 +7264,7 @@ export type Application = {
           maxDuration?: string;
         };
 
-        /** Limit is the maximum number of attempts when retrying a container */
+        /** Limit is the maximum number of attempts for retrying a failed sync. If set to 0, no retries will be performed. */
         limit?: number;
       };
 
@@ -7712,10 +7273,11 @@ export type Application = {
     };
   };
 
-  /** ApplicationStatus contains information about application sync, health status */
+  /** ApplicationStatus contains status information for the application */
   status?: {
+    /** Conditions is a list of currently observed application conditions */
     conditions?: {
-      /** LastTransitionTime is the time the condition was first observed. */
+      /** LastTransitionTime is the time the condition was last observed */
       lastTransitionTime?: string;
 
       /** Message contains human-readable message indicating details about condition */
@@ -7725,37 +7287,43 @@ export type Application = {
       type: string;
     }[];
 
+    /** Health contains information about the application's current health status */
     health?: {
+      /** Message is a human-readable informational message describing the health status */
       message?: string;
 
-      /** Represents resource health status */
+      /** Status holds the status code of the application or resource */
       status?: string;
     };
 
-    /** RevisionHistories is a array of history, oldest first and newest last */
+    /** History contains information about the application's sync history */
     history?: {
-      /** DeployStartedAt holds the time the deployment started */
+      /** DeployStartedAt holds the time the sync operation started */
       deployStartedAt?: string;
 
-      /** DeployedAt holds the time the deployment completed */
+      /** DeployedAt holds the time the sync operation completed */
       deployedAt: string;
 
       /** ID is an auto incrementing identifier of the RevisionHistory */
       id: number;
 
-      /** Revision holds the revision of the sync */
+      /** Revision holds the revision the sync was performed against */
       revision: string;
 
-      /** ApplicationSource contains information about github repository, path within repository and target application environment. */
+      /** Source is a reference to the application source used for the sync operation */
       source?: {
-        /** Chart is a Helm chart name */
+        /** Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo. */
         chart?: string;
 
         /** Directory holds pathdirectory specific options */
         directory?: {
+          /** Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation */
           exclude?: string;
 
-          /** ApplicationSourceJsonnet holds jsonnet specific options */
+          /** Include contains a glob pattern to match paths against that should be explicitly included during manifest generation */
+          include?: string;
+
+          /** Jsonnet holds options specific to Jsonnet */
           jsonnet?: {
             /** ExtVars is a list of Jsonnet External Variables */
             extVars?: {
@@ -7779,6 +7347,7 @@ export type Application = {
             }[];
           };
 
+          /** Recurse specifies whether to scan a directory recursively for manifests */
           recurse?: boolean;
         };
 
@@ -7786,35 +7355,41 @@ export type Application = {
         helm?: {
           /** FileParameters are file parameters to the helm template */
           fileParameters?: {
-            /** Name is the name of the helm parameter */
+            /** Name is the name of the Helm parameter */
             name?: string;
 
-            /** Path is the path value for the helm parameter */
+            /** Path is the path to the file containing the values for the Helm parameter */
             path?: string;
           }[];
 
-          /** Parameters are parameters to the helm template */
+          /** IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values */
+          ignoreMissingValueFiles?: boolean;
+
+          /** Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation */
           parameters?: {
             /** ForceString determines whether to tell Helm to interpret booleans and numbers as strings */
             forceString?: boolean;
 
-            /** Name is the name of the helm parameter */
+            /** Name is the name of the Helm parameter */
             name?: string;
 
-            /** Value is the value for the helm parameter */
+            /** Value is the value for the Helm parameter */
             value?: string;
           }[];
 
-          /** The Helm release name. If omitted it will use the application name */
+          /** PassCredentials pass credentials to all domains (Helm's --pass-credentials) */
+          passCredentials?: boolean;
+
+          /** ReleaseName is the Helm release name to use. If omitted it will use the application name */
           releaseName?: string;
 
           /** ValuesFiles is a list of Helm value files to use when generating a template */
           valueFiles?: string[];
 
-          /** Values is Helm values, typically defined as a block */
+          /** Values specifies Helm values to be passed to helm template, typically defined as a block */
           values?: string;
 
-          /** Version is the Helm version to use for templating with */
+          /** Version is the Helm version to use for templating (either "2" or "3") */
           version?: string;
         };
 
@@ -7835,49 +7410,56 @@ export type Application = {
 
         /** Kustomize holds kustomize specific options */
         kustomize?: {
-          /** CommonAnnotations adds additional kustomize commonAnnotations */
+          /** CommonAnnotations is a list of additional annotations to add to rendered manifests */
           commonAnnotations?: {
             [key: string]: string;
           };
 
-          /** CommonLabels adds additional kustomize commonLabels */
+          /** CommonLabels is a list of additional labels to add to rendered manifests */
           commonLabels?: {
             [key: string]: string;
           };
 
-          /** Images are kustomize image overrides */
+          /** ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps */
+          forceCommonAnnotations?: boolean;
+
+          /** ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps */
+          forceCommonLabels?: boolean;
+
+          /** Images is a list of Kustomize image override specifications */
           images?: string[];
 
-          /** NamePrefix is a prefix appended to resources for kustomize apps */
+          /** NamePrefix is a prefix appended to resources for Kustomize apps */
           namePrefix?: string;
 
-          /** NameSuffix is a suffix appended to resources for kustomize apps */
+          /** NameSuffix is a suffix appended to resources for Kustomize apps */
           nameSuffix?: string;
 
-          /** Version contains optional Kustomize version */
+          /** Version controls which version of Kustomize to use for rendering manifests */
           version?: string;
         };
 
-        /** Path is a directory path within the Git repository */
+        /** Path is a directory path within the Git repository, and is only valid for applications sourced from Git. */
         path?: string;
 
         /** ConfigManagementPlugin holds config management plugin specific options */
         plugin?: {
+          /** Env is a list of environment variable entries */
           env?: {
-            /** the name, usually uppercase */
+            /** Name is the name of the variable, usually expressed in uppercase */
             name: string;
 
-            /** the value */
+            /** Value is the value of the variable */
             value: string;
           }[];
 
           name?: string;
         };
 
-        /** RepoURL is the repository URL of the application manifests */
+        /** RepoURL is the URL to the repository (Git or Helm) that contains the application manifests */
         repoURL: string;
 
-        /** TargetRevision defines the commit, tag, or branch in which to sync the application to. If omitted, will sync to HEAD */
+        /** TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version. */
         targetRevision?: string;
       };
     }[];
@@ -7885,34 +7467,35 @@ export type Application = {
     /** ObservedAt indicates when the application state was updated without querying latest git state Deprecated: controller no longer updates ObservedAt field */
     observedAt?: string;
 
-    /** OperationState contains information about state of currently performing operation on application. */
+    /** OperationState contains information about any ongoing operations, such as a sync */
     operationState?: {
       /** FinishedAt contains time of operation completion */
       finishedAt?: string;
 
-      /** Message hold any pertinent messages when attempting to perform operation (typically errors). */
+      /** Message holds any pertinent messages when attempting to perform operation (typically errors). */
       message?: string;
 
       /** Operation is the original requested operation */
       operation: {
+        /** Info is a list of informational items for this operation */
         info?: {
           name: string;
 
           value: string;
         }[];
 
-        /** OperationInitiator holds information about the operation initiator */
+        /** InitiatedBy contains information about who initiated the operations */
         initiatedBy?: {
           /** Automated is set to true if operation was initiated automatically by the application controller. */
           automated?: boolean;
 
-          /** Name of a user who started operation. */
+          /** Username contains the name of a user who started operation */
           username?: string;
         };
 
-        /** Retry controls failed sync retry behavior */
+        /** Retry controls the strategy to apply if a sync fails */
         retry?: {
-          /** Backoff is a backoff strategy */
+          /** Backoff controls how to backoff on subsequent retries of failed syncs */
           backoff?: {
             /** Duration is the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h") */
             duration?: string;
@@ -7924,22 +7507,22 @@ export type Application = {
             maxDuration?: string;
           };
 
-          /** Limit is the maximum number of attempts when retrying a container */
+          /** Limit is the maximum number of attempts for retrying a failed sync. If set to 0, no retries will be performed. */
           limit?: number;
         };
 
-        /** SyncOperation contains sync operation details. */
+        /** Sync contains parameters for the operation */
         sync?: {
-          /** DryRun will perform a `kubectl apply --dry-run` without actually performing the sync */
+          /** DryRun specifies to perform a `kubectl apply --dry-run` without actually performing the sync */
           dryRun?: boolean;
 
           /** Manifests is an optional field that overrides sync source with a local directory for development */
           manifests?: string[];
 
-          /** Prune deletes resources that are no longer tracked in git */
+          /** Prune specifies to delete resources from the cluster that are no longer tracked in git */
           prune?: boolean;
 
-          /** Resources describes which resources to sync */
+          /** Resources describes which resources shall be part of the sync */
           resources?: {
             group?: string;
 
@@ -7950,19 +7533,23 @@ export type Application = {
             namespace?: string;
           }[];
 
-          /** Revision is the revision in which to sync the application to. If omitted, will use the revision specified in app spec. */
+          /** Revision is the revision (Git) or chart version (Helm) which to sync the application to If omitted, will use the revision specified in app spec. */
           revision?: string;
 
-          /** Source overrides the source definition set in the application. This is typically set in a Rollback operation and nil during a Sync operation */
+          /** Source overrides the source definition set in the application. This is typically set in a Rollback operation and is nil during a Sync operation */
           source?: {
-            /** Chart is a Helm chart name */
+            /** Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo. */
             chart?: string;
 
             /** Directory holds pathdirectory specific options */
             directory?: {
+              /** Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation */
               exclude?: string;
 
-              /** ApplicationSourceJsonnet holds jsonnet specific options */
+              /** Include contains a glob pattern to match paths against that should be explicitly included during manifest generation */
+              include?: string;
+
+              /** Jsonnet holds options specific to Jsonnet */
               jsonnet?: {
                 /** ExtVars is a list of Jsonnet External Variables */
                 extVars?: {
@@ -7986,6 +7573,7 @@ export type Application = {
                 }[];
               };
 
+              /** Recurse specifies whether to scan a directory recursively for manifests */
               recurse?: boolean;
             };
 
@@ -7993,35 +7581,41 @@ export type Application = {
             helm?: {
               /** FileParameters are file parameters to the helm template */
               fileParameters?: {
-                /** Name is the name of the helm parameter */
+                /** Name is the name of the Helm parameter */
                 name?: string;
 
-                /** Path is the path value for the helm parameter */
+                /** Path is the path to the file containing the values for the Helm parameter */
                 path?: string;
               }[];
 
-              /** Parameters are parameters to the helm template */
+              /** IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values */
+              ignoreMissingValueFiles?: boolean;
+
+              /** Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation */
               parameters?: {
                 /** ForceString determines whether to tell Helm to interpret booleans and numbers as strings */
                 forceString?: boolean;
 
-                /** Name is the name of the helm parameter */
+                /** Name is the name of the Helm parameter */
                 name?: string;
 
-                /** Value is the value for the helm parameter */
+                /** Value is the value for the Helm parameter */
                 value?: string;
               }[];
 
-              /** The Helm release name. If omitted it will use the application name */
+              /** PassCredentials pass credentials to all domains (Helm's --pass-credentials) */
+              passCredentials?: boolean;
+
+              /** ReleaseName is the Helm release name to use. If omitted it will use the application name */
               releaseName?: string;
 
               /** ValuesFiles is a list of Helm value files to use when generating a template */
               valueFiles?: string[];
 
-              /** Values is Helm values, typically defined as a block */
+              /** Values specifies Helm values to be passed to helm template, typically defined as a block */
               values?: string;
 
-              /** Version is the Helm version to use for templating with */
+              /** Version is the Helm version to use for templating (either "2" or "3") */
               version?: string;
             };
 
@@ -8042,49 +7636,56 @@ export type Application = {
 
             /** Kustomize holds kustomize specific options */
             kustomize?: {
-              /** CommonAnnotations adds additional kustomize commonAnnotations */
+              /** CommonAnnotations is a list of additional annotations to add to rendered manifests */
               commonAnnotations?: {
                 [key: string]: string;
               };
 
-              /** CommonLabels adds additional kustomize commonLabels */
+              /** CommonLabels is a list of additional labels to add to rendered manifests */
               commonLabels?: {
                 [key: string]: string;
               };
 
-              /** Images are kustomize image overrides */
+              /** ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps */
+              forceCommonAnnotations?: boolean;
+
+              /** ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps */
+              forceCommonLabels?: boolean;
+
+              /** Images is a list of Kustomize image override specifications */
               images?: string[];
 
-              /** NamePrefix is a prefix appended to resources for kustomize apps */
+              /** NamePrefix is a prefix appended to resources for Kustomize apps */
               namePrefix?: string;
 
-              /** NameSuffix is a suffix appended to resources for kustomize apps */
+              /** NameSuffix is a suffix appended to resources for Kustomize apps */
               nameSuffix?: string;
 
-              /** Version contains optional Kustomize version */
+              /** Version controls which version of Kustomize to use for rendering manifests */
               version?: string;
             };
 
-            /** Path is a directory path within the Git repository */
+            /** Path is a directory path within the Git repository, and is only valid for applications sourced from Git. */
             path?: string;
 
             /** ConfigManagementPlugin holds config management plugin specific options */
             plugin?: {
+              /** Env is a list of environment variable entries */
               env?: {
-                /** the name, usually uppercase */
+                /** Name is the name of the variable, usually expressed in uppercase */
                 name: string;
 
-                /** the value */
+                /** Value is the value of the variable */
                 value: string;
               }[];
 
               name?: string;
             };
 
-            /** RepoURL is the repository URL of the application manifests */
+            /** RepoURL is the URL to the repository (Git or Helm) that contains the application manifests */
             repoURL: string;
 
-            /** TargetRevision defines the commit, tag, or branch in which to sync the application to. If omitted, will sync to HEAD */
+            /** TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version. */
             targetRevision?: string;
           };
 
@@ -8119,47 +7720,56 @@ export type Application = {
 
       /** SyncResult is the result of a Sync operation */
       syncResult?: {
-        /** Resources holds the sync result of each individual resource */
+        /** Resources contains a list of sync result items for each individual resource in a sync operation */
         resources?: {
+          /** Group specifies the API group of the resource */
           group: string;
 
-          /** the state of any operation associated with this resource OR hook note: can contain values for non-hook resources */
+          /** HookPhase contains the state of any operation associated with this resource OR hook This can also contain values for non-hook resources. */
           hookPhase?: string;
 
-          /** the type of the hook, empty for non-hook resources */
+          /** HookType specifies the type of the hook. Empty for non-hook resources */
           hookType?: string;
 
+          /** Kind specifies the API kind of the resource */
           kind: string;
 
-          /** message for the last sync OR operation */
+          /** Message contains an informational or error message for the last sync OR operation */
           message?: string;
 
+          /** Name specifies the name of the resource */
           name: string;
 
+          /** Namespace specifies the target namespace of the resource */
           namespace: string;
 
-          /** the final result of the sync, this is be empty if the resources is yet to be appliedpruned and is always zero-value for hooks */
+          /** Status holds the final result of the sync. Will be empty if the resources is yet to be appliedpruned and is always zero-value for hooks */
           status?: string;
 
-          /** indicates the particular phase of the sync that this is for */
+          /** SyncPhase indicates the particular phase of the sync that this result was acquired in */
           syncPhase?: string;
 
+          /** Version specifies the API version of the resource */
           version: string;
         }[];
 
-        /** Revision holds the revision of the sync */
+        /** Revision holds the revision this sync operation was performed to */
         revision: string;
 
         /** Source records the application source information of the sync, used for comparing auto-sync */
         source?: {
-          /** Chart is a Helm chart name */
+          /** Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo. */
           chart?: string;
 
           /** Directory holds pathdirectory specific options */
           directory?: {
+            /** Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation */
             exclude?: string;
 
-            /** ApplicationSourceJsonnet holds jsonnet specific options */
+            /** Include contains a glob pattern to match paths against that should be explicitly included during manifest generation */
+            include?: string;
+
+            /** Jsonnet holds options specific to Jsonnet */
             jsonnet?: {
               /** ExtVars is a list of Jsonnet External Variables */
               extVars?: {
@@ -8183,6 +7793,7 @@ export type Application = {
               }[];
             };
 
+            /** Recurse specifies whether to scan a directory recursively for manifests */
             recurse?: boolean;
           };
 
@@ -8190,35 +7801,41 @@ export type Application = {
           helm?: {
             /** FileParameters are file parameters to the helm template */
             fileParameters?: {
-              /** Name is the name of the helm parameter */
+              /** Name is the name of the Helm parameter */
               name?: string;
 
-              /** Path is the path value for the helm parameter */
+              /** Path is the path to the file containing the values for the Helm parameter */
               path?: string;
             }[];
 
-            /** Parameters are parameters to the helm template */
+            /** IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values */
+            ignoreMissingValueFiles?: boolean;
+
+            /** Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation */
             parameters?: {
               /** ForceString determines whether to tell Helm to interpret booleans and numbers as strings */
               forceString?: boolean;
 
-              /** Name is the name of the helm parameter */
+              /** Name is the name of the Helm parameter */
               name?: string;
 
-              /** Value is the value for the helm parameter */
+              /** Value is the value for the Helm parameter */
               value?: string;
             }[];
 
-            /** The Helm release name. If omitted it will use the application name */
+            /** PassCredentials pass credentials to all domains (Helm's --pass-credentials) */
+            passCredentials?: boolean;
+
+            /** ReleaseName is the Helm release name to use. If omitted it will use the application name */
             releaseName?: string;
 
             /** ValuesFiles is a list of Helm value files to use when generating a template */
             valueFiles?: string[];
 
-            /** Values is Helm values, typically defined as a block */
+            /** Values specifies Helm values to be passed to helm template, typically defined as a block */
             values?: string;
 
-            /** Version is the Helm version to use for templating with */
+            /** Version is the Helm version to use for templating (either "2" or "3") */
             version?: string;
           };
 
@@ -8239,49 +7856,56 @@ export type Application = {
 
           /** Kustomize holds kustomize specific options */
           kustomize?: {
-            /** CommonAnnotations adds additional kustomize commonAnnotations */
+            /** CommonAnnotations is a list of additional annotations to add to rendered manifests */
             commonAnnotations?: {
               [key: string]: string;
             };
 
-            /** CommonLabels adds additional kustomize commonLabels */
+            /** CommonLabels is a list of additional labels to add to rendered manifests */
             commonLabels?: {
               [key: string]: string;
             };
 
-            /** Images are kustomize image overrides */
+            /** ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps */
+            forceCommonAnnotations?: boolean;
+
+            /** ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps */
+            forceCommonLabels?: boolean;
+
+            /** Images is a list of Kustomize image override specifications */
             images?: string[];
 
-            /** NamePrefix is a prefix appended to resources for kustomize apps */
+            /** NamePrefix is a prefix appended to resources for Kustomize apps */
             namePrefix?: string;
 
-            /** NameSuffix is a suffix appended to resources for kustomize apps */
+            /** NameSuffix is a suffix appended to resources for Kustomize apps */
             nameSuffix?: string;
 
-            /** Version contains optional Kustomize version */
+            /** Version controls which version of Kustomize to use for rendering manifests */
             version?: string;
           };
 
-          /** Path is a directory path within the Git repository */
+          /** Path is a directory path within the Git repository, and is only valid for applications sourced from Git. */
           path?: string;
 
           /** ConfigManagementPlugin holds config management plugin specific options */
           plugin?: {
+            /** Env is a list of environment variable entries */
             env?: {
-              /** the name, usually uppercase */
+              /** Name is the name of the variable, usually expressed in uppercase */
               name: string;
 
-              /** the value */
+              /** Value is the value of the variable */
               value: string;
             }[];
 
             name?: string;
           };
 
-          /** RepoURL is the repository URL of the application manifests */
+          /** RepoURL is the URL to the repository (Git or Helm) that contains the application manifests */
           repoURL: string;
 
-          /** TargetRevision defines the commit, tag, or branch in which to sync the application to. If omitted, will sync to HEAD */
+          /** TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version. */
           targetRevision?: string;
         };
       };
@@ -8290,13 +7914,16 @@ export type Application = {
     /** ReconciledAt indicates when the application state was reconciled using the latest git version */
     reconciledAt?: string;
 
+    /** Resources is a list of Kubernetes resources managed by this application */
     resources?: {
       group?: string;
 
+      /** HealthStatus contains information about the currently observed health state of an application or resource */
       health?: {
+        /** Message is a human-readable informational message describing the health status */
         message?: string;
 
-        /** Represents resource health status */
+        /** Status holds the status code of the application or resource */
         status?: string;
       };
 
@@ -8316,8 +7943,10 @@ export type Application = {
       version?: string;
     }[];
 
+    /** SourceType specifies the type of this application */
     sourceType?: string;
 
+    /** Summary contains a list of URLs and container images used by this application */
     summary?: {
       /** ExternalURLs holds all external URLs of application child resources. */
       externalURLs?: string[];
@@ -8326,32 +7955,36 @@ export type Application = {
       images?: string[];
     };
 
-    /** SyncStatus is a comparison result of application spec and deployed application. */
+    /** Sync contains information about the application's current sync status */
     sync?: {
-      /** ComparedTo contains application source and target which was used for resources comparison */
+      /** ComparedTo contains information about what has been compared */
       comparedTo?: {
-        /** ApplicationDestination contains deployment destination information */
+        /** Destination is a reference to the application's destination used for comparison */
         destination: {
-          /** Name of the destination cluster which can be used instead of server (url) field */
+          /** Name is an alternate way of specifying the target cluster by its symbolic name */
           name?: string;
 
-          /** Namespace overrides the environment namespace value in the ksonnet app.yaml */
+          /** Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace */
           namespace?: string;
 
-          /** Server overrides the environment server value in the ksonnet app.yaml */
+          /** Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API */
           server?: string;
         };
 
-        /** ApplicationSource contains information about github repository, path within repository and target application environment. */
+        /** Source is a reference to the application's source used for comparison */
         source: {
-          /** Chart is a Helm chart name */
+          /** Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo. */
           chart?: string;
 
           /** Directory holds pathdirectory specific options */
           directory?: {
+            /** Exclude contains a glob pattern to match paths against that should be explicitly excluded from being used during manifest generation */
             exclude?: string;
 
-            /** ApplicationSourceJsonnet holds jsonnet specific options */
+            /** Include contains a glob pattern to match paths against that should be explicitly included during manifest generation */
+            include?: string;
+
+            /** Jsonnet holds options specific to Jsonnet */
             jsonnet?: {
               /** ExtVars is a list of Jsonnet External Variables */
               extVars?: {
@@ -8375,6 +8008,7 @@ export type Application = {
               }[];
             };
 
+            /** Recurse specifies whether to scan a directory recursively for manifests */
             recurse?: boolean;
           };
 
@@ -8382,35 +8016,41 @@ export type Application = {
           helm?: {
             /** FileParameters are file parameters to the helm template */
             fileParameters?: {
-              /** Name is the name of the helm parameter */
+              /** Name is the name of the Helm parameter */
               name?: string;
 
-              /** Path is the path value for the helm parameter */
+              /** Path is the path to the file containing the values for the Helm parameter */
               path?: string;
             }[];
 
-            /** Parameters are parameters to the helm template */
+            /** IgnoreMissingValueFiles prevents helm template from failing when valueFiles do not exist locally by not appending them to helm template --values */
+            ignoreMissingValueFiles?: boolean;
+
+            /** Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation */
             parameters?: {
               /** ForceString determines whether to tell Helm to interpret booleans and numbers as strings */
               forceString?: boolean;
 
-              /** Name is the name of the helm parameter */
+              /** Name is the name of the Helm parameter */
               name?: string;
 
-              /** Value is the value for the helm parameter */
+              /** Value is the value for the Helm parameter */
               value?: string;
             }[];
 
-            /** The Helm release name. If omitted it will use the application name */
+            /** PassCredentials pass credentials to all domains (Helm's --pass-credentials) */
+            passCredentials?: boolean;
+
+            /** ReleaseName is the Helm release name to use. If omitted it will use the application name */
             releaseName?: string;
 
             /** ValuesFiles is a list of Helm value files to use when generating a template */
             valueFiles?: string[];
 
-            /** Values is Helm values, typically defined as a block */
+            /** Values specifies Helm values to be passed to helm template, typically defined as a block */
             values?: string;
 
-            /** Version is the Helm version to use for templating with */
+            /** Version is the Helm version to use for templating (either "2" or "3") */
             version?: string;
           };
 
@@ -8431,56 +8071,64 @@ export type Application = {
 
           /** Kustomize holds kustomize specific options */
           kustomize?: {
-            /** CommonAnnotations adds additional kustomize commonAnnotations */
+            /** CommonAnnotations is a list of additional annotations to add to rendered manifests */
             commonAnnotations?: {
               [key: string]: string;
             };
 
-            /** CommonLabels adds additional kustomize commonLabels */
+            /** CommonLabels is a list of additional labels to add to rendered manifests */
             commonLabels?: {
               [key: string]: string;
             };
 
-            /** Images are kustomize image overrides */
+            /** ForceCommonAnnotations specifies whether to force applying common annotations to resources for Kustomize apps */
+            forceCommonAnnotations?: boolean;
+
+            /** ForceCommonLabels specifies whether to force applying common labels to resources for Kustomize apps */
+            forceCommonLabels?: boolean;
+
+            /** Images is a list of Kustomize image override specifications */
             images?: string[];
 
-            /** NamePrefix is a prefix appended to resources for kustomize apps */
+            /** NamePrefix is a prefix appended to resources for Kustomize apps */
             namePrefix?: string;
 
-            /** NameSuffix is a suffix appended to resources for kustomize apps */
+            /** NameSuffix is a suffix appended to resources for Kustomize apps */
             nameSuffix?: string;
 
-            /** Version contains optional Kustomize version */
+            /** Version controls which version of Kustomize to use for rendering manifests */
             version?: string;
           };
 
-          /** Path is a directory path within the Git repository */
+          /** Path is a directory path within the Git repository, and is only valid for applications sourced from Git. */
           path?: string;
 
           /** ConfigManagementPlugin holds config management plugin specific options */
           plugin?: {
+            /** Env is a list of environment variable entries */
             env?: {
-              /** the name, usually uppercase */
+              /** Name is the name of the variable, usually expressed in uppercase */
               name: string;
 
-              /** the value */
+              /** Value is the value of the variable */
               value: string;
             }[];
 
             name?: string;
           };
 
-          /** RepoURL is the repository URL of the application manifests */
+          /** RepoURL is the URL to the repository (Git or Helm) that contains the application manifests */
           repoURL: string;
 
-          /** TargetRevision defines the commit, tag, or branch in which to sync the application to. If omitted, will sync to HEAD */
+          /** TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version. */
           targetRevision?: string;
         };
       };
 
+      /** Revision contains information about the revision the comparison has been performed to */
       revision?: string;
 
-      /** SyncStatusCode is a type which represents possible comparison results */
+      /** Status is the sync state of the comparison */
       status: string;
     };
   };
@@ -8493,9 +8141,8 @@ export function createApplication<
 
 /** AppProject provides a logical grouping of applications, providing controls for: * where the apps may deploy to (cluster whitelist) * what may be deployed (repository whitelist, resource whitelistblacklist) * who can access these applications (roles, OIDC group claims bindings) * and what they can do (RBAC policies) * automation access to these roles (JWT tokens) */
 export type AppProject = {
-  apiVersion?: string;
-
-  kind?: string;
+  apiVersion: "argoproj.io/v1alpha1";
+  kind: "AppProject";
 
   metadata: ObjectMeta;
 
@@ -8520,13 +8167,13 @@ export type AppProject = {
 
     /** Destinations contains list of destinations available for deployment */
     destinations?: {
-      /** Name of the destination cluster which can be used instead of server (url) field */
+      /** Name is an alternate way of specifying the target cluster by its symbolic name */
       name?: string;
 
-      /** Namespace overrides the environment namespace value in the ksonnet app.yaml */
+      /** Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace */
       namespace?: string;
 
-      /** Server overrides the environment server value in the ksonnet app.yaml */
+      /** Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API */
       server?: string;
     }[];
 
@@ -8546,6 +8193,7 @@ export type AppProject = {
 
     /** OrphanedResources specifies if controller should monitor orphaned resources of apps in this project */
     orphanedResources?: {
+      /** Ignore contains a list of resources that are to be excluded from orphaned resources monitoring */
       ignore?: {
         group?: string;
 
@@ -8578,11 +8226,11 @@ export type AppProject = {
       /** Name is a name for this role */
       name: string;
 
-      /** Policies Stores a list of casbin formated strings that define access policies for the role in the project */
+      /** Policies Stores a list of casbin formatted strings that define access policies for the role in the project */
       policies?: string[];
     }[];
 
-    /** List of PGP key IDs that commits to be synced to must be signed with */
+    /** SignatureKeys contains a list of PGP key IDs that commits in Git must be signed with in order to be allowed for sync */
     signatureKeys?: {
       /** The ID of the key in hexadecimal notation */
       keyID: string;
@@ -8613,7 +8261,26 @@ export type AppProject = {
 
       /** Schedule is the time the window will begin, specified in cron format */
       schedule?: string;
+
+      /** TimeZone of the sync that will be applied to the schedule */
+      timeZone?: string;
     }[];
+  };
+
+  /** AppProjectStatus contains status information for AppProject CRs */
+  status?: {
+    /** JWTTokensByRole contains a list of JWT tokens issued for a given role */
+    jwtTokensByRole?: {
+      [key: string]: {
+        items?: {
+          exp?: number;
+
+          iat: number;
+
+          id?: string;
+        }[];
+      };
+    };
   };
 };
 export function createAppProject<

@@ -11,6 +11,6 @@ ENV SHELL=/usr/bin/zsh
 RUN curl -fsSL https://download.docker.com/linux/static/stable/x86_64/docker-19.03.8.tgz | \
     tar zxvf - --strip 1 -C /usr/bin docker/docker
 
-RUN curl -fsSL https://deno.land/x/install/install.sh | zsh -s v1.12.2
+RUN curl -fsSL https://deno.land/x/install/install.sh | zsh
 ENV DENO_INSTALL="/root/.deno" 
 ENV PATH="/$DENO_INSTALL/bin:$PATH"

@@ -1,17 +1,14 @@
 /* Generated for api/coordination/v1/mod.ts */
 import {
-  ObjectMeta,
   ListMeta,
   MicroTime,
+  ObjectMeta,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 
 /** Lease defines a lease concept. */
 export type Lease = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "coordination.k8s.io/v1";
+  kind: "Lease";
 
   /** More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ObjectMeta;
@@ -27,14 +24,11 @@ export function createLease<T extends Omit<Lease, "apiVersion" | "kind">>(
 
 /** LeaseList is a list of Lease objects. */
 export type LeaseList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "coordination.k8s.io/v1";
 
   /** Items is a list of schema objects. */
   items: Lease[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "LeaseList";
 
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ListMeta;

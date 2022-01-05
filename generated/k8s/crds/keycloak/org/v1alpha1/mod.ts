@@ -3,9 +3,8 @@ import { ObjectMeta } from "https://deno.land/x/deploykit@0.0.19/generated/k8s/v
 
 /** KeycloakRealm is the Schema for the keycloakrealms API */
 export type KeycloakRealm = {
-  apiVersion?: string;
-
-  kind?: string;
+  apiVersion: "keycloak.org/v1alpha1";
+  kind: "KeycloakRealm";
 
   metadata?: ObjectMeta;
 
@@ -33,11 +32,23 @@ export type KeycloakRealm = {
 
     /** Keycloak Realm REST object. */
     realm: {
+      /** Access Token Lifespan */
+      accessTokenLifespan?: number;
+
+      /** Access Token Lifespan For Implicit Flow */
+      accessTokenLifespanForImplicitFlow?: number;
+
+      /** Account Theme */
+      accountTheme?: string;
+
       /** Enable admin events details TODO: change to values and use kubebuilder default annotation once supported */
       adminEventsDetailsEnabled?: boolean;
 
       /** Enable events recording TODO: change to values and use kubebuilder default annotation once supported */
       adminEventsEnabled?: boolean;
+
+      /** Admin Console Theme */
+      adminTheme?: string;
 
       /** Authentication flows */
       authenticationFlows?: {
@@ -98,6 +109,26 @@ export type KeycloakRealm = {
         id?: string;
       }[];
 
+      /** Brute Force Detection */
+      bruteForceProtected?: boolean;
+
+      /** Client Scope Mappings */
+      clientScopeMappings?: {
+        [key: string]: {
+          /** Client */
+          client?: string;
+
+          /** Client Scope */
+          clientScope?: string;
+
+          /** Roles */
+          roles?: string[];
+
+          /** Self */
+          self?: string;
+        }[];
+      };
+
       /** Client scopes */
       clientScopes?: {
         attributes?: {
@@ -152,6 +183,260 @@ export type KeycloakRealm = {
         /** Client Attributes. */
         attributes?: {
           [key: string]: string;
+        };
+
+        /** Authentication Flow Binding Overrides. */
+        authenticationFlowBindingOverrides?: {
+          [key: string]: string;
+        };
+
+        /** True if fine-grained authorization support is enabled for this client. */
+        authorizationServicesEnabled?: boolean;
+
+        /** Authorization settings for this resource server. */
+        authorizationSettings?: {
+          /** True if resources should be managed remotely by the resource server. */
+          allowRemoteResourceManagement?: boolean;
+
+          /** Client ID. */
+          clientId?: string;
+
+          /** The decision strategy dictates how permissions are evaluated and how a final decision is obtained. 'Affirmative' means that at least one permission must evaluate to a positive decision in order to grant access to a resource and its scopes. 'Unanimous' means that all permissions must evaluate to a positive decision in order for the final decision to be also positive. */
+          decisionStrategy?: string;
+
+          /** ID. */
+          id?: string;
+
+          /** Name. */
+          name?: string;
+
+          /** Policies. */
+          policies?: {
+            /** Config. */
+            config?: {
+              [key: string]: string;
+            };
+
+            /** The decision strategy dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. 'Affirmative' means that at least one policy must evaluate to a positive decision in order for the final decision to be also positive. 'Unanimous' means that all policies must evaluate to a positive decision in order for the final decision to be also positive. 'Consensus' means that the number of positive decisions must be greater than the number of negative decisions. If the number of positive and negative is the same, the final decision will be negative. */
+            decisionStrategy?: string;
+
+            /** A description for this policy. */
+            description?: string;
+
+            /** ID. */
+            id?: string;
+
+            /** The logic dictates how the policy decision should be made. If 'Positive', the resulting effect (permit or deny) obtained during the evaluation of this policy will be used to perform a decision. If 'Negative', the resulting effect will be negated, in other words, a permit becomes a deny and vice-versa. */
+            logic?: string;
+
+            /** The name of this policy. */
+            name?: string;
+
+            /** Owner. */
+            owner?: string;
+
+            /** Policies. */
+            policies?: string[];
+
+            /** Resources. */
+            resources?: string[];
+
+            /** Resources Data. */
+            resourcesData?: {
+              /** ID. */
+              _id?: string;
+
+              /** The attributes associated with the resource. */
+              attributes?: {
+                [key: string]: string;
+              };
+
+              /** A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource. */
+              displayName?: string;
+
+              /** An URI pointing to an icon. */
+              icon_uri?: string;
+
+              /** A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource. */
+              name?: string;
+
+              /** True if the access to this resource can be managed by the resource owner. */
+              ownerManagedAccess?: boolean;
+
+              /** The scopes associated with this resource. */
+              scopes?: any[];
+
+              /** The type of this resource. It can be used to group different resource instances with the same type. */
+              type?: string;
+
+              /** Set of URIs which are protected by resource. */
+              uris?: string[];
+            }[];
+
+            /** Scopes. */
+            scopes?: string[];
+
+            /** Scopes Data. */
+            scopesData?: any[];
+
+            /** Type. */
+            type?: string;
+          }[];
+
+          /** The policy enforcement mode dictates how policies are enforced when evaluating authorization requests. 'Enforcing' means requests are denied by default even when there is no policy associated with a given resource. 'Permissive' means requests are allowed even when there is no policy associated with a given resource. 'Disabled' completely disables the evaluation of policies and allows access to any resource. */
+          policyEnforcementMode?: string;
+
+          /** Resources. */
+          resources?: {
+            /** ID. */
+            _id?: string;
+
+            /** The attributes associated with the resource. */
+            attributes?: {
+              [key: string]: string;
+            };
+
+            /** A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource. */
+            displayName?: string;
+
+            /** An URI pointing to an icon. */
+            icon_uri?: string;
+
+            /** A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource. */
+            name?: string;
+
+            /** True if the access to this resource can be managed by the resource owner. */
+            ownerManagedAccess?: boolean;
+
+            /** The scopes associated with this resource. */
+            scopes?: any[];
+
+            /** The type of this resource. It can be used to group different resource instances with the same type. */
+            type?: string;
+
+            /** Set of URIs which are protected by resource. */
+            uris?: string[];
+          }[];
+
+          /** Authorization Scopes. */
+          scopes?: {
+            /** A unique name for this scope. The name can be used to uniquely identify a scope, useful when querying for a specific scope. */
+            displayName?: string;
+
+            /** An URI pointing to an icon. */
+            iconUri?: string;
+
+            /** ID. */
+            id?: string;
+
+            /** A unique name for this scope. The name can be used to uniquely identify a scope, useful when querying for a specific scope. */
+            name?: string;
+
+            /** Policies. */
+            policies?: {
+              /** Config. */
+              config?: {
+                [key: string]: string;
+              };
+
+              /** The decision strategy dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. 'Affirmative' means that at least one policy must evaluate to a positive decision in order for the final decision to be also positive. 'Unanimous' means that all policies must evaluate to a positive decision in order for the final decision to be also positive. 'Consensus' means that the number of positive decisions must be greater than the number of negative decisions. If the number of positive and negative is the same, the final decision will be negative. */
+              decisionStrategy?: string;
+
+              /** A description for this policy. */
+              description?: string;
+
+              /** ID. */
+              id?: string;
+
+              /** The logic dictates how the policy decision should be made. If 'Positive', the resulting effect (permit or deny) obtained during the evaluation of this policy will be used to perform a decision. If 'Negative', the resulting effect will be negated, in other words, a permit becomes a deny and vice-versa. */
+              logic?: string;
+
+              /** The name of this policy. */
+              name?: string;
+
+              /** Owner. */
+              owner?: string;
+
+              /** Policies. */
+              policies?: string[];
+
+              /** Resources. */
+              resources?: string[];
+
+              /** Resources Data. */
+              resourcesData?: {
+                /** ID. */
+                _id?: string;
+
+                /** The attributes associated with the resource. */
+                attributes?: {
+                  [key: string]: string;
+                };
+
+                /** A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource. */
+                displayName?: string;
+
+                /** An URI pointing to an icon. */
+                icon_uri?: string;
+
+                /** A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource. */
+                name?: string;
+
+                /** True if the access to this resource can be managed by the resource owner. */
+                ownerManagedAccess?: boolean;
+
+                /** The scopes associated with this resource. */
+                scopes?: any[];
+
+                /** The type of this resource. It can be used to group different resource instances with the same type. */
+                type?: string;
+
+                /** Set of URIs which are protected by resource. */
+                uris?: string[];
+              }[];
+
+              /** Scopes. */
+              scopes?: string[];
+
+              /** Scopes Data. */
+              scopesData?: any[];
+
+              /** Type. */
+              type?: string;
+            }[];
+
+            /** Resources. */
+            resources?: {
+              /** ID. */
+              _id?: string;
+
+              /** The attributes associated with the resource. */
+              attributes?: {
+                [key: string]: string;
+              };
+
+              /** A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource. */
+              displayName?: string;
+
+              /** An URI pointing to an icon. */
+              icon_uri?: string;
+
+              /** A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource. */
+              name?: string;
+
+              /** True if the access to this resource can be managed by the resource owner. */
+              ownerManagedAccess?: boolean;
+
+              /** The scopes associated with this resource. */
+              scopes?: any[];
+
+              /** The type of this resource. It can be used to group different resource instances with the same type. */
+              type?: string;
+
+              /** Set of URIs which are protected by resource. */
+              uris?: string[];
+            }[];
+          }[];
         };
 
         /** Application base URL. */
@@ -271,17 +556,75 @@ export type KeycloakRealm = {
         webOrigins?: string[];
       }[];
 
+      /** Default Locale */
+      defaultLocale?: string;
+
+      /** Default role */
+      defaultRole?: {
+        /** Role Attributes */
+        attributes?: {
+          [key: string]: string[];
+        };
+
+        /** Client Role */
+        clientRole?: boolean;
+
+        /** Composite */
+        composite?: boolean;
+
+        /** Composites */
+        composites?: {
+          /** Map client => []role */
+          client?: {
+            [key: string]: string[];
+          };
+
+          /** Realm roles */
+          realm?: string[];
+        };
+
+        /** Container Id */
+        containerId?: string;
+
+        /** Description */
+        description?: string;
+
+        /** Id */
+        id?: string;
+
+        /** Name */
+        name: string;
+      };
+
       /** Realm display name. */
       displayName?: string;
 
+      /** Realm HTML display name. */
+      displayNameHtml?: string;
+
+      /** Duplicate emails */
+      duplicateEmailsAllowed?: boolean;
+
+      /** Edit username */
+      editUsernameAllowed?: boolean;
+
+      /** Email Theme */
+      emailTheme?: string;
+
       /** Realm enabled flag. */
       enabled?: boolean;
+
+      /** Enabled event types */
+      enabledEventTypes?: string[];
 
       /** Enable events recording TODO: change to values and use kubebuilder default annotation once supported */
       eventsEnabled?: boolean;
 
       /** A set of Event Listeners. */
       eventsListeners?: string[];
+
+      /** Max Login Failures */
+      failureFactor?: number;
 
       id?: string;
 
@@ -326,8 +669,152 @@ export type KeycloakRealm = {
         trustEmail?: boolean;
       }[];
 
+      /** Internationalization Enabled */
+      internationalizationEnabled?: boolean;
+
+      /** Login Theme */
+      loginTheme?: string;
+
+      /** Login with email */
+      loginWithEmailAllowed?: boolean;
+
+      /** Failure Reset Time */
+      maxDeltaTimeSeconds?: number;
+
+      /** Max Wait */
+      maxFailureWaitSeconds?: number;
+
+      /** Minimum Quick Login Wait */
+      minimumQuickLoginWaitSeconds?: number;
+
+      /** Realm Password Policy */
+      passwordPolicy?: string;
+
+      /** Permanent Lockout */
+      permanentLockout?: boolean;
+
+      /** Quick Login Check Milli Seconds */
+      quickLoginCheckMilliSeconds?: number;
+
       /** Realm name. */
       realm: string;
+
+      /** User registration */
+      registrationAllowed?: boolean;
+
+      /** Email as username */
+      registrationEmailAsUsername?: boolean;
+
+      /** Remember me */
+      rememberMe?: boolean;
+
+      /** Forgot password */
+      resetPasswordAllowed?: boolean;
+
+      /** Roles */
+      roles?: {
+        /** Client Roles */
+        client?: {
+          [key: string]: {
+            /** Role Attributes */
+            attributes?: {
+              [key: string]: string[];
+            };
+
+            /** Client Role */
+            clientRole?: boolean;
+
+            /** Composite */
+            composite?: boolean;
+
+            /** Composites */
+            composites?: {
+              /** Map client => []role */
+              client?: {
+                [key: string]: string[];
+              };
+
+              /** Realm roles */
+              realm?: string[];
+            };
+
+            /** Container Id */
+            containerId?: string;
+
+            /** Description */
+            description?: string;
+
+            /** Id */
+            id?: string;
+
+            /** Name */
+            name: string;
+          }[];
+        };
+
+        /** Realm Roles */
+        realm?: {
+          /** Role Attributes */
+          attributes?: {
+            [key: string]: string[];
+          };
+
+          /** Client Role */
+          clientRole?: boolean;
+
+          /** Composite */
+          composite?: boolean;
+
+          /** Composites */
+          composites?: {
+            /** Map client => []role */
+            client?: {
+              [key: string]: string[];
+            };
+
+            /** Realm roles */
+            realm?: string[];
+          };
+
+          /** Container Id */
+          containerId?: string;
+
+          /** Description */
+          description?: string;
+
+          /** Id */
+          id?: string;
+
+          /** Name */
+          name: string;
+        }[];
+      };
+
+      /** Scope Mappings */
+      scopeMappings?: {
+        /** Client */
+        client?: string;
+
+        /** Client Scope */
+        clientScope?: string;
+
+        /** Roles */
+        roles?: string[];
+
+        /** Self */
+        self?: string;
+      }[];
+
+      /** Email */
+      smtpServer?: {
+        [key: string]: string;
+      };
+
+      /** Require SSL */
+      sslRequired?: string;
+
+      /** Supported Locales */
+      supportedLocales?: string[];
 
       /** User federation mappers are extension points triggered by the user federation at various points. */
       userFederationMappers?: {
@@ -367,6 +854,9 @@ export type KeycloakRealm = {
         /** The name of the user provider, such as "ldap", "kerberos" or a custom SPI. */
         providerName?: string;
       }[];
+
+      /** User Managed Access Allowed */
+      userManagedAccessAllowed?: boolean;
 
       /** A set of Keycloak Users. */
       users?: {
@@ -434,6 +924,12 @@ export type KeycloakRealm = {
         /** User Name. */
         username?: string;
       }[];
+
+      /** Verify email */
+      verifyEmail?: boolean;
+
+      /** Wait Increment */
+      waitIncrementSeconds?: number;
     };
 
     /** A list of overrides to the default Realm behavior. */
@@ -442,7 +938,7 @@ export type KeycloakRealm = {
       forFlow?: string;
 
       /** Identity Provider to be overridden. */
-      identityProvider?: string;
+      identityProvider: string;
     }[];
 
     /** When set to true, this KeycloakRealm will be marked as unmanaged and not be managed by this operator. It can then be used for targeting purposes. */
@@ -481,9 +977,8 @@ export function createKeycloakRealm<
 
 /** KeycloakClient is the Schema for the keycloakclients API. */
 export type KeycloakClient = {
-  apiVersion?: string;
-
-  kind?: string;
+  apiVersion: "keycloak.org/v1alpha1";
+  kind: "KeycloakClient";
 
   metadata?: ObjectMeta;
 
@@ -502,6 +997,260 @@ export type KeycloakClient = {
       /** Client Attributes. */
       attributes?: {
         [key: string]: string;
+      };
+
+      /** Authentication Flow Binding Overrides. */
+      authenticationFlowBindingOverrides?: {
+        [key: string]: string;
+      };
+
+      /** True if fine-grained authorization support is enabled for this client. */
+      authorizationServicesEnabled?: boolean;
+
+      /** Authorization settings for this resource server. */
+      authorizationSettings?: {
+        /** True if resources should be managed remotely by the resource server. */
+        allowRemoteResourceManagement?: boolean;
+
+        /** Client ID. */
+        clientId?: string;
+
+        /** The decision strategy dictates how permissions are evaluated and how a final decision is obtained. 'Affirmative' means that at least one permission must evaluate to a positive decision in order to grant access to a resource and its scopes. 'Unanimous' means that all permissions must evaluate to a positive decision in order for the final decision to be also positive. */
+        decisionStrategy?: string;
+
+        /** ID. */
+        id?: string;
+
+        /** Name. */
+        name?: string;
+
+        /** Policies. */
+        policies?: {
+          /** Config. */
+          config?: {
+            [key: string]: string;
+          };
+
+          /** The decision strategy dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. 'Affirmative' means that at least one policy must evaluate to a positive decision in order for the final decision to be also positive. 'Unanimous' means that all policies must evaluate to a positive decision in order for the final decision to be also positive. 'Consensus' means that the number of positive decisions must be greater than the number of negative decisions. If the number of positive and negative is the same, the final decision will be negative. */
+          decisionStrategy?: string;
+
+          /** A description for this policy. */
+          description?: string;
+
+          /** ID. */
+          id?: string;
+
+          /** The logic dictates how the policy decision should be made. If 'Positive', the resulting effect (permit or deny) obtained during the evaluation of this policy will be used to perform a decision. If 'Negative', the resulting effect will be negated, in other words, a permit becomes a deny and vice-versa. */
+          logic?: string;
+
+          /** The name of this policy. */
+          name?: string;
+
+          /** Owner. */
+          owner?: string;
+
+          /** Policies. */
+          policies?: string[];
+
+          /** Resources. */
+          resources?: string[];
+
+          /** Resources Data. */
+          resourcesData?: {
+            /** ID. */
+            _id?: string;
+
+            /** The attributes associated with the resource. */
+            attributes?: {
+              [key: string]: string;
+            };
+
+            /** A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource. */
+            displayName?: string;
+
+            /** An URI pointing to an icon. */
+            icon_uri?: string;
+
+            /** A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource. */
+            name?: string;
+
+            /** True if the access to this resource can be managed by the resource owner. */
+            ownerManagedAccess?: boolean;
+
+            /** The scopes associated with this resource. */
+            scopes?: any[];
+
+            /** The type of this resource. It can be used to group different resource instances with the same type. */
+            type?: string;
+
+            /** Set of URIs which are protected by resource. */
+            uris?: string[];
+          }[];
+
+          /** Scopes. */
+          scopes?: string[];
+
+          /** Scopes Data. */
+          scopesData?: any[];
+
+          /** Type. */
+          type?: string;
+        }[];
+
+        /** The policy enforcement mode dictates how policies are enforced when evaluating authorization requests. 'Enforcing' means requests are denied by default even when there is no policy associated with a given resource. 'Permissive' means requests are allowed even when there is no policy associated with a given resource. 'Disabled' completely disables the evaluation of policies and allows access to any resource. */
+        policyEnforcementMode?: string;
+
+        /** Resources. */
+        resources?: {
+          /** ID. */
+          _id?: string;
+
+          /** The attributes associated with the resource. */
+          attributes?: {
+            [key: string]: string;
+          };
+
+          /** A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource. */
+          displayName?: string;
+
+          /** An URI pointing to an icon. */
+          icon_uri?: string;
+
+          /** A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource. */
+          name?: string;
+
+          /** True if the access to this resource can be managed by the resource owner. */
+          ownerManagedAccess?: boolean;
+
+          /** The scopes associated with this resource. */
+          scopes?: any[];
+
+          /** The type of this resource. It can be used to group different resource instances with the same type. */
+          type?: string;
+
+          /** Set of URIs which are protected by resource. */
+          uris?: string[];
+        }[];
+
+        /** Authorization Scopes. */
+        scopes?: {
+          /** A unique name for this scope. The name can be used to uniquely identify a scope, useful when querying for a specific scope. */
+          displayName?: string;
+
+          /** An URI pointing to an icon. */
+          iconUri?: string;
+
+          /** ID. */
+          id?: string;
+
+          /** A unique name for this scope. The name can be used to uniquely identify a scope, useful when querying for a specific scope. */
+          name?: string;
+
+          /** Policies. */
+          policies?: {
+            /** Config. */
+            config?: {
+              [key: string]: string;
+            };
+
+            /** The decision strategy dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. 'Affirmative' means that at least one policy must evaluate to a positive decision in order for the final decision to be also positive. 'Unanimous' means that all policies must evaluate to a positive decision in order for the final decision to be also positive. 'Consensus' means that the number of positive decisions must be greater than the number of negative decisions. If the number of positive and negative is the same, the final decision will be negative. */
+            decisionStrategy?: string;
+
+            /** A description for this policy. */
+            description?: string;
+
+            /** ID. */
+            id?: string;
+
+            /** The logic dictates how the policy decision should be made. If 'Positive', the resulting effect (permit or deny) obtained during the evaluation of this policy will be used to perform a decision. If 'Negative', the resulting effect will be negated, in other words, a permit becomes a deny and vice-versa. */
+            logic?: string;
+
+            /** The name of this policy. */
+            name?: string;
+
+            /** Owner. */
+            owner?: string;
+
+            /** Policies. */
+            policies?: string[];
+
+            /** Resources. */
+            resources?: string[];
+
+            /** Resources Data. */
+            resourcesData?: {
+              /** ID. */
+              _id?: string;
+
+              /** The attributes associated with the resource. */
+              attributes?: {
+                [key: string]: string;
+              };
+
+              /** A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource. */
+              displayName?: string;
+
+              /** An URI pointing to an icon. */
+              icon_uri?: string;
+
+              /** A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource. */
+              name?: string;
+
+              /** True if the access to this resource can be managed by the resource owner. */
+              ownerManagedAccess?: boolean;
+
+              /** The scopes associated with this resource. */
+              scopes?: any[];
+
+              /** The type of this resource. It can be used to group different resource instances with the same type. */
+              type?: string;
+
+              /** Set of URIs which are protected by resource. */
+              uris?: string[];
+            }[];
+
+            /** Scopes. */
+            scopes?: string[];
+
+            /** Scopes Data. */
+            scopesData?: any[];
+
+            /** Type. */
+            type?: string;
+          }[];
+
+          /** Resources. */
+          resources?: {
+            /** ID. */
+            _id?: string;
+
+            /** The attributes associated with the resource. */
+            attributes?: {
+              [key: string]: string;
+            };
+
+            /** A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource. */
+            displayName?: string;
+
+            /** An URI pointing to an icon. */
+            icon_uri?: string;
+
+            /** A unique name for this resource. The name can be used to uniquely identify a resource, useful when querying for a specific resource. */
+            name?: string;
+
+            /** True if the access to this resource can be managed by the resource owner. */
+            ownerManagedAccess?: boolean;
+
+            /** The scopes associated with this resource. */
+            scopes?: any[];
+
+            /** The type of this resource. It can be used to group different resource instances with the same type. */
+            type?: string;
+
+            /** Set of URIs which are protected by resource. */
+            uris?: string[];
+          }[];
+        }[];
       };
 
       /** Application base URL. */
@@ -640,6 +1389,131 @@ export type KeycloakClient = {
         [key: string]: string;
       };
     };
+
+    /** Client Roles */
+    roles?: {
+      /** Role Attributes */
+      attributes?: {
+        [key: string]: string[];
+      };
+
+      /** Client Role */
+      clientRole?: boolean;
+
+      /** Composite */
+      composite?: boolean;
+
+      /** Composites */
+      composites?: {
+        /** Map client => []role */
+        client?: {
+          [key: string]: string[];
+        };
+
+        /** Realm roles */
+        realm?: string[];
+      };
+
+      /** Container Id */
+      containerId?: string;
+
+      /** Description */
+      description?: string;
+
+      /** Id */
+      id?: string;
+
+      /** Name */
+      name: string;
+    }[];
+
+    /** Scope Mappings */
+    scopeMappings?: {
+      /** Client Mappings */
+      clientMappings?: {
+        [key: string]: {
+          /** Client */
+          client?: string;
+
+          /** ID */
+          id?: string;
+
+          /** Mappings */
+          mappings?: {
+            /** Role Attributes */
+            attributes?: {
+              [key: string]: string[];
+            };
+
+            /** Client Role */
+            clientRole?: boolean;
+
+            /** Composite */
+            composite?: boolean;
+
+            /** Composites */
+            composites?: {
+              /** Map client => []role */
+              client?: {
+                [key: string]: string[];
+              };
+
+              /** Realm roles */
+              realm?: string[];
+            };
+
+            /** Container Id */
+            containerId?: string;
+
+            /** Description */
+            description?: string;
+
+            /** Id */
+            id?: string;
+
+            /** Name */
+            name: string;
+          }[];
+        };
+      };
+
+      /** Realm Mappings */
+      realmMappings?: {
+        /** Role Attributes */
+        attributes?: {
+          [key: string]: string[];
+        };
+
+        /** Client Role */
+        clientRole?: boolean;
+
+        /** Composite */
+        composite?: boolean;
+
+        /** Composites */
+        composites?: {
+          /** Map client => []role */
+          client?: {
+            [key: string]: string[];
+          };
+
+          /** Realm roles */
+          realm?: string[];
+        };
+
+        /** Container Id */
+        containerId?: string;
+
+        /** Description */
+        description?: string;
+
+        /** Id */
+        id?: string;
+
+        /** Name */
+        name: string;
+      }[];
+    };
   };
 
   /** KeycloakClientStatus defines the observed state of KeycloakClient */
@@ -671,9 +1545,8 @@ export function createKeycloakClient<
 
 /** KeycloakUser is the Schema for the keycloakusers API. */
 export type KeycloakUser = {
-  apiVersion?: string;
-
-  kind?: string;
+  apiVersion: "keycloak.org/v1alpha1";
+  kind: "KeycloakUser";
 
   metadata?: ObjectMeta;
 
@@ -784,9 +1657,8 @@ export function createKeycloakUser<
 
 /** Keycloak is the Schema for the keycloaks API. */
 export type Keycloak = {
-  apiVersion?: string;
-
-  kind?: string;
+  apiVersion: "keycloak.org/v1alpha1";
+  kind: "Keycloak";
 
   metadata?: ObjectMeta;
 
@@ -809,19 +1681,19 @@ export type Keycloak = {
       /** If set to true, the Operator will create an Ingress or a Route pointing to Keycloak. */
       enabled?: boolean;
 
-      /** If set, the Operator will use value of host for IngressRoute host instead of default value keycloak.local for ingress and automatically chosen name for Route */
+      /** If set, the Operator will use value of host for Ingress host instead of default value keycloak.local. Using this setting in OpenShift environment will result an error. Only users with special permissions are allowed to modify the hostname. */
       host?: string;
 
       /** TLS Termination type for the external access. Setting this field to "reencrypt" will terminate TLS on the IngressRoute level. Setting this field to "passthrough" will send encrypted traffic to the Pod. If unspecified, defaults to "reencrypt". Note, that this setting has no effect on Ingress as Ingress TLS settings are not reconciled by this operator. In other words, Ingress TLS configuration is the same in both cases and it is up to the user to configure TLS section of the Ingress. */
       tlsTermination?: string;
     };
 
-    /** Controls external database settings. Using an external database requires providing a secret containing credentials as well as connection details. Here's an example of such secret: 
-     apiVersion: v1     kind: Secret     metadata:         name: keycloak-db-secret         namespace: keycloak     stringData:         POSTGRES_DATABASE: <Database Name>         POSTGRES_EXTERNAL_ADDRESS: <External Database IP or URL (resolvable by K8s)>         POSTGRES_EXTERNAL_PORT: <External Database Port>         # Strongly recommended to use <'Keycloak CR Name'-postgresql>         POSTGRES_HOST: <Database Service Name>         POSTGRES_PASSWORD: <Database Password>         # Required for AWS Backup functionality         POSTGRES_SUPERUSER: true         POSTGRES_USERNAME: <Database Username>      type: Opaque 
- Both POSTGRES_EXTERNAL_ADDRESS and POSTGRES_EXTERNAL_PORT are specifically required for creating connection to the external database. The secret name is created using the following convention:       <Custom Resource Name>-db-secret 
+    /** Controls external database settings. Using an external database requires providing a secret containing credentials as well as connection details. Here's an example of such secret:
+     apiVersion: v1     kind: Secret     metadata:         name: keycloak-db-secret         namespace: keycloak     stringData:         POSTGRES_DATABASE: <Database Name>         POSTGRES_EXTERNAL_ADDRESS: <External Database IP or URL (resolvable by K8s)>         POSTGRES_EXTERNAL_PORT: <External Database Port>         # Strongly recommended to use <'Keycloak CR Name'-postgresql>         POSTGRES_HOST: <Database Service Name>         POSTGRES_PASSWORD: <Database Password>         # Required for AWS Backup functionality         POSTGRES_SUPERUSER: true         POSTGRES_USERNAME: <Database Username>      type: Opaque
+ Both POSTGRES_EXTERNAL_ADDRESS and POSTGRES_EXTERNAL_PORT are specifically required for creating connection to the external database. The secret name is created using the following convention:       <Custom Resource Name>-db-secret
  For more information, please refer to the Operator documentation. */
     externalDatabase?: {
-      /** If set to true, the Operator will use an external database. pointing to Keycloak. */
+      /** If set to true, the Operator will use an external database pointing to Keycloak. The embedded database (externalDatabase.enabled = false) is deprecated. */
       enabled?: boolean;
     };
 
@@ -832,6 +1704,209 @@ export type Keycloak = {
     keycloakDeploymentSpec?: {
       /** Experimental section NOTE: This section might change or get removed without any notice. It may also cause the deployment to behave in an unpredictable fashion. Please use with care. */
       experimental?: {
+        /** Affinity settings */
+        affinity?: {
+          /** Describes node affinity scheduling rules for the pod. */
+          nodeAffinity?: {
+            /** The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred. */
+            preferredDuringSchedulingIgnoredDuringExecution?: {
+              /** A node selector term, associated with the corresponding weight. */
+              preference: {
+                /** A list of node selector requirements by node's labels. */
+                matchExpressions?: {
+                  /** The label key that the selector applies to. */
+                  key: string;
+
+                  /** Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. */
+                  operator: string;
+
+                  /** An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. */
+                  values?: string[];
+                }[];
+
+                /** A list of node selector requirements by node's fields. */
+                matchFields?: {
+                  /** The label key that the selector applies to. */
+                  key: string;
+
+                  /** Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. */
+                  operator: string;
+
+                  /** An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. */
+                  values?: string[];
+                }[];
+              };
+
+              /** Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100. */
+              weight: number;
+            }[];
+
+            /** If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node. */
+            requiredDuringSchedulingIgnoredDuringExecution?: {
+              /** Required. A list of node selector terms. The terms are ORed. */
+              nodeSelectorTerms: {
+                /** A list of node selector requirements by node's labels. */
+                matchExpressions?: {
+                  /** The label key that the selector applies to. */
+                  key: string;
+
+                  /** Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. */
+                  operator: string;
+
+                  /** An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. */
+                  values?: string[];
+                }[];
+
+                /** A list of node selector requirements by node's fields. */
+                matchFields?: {
+                  /** The label key that the selector applies to. */
+                  key: string;
+
+                  /** Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt. */
+                  operator: string;
+
+                  /** An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. */
+                  values?: string[];
+                }[];
+              }[];
+            };
+          };
+
+          /** Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)). */
+          podAffinity?: {
+            /** The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. */
+            preferredDuringSchedulingIgnoredDuringExecution?: {
+              /** Required. A pod affinity term, associated with the corresponding weight. */
+              podAffinityTerm: {
+                /** A label query over a set of resources, in this case pods. */
+                labelSelector?: {
+                  /** matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+                  matchExpressions?: {
+                    /** key is the label key that the selector applies to. */
+                    key: string;
+
+                    /** operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. */
+                    operator: string;
+
+                    /** values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+                    values?: string[];
+                  }[];
+
+                  /** matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+                  matchLabels?: {
+                    [key: string]: string;
+                  };
+                };
+
+                /** namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means "this pod's namespace" */
+                namespaces?: string[];
+
+                /** This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. */
+                topologyKey: string;
+              };
+
+              /** weight associated with matching the corresponding podAffinityTerm, in the range 1-100. */
+              weight: number;
+            }[];
+
+            /** If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. */
+            requiredDuringSchedulingIgnoredDuringExecution?: {
+              /** A label query over a set of resources, in this case pods. */
+              labelSelector?: {
+                /** matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+                matchExpressions?: {
+                  /** key is the label key that the selector applies to. */
+                  key: string;
+
+                  /** operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. */
+                  operator: string;
+
+                  /** values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+                  values?: string[];
+                }[];
+
+                /** matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+                matchLabels?: {
+                  [key: string]: string;
+                };
+              };
+
+              /** namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means "this pod's namespace" */
+              namespaces?: string[];
+
+              /** This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. */
+              topologyKey: string;
+            }[];
+          };
+
+          /** Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)). */
+          podAntiAffinity?: {
+            /** The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred. */
+            preferredDuringSchedulingIgnoredDuringExecution?: {
+              /** Required. A pod affinity term, associated with the corresponding weight. */
+              podAffinityTerm: {
+                /** A label query over a set of resources, in this case pods. */
+                labelSelector?: {
+                  /** matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+                  matchExpressions?: {
+                    /** key is the label key that the selector applies to. */
+                    key: string;
+
+                    /** operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. */
+                    operator: string;
+
+                    /** values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+                    values?: string[];
+                  }[];
+
+                  /** matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+                  matchLabels?: {
+                    [key: string]: string;
+                  };
+                };
+
+                /** namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means "this pod's namespace" */
+                namespaces?: string[];
+
+                /** This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. */
+                topologyKey: string;
+              };
+
+              /** weight associated with matching the corresponding podAffinityTerm, in the range 1-100. */
+              weight: number;
+            }[];
+
+            /** If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. */
+            requiredDuringSchedulingIgnoredDuringExecution?: {
+              /** A label query over a set of resources, in this case pods. */
+              labelSelector?: {
+                /** matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+                matchExpressions?: {
+                  /** key is the label key that the selector applies to. */
+                  key: string;
+
+                  /** operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. */
+                  operator: string;
+
+                  /** values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+                  values?: string[];
+                }[];
+
+                /** matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+                matchLabels?: {
+                  [key: string]: string;
+                };
+              };
+
+              /** namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means "this pod's namespace" */
+              namespaces?: string[];
+
+              /** This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. */
+              topologyKey: string;
+            }[];
+          };
+        };
+
         /** Arguments to the entrypoint. Translates into Container CMD. */
         args?: string[];
 
@@ -860,7 +1935,7 @@ export type Keycloak = {
               optional?: boolean;
             };
 
-            /** Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. */
+            /** Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. */
             fieldRef?: {
               /** Version of the schema the FieldPath is written in terms of, defaults to "v1". */
               apiVersion?: string;
@@ -895,34 +1970,45 @@ export type Keycloak = {
           };
         }[];
 
+        /** ServiceAccountName settings */
+        serviceAccountName?: string;
+
         /** Additional volume mounts */
         volumes?: {
           /** Permissions mode. */
           defaultMode?: number;
 
           items?: {
-            /** ConfigMap mount */
-            configMap?: {
-              /** ConfigMap mount details */
-              items?: {
-                /** The key to project. */
-                key: string;
+            /** Allow multiple configmaps to mount to the same directory */
+            configMaps?: string[];
 
-                /** Optional: mode bits to use on this file, must be a value between 0 and 0777. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
-                mode?: number;
+            /** Mount details */
+            items?: {
+              /** The key to project. */
+              key: string;
 
-                /** The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'. */
-                path: string;
-              }[];
+              /** Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
+              mode?: number;
 
-              /** An absolute path where to mount it */
-              mountPath: string;
+              /** The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'. */
+              path: string;
+            }[];
 
-              /** ConfigMap name */
-              name?: string;
-            };
+            /** An absolute path where to mount it */
+            mountPath: string;
+
+            /** Volume name */
+            name?: string;
+
+            /** Secret mount */
+            secrets?: string[];
           }[];
         };
+      };
+
+      /** List of labels to set in the keycloak pods */
+      podlabels?: {
+        [key: string]: string;
       };
 
       /** Resources (Requests and Limits) for the Pods. */
@@ -946,6 +2032,15 @@ export type Keycloak = {
         /** If set to true, the operator will do database backup before doing migration */
         enabled?: boolean;
       };
+
+      /** Specify migration strategy */
+      strategy?: string;
+    };
+
+    /** Specify PodAntiAffinity settings for Keycloak deployment in Multi AZ */
+    multiAvailablityZones?: {
+      /** If set to true, the operator will create a podAntiAffinity settings for the Keycloak deployment. */
+      enabled?: boolean;
     };
 
     /** Specify PodDisruptionBudget configuration. */
@@ -985,7 +2080,10 @@ export type Keycloak = {
     /** The secret where the admin credentials are to be found. */
     credentialSecret: string;
 
-    /** Service IP and Port for in-cluster access to the keycloak instance. */
+    /** External URL for accessing Keycloak instance from outside the cluster. Is identical to external.URL if it's specified, otherwise is computed (e.g. from Ingress). */
+    externalURL?: string;
+
+    /** An internal URL (service name) to be used by the admin client. */
     internalURL: string;
 
     /** Human-readable message indicating details about current operator phase or error. */

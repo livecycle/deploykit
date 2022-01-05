@@ -1,6 +1,6 @@
 import * as k8s from "../../../generated/k8s/v1.18.3/api/mod.ts";
 import { KubeMetaContext, Workload } from "../types.ts";
-import { modify, compose, IBluePrint } from "../../blueprint.ts";
+import { compose, IBluePrint, modify } from "../../blueprint.ts";
 import { addResource, createAddResourceOp } from "./base.ts";
 import { DeploymentStrategy } from "../../../generated/k8s/v1.18.3/api/apps/v1/mod.ts";
 import { Container } from "../../../generated/k8s/v1.18.3/api/core/v1/mod.ts";
@@ -183,10 +183,10 @@ export const addTls = <
 };
 
 /** Adds an Ingress resource for routing external traffic to the service.
-*/
+ */
 
 /** Adds an Ingress resource for routing external traffic to the service.
-*/
+ */
 export const expose = <
   T extends Record<TServiceKey, k8s.core.v1.Service>,
   TContext extends KubeMetaContext,

@@ -1,12 +1,16 @@
 import { Definition } from "./types.ts";
-import { formatTSPropName, formatComment, getType } from "./utils.ts";
+import { formatComment, formatTSPropName, getType } from "./utils.ts";
 
-export function compileType(def: Definition): string {
+export function compileType(
+  def: Definition,
+  apiVersion?: string,
+  kind?: string,
+): string {
   if (typeof def.$ref === "string") {
     return getType(def.$ref.substring("#/definitions/".length)).name;
   }
   if (def.oneOf || def.anyOf) {
-    return (def.oneOf || def.anyOf!).map(compileType).join("|");
+    return (def.oneOf || def.anyOf!).map((x) => compileType(x)).join("|");
   }
 
   if (def.type === "object") {
@@ -14,17 +18,27 @@ export function compileType(def: Definition): string {
     return (
       `{
   ${
-        Object.entries(properties).map(([key, prop]) =>
-          `
+        Object.entries(properties).map(([key, prop]) => {
+          if (key === "apiVersion" && apiVersion) {
+            return `${formatTSPropName(key)}:'${apiVersion}';
+            `;
+          }
+          if (key === "kind" && kind) {
+            return `${formatTSPropName(key)}:'${kind}';
+            `;
+          }
+          return `
     ${prop.description ? formatComment(prop.description) : ""}
     ${formatTSPropName(key)}${required.includes(key) ? "" : "?"}:${
             compileType(prop)
           };
-    `
-        ).join("")
+    `;
+        }).join("")
       }
-  ${additionalProperties &&
-          `[key:string]: ${compileType(additionalProperties)}` || ""}
+  ${
+        additionalProperties &&
+          `[key:string]: ${compileType(additionalProperties)}` || ""
+      }
   }`
     );
   }

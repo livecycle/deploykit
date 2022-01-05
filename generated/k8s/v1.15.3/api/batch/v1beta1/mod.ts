@@ -1,19 +1,16 @@
 /* Generated for api/batch/v1beta1/mod.ts */
 import { ObjectReference } from "../../core/v1/mod.ts";
 import {
-  ObjectMeta,
   ListMeta,
+  ObjectMeta,
   Time,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 import { JobSpec } from "../v1/mod.ts";
 
 /** CronJob represents the configuration of a single cron job. */
 export type CronJob = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "batch/v1beta1";
+  kind: "CronJob";
 
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ObjectMeta;
@@ -32,14 +29,11 @@ export function createCronJob<T extends Omit<CronJob, "apiVersion" | "kind">>(
 
 /** CronJobList is a collection of cron jobs. */
 export type CronJobList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "batch/v1beta1";
 
   /** items is the list of CronJobs. */
   items: CronJob[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "CronJobList";
 
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ListMeta;

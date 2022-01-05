@@ -3,9 +3,8 @@ import { ObjectMeta } from "https://deno.land/x/deploykit@0.0.19/generated/k8s/v
 
 /** ScaledObject is a specification for a ScaledObject resource */
 export type ScaledObject = {
-  apiVersion?: string;
-
-  kind?: string;
+  apiVersion: "keda.sh/v1alpha1";
+  kind: "ScaledObject";
 
   metadata?: ObjectMeta;
 
@@ -66,6 +65,15 @@ export type ScaledObject = {
 
     cooldownPeriod?: number;
 
+    /** Fallback is the spec for fallback options */
+    fallback?: {
+      failureThreshold: number;
+
+      replicas: number;
+    };
+
+    idleReplicaCount?: number;
+
     maxReplicaCount?: number;
 
     minReplicaCount?: number;
@@ -84,10 +92,15 @@ export type ScaledObject = {
     };
 
     triggers: {
-      /** ScaledObjectAuthRef points to the TriggerAuthentication object that is used to authenticate the scaler with the environment */
+      /** ScaledObjectAuthRef points to the TriggerAuthentication or ClusterTriggerAuthentication object that is used to authenticate the scaler with the environment */
       authenticationRef?: {
+        /** Kind of the resource being referred to. Defaults to TriggerAuthentication. */
+        kind?: string;
+
         name: string;
       };
+
+      fallback?: number;
 
       metadata: {
         [key: string]: string;
@@ -117,6 +130,15 @@ export type ScaledObject = {
     }[];
 
     externalMetricNames?: string[];
+
+    health?: {
+      [key: string]: {
+        numberOfFailures?: number;
+
+        /** HealthStatusType is an indication of whether the health status is happy or failing */
+        status?: string;
+      };
+    };
 
     lastActiveTime?: string;
 

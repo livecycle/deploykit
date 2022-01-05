@@ -3,9 +3,8 @@ import { ObjectMeta } from "https://deno.land/x/deploykit@0.0.19/generated/k8s/v
 
 /** Alertmanager describes an Alertmanager cluster. */
 export type Alertmanager = {
-  apiVersion?: string;
-
-  kind?: string;
+  apiVersion: "monitoring.coreos.com/v1";
+  kind: "Alertmanager";
 
   metadata?: ObjectMeta;
 
@@ -108,7 +107,27 @@ export type Alertmanager = {
               };
             };
 
-            /** namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means "this pod's namespace" */
+            /** A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. */
+            namespaceSelector?: {
+              /** matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+              matchExpressions?: {
+                /** key is the label key that the selector applies to. */
+                key: string;
+
+                /** operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. */
+                operator: string;
+
+                /** values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+                values?: string[];
+              }[];
+
+              /** matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+              matchLabels?: {
+                [key: string]: string;
+              };
+            };
+
+            /** namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod's namespace" */
             namespaces?: string[];
 
             /** This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. */
@@ -141,7 +160,27 @@ export type Alertmanager = {
             };
           };
 
-          /** namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means "this pod's namespace" */
+          /** A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. */
+          namespaceSelector?: {
+            /** matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+            matchExpressions?: {
+              /** key is the label key that the selector applies to. */
+              key: string;
+
+              /** operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. */
+              operator: string;
+
+              /** values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+              values?: string[];
+            }[];
+
+            /** matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+            matchLabels?: {
+              [key: string]: string;
+            };
+          };
+
+          /** namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod's namespace" */
           namespaces?: string[];
 
           /** This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. */
@@ -175,7 +214,27 @@ export type Alertmanager = {
               };
             };
 
-            /** namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means "this pod's namespace" */
+            /** A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. */
+            namespaceSelector?: {
+              /** matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+              matchExpressions?: {
+                /** key is the label key that the selector applies to. */
+                key: string;
+
+                /** operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. */
+                operator: string;
+
+                /** values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+                values?: string[];
+              }[];
+
+              /** matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+              matchLabels?: {
+                [key: string]: string;
+              };
+            };
+
+            /** namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod's namespace" */
             namespaces?: string[];
 
             /** This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. */
@@ -208,7 +267,27 @@ export type Alertmanager = {
             };
           };
 
-          /** namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means "this pod's namespace" */
+          /** A label query over the set of namespaces that the term applies to. The term is applied to the union of the namespaces selected by this field and the ones listed in the namespaces field. null selector and null or empty namespaces list means "this pod's namespace". An empty selector ({}) matches all namespaces. This field is beta-level and is only honored when PodAffinityNamespaceSelector feature is enabled. */
+          namespaceSelector?: {
+            /** matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+            matchExpressions?: {
+              /** key is the label key that the selector applies to. */
+              key: string;
+
+              /** operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. */
+              operator: string;
+
+              /** values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+              values?: string[];
+            }[];
+
+            /** matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+            matchLabels?: {
+              [key: string]: string;
+            };
+          };
+
+          /** namespaces specifies a static list of namespace names that the term applies to. The term is applied to the union of the namespaces listed in this field and the ones selected by namespaceSelector. null or empty namespaces list and null namespaceSelector means "this pod's namespace" */
           namespaces?: string[];
 
           /** This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed. */
@@ -280,10 +359,10 @@ export type Alertmanager = {
 
     /** Containers allows injecting additional containers. This is meant to allow adding an authentication proxy to an Alertmanager pod. Containers described here modify an operator generated container if they share the same name and modifications are done via a strategic merge patch. The current container names are: `alertmanager` and `config-reloader`. Overriding containers is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice. */
     containers?: {
-      /** Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https:kubernetes.iodocstasksinject-data-applicationdefine-command-argument-container#running-a-command-in-a-shell */
+      /** Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https:kubernetes.iodocstasksinject-data-applicationdefine-command-argument-container#running-a-command-in-a-shell */
       args?: string[];
 
-      /** Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https:kubernetes.iodocstasksinject-data-applicationdefine-command-argument-container#running-a-command-in-a-shell */
+      /** Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https:kubernetes.iodocstasksinject-data-applicationdefine-command-argument-container#running-a-command-in-a-shell */
       command?: string[];
 
       /** List of environment variables to set in the container. Cannot be updated. */
@@ -291,7 +370,7 @@ export type Alertmanager = {
         /** Name of the environment variable. Must be a C_IDENTIFIER. */
         name: string;
 
-        /** Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "". */
+        /** Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "". */
         value?: string;
 
         /** Source for the environment variable's value. Cannot be used if value is not empty. */
@@ -308,7 +387,7 @@ export type Alertmanager = {
             optional?: boolean;
           };
 
-          /** Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. */
+          /** Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. */
           fieldRef?: {
             /** Version of the schema the FieldPath is written in terms of, defaults to "v1". */
             apiVersion?: string;
@@ -323,7 +402,7 @@ export type Alertmanager = {
             containerName?: string;
 
             /** Specifies the output format of the exposed resources, defaults to "1" */
-            divisor?: string;
+            divisor?: number | string;
 
             /** Required: resource to select */
             resource: string;
@@ -377,7 +456,7 @@ export type Alertmanager = {
       lifecycle?: {
         /** PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https:kubernetes.iodocsconceptscontainerscontainer-lifecycle-hooks#container-hooks */
         postStart?: {
-          /** One and only one of the following should be specified. Exec specifies the action to take. */
+          /** Exec specifies the action to take. */
           exec?: {
             /** Command is the command line to execute inside the container, the working directory for the command  is root ('') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as livehealthy and non-zero is unhealthy. */
             command?: string[];
@@ -407,7 +486,7 @@ export type Alertmanager = {
             scheme?: string;
           };
 
-          /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
+          /** Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. */
           tcpSocket?: {
             /** Optional: Host name to connect to, defaults to the pod IP. */
             host?: string;
@@ -417,9 +496,9 @@ export type Alertmanager = {
           };
         };
 
-        /** PreStop is called immediately before a container is terminated due to an API request or management event such as livenessstartup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The reason for termination is passed to the handler. The Pod's termination grace period countdown begins before the PreStop hooked is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period. Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https:kubernetes.iodocsconceptscontainerscontainer-lifecycle-hooks#container-hooks */
+        /** PreStop is called immediately before a container is terminated due to an API request or management event such as livenessstartup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https:kubernetes.iodocsconceptscontainerscontainer-lifecycle-hooks#container-hooks */
         preStop?: {
-          /** One and only one of the following should be specified. Exec specifies the action to take. */
+          /** Exec specifies the action to take. */
           exec?: {
             /** Command is the command line to execute inside the container, the working directory for the command  is root ('') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as livehealthy and non-zero is unhealthy. */
             command?: string[];
@@ -449,7 +528,7 @@ export type Alertmanager = {
             scheme?: string;
           };
 
-          /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
+          /** Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. */
           tcpSocket?: {
             /** Optional: Host name to connect to, defaults to the pod IP. */
             host?: string;
@@ -462,7 +541,7 @@ export type Alertmanager = {
 
       /** Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#container-probes */
       livenessProbe?: {
-        /** One and only one of the following should be specified. Exec specifies the action to take. */
+        /** Exec specifies the action to take. */
         exec?: {
           /** Command is the command line to execute inside the container, the working directory for the command  is root ('') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as livehealthy and non-zero is unhealthy. */
           command?: string[];
@@ -470,6 +549,16 @@ export type Alertmanager = {
 
         /** Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1. */
         failureThreshold?: number;
+
+        /** GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate. */
+        grpc?: {
+          /** Port number of the gRPC service. Number must be in the range 1 to 65535. */
+          port: number;
+
+          /** Service is the name of the service to place in the gRPC HealthCheckRequest (see https:github.comgrpcgrpcblobmasterdochealth-checking.md).
+ If this is not specified, the default behavior is defined by gRPC. */
+          service?: string;
+        };
 
         /** HTTPGet specifies the http request to perform. */
         httpGet?: {
@@ -504,7 +593,7 @@ export type Alertmanager = {
         /** Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1. */
         successThreshold?: number;
 
-        /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
+        /** TCPSocket specifies an action involving a TCP port. */
         tcpSocket?: {
           /** Optional: Host name to connect to, defaults to the pod IP. */
           host?: string;
@@ -512,6 +601,9 @@ export type Alertmanager = {
           /** Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
           port: number | string;
         };
+
+        /** Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset. */
+        terminationGracePeriodSeconds?: number;
 
         /** Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#container-probes */
         timeoutSeconds?: number;
@@ -540,7 +632,7 @@ export type Alertmanager = {
 
       /** Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#container-probes */
       readinessProbe?: {
-        /** One and only one of the following should be specified. Exec specifies the action to take. */
+        /** Exec specifies the action to take. */
         exec?: {
           /** Command is the command line to execute inside the container, the working directory for the command  is root ('') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as livehealthy and non-zero is unhealthy. */
           command?: string[];
@@ -548,6 +640,16 @@ export type Alertmanager = {
 
         /** Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1. */
         failureThreshold?: number;
+
+        /** GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate. */
+        grpc?: {
+          /** Port number of the gRPC service. Number must be in the range 1 to 65535. */
+          port: number;
+
+          /** Service is the name of the service to place in the gRPC HealthCheckRequest (see https:github.comgrpcgrpcblobmasterdochealth-checking.md).
+ If this is not specified, the default behavior is defined by gRPC. */
+          service?: string;
+        };
 
         /** HTTPGet specifies the http request to perform. */
         httpGet?: {
@@ -582,7 +684,7 @@ export type Alertmanager = {
         /** Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1. */
         successThreshold?: number;
 
-        /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
+        /** TCPSocket specifies an action involving a TCP port. */
         tcpSocket?: {
           /** Optional: Host name to connect to, defaults to the pod IP. */
           host?: string;
@@ -591,29 +693,32 @@ export type Alertmanager = {
           port: number | string;
         };
 
+        /** Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset. */
+        terminationGracePeriodSeconds?: number;
+
         /** Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#container-probes */
         timeoutSeconds?: number;
       };
 
-      /** Compute Resources required by this container. Cannot be updated. More info: https:kubernetes.iodocsconceptsconfigurationmanage-compute-resources-container */
+      /** Compute Resources required by this container. Cannot be updated. More info: https:kubernetes.iodocsconceptsconfigurationmanage-resources-containers */
       resources?: {
-        /** Limits describes the maximum amount of compute resources allowed. More info: https:kubernetes.iodocsconceptsconfigurationmanage-compute-resources-container */
+        /** Limits describes the maximum amount of compute resources allowed. More info: https:kubernetes.iodocsconceptsconfigurationmanage-resources-containers */
         limits?: {
-          [key: string]: string;
+          [key: string]: number | string;
         };
 
-        /** Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https:kubernetes.iodocsconceptsconfigurationmanage-compute-resources-container */
+        /** Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https:kubernetes.iodocsconceptsconfigurationmanage-resources-containers */
         requests?: {
-          [key: string]: string;
+          [key: string]: number | string;
         };
       };
 
-      /** Security options the pod should run with. More info: https:kubernetes.iodocsconceptspolicysecurity-context More info: https:kubernetes.iodocstasksconfigure-pod-containersecurity-context */
+      /** SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https:kubernetes.iodocstasksconfigure-pod-containersecurity-context */
       securityContext?: {
-        /** AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN */
+        /** AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows. */
         allowPrivilegeEscalation?: boolean;
 
-        /** The capabilities to adddrop when running containers. Defaults to the default set of capabilities granted by the container runtime. */
+        /** The capabilities to adddrop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows. */
         capabilities?: {
           /** Added capabilities */
           add?: string[];
@@ -622,25 +727,25 @@ export type Alertmanager = {
           drop?: string[];
         };
 
-        /** Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. */
+        /** Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows. */
         privileged?: boolean;
 
-        /** procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. */
+        /** procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows. */
         procMount?: string;
 
-        /** Whether this container has a read-only root filesystem. Default is false. */
+        /** Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows. */
         readOnlyRootFilesystem?: boolean;
 
-        /** The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. */
+        /** The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. */
         runAsGroup?: number;
 
         /** Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. */
         runAsNonRoot?: boolean;
 
-        /** The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. */
+        /** The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. */
         runAsUser?: number;
 
-        /** The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. */
+        /** The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. */
         seLinuxOptions?: {
           /** Level is SELinux level label that applies to the container. */
           level?: string;
@@ -655,7 +760,17 @@ export type Alertmanager = {
           user?: string;
         };
 
-        /** The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. */
+        /** The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows. */
+        seccompProfile?: {
+          /** localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is "Localhost". */
+          localhostProfile?: string;
+
+          /** type indicates which kind of seccomp profile will be applied. Valid options are:
+ Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied. */
+          type: string;
+        };
+
+        /** The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. */
         windowsOptions?: {
           /** GMSACredentialSpec is where the GMSA admission webhook (https:github.comkubernetes-sigswindows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field. */
           gmsaCredentialSpec?: string;
@@ -663,14 +778,17 @@ export type Alertmanager = {
           /** GMSACredentialSpecName is the name of the GMSA credential spec to use. */
           gmsaCredentialSpecName?: string;
 
+          /** HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true. */
+          hostProcess?: boolean;
+
           /** The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. */
           runAsUserName?: string;
         };
       };
 
-      /** StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. This is a beta feature enabled by the StartupProbe feature flag. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#container-probes */
+      /** StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#container-probes */
       startupProbe?: {
-        /** One and only one of the following should be specified. Exec specifies the action to take. */
+        /** Exec specifies the action to take. */
         exec?: {
           /** Command is the command line to execute inside the container, the working directory for the command  is root ('') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as livehealthy and non-zero is unhealthy. */
           command?: string[];
@@ -678,6 +796,16 @@ export type Alertmanager = {
 
         /** Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1. */
         failureThreshold?: number;
+
+        /** GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate. */
+        grpc?: {
+          /** Port number of the gRPC service. Number must be in the range 1 to 65535. */
+          port: number;
+
+          /** Service is the name of the service to place in the gRPC HealthCheckRequest (see https:github.comgrpcgrpcblobmasterdochealth-checking.md).
+ If this is not specified, the default behavior is defined by gRPC. */
+          service?: string;
+        };
 
         /** HTTPGet specifies the http request to perform. */
         httpGet?: {
@@ -712,7 +840,7 @@ export type Alertmanager = {
         /** Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1. */
         successThreshold?: number;
 
-        /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
+        /** TCPSocket specifies an action involving a TCP port. */
         tcpSocket?: {
           /** Optional: Host name to connect to, defaults to the pod IP. */
           host?: string;
@@ -720,6 +848,9 @@ export type Alertmanager = {
           /** Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
           port: number | string;
         };
+
+        /** Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset. */
+        terminationGracePeriodSeconds?: number;
 
         /** Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#container-probes */
         timeoutSeconds?: number;
@@ -791,10 +922,10 @@ export type Alertmanager = {
 
     /** InitContainers allows adding initContainers to the pod definition. Those can be used to e.g. fetch secrets for injection into the Alertmanager configuration from external sources. Any errors during the execution of an initContainer will lead to a restart of the Pod. More info: https:kubernetes.iodocsconceptsworkloadspodsinit-containers Using initContainers for any use case other then secret fetching is entirely outside the scope of what the maintainers will support and by doing so, you accept that this behaviour may break at any time without notice. */
     initContainers?: {
-      /** Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https:kubernetes.iodocstasksinject-data-applicationdefine-command-argument-container#running-a-command-in-a-shell */
+      /** Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https:kubernetes.iodocstasksinject-data-applicationdefine-command-argument-container#running-a-command-in-a-shell */
       args?: string[];
 
-      /** Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https:kubernetes.iodocstasksinject-data-applicationdefine-command-argument-container#running-a-command-in-a-shell */
+      /** Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https:kubernetes.iodocstasksinject-data-applicationdefine-command-argument-container#running-a-command-in-a-shell */
       command?: string[];
 
       /** List of environment variables to set in the container. Cannot be updated. */
@@ -802,7 +933,7 @@ export type Alertmanager = {
         /** Name of the environment variable. Must be a C_IDENTIFIER. */
         name: string;
 
-        /** Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "". */
+        /** Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "". */
         value?: string;
 
         /** Source for the environment variable's value. Cannot be used if value is not empty. */
@@ -819,7 +950,7 @@ export type Alertmanager = {
             optional?: boolean;
           };
 
-          /** Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. */
+          /** Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. */
           fieldRef?: {
             /** Version of the schema the FieldPath is written in terms of, defaults to "v1". */
             apiVersion?: string;
@@ -834,7 +965,7 @@ export type Alertmanager = {
             containerName?: string;
 
             /** Specifies the output format of the exposed resources, defaults to "1" */
-            divisor?: string;
+            divisor?: number | string;
 
             /** Required: resource to select */
             resource: string;
@@ -888,7 +1019,7 @@ export type Alertmanager = {
       lifecycle?: {
         /** PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https:kubernetes.iodocsconceptscontainerscontainer-lifecycle-hooks#container-hooks */
         postStart?: {
-          /** One and only one of the following should be specified. Exec specifies the action to take. */
+          /** Exec specifies the action to take. */
           exec?: {
             /** Command is the command line to execute inside the container, the working directory for the command  is root ('') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as livehealthy and non-zero is unhealthy. */
             command?: string[];
@@ -918,7 +1049,7 @@ export type Alertmanager = {
             scheme?: string;
           };
 
-          /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
+          /** Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. */
           tcpSocket?: {
             /** Optional: Host name to connect to, defaults to the pod IP. */
             host?: string;
@@ -928,9 +1059,9 @@ export type Alertmanager = {
           };
         };
 
-        /** PreStop is called immediately before a container is terminated due to an API request or management event such as livenessstartup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The reason for termination is passed to the handler. The Pod's termination grace period countdown begins before the PreStop hooked is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period. Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https:kubernetes.iodocsconceptscontainerscontainer-lifecycle-hooks#container-hooks */
+        /** PreStop is called immediately before a container is terminated due to an API request or management event such as livenessstartup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The Pod's termination grace period countdown begins before the PreStop hook is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period (unless delayed by finalizers). Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https:kubernetes.iodocsconceptscontainerscontainer-lifecycle-hooks#container-hooks */
         preStop?: {
-          /** One and only one of the following should be specified. Exec specifies the action to take. */
+          /** Exec specifies the action to take. */
           exec?: {
             /** Command is the command line to execute inside the container, the working directory for the command  is root ('') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as livehealthy and non-zero is unhealthy. */
             command?: string[];
@@ -960,7 +1091,7 @@ export type Alertmanager = {
             scheme?: string;
           };
 
-          /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
+          /** Deprecated. TCPSocket is NOT supported as a LifecycleHandler and kept for the backward compatibility. There are no validation of this field and lifecycle hooks will fail in runtime when tcp handler is specified. */
           tcpSocket?: {
             /** Optional: Host name to connect to, defaults to the pod IP. */
             host?: string;
@@ -973,7 +1104,7 @@ export type Alertmanager = {
 
       /** Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#container-probes */
       livenessProbe?: {
-        /** One and only one of the following should be specified. Exec specifies the action to take. */
+        /** Exec specifies the action to take. */
         exec?: {
           /** Command is the command line to execute inside the container, the working directory for the command  is root ('') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as livehealthy and non-zero is unhealthy. */
           command?: string[];
@@ -981,6 +1112,16 @@ export type Alertmanager = {
 
         /** Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1. */
         failureThreshold?: number;
+
+        /** GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate. */
+        grpc?: {
+          /** Port number of the gRPC service. Number must be in the range 1 to 65535. */
+          port: number;
+
+          /** Service is the name of the service to place in the gRPC HealthCheckRequest (see https:github.comgrpcgrpcblobmasterdochealth-checking.md).
+ If this is not specified, the default behavior is defined by gRPC. */
+          service?: string;
+        };
 
         /** HTTPGet specifies the http request to perform. */
         httpGet?: {
@@ -1015,7 +1156,7 @@ export type Alertmanager = {
         /** Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1. */
         successThreshold?: number;
 
-        /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
+        /** TCPSocket specifies an action involving a TCP port. */
         tcpSocket?: {
           /** Optional: Host name to connect to, defaults to the pod IP. */
           host?: string;
@@ -1023,6 +1164,9 @@ export type Alertmanager = {
           /** Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
           port: number | string;
         };
+
+        /** Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset. */
+        terminationGracePeriodSeconds?: number;
 
         /** Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#container-probes */
         timeoutSeconds?: number;
@@ -1051,7 +1195,7 @@ export type Alertmanager = {
 
       /** Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#container-probes */
       readinessProbe?: {
-        /** One and only one of the following should be specified. Exec specifies the action to take. */
+        /** Exec specifies the action to take. */
         exec?: {
           /** Command is the command line to execute inside the container, the working directory for the command  is root ('') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as livehealthy and non-zero is unhealthy. */
           command?: string[];
@@ -1059,6 +1203,16 @@ export type Alertmanager = {
 
         /** Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1. */
         failureThreshold?: number;
+
+        /** GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate. */
+        grpc?: {
+          /** Port number of the gRPC service. Number must be in the range 1 to 65535. */
+          port: number;
+
+          /** Service is the name of the service to place in the gRPC HealthCheckRequest (see https:github.comgrpcgrpcblobmasterdochealth-checking.md).
+ If this is not specified, the default behavior is defined by gRPC. */
+          service?: string;
+        };
 
         /** HTTPGet specifies the http request to perform. */
         httpGet?: {
@@ -1093,7 +1247,7 @@ export type Alertmanager = {
         /** Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1. */
         successThreshold?: number;
 
-        /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
+        /** TCPSocket specifies an action involving a TCP port. */
         tcpSocket?: {
           /** Optional: Host name to connect to, defaults to the pod IP. */
           host?: string;
@@ -1102,29 +1256,32 @@ export type Alertmanager = {
           port: number | string;
         };
 
+        /** Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset. */
+        terminationGracePeriodSeconds?: number;
+
         /** Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#container-probes */
         timeoutSeconds?: number;
       };
 
-      /** Compute Resources required by this container. Cannot be updated. More info: https:kubernetes.iodocsconceptsconfigurationmanage-compute-resources-container */
+      /** Compute Resources required by this container. Cannot be updated. More info: https:kubernetes.iodocsconceptsconfigurationmanage-resources-containers */
       resources?: {
-        /** Limits describes the maximum amount of compute resources allowed. More info: https:kubernetes.iodocsconceptsconfigurationmanage-compute-resources-container */
+        /** Limits describes the maximum amount of compute resources allowed. More info: https:kubernetes.iodocsconceptsconfigurationmanage-resources-containers */
         limits?: {
-          [key: string]: string;
+          [key: string]: number | string;
         };
 
-        /** Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https:kubernetes.iodocsconceptsconfigurationmanage-compute-resources-container */
+        /** Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https:kubernetes.iodocsconceptsconfigurationmanage-resources-containers */
         requests?: {
-          [key: string]: string;
+          [key: string]: number | string;
         };
       };
 
-      /** Security options the pod should run with. More info: https:kubernetes.iodocsconceptspolicysecurity-context More info: https:kubernetes.iodocstasksconfigure-pod-containersecurity-context */
+      /** SecurityContext defines the security options the container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext. More info: https:kubernetes.iodocstasksconfigure-pod-containersecurity-context */
       securityContext?: {
-        /** AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN */
+        /** AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows. */
         allowPrivilegeEscalation?: boolean;
 
-        /** The capabilities to adddrop when running containers. Defaults to the default set of capabilities granted by the container runtime. */
+        /** The capabilities to adddrop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows. */
         capabilities?: {
           /** Added capabilities */
           add?: string[];
@@ -1133,25 +1290,25 @@ export type Alertmanager = {
           drop?: string[];
         };
 
-        /** Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. */
+        /** Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false. Note that this field cannot be set when spec.os.name is windows. */
         privileged?: boolean;
 
-        /** procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. */
+        /** procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled. Note that this field cannot be set when spec.os.name is windows. */
         procMount?: string;
 
-        /** Whether this container has a read-only root filesystem. Default is false. */
+        /** Whether this container has a read-only root filesystem. Default is false. Note that this field cannot be set when spec.os.name is windows. */
         readOnlyRootFilesystem?: boolean;
 
-        /** The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. */
+        /** The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. */
         runAsGroup?: number;
 
         /** Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. */
         runAsNonRoot?: boolean;
 
-        /** The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. */
+        /** The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. */
         runAsUser?: number;
 
-        /** The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. */
+        /** The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is windows. */
         seLinuxOptions?: {
           /** Level is SELinux level label that applies to the container. */
           level?: string;
@@ -1166,7 +1323,17 @@ export type Alertmanager = {
           user?: string;
         };
 
-        /** The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. */
+        /** The seccomp options to use by this container. If seccomp options are provided at both the pod & container level, the container options override the pod options. Note that this field cannot be set when spec.os.name is windows. */
+        seccompProfile?: {
+          /** localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is "Localhost". */
+          localhostProfile?: string;
+
+          /** type indicates which kind of seccomp profile will be applied. Valid options are:
+ Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied. */
+          type: string;
+        };
+
+        /** The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. */
         windowsOptions?: {
           /** GMSACredentialSpec is where the GMSA admission webhook (https:github.comkubernetes-sigswindows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field. */
           gmsaCredentialSpec?: string;
@@ -1174,14 +1341,17 @@ export type Alertmanager = {
           /** GMSACredentialSpecName is the name of the GMSA credential spec to use. */
           gmsaCredentialSpecName?: string;
 
+          /** HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true. */
+          hostProcess?: boolean;
+
           /** The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. */
           runAsUserName?: string;
         };
       };
 
-      /** StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. This is a beta feature enabled by the StartupProbe feature flag. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#container-probes */
+      /** StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#container-probes */
       startupProbe?: {
-        /** One and only one of the following should be specified. Exec specifies the action to take. */
+        /** Exec specifies the action to take. */
         exec?: {
           /** Command is the command line to execute inside the container, the working directory for the command  is root ('') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as livehealthy and non-zero is unhealthy. */
           command?: string[];
@@ -1189,6 +1359,16 @@ export type Alertmanager = {
 
         /** Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1. */
         failureThreshold?: number;
+
+        /** GRPC specifies an action involving a GRPC port. This is an alpha field and requires enabling GRPCContainerProbe feature gate. */
+        grpc?: {
+          /** Port number of the gRPC service. Number must be in the range 1 to 65535. */
+          port: number;
+
+          /** Service is the name of the service to place in the gRPC HealthCheckRequest (see https:github.comgrpcgrpcblobmasterdochealth-checking.md).
+ If this is not specified, the default behavior is defined by gRPC. */
+          service?: string;
+        };
 
         /** HTTPGet specifies the http request to perform. */
         httpGet?: {
@@ -1223,7 +1403,7 @@ export type Alertmanager = {
         /** Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1. */
         successThreshold?: number;
 
-        /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported TODO: implement a realistic TCP lifecycle hook */
+        /** TCPSocket specifies an action involving a TCP port. */
         tcpSocket?: {
           /** Optional: Host name to connect to, defaults to the pod IP. */
           host?: string;
@@ -1231,6 +1411,9 @@ export type Alertmanager = {
           /** Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
           port: number | string;
         };
+
+        /** Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset. */
+        terminationGracePeriodSeconds?: number;
 
         /** Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https:kubernetes.iodocsconceptsworkloadspodspod-lifecycle#container-probes */
         timeoutSeconds?: number;
@@ -1294,6 +1477,9 @@ export type Alertmanager = {
     /** Log level for Alertmanager to be configured with. */
     logLevel?: string;
 
+    /** Minimum number of seconds for which a newly created pod should be ready without any of its container crashing for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready) This is an alpha field and requires enabling StatefulSetMinReadySeconds feature gate. */
+    minReadySeconds?: number;
+
     /** Define which Nodes the Pods are scheduled on. */
     nodeSelector?: {
       [key: string]: string;
@@ -1329,14 +1515,14 @@ export type Alertmanager = {
 
     /** Define resources requests and limits for single Pods. */
     resources?: {
-      /** Limits describes the maximum amount of compute resources allowed. More info: https:kubernetes.iodocsconceptsconfigurationmanage-compute-resources-container */
+      /** Limits describes the maximum amount of compute resources allowed. More info: https:kubernetes.iodocsconceptsconfigurationmanage-resources-containers */
       limits?: {
-        [key: string]: string;
+        [key: string]: number | string;
       };
 
-      /** Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https:kubernetes.iodocsconceptsconfigurationmanage-compute-resources-container */
+      /** Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https:kubernetes.iodocsconceptsconfigurationmanage-resources-containers */
       requests?: {
-        [key: string]: string;
+        [key: string]: number | string;
       };
     };
 
@@ -1351,24 +1537,24 @@ export type Alertmanager = {
 
     /** SecurityContext holds pod-level security attributes and common container settings. This defaults to the default PodSecurityContext. */
     securityContext?: {
-      /** A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod: 
- 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw---- 
- If unset, the Kubelet will not modify the ownership and permissions of any volume. */
+      /** A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:
+ 1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----
+ If unset, the Kubelet will not modify the ownership and permissions of any volume. Note that this field cannot be set when spec.os.name is windows. */
       fsGroup?: number;
 
-      /** fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are "OnRootMismatch" and "Always". If not specified defaults to "Always". */
+      /** fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are "OnRootMismatch" and "Always". If not specified, "Always" is used. Note that this field cannot be set when spec.os.name is windows. */
       fsGroupChangePolicy?: string;
 
-      /** The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. */
+      /** The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows. */
       runAsGroup?: number;
 
       /** Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. */
       runAsNonRoot?: boolean;
 
-      /** The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. */
+      /** The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows. */
       runAsUser?: number;
 
-      /** The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. */
+      /** The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container. Note that this field cannot be set when spec.os.name is windows. */
       seLinuxOptions?: {
         /** Level is SELinux level label that applies to the container. */
         level?: string;
@@ -1383,10 +1569,20 @@ export type Alertmanager = {
         user?: string;
       };
 
-      /** A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container. */
+      /** The seccomp options to use by the containers in this pod. Note that this field cannot be set when spec.os.name is windows. */
+      seccompProfile?: {
+        /** localhostProfile indicates a profile defined in a file on the node should be used. The profile must be preconfigured on the node to work. Must be a descending path, relative to the kubelet's configured seccomp profile location. Must only be set if type is "Localhost". */
+        localhostProfile?: string;
+
+        /** type indicates which kind of seccomp profile will be applied. Valid options are:
+ Localhost - a profile defined in a file on the node should be used. RuntimeDefault - the container runtime default profile should be used. Unconfined - no profile should be applied. */
+        type: string;
+      };
+
+      /** A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container. Note that this field cannot be set when spec.os.name is windows. */
       supplementalGroups?: number[];
 
-      /** Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. */
+      /** Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch. Note that this field cannot be set when spec.os.name is windows. */
       sysctls?: {
         /** Name of a property to set */
         name: string;
@@ -1395,13 +1591,16 @@ export type Alertmanager = {
         value: string;
       }[];
 
-      /** The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. */
+      /** The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. Note that this field cannot be set when spec.os.name is linux. */
       windowsOptions?: {
         /** GMSACredentialSpec is where the GMSA admission webhook (https:github.comkubernetes-sigswindows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field. */
         gmsaCredentialSpec?: string;
 
         /** GMSACredentialSpecName is the name of the GMSA credential spec to use. */
         gmsaCredentialSpecName?: string;
+
+        /** HostProcess determines if a container should be run as a 'Host Process' container. This field is alpha-level and will only be honored by components that enable the WindowsHostProcessContainers feature flag. Setting this field without the feature flag will result in errors when validating the Pod. All of a Pod's containers must have the same effective HostProcess value (it is not allowed to have a mix of HostProcess containers and non-HostProcess containers).  In addition, if HostProcess is true then HostNetwork must also be set to true. */
+        hostProcess?: boolean;
 
         /** The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. */
         runAsUserName?: string;
@@ -1425,7 +1624,91 @@ export type Alertmanager = {
         medium?: string;
 
         /** Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http:kubernetes.iodocsuser-guidevolumes#emptydir */
-        sizeLimit?: string;
+        sizeLimit?: number | string;
+      };
+
+      /** EphemeralVolumeSource to be used by the Prometheus StatefulSets. This is a beta field in k8s 1.21, for lower versions, starting with k8s 1.19, it requires enabling the GenericEphemeralVolume feature gate. More info: https:kubernetes.iodocsconceptsstorageephemeral-volumes#generic-ephemeral-volumes */
+      ephemeral?: {
+        /** Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod.  The name of the PVC will be `<pod name>-<volume name>` where `<volume name>` is the name from the `PodSpec.Volumes` array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long).
+ An existing PVC with that name that is not owned by the pod will *not* be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster.
+ This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created.
+ Required, must not be nil. */
+        volumeClaimTemplate?: {
+          /** May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation. */
+          metadata?: {};
+
+          /** The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template. The same fields as in a PersistentVolumeClaim are also valid here. */
+          spec: {
+            /** AccessModes contains the desired access modes the volume should have. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#access-modes-1 */
+            accessModes?: string[];
+
+            /** This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.ioVolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field. */
+            dataSource?: {
+              /** APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required. */
+              apiGroup?: string;
+
+              /** Kind is the type of resource being referenced */
+              kind: string;
+
+              /** Name is the name of resource being referenced */
+              name: string;
+            };
+
+            /** Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Alpha) Using this field requires the AnyVolumeDataSource feature gate to be enabled. */
+            dataSourceRef?: {
+              /** APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required. */
+              apiGroup?: string;
+
+              /** Kind is the type of resource being referenced */
+              kind: string;
+
+              /** Name is the name of resource being referenced */
+              name: string;
+            };
+
+            /** Resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#resources */
+            resources?: {
+              /** Limits describes the maximum amount of compute resources allowed. More info: https:kubernetes.iodocsconceptsconfigurationmanage-resources-containers */
+              limits?: {
+                [key: string]: number | string;
+              };
+
+              /** Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https:kubernetes.iodocsconceptsconfigurationmanage-resources-containers */
+              requests?: {
+                [key: string]: number | string;
+              };
+            };
+
+            /** A label query over volumes to consider for binding. */
+            selector?: {
+              /** matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+              matchExpressions?: {
+                /** key is the label key that the selector applies to. */
+                key: string;
+
+                /** operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. */
+                operator: string;
+
+                /** values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+                values?: string[];
+              }[];
+
+              /** matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+              matchLabels?: {
+                [key: string]: string;
+              };
+            };
+
+            /** Name of the StorageClass required by the claim. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#class-1 */
+            storageClassName?: string;
+
+            /** volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec. */
+            volumeMode?: string;
+
+            /** VolumeName is the binding reference to the PersistentVolume backing this claim. */
+            volumeName?: string;
+          };
+        };
       };
 
       /** A PVC spec to be used by the Prometheus StatefulSets. */
@@ -1457,7 +1740,7 @@ export type Alertmanager = {
           /** AccessModes contains the desired access modes the volume should have. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#access-modes-1 */
           accessModes?: string[];
 
-          /** This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.ioVolumeSnapshot - Beta) * An existing PVC (PersistentVolumeClaim) * An existing custom resourceobject that implements data population (Alpha) In order to use VolumeSnapshot object types, the appropriate feature gate must be enabled (VolumeSnapshotDataSource or AnyVolumeDataSource) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the specified data source is not supported, the volume will not be created and the failure will be reported as an event. In the future, we plan to support more data source types and the behavior of the provisioner may change. */
+          /** This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.ioVolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field. */
           dataSource?: {
             /** APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required. */
             apiGroup?: string;
@@ -1469,16 +1752,28 @@ export type Alertmanager = {
             name: string;
           };
 
-          /** Resources represents the minimum resources the volume should have. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#resources */
+          /** Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Alpha) Using this field requires the AnyVolumeDataSource feature gate to be enabled. */
+          dataSourceRef?: {
+            /** APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required. */
+            apiGroup?: string;
+
+            /** Kind is the type of resource being referenced */
+            kind: string;
+
+            /** Name is the name of resource being referenced */
+            name: string;
+          };
+
+          /** Resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#resources */
           resources?: {
-            /** Limits describes the maximum amount of compute resources allowed. More info: https:kubernetes.iodocsconceptsconfigurationmanage-compute-resources-container */
+            /** Limits describes the maximum amount of compute resources allowed. More info: https:kubernetes.iodocsconceptsconfigurationmanage-resources-containers */
             limits?: {
-              [key: string]: string;
+              [key: string]: number | string;
             };
 
-            /** Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https:kubernetes.iodocsconceptsconfigurationmanage-compute-resources-container */
+            /** Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https:kubernetes.iodocsconceptsconfigurationmanage-resources-containers */
             requests?: {
-              [key: string]: string;
+              [key: string]: number | string;
             };
           };
 
@@ -1517,9 +1812,14 @@ export type Alertmanager = {
           /** AccessModes contains the actual access modes the volume backing the PVC has. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#access-modes-1 */
           accessModes?: string[];
 
+          /** The storage resource within AllocatedResources tracks the capacity allocated to a PVC. It may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature. */
+          allocatedResources?: {
+            [key: string]: number | string;
+          };
+
           /** Represents the actual resources of the underlying volume. */
           capacity?: {
-            [key: string]: string;
+            [key: string]: number | string;
           };
 
           /** Current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'. */
@@ -1544,6 +1844,9 @@ export type Alertmanager = {
 
           /** Phase represents the current phase of PersistentVolumeClaim. */
           phase?: string;
+
+          /** ResizeStatus stores status of resize operation. ResizeStatus is not set by default but when expansion is complete resizeStatus is set to empty string by resize controller or kubelet. This is an alpha field and requires enabling RecoverVolumeExpansionFailure feature. */
+          resizeStatus?: string;
         };
       };
     };
@@ -1591,13 +1894,13 @@ export type Alertmanager = {
         };
       };
 
-      /** MaxSkew describes the degree to which pods may be unevenly distributed. It's the maximum permitted difference between the number of matching pods in any two topology domains of a given topology type. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 110: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 111; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. It's a required field. Default value is 1 and 0 is not allowed. */
+      /** MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 110: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 111; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed. */
       maxSkew: number;
 
       /** TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. It's a required field. */
       topologyKey: string;
 
-      /** WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it - ScheduleAnyway tells the scheduler to still schedule it It's considered as "Unsatisfiable" if and only if placing incoming pod on any topology violates "MaxSkew". For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 311: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 321(312) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field. */
+      /** WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location,   but giving higher precedence to topologies that would help reduce the   skew. A constraint is considered "Unsatisfiable" for an incoming pod if and only if every possible node assignment for that pod would violate "MaxSkew" on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 311: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 321(312) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field. */
       whenUnsatisfiable: string;
     }[];
 
@@ -1719,7 +2022,7 @@ export type Alertmanager = {
 
       /** ConfigMap represents a configMap that should populate this volume */
       configMap?: {
-        /** Optional: mode bits to use on created files by default. Must be a value between 0 and 0777. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
+        /** Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
         defaultMode?: number;
 
         /** If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. */
@@ -1727,7 +2030,7 @@ export type Alertmanager = {
           /** The key to project. */
           key: string;
 
-          /** Optional: mode bits to use on this file, must be a value between 0 and 0777. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
+          /** Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
           mode?: number;
 
           /** The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'. */
@@ -1741,7 +2044,7 @@ export type Alertmanager = {
         optional?: boolean;
       };
 
-      /** CSI (Container Storage Interface) represents storage that is handled by an external CSI driver (Alpha feature). */
+      /** CSI (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature). */
       csi?: {
         /** Driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster. */
         driver: string;
@@ -1766,7 +2069,7 @@ export type Alertmanager = {
 
       /** DownwardAPI represents downward API about the pod that should populate this volume */
       downwardAPI?: {
-        /** Optional: mode bits to use on created files by default. Must be a value between 0 and 0777. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
+        /** Optional: mode bits to use on created files by default. Must be a Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
         defaultMode?: number;
 
         /** Items is a list of downward API volume file */
@@ -1780,7 +2083,7 @@ export type Alertmanager = {
             fieldPath: string;
           };
 
-          /** Optional: mode bits to use on this file, must be a value between 0 and 0777. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
+          /** Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
           mode?: number;
 
           /** Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..' */
@@ -1792,7 +2095,7 @@ export type Alertmanager = {
             containerName?: string;
 
             /** Specifies the output format of the exposed resources, defaults to "1" */
-            divisor?: string;
+            divisor?: number | string;
 
             /** Required: resource to select */
             resource: string;
@@ -1806,7 +2109,95 @@ export type Alertmanager = {
         medium?: string;
 
         /** Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http:kubernetes.iodocsuser-guidevolumes#emptydir */
-        sizeLimit?: string;
+        sizeLimit?: number | string;
+      };
+
+      /** Ephemeral represents a volume that is handled by a cluster storage driver. The volume's lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed.
+ Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity    tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through    a PersistentVolumeClaim (see EphemeralVolumeSource for more    information on the connection between this volume type    and PersistentVolumeClaim).
+ Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod.
+ Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information.
+ A pod can use both types of ephemeral volumes and persistent volumes at the same time. */
+      ephemeral?: {
+        /** Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod.  The name of the PVC will be `<pod name>-<volume name>` where `<volume name>` is the name from the `PodSpec.Volumes` array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long).
+ An existing PVC with that name that is not owned by the pod will *not* be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster.
+ This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created.
+ Required, must not be nil. */
+        volumeClaimTemplate?: {
+          /** May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation. */
+          metadata?: {};
+
+          /** The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template. The same fields as in a PersistentVolumeClaim are also valid here. */
+          spec: {
+            /** AccessModes contains the desired access modes the volume should have. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#access-modes-1 */
+            accessModes?: string[];
+
+            /** This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.ioVolumeSnapshot) * An existing PVC (PersistentVolumeClaim) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the AnyVolumeDataSource feature gate is enabled, this field will always have the same contents as the DataSourceRef field. */
+            dataSource?: {
+              /** APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required. */
+              apiGroup?: string;
+
+              /** Kind is the type of resource being referenced */
+              kind: string;
+
+              /** Name is the name of resource being referenced */
+              name: string;
+            };
+
+            /** Specifies the object from which to populate the volume with data, if a non-empty volume is desired. This may be any local object from a non-empty API group (non core object) or a PersistentVolumeClaim object. When this field is specified, volume binding will only succeed if the type of the specified object matches some installed volume populator or dynamic provisioner. This field will replace the functionality of the DataSource field and as such if both fields are non-empty, they must have the same value. For backwards compatibility, both fields (DataSource and DataSourceRef) will be set to the same value automatically if one of them is empty and the other is non-empty. There are two important differences between DataSource and DataSourceRef: * While DataSource only allows two specific types of objects, DataSourceRef   allows any non-core object, as well as PersistentVolumeClaim objects. * While DataSource ignores disallowed values (dropping them), DataSourceRef   preserves all values, and generates an error if a disallowed value is   specified. (Alpha) Using this field requires the AnyVolumeDataSource feature gate to be enabled. */
+            dataSourceRef?: {
+              /** APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required. */
+              apiGroup?: string;
+
+              /** Kind is the type of resource being referenced */
+              kind: string;
+
+              /** Name is the name of resource being referenced */
+              name: string;
+            };
+
+            /** Resources represents the minimum resources the volume should have. If RecoverVolumeExpansionFailure feature is enabled users are allowed to specify resource requirements that are lower than previous value but must still be higher than capacity recorded in the status field of the claim. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#resources */
+            resources?: {
+              /** Limits describes the maximum amount of compute resources allowed. More info: https:kubernetes.iodocsconceptsconfigurationmanage-resources-containers */
+              limits?: {
+                [key: string]: number | string;
+              };
+
+              /** Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https:kubernetes.iodocsconceptsconfigurationmanage-resources-containers */
+              requests?: {
+                [key: string]: number | string;
+              };
+            };
+
+            /** A label query over volumes to consider for binding. */
+            selector?: {
+              /** matchExpressions is a list of label selector requirements. The requirements are ANDed. */
+              matchExpressions?: {
+                /** key is the label key that the selector applies to. */
+                key: string;
+
+                /** operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. */
+                operator: string;
+
+                /** values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. */
+                values?: string[];
+              }[];
+
+              /** matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. */
+              matchLabels?: {
+                [key: string]: string;
+              };
+            };
+
+            /** Name of the StorageClass required by the claim. More info: https:kubernetes.iodocsconceptsstoragepersistent-volumes#class-1 */
+            storageClassName?: string;
+
+            /** volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec. */
+            volumeMode?: string;
+
+            /** VolumeName is the binding reference to the PersistentVolume backing this claim. */
+            volumeName?: string;
+          };
+        };
       };
 
       /** FC represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod. */
@@ -1993,11 +2384,11 @@ export type Alertmanager = {
 
       /** Items for all in one resources secrets, configmaps, and downward API */
       projected?: {
-        /** Mode bits to use on created files by default. Must be a value between 0 and 0777. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
+        /** Mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
         defaultMode?: number;
 
         /** list of volume projections */
-        sources: {
+        sources?: {
           /** information about the configMap data to project */
           configMap?: {
             /** If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. */
@@ -2005,7 +2396,7 @@ export type Alertmanager = {
               /** The key to project. */
               key: string;
 
-              /** Optional: mode bits to use on this file, must be a value between 0 and 0777. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
+              /** Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
               mode?: number;
 
               /** The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'. */
@@ -2032,7 +2423,7 @@ export type Alertmanager = {
                 fieldPath: string;
               };
 
-              /** Optional: mode bits to use on this file, must be a value between 0 and 0777. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
+              /** Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
               mode?: number;
 
               /** Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..' */
@@ -2044,7 +2435,7 @@ export type Alertmanager = {
                 containerName?: string;
 
                 /** Specifies the output format of the exposed resources, defaults to "1" */
-                divisor?: string;
+                divisor?: number | string;
 
                 /** Required: resource to select */
                 resource: string;
@@ -2059,7 +2450,7 @@ export type Alertmanager = {
               /** The key to project. */
               key: string;
 
-              /** Optional: mode bits to use on this file, must be a value between 0 and 0777. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
+              /** Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
               mode?: number;
 
               /** The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'. */
@@ -2176,7 +2567,7 @@ export type Alertmanager = {
 
       /** Secret represents a secret that should populate this volume. More info: https:kubernetes.iodocsconceptsstoragevolumes#secret */
       secret?: {
-        /** Optional: mode bits to use on created files by default. Must be a value between 0 and 0777. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
+        /** Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
         defaultMode?: number;
 
         /** If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'. */
@@ -2184,7 +2575,7 @@ export type Alertmanager = {
           /** The key to project. */
           key: string;
 
-          /** Optional: mode bits to use on this file, must be a value between 0 and 0777. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
+          /** Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. */
           mode?: number;
 
           /** The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'. */
@@ -2266,9 +2657,8 @@ export function createAlertmanager<
 
 /** ServiceMonitor defines monitoring for a set of services. */
 export type ServiceMonitor = {
-  apiVersion?: string;
-
-  kind?: string;
+  apiVersion: "monitoring.coreos.com/v1";
+  kind: "ServiceMonitor";
 
   metadata?: ObjectMeta;
 
@@ -2276,6 +2666,24 @@ export type ServiceMonitor = {
   spec: {
     /** A list of endpoints allowed as part of this ServiceMonitor. */
     endpoints: {
+      /** Authorization section for this endpoint */
+      authorization?: {
+        /** The secret's key that contains the credentials of the request */
+        credentials?: {
+          /** The key of the secret to select from.  Must be a valid secret key. */
+          key: string;
+
+          /** Name of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#names TODO: Add other useful fields. apiVersion, kind, uid? */
+          name?: string;
+
+          /** Specify whether the Secret or its key must be defined */
+          optional?: boolean;
+        };
+
+        /** Set the authentication type. Defaults to Bearer, Basic will cause an error */
+        type?: string;
+      };
+
       /** BasicAuth allow an endpoint to authenticate over basic authentication More info: https:prometheus.iodocsoperatingconfiguration#endpoints */
       basicAuth?: {
         /** The secret in the service monitor namespace that contains the password for authentication. */
@@ -2351,6 +2759,59 @@ export type ServiceMonitor = {
         targetLabel?: string;
       }[];
 
+      /** OAuth2 for the URL. Only valid in Prometheus versions 2.27.0 and newer. */
+      oauth2?: {
+        /** The secret or configmap containing the OAuth2 client id */
+        clientId: {
+          /** ConfigMap containing data to use for the targets. */
+          configMap?: {
+            /** The key to select. */
+            key: string;
+
+            /** Name of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#names TODO: Add other useful fields. apiVersion, kind, uid? */
+            name?: string;
+
+            /** Specify whether the ConfigMap or its key must be defined */
+            optional?: boolean;
+          };
+
+          /** Secret containing data to use for the targets. */
+          secret?: {
+            /** The key of the secret to select from.  Must be a valid secret key. */
+            key: string;
+
+            /** Name of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#names TODO: Add other useful fields. apiVersion, kind, uid? */
+            name?: string;
+
+            /** Specify whether the Secret or its key must be defined */
+            optional?: boolean;
+          };
+        };
+
+        /** The secret containing the OAuth2 client secret */
+        clientSecret: {
+          /** The key of the secret to select from.  Must be a valid secret key. */
+          key: string;
+
+          /** Name of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#names TODO: Add other useful fields. apiVersion, kind, uid? */
+          name?: string;
+
+          /** Specify whether the Secret or its key must be defined */
+          optional?: boolean;
+        };
+
+        /** Parameters to append to the token URL */
+        endpointParams?: {
+          [key: string]: string;
+        };
+
+        /** OAuth2 scopes used for the token request */
+        scopes?: string[];
+
+        /** The URL to fetch the token from */
+        tokenUrl: string;
+      };
+
       /** Optional HTTP URL parameters */
       params?: {
         [key: string]: string[];
@@ -2365,7 +2826,7 @@ export type ServiceMonitor = {
       /** ProxyURL eg http:proxyserver:2195 Directs scrapes to proxy through this endpoint. */
       proxyUrl?: string;
 
-      /** RelabelConfigs to apply to samples before scraping. More info: https:prometheus.iodocsprometheuslatestconfigurationconfiguration#relabel_config */
+      /** RelabelConfigs to apply to samples before scraping. Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields and replaces original scrape job name with __tmp_prometheus_job_name. More info: https:prometheus.iodocsprometheuslatestconfigurationconfiguration#relabel_config */
       relabelings?: {
         /** Action to perform based on regex matching. Default is 'replace' */
         action?: string;
@@ -2483,10 +2944,20 @@ export type ServiceMonitor = {
       };
     }[];
 
-    /** The label to use to retrieve the job name from. */
+    /** Chooses the label of the Kubernetes `Endpoints`. Its value will be used for the `job`-label's value of the created metrics.
+ Default & fallback value: the name of the respective Kubernetes `Endpoint`. */
     jobLabel?: string;
 
-    /** Selector to select which namespaces the Endpoints objects are discovered from. */
+    /** Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer. */
+    labelLimit?: number;
+
+    /** Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer. */
+    labelNameLengthLimit?: number;
+
+    /** Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer. */
+    labelValueLengthLimit?: number;
+
+    /** Selector to select which namespaces the Kubernetes Endpoints objects are discovered from. */
     namespaceSelector?: {
       /** Boolean describing whether all namespaces are selected in contrast to a list restricting them. */
       any?: boolean;
@@ -2495,7 +2966,7 @@ export type ServiceMonitor = {
       matchNames?: string[];
     };
 
-    /** PodTargetLabels transfers labels on the Kubernetes Pod onto the target. */
+    /** PodTargetLabels transfers labels on the Kubernetes `Pod` onto the created metrics. */
     podTargetLabels?: string[];
 
     /** SampleLimit defines per-scrape limit on number of scraped samples that will be accepted. */
@@ -2521,7 +2992,7 @@ export type ServiceMonitor = {
       };
     };
 
-    /** TargetLabels transfers labels on the Kubernetes Service onto the target. */
+    /** TargetLabels transfers labels from the Kubernetes `Service` onto the created metrics. All labels set in `selector.matchLabels` are automatically transferred. */
     targetLabels?: string[];
 
     /** TargetLimit defines a limit on the number of scraped targets that will be accepted. */
@@ -2540,9 +3011,8 @@ export function createServiceMonitor<
 
 /** PodMonitor defines monitoring for a set of pods. */
 export type PodMonitor = {
-  apiVersion?: string;
-
-  kind?: string;
+  apiVersion: "monitoring.coreos.com/v1";
+  kind: "PodMonitor";
 
   metadata?: ObjectMeta;
 
@@ -2550,6 +3020,15 @@ export type PodMonitor = {
   spec: {
     /** The label to use to retrieve the job name from. */
     jobLabel?: string;
+
+    /** Per-scrape limit on number of labels that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer. */
+    labelLimit?: number;
+
+    /** Per-scrape limit on length of labels name that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer. */
+    labelNameLengthLimit?: number;
+
+    /** Per-scrape limit on length of labels value that will be accepted for a sample. Only valid in Prometheus versions 2.27.0 and newer. */
+    labelValueLengthLimit?: number;
 
     /** Selector to select which namespaces the Endpoints objects are discovered from. */
     namespaceSelector?: {
@@ -2562,6 +3041,24 @@ export type PodMonitor = {
 
     /** A list of endpoints allowed as part of this PodMonitor. */
     podMetricsEndpoints: {
+      /** Authorization section for this endpoint */
+      authorization?: {
+        /** The secret's key that contains the credentials of the request */
+        credentials?: {
+          /** The key of the secret to select from.  Must be a valid secret key. */
+          key: string;
+
+          /** Name of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#names TODO: Add other useful fields. apiVersion, kind, uid? */
+          name?: string;
+
+          /** Specify whether the Secret or its key must be defined */
+          optional?: boolean;
+        };
+
+        /** Set the authentication type. Defaults to Bearer, Basic will cause an error */
+        type?: string;
+      };
+
       /** BasicAuth allow an endpoint to authenticate over basic authentication. More info: https:prometheus.iodocsoperatingconfiguration#endpoint */
       basicAuth?: {
         /** The secret in the service monitor namespace that contains the password for authentication. */
@@ -2634,6 +3131,59 @@ export type PodMonitor = {
         targetLabel?: string;
       }[];
 
+      /** OAuth2 for the URL. Only valid in Prometheus versions 2.27.0 and newer. */
+      oauth2?: {
+        /** The secret or configmap containing the OAuth2 client id */
+        clientId: {
+          /** ConfigMap containing data to use for the targets. */
+          configMap?: {
+            /** The key to select. */
+            key: string;
+
+            /** Name of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#names TODO: Add other useful fields. apiVersion, kind, uid? */
+            name?: string;
+
+            /** Specify whether the ConfigMap or its key must be defined */
+            optional?: boolean;
+          };
+
+          /** Secret containing data to use for the targets. */
+          secret?: {
+            /** The key of the secret to select from.  Must be a valid secret key. */
+            key: string;
+
+            /** Name of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#names TODO: Add other useful fields. apiVersion, kind, uid? */
+            name?: string;
+
+            /** Specify whether the Secret or its key must be defined */
+            optional?: boolean;
+          };
+        };
+
+        /** The secret containing the OAuth2 client secret */
+        clientSecret: {
+          /** The key of the secret to select from.  Must be a valid secret key. */
+          key: string;
+
+          /** Name of the referent. More info: https:kubernetes.iodocsconceptsoverviewworking-with-objectsnames#names TODO: Add other useful fields. apiVersion, kind, uid? */
+          name?: string;
+
+          /** Specify whether the Secret or its key must be defined */
+          optional?: boolean;
+        };
+
+        /** Parameters to append to the token URL */
+        endpointParams?: {
+          [key: string]: string;
+        };
+
+        /** OAuth2 scopes used for the token request */
+        scopes?: string[];
+
+        /** The URL to fetch the token from */
+        tokenUrl: string;
+      };
+
       /** Optional HTTP URL parameters */
       params?: {
         [key: string]: string[];
@@ -2648,7 +3198,7 @@ export type PodMonitor = {
       /** ProxyURL eg http:proxyserver:2195 Directs scrapes to proxy through this endpoint. */
       proxyUrl?: string;
 
-      /** RelabelConfigs to apply to samples before ingestion. More info: https:prometheus.iodocsprometheuslatestconfigurationconfiguration#relabel_config */
+      /** RelabelConfigs to apply to samples before scraping. Prometheus Operator automatically adds relabelings for a few standard Kubernetes fields and replaces original scrape job name with __tmp_prometheus_job_name. More info: https:prometheus.iodocsprometheuslatestconfigurationconfiguration#relabel_config */
       relabelings?: {
         /** Action to perform based on regex matching. Default is 'replace' */
         action?: string;

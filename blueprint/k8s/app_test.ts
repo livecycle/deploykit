@@ -1,10 +1,6 @@
 import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
 import { createKubeBlueprint } from "./app.ts";
-import {
-  addDeployment,
-  addService,
-  expose,
-} from "./operators/all.ts";
+import { addDeployment, addService, expose } from "./operators/all.ts";
 
 Deno.test("basic k8s service test", () => {
   let s = createKubeBlueprint().with(

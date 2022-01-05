@@ -15,11 +15,11 @@ export type KamusSecret = {
 
   type?: string;
 
+  propagateAnnotations?: boolean;
+
   metadata?: ObjectMeta;
-
-  apiVersion?: string;
-
-  kind?: string;
+  apiVersion: "soluto.com/v1alpha2";
+  kind: "KamusSecret";
 };
 export function createKamusSecret<
   T extends Omit<KamusSecret, "apiVersion" | "kind">,

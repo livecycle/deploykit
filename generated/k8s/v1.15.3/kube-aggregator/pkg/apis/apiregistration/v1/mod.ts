@@ -1,17 +1,14 @@
 /* Generated for kube-aggregator/pkg/apis/apiregistration/v1/mod.ts */
 import {
+  ListMeta,
   ObjectMeta,
   Time,
-  ListMeta,
 } from "../../../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 
 /** APIService represents a server for a particular GroupVersion. Name must be "version.group". */
 export type APIService = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "apiregistration.k8s.io/v1";
+  kind: "APIService";
 
   metadata?: ObjectMeta;
 
@@ -51,13 +48,10 @@ export type APIServiceCondition = {
 
 /** APIServiceList is a list of APIService objects. */
 export type APIServiceList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "apiregistration.k8s.io/v1";
 
   items: APIService[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "APIServiceList";
 
   metadata?: ListMeta;
 };

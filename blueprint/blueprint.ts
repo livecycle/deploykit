@@ -1,6 +1,6 @@
 import copy from "https://cdn.pika.dev/copy-anything@^1.5.4";
 import { formatYaml } from "../utils/format.ts";
-import { mergeWithArrayConcat, cleanObject } from "../utils/object.ts";
+import { cleanObject, mergeWithArrayConcat } from "../utils/object.ts";
 
 export interface BluePrintTransform<TContext, T, U> {
   (this: IBluePrint<TContext, T>, resources: T, ctx: TContext): U;

@@ -1,12 +1,12 @@
 /* Generated for api/networking/v1beta1/mod.ts */
 import { IntOrString } from "../../../apimachinery/pkg/util/intstr/mod.ts";
 import {
-  ObjectMeta,
   ListMeta,
+  ObjectMeta,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 import {
-  TypedLocalObjectReference,
   LoadBalancerStatus,
+  TypedLocalObjectReference,
 } from "../../core/v1/mod.ts";
 
 /** HTTPIngressPath associates a path with a backend. Incoming urls matching the path are forwarded to the backend. */
@@ -39,11 +39,8 @@ export type HTTPIngressRuleValue = {
 
 /** Ingress is a collection of rules that allow inbound connections to reach the endpoints defined by a backend. An Ingress can be configured to give services externally-reachable urls, load balance traffic, terminate SSL, offer name based virtual hosting etc. */
 export type Ingress = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "networking.k8s.io/v1beta1";
+  kind: "Ingress";
 
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ObjectMeta;
@@ -74,11 +71,8 @@ export type IngressBackend = {
 
 /** IngressClass represents the class of the Ingress, referenced by the Ingress Spec. The `ingressclass.kubernetes.iois-default-class` annotation can be used to indicate that an IngressClass should be considered default. When a single IngressClass resource has this annotation set to true, new Ingress resources without a class specified will be assigned this default class. */
 export type IngressClass = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "networking.k8s.io/v1beta1";
+  kind: "IngressClass";
 
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ObjectMeta;
@@ -98,14 +92,11 @@ export function createIngressClass<
 
 /** IngressClassList is a collection of IngressClasses. */
 export type IngressClassList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "networking.k8s.io/v1beta1";
 
   /** Items is the list of IngressClasses. */
   items: IngressClass[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "IngressClassList";
 
   /** Standard list metadata. */
   metadata?: ListMeta;
@@ -133,14 +124,11 @@ export type IngressClassSpec = {
 
 /** IngressList is a collection of Ingress. */
 export type IngressList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "networking.k8s.io/v1beta1";
 
   /** Items is the list of Ingress. */
   items: Ingress[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "IngressList";
 
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;

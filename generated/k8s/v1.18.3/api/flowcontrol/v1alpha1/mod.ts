@@ -1,8 +1,8 @@
 /* Generated for api/flowcontrol/v1alpha1/mod.ts */
 import {
+  ListMeta,
   ObjectMeta,
   Time,
-  ListMeta,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 
 /** FlowDistinguisherMethod specifies the method of a flow distinguisher. */
@@ -13,11 +13,8 @@ export type FlowDistinguisherMethod = {
 
 /** FlowSchema defines the schema of a group of flows. Note that a flow is made up of a set of inbound API requests with similar attributes and is identified by a pair of strings: the name of the FlowSchema and a "flow distinguisher". */
 export type FlowSchema = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "flowcontrol.apiserver.k8s.io/v1alpha1";
+  kind: "FlowSchema";
 
   /** `metadata` is the standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ObjectMeta;
@@ -58,14 +55,11 @@ export type FlowSchemaCondition = {
 
 /** FlowSchemaList is a list of FlowSchema objects. */
 export type FlowSchemaList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "flowcontrol.apiserver.k8s.io/v1alpha1";
 
   /** `items` is a list of FlowSchemas. */
   items: FlowSchema[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "FlowSchemaList";
 
   /** `metadata` is the standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ListMeta;
@@ -160,11 +154,8 @@ export type PolicyRulesWithSubjects = {
 
 /** PriorityLevelConfiguration represents the configuration of a priority level. */
 export type PriorityLevelConfiguration = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "flowcontrol.apiserver.k8s.io/v1alpha1";
+  kind: "PriorityLevelConfiguration";
 
   /** `metadata` is the standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ObjectMeta;
@@ -210,14 +201,11 @@ export type PriorityLevelConfigurationCondition = {
 
 /** PriorityLevelConfigurationList is a list of PriorityLevelConfiguration objects. */
 export type PriorityLevelConfigurationList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "flowcontrol.apiserver.k8s.io/v1alpha1";
 
   /** `items` is a list of request-priorities. */
   items: PriorityLevelConfiguration[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "PriorityLevelConfigurationList";
 
   /** `metadata` is the standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ListMeta;

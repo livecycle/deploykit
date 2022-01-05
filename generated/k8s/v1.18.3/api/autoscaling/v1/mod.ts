@@ -1,7 +1,7 @@
 /* Generated for api/autoscaling/v1/mod.ts */
 import {
-  ObjectMeta,
   ListMeta,
+  ObjectMeta,
   Time,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 
@@ -19,11 +19,8 @@ export type CrossVersionObjectReference = {
 
 /** configuration of a horizontal pod autoscaler. */
 export type HorizontalPodAutoscaler = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "autoscaling/v1";
+  kind: "HorizontalPodAutoscaler";
 
   /** Standard object metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ObjectMeta;
@@ -51,14 +48,11 @@ export function createHorizontalPodAutoscaler<
 
 /** list of horizontal pod autoscaler objects. */
 export type HorizontalPodAutoscalerList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "autoscaling/v1";
 
   /** list of horizontal pod autoscaler objects. */
   items: HorizontalPodAutoscaler[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "HorizontalPodAutoscalerList";
 
   /** Standard list metadata. */
   metadata?: ListMeta;
@@ -113,11 +107,8 @@ export type HorizontalPodAutoscalerStatus = {
 
 /** Scale represents a scaling request for a resource. */
 export type Scale = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "autoscaling/v1";
+  kind: "Scale";
 
   /** Standard object metadata; More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata. */
   metadata?: ObjectMeta;

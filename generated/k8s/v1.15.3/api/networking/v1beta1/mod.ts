@@ -1,8 +1,8 @@
 /* Generated for api/networking/v1beta1/mod.ts */
 import { IntOrString } from "../../../apimachinery/pkg/util/intstr/mod.ts";
 import {
-  ObjectMeta,
   ListMeta,
+  ObjectMeta,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 import { LoadBalancerStatus } from "../../core/v1/mod.ts";
 
@@ -23,11 +23,8 @@ export type HTTPIngressRuleValue = {
 
 /** Ingress is a collection of rules that allow inbound connections to reach the endpoints defined by a backend. An Ingress can be configured to give services externally-reachable urls, load balance traffic, terminate SSL, offer name based virtual hosting etc. */
 export type Ingress = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "networking.k8s.io/v1beta1";
+  kind: "Ingress";
 
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ObjectMeta;
@@ -55,14 +52,11 @@ export type IngressBackend = {
 
 /** IngressList is a collection of Ingress. */
 export type IngressList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "networking.k8s.io/v1beta1";
 
   /** Items is the list of Ingress. */
   items: Ingress[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "IngressList";
 
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ListMeta;

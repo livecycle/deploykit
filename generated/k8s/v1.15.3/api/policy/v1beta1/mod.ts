@@ -2,9 +2,9 @@
 import { IntOrString } from "../../../apimachinery/pkg/util/intstr/mod.ts";
 import {
   DeleteOptions,
-  ObjectMeta,
-  ListMeta,
   LabelSelector,
+  ListMeta,
+  ObjectMeta,
   Time,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 import { SELinuxOptions } from "../../core/v1/mod.ts";
@@ -34,14 +34,11 @@ Examples: `foo` would allow `foo`, `foo` and `foobar` `foo` would not allow `foo
 
 /** Eviction evicts a pod from its node subject to certain policies and safety constraints. This is a subresource of Pod.  A request to cause such an eviction is created by POSTing to ...pods<pod name>evictions. */
 export type Eviction = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "policy/v1beta1";
 
   /** DeleteOptions may be provided */
   deleteOptions?: DeleteOptions;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "Eviction";
 
   /** ObjectMeta describes the pod that is being evicted. */
   metadata?: ObjectMeta;
@@ -81,11 +78,8 @@ export type IDRange = {
 
 /** PodDisruptionBudget is an object to define the max disruption that can be caused to a collection of pods */
 export type PodDisruptionBudget = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "policy/v1beta1";
+  kind: "PodDisruptionBudget";
 
   metadata?: ObjectMeta;
 
@@ -105,13 +99,10 @@ export function createPodDisruptionBudget<
 
 /** PodDisruptionBudgetList is a collection of PodDisruptionBudgets. */
 export type PodDisruptionBudgetList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "policy/v1beta1";
 
   items: PodDisruptionBudget[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "PodDisruptionBudgetList";
 
   metadata?: ListMeta;
 };
@@ -167,11 +158,8 @@ export type PodDisruptionBudgetStatus = {
 
 /** PodSecurityPolicy governs the ability to make requests that affect the Security Context that will be applied to a pod and container. */
 export type PodSecurityPolicy = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "policy/v1beta1";
+  kind: "PodSecurityPolicy";
 
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ObjectMeta;
@@ -189,14 +177,11 @@ export function createPodSecurityPolicy<
 
 /** PodSecurityPolicyList is a list of PodSecurityPolicy objects. */
 export type PodSecurityPolicyList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "policy/v1beta1";
 
   /** items is a list of schema objects. */
   items: PodSecurityPolicy[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "PodSecurityPolicyList";
 
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ListMeta;

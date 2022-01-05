@@ -1,9 +1,9 @@
 /* Generated for api/networking/v1/mod.ts */
 import { IntOrString } from "../../../apimachinery/pkg/util/intstr/mod.ts";
 import {
-  ObjectMeta,
-  ListMeta,
   LabelSelector,
+  ListMeta,
+  ObjectMeta,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 
 /** IPBlock describes a particular CIDR (Ex. "192.168.1.124") that is allowed to the pods matched by a NetworkPolicySpec's podSelector. The except entry describes CIDRs that should not be included within this rule. */
@@ -17,11 +17,8 @@ export type IPBlock = {
 
 /** NetworkPolicy describes what network traffic is allowed for a set of Pods */
 export type NetworkPolicy = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "networking.k8s.io/v1";
+  kind: "NetworkPolicy";
 
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ObjectMeta;
@@ -55,14 +52,11 @@ export type NetworkPolicyIngressRule = {
 
 /** NetworkPolicyList is a list of NetworkPolicy objects. */
 export type NetworkPolicyList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "networking.k8s.io/v1";
 
   /** Items is a list of schema objects. */
   items: NetworkPolicy[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "NetworkPolicyList";
 
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;

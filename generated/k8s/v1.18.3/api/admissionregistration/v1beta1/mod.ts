@@ -1,8 +1,8 @@
 /* Generated for api/admissionregistration/v1beta1/mod.ts */
 import {
   LabelSelector,
-  ObjectMeta,
   ListMeta,
+  ObjectMeta,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 
 /** MutatingWebhook describes an admission webhook and the resources and operations it applies to. */
@@ -85,11 +85,8 @@ Defaults to "Never". */
 
 /** MutatingWebhookConfiguration describes the configuration of and admission webhook that accept or reject and may change the object. Deprecated in v1.16, planned for removal in v1.19. Use admissionregistration.k8s.iov1 MutatingWebhookConfiguration instead. */
 export type MutatingWebhookConfiguration = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "admissionregistration.k8s.io/v1beta1";
+  kind: "MutatingWebhookConfiguration";
 
   /** Standard object metadata; More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata. */
   metadata?: ObjectMeta;
@@ -114,14 +111,11 @@ export function createMutatingWebhookConfiguration<
 
 /** MutatingWebhookConfigurationList is a list of MutatingWebhookConfiguration. */
 export type MutatingWebhookConfigurationList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "admissionregistration.k8s.io/v1beta1";
 
   /** List of MutatingWebhookConfiguration. */
   items: MutatingWebhookConfiguration[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "MutatingWebhookConfigurationList";
 
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
@@ -251,11 +245,8 @@ Default to the empty LabelSelector, which matches everything. */
 
 /** ValidatingWebhookConfiguration describes the configuration of and admission webhook that accept or reject and object without changing it. Deprecated in v1.16, planned for removal in v1.19. Use admissionregistration.k8s.iov1 ValidatingWebhookConfiguration instead. */
 export type ValidatingWebhookConfiguration = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "admissionregistration.k8s.io/v1beta1";
+  kind: "ValidatingWebhookConfiguration";
 
   /** Standard object metadata; More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata. */
   metadata?: ObjectMeta;
@@ -280,14 +271,11 @@ export function createValidatingWebhookConfiguration<
 
 /** ValidatingWebhookConfigurationList is a list of ValidatingWebhookConfiguration. */
 export type ValidatingWebhookConfigurationList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "admissionregistration.k8s.io/v1beta1";
 
   /** List of ValidatingWebhookConfiguration. */
   items: ValidatingWebhookConfiguration[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "ValidatingWebhookConfigurationList";
 
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;

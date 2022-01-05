@@ -1,9 +1,9 @@
 /* Generated for api/autoscaling/v2beta1/mod.ts */
 import {
   LabelSelector,
+  ListMeta,
   ObjectMeta,
   Time,
-  ListMeta,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 import { Quantity } from "../../../apimachinery/pkg/api/resource/mod.ts";
 
@@ -51,11 +51,8 @@ export type ExternalMetricStatus = {
 
 /** HorizontalPodAutoscaler is the configuration for a horizontal pod autoscaler, which automatically manages the replica count of any resource implementing the scale subresource based on the metrics specified. */
 export type HorizontalPodAutoscaler = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "autoscaling/v2beta1";
+  kind: "HorizontalPodAutoscaler";
 
   /** metadata is the standard object metadata. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ObjectMeta;
@@ -101,14 +98,11 @@ export type HorizontalPodAutoscalerCondition = {
 
 /** HorizontalPodAutoscaler is a list of horizontal pod autoscaler objects. */
 export type HorizontalPodAutoscalerList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "autoscaling/v2beta1";
 
   /** items is the list of horizontal pod autoscaler objects. */
   items: HorizontalPodAutoscaler[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "HorizontalPodAutoscalerList";
 
   /** metadata is the standard list metadata. */
   metadata?: ListMeta;

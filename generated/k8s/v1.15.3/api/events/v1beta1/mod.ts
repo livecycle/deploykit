@@ -1,19 +1,17 @@
 /* Generated for api/events/v1beta1/mod.ts */
 import { EventSource, ObjectReference } from "../../core/v1/mod.ts";
 import {
-  Time,
+  ListMeta,
   MicroTime,
   ObjectMeta,
-  ListMeta,
+  Time,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 
 /** Event is a report of an event somewhere in the cluster. It generally denotes some state change in the system. */
 export type Event = {
   /** What action was takenfailed regarding to the regarding object. */
   action?: string;
-
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "events.k8s.io/v1beta1";
 
   /** Deprecated field assuring backward compatibility with core.v1 Event type */
   deprecatedCount?: number;
@@ -29,9 +27,7 @@ export type Event = {
 
   /** Required. Time when this Event was first observed. */
   eventTime: MicroTime;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "Event";
 
   metadata?: ObjectMeta;
 
@@ -67,14 +63,11 @@ export function createEvent<T extends Omit<Event, "apiVersion" | "kind">>(
 
 /** EventList is a list of Event objects. */
 export type EventList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "events.k8s.io/v1beta1";
 
   /** Items is a list of schema objects. */
   items: Event[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "EventList";
 
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#metadata */
   metadata?: ListMeta;

@@ -1,15 +1,15 @@
 /* Generated for api/extensions/v1beta1/mod.ts */
 import { IntOrString } from "../../../apimachinery/pkg/util/intstr/mod.ts";
 import {
-  PodTemplateSpec,
   LoadBalancerStatus,
+  PodTemplateSpec,
   SELinuxOptions,
 } from "../../core/v1/mod.ts";
 import {
+  LabelSelector,
+  ListMeta,
   ObjectMeta,
   Time,
-  ListMeta,
-  LabelSelector,
 } from "../../../apimachinery/pkg/apis/meta/v1/mod.ts";
 
 /** AllowedCSIDriver represents a single inline CSI Driver that is allowed to be used. */
@@ -37,11 +37,8 @@ Examples: `foo` would allow `foo`, `foo` and `foobar` `foo` would not allow `foo
 
 /** DEPRECATED - This group version of DaemonSet is deprecated by appsv1beta2DaemonSet. See the release notes for more information. DaemonSet represents the configuration of a daemon set. */
 export type DaemonSet = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "extensions/v1beta1";
+  kind: "DaemonSet";
 
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ObjectMeta;
@@ -78,14 +75,11 @@ export type DaemonSetCondition = {
 
 /** DaemonSetList is a collection of daemon sets. */
 export type DaemonSetList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "extensions/v1beta1";
 
   /** A list of daemon sets. */
   items: DaemonSet[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "DaemonSetList";
 
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
@@ -161,11 +155,8 @@ export type DaemonSetUpdateStrategy = {
 
 /** DEPRECATED - This group version of Deployment is deprecated by appsv1beta2Deployment. See the release notes for more information. Deployment enables declarative updates for Pods and ReplicaSets. */
 export type Deployment = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "extensions/v1beta1";
+  kind: "Deployment";
 
   /** Standard object metadata. */
   metadata?: ObjectMeta;
@@ -205,14 +196,11 @@ export type DeploymentCondition = {
 
 /** DeploymentList is a list of Deployments. */
 export type DeploymentList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "extensions/v1beta1";
 
   /** Items is the list of Deployments. */
   items: Deployment[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "DeploymentList";
 
   /** Standard list metadata. */
   metadata?: ListMeta;
@@ -225,11 +213,8 @@ export function createDeploymentList<
 
 /** DEPRECATED. DeploymentRollback stores the information required to rollback a deployment. */
 export type DeploymentRollback = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "extensions/v1beta1";
+  kind: "DeploymentRollback";
 
   /** Required: This must match the Name of a deployment. */
   name: string;
@@ -373,11 +358,8 @@ export type IPBlock = {
 
 /** Ingress is a collection of rules that allow inbound connections to reach the endpoints defined by a backend. An Ingress can be configured to give services externally-reachable urls, load balance traffic, terminate SSL, offer name based virtual hosting etc. DEPRECATED - This group version of Ingress is deprecated by networking.k8s.iov1beta1 Ingress. See the release notes for more information. */
 export type Ingress = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "extensions/v1beta1";
+  kind: "Ingress";
 
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ObjectMeta;
@@ -405,14 +387,11 @@ export type IngressBackend = {
 
 /** IngressList is a collection of Ingress. */
 export type IngressList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "extensions/v1beta1";
 
   /** Items is the list of Ingress. */
   items: Ingress[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "IngressList";
 
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
@@ -465,11 +444,8 @@ export type IngressTLS = {
 
 /** DEPRECATED 1.9 - This group version of NetworkPolicy is deprecated by networkingv1NetworkPolicy. NetworkPolicy describes what network traffic is allowed for a set of Pods */
 export type NetworkPolicy = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "extensions/v1beta1";
+  kind: "NetworkPolicy";
 
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ObjectMeta;
@@ -503,14 +479,11 @@ export type NetworkPolicyIngressRule = {
 
 /** DEPRECATED 1.9 - This group version of NetworkPolicyList is deprecated by networkingv1NetworkPolicyList. Network Policy List is a list of NetworkPolicy objects. */
 export type NetworkPolicyList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "extensions/v1beta1";
 
   /** Items is a list of schema objects. */
   items: NetworkPolicy[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "NetworkPolicyList";
 
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
@@ -569,11 +542,8 @@ export type NetworkPolicySpec = {
 
 /** PodSecurityPolicy governs the ability to make requests that affect the Security Context that will be applied to a pod and container. Deprecated: use PodSecurityPolicy from policy API Group instead. */
 export type PodSecurityPolicy = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "extensions/v1beta1";
+  kind: "PodSecurityPolicy";
 
   /** Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ObjectMeta;
@@ -595,14 +565,11 @@ export function createPodSecurityPolicy<
 
 /** PodSecurityPolicyList is a list of PodSecurityPolicy objects. Deprecated: use PodSecurityPolicyList from policy API Group instead. */
 export type PodSecurityPolicyList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "extensions/v1beta1";
 
   /** items is a list of schema objects. */
   items: PodSecurityPolicy[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "PodSecurityPolicyList";
 
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ListMeta;
@@ -703,11 +670,8 @@ Examples: e.g. "foo*" forbids "foobar", "foobaz", etc. e.g. "foo.*" forbids "foo
 
 /** DEPRECATED - This group version of ReplicaSet is deprecated by appsv1beta2ReplicaSet. See the release notes for more information. ReplicaSet ensures that a specified number of pod replicas are running at any given time. */
 export type ReplicaSet = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "extensions/v1beta1";
+  kind: "ReplicaSet";
 
   /** If the Labels of a ReplicaSet are empty, they are defaulted to be the same as the Pod(s) that the ReplicaSet manages. Standard object's metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata */
   metadata?: ObjectMeta;
@@ -744,14 +708,11 @@ export type ReplicaSetCondition = {
 
 /** ReplicaSetList is a collection of ReplicaSets. */
 export type ReplicaSetList = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
+  apiVersion: "extensions/v1beta1";
 
   /** List of ReplicaSets. More info: https:kubernetes.iodocsconceptsworkloadscontrollersreplicationcontroller */
   items: ReplicaSet[];
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  kind: "ReplicaSetList";
 
   /** Standard list metadata. More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#types-kinds */
   metadata?: ListMeta;
@@ -857,11 +818,8 @@ export type SELinuxStrategyOptions = {
 
 /** represents a scaling request for a resource. */
 export type Scale = {
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#resources */
-  apiVersion?: string;
-
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https:git.k8s.iocommunitycontributorsdevelapi-conventions.md#types-kinds */
-  kind?: string;
+  apiVersion: "extensions/v1beta1";
+  kind: "Scale";
 
   /** Standard object metadata; More info: https:git.k8s.iocommunitycontributorsdevelsig-architectureapi-conventions.md#metadata. */
   metadata?: ObjectMeta;
